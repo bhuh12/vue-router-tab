@@ -1,0 +1,234 @@
+// 变量
+$color-primary: #409eff;
+
+// 页签
+.router-tab {
+	$bgHover: #f5f5f5;
+	$bgActive: #e5e5e5;
+  $h: 32px;
+  $slideW: 15px;
+
+  display: flex;
+  flex-direction: column;
+
+  &-header {
+    position: relative;
+		z-index: 9;
+    border-bottom: 2px solid $color-primary;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12), 0 0 3px 0 rgba(0, 0, 0, .04);
+    transition: all .2s ease-in-out;
+    flex: none;
+
+    &.is-scroll {
+      padding: 0 $slideW;
+
+      .nav-prev,
+      .nav-next {
+        display: block;
+      }
+
+      .router-tab-scroll {
+        overflow: hidden;
+      }
+    }
+  }
+
+  &-scroll {
+    overflow: visible;
+  }
+
+  &-nav {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  // 页签项
+  &-item {
+    $color: #4d4d4d;
+    $borderColor: #e6e6e6;
+
+    position: relative;
+    display: inline-block;
+    margin-right: -1px;
+    padding: 0 20px 0 10px;
+    color: $color;
+    line-height: $h;
+    font-size: 13px;
+    border: 1px solid $borderColor;
+    border-bottom: none;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    user-select: none;
+
+    &.actived {
+      background-color: $color-primary;
+      border-color: $color-primary;
+      color: #fff;
+
+      .tab-close {
+        background-image: url(../icon/close-active.png);
+      }
+		}
+
+		&:not(.actived) {
+			&:hover,
+			&.contextmenu {
+				color: #000;
+				background-color: $bgHover;
+        box-shadow: 0 -2px 4px rgba(0,0,0,.08);
+			}
+
+			&:active {
+				background-color: $bgActive;
+			}
+    }
+    
+    .tab-title {
+      display: inline-block;
+      max-width: 100px;
+      min-width: 30px;
+      vertical-align: top;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .tab-icon {
+      margin-right: 5px;
+      vertical-align: top;
+      font-size: 16px;
+      line-height: $h;
+    }
+
+    .tab-close {
+      $size: 16px;
+      $font-size: 12px;
+
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      width: $size;
+      height: $size;
+      text-align: center;
+      font-size: $font-size;
+      border-radius: 50%;
+      background: {
+        image: url(../icon/close.png);
+        position: 50% 50%;
+        repeat: no-repeat;
+      }
+      transition: background-color .2s ease-in-out;
+
+      &::before {
+        line-height: $size;
+      }
+
+      &:hover {
+        background-color: rgba(0,0,0,.1);
+      }
+
+      &:active {
+        background-color: rgba(0,0,0,.2);
+      }
+    }
+  }
+
+  .nav-prev,
+  .nav-next {
+    display: none;
+    position: absolute;
+    top: 0;
+    width: $slideW;
+    height: 100%;
+    line-height: $h;
+    text-align: center;
+    color: #ccc;
+    background: {
+      image: url(../icon/left.png);
+      position: 40% 50%;
+      repeat: no-repeat;
+    }
+    transition: all .2s ease-in-out;
+    box-shadow: 0 0 4px rgba(0,0,0,.2);
+    cursor: pointer;
+
+    &:hover {
+      color: #fff;
+      background-image: url(../icon/left-hover.png);
+      background-color: $color-primary;
+      border-color: $color-primary;
+    }
+
+    &:active {
+      opacity: .8;
+    }
+  }
+
+  .nav-prev {
+    left: 0;
+  }
+
+  .nav-next {
+    right: 0;
+    transform: rotate(180deg);
+	}
+
+  // 页面容器
+  &-container {
+    position: relative;
+    flex: auto;
+    overflow: hidden auto;
+    background: #fff;
+		transition: all .4s ease-in-out;
+  }
+	
+	// 右键菜单
+	&-contextmenu {
+    position: fixed;
+    z-index: 999;
+		min-width: 120px;
+    border-top: 2px solid $color-primary;
+    font-size: 13px;
+		background: #fff;
+    box-shadow: 0 1px 6px 3px rgba(0,0,0,.2);
+    transition: all .2s ease-in-out;
+
+		.contextmenu-item {
+			display: block;
+			padding: 5px 20px;
+			line-height: 1.5;
+			color: #555;
+			cursor: pointer;
+			transition: all .2s ease-in-out;
+      user-select: none;
+
+			&:hover {
+				color: #333;
+				background: $bgHover;
+			}
+
+			&:active {
+				background: $bgActive;
+			}
+
+      &[disabled] {
+        color: #aaa;
+        background: none;
+        pointer-events: none;
+        cursor: default;
+      }
+		}
+	}
+}
+
+.is-tab-fullscreen .router-tab-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 990;
+}

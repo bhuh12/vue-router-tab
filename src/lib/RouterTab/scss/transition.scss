@@ -1,0 +1,55 @@
+// transition 过渡样式
+.router-tab {
+  &-zoom-lt,
+  &-zoom-lb {
+    &-enter-active,
+    &-leave-active {
+      transition: all .3s;
+    }
+
+    &-enter,
+    &-leave-to {
+      transform: scale(0);
+      opacity: 0;
+    }
+  }
+
+  // 缩放-左上
+  &-zoom-lt {
+    &-enter-active,
+    &-leave-active {
+      transform-origin: left top;
+    }
+  }
+
+  // 缩放-左下
+  &-zoom-lb {
+    &-enter-active,
+    &-leave-active {
+      transform-origin: left bottom;
+    }
+  }
+
+  // 页面交换
+  &-swap {
+    $trans: 30px; // 移动位置
+
+    &-enter-active,
+    &-leave-active {
+      transition: all .5s;
+    }
+
+    &-enter,
+    &-leave-to {
+      opacity: 0;
+    }
+
+    &-enter {
+      transform: translateX(-$trans);
+    }
+
+    &-leave-to {
+      transform: translateX($trans);
+    }
+  }
+}
