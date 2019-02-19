@@ -24,6 +24,16 @@ function debounce (fn, delay = 200) {
   }
 }
 
+// 队列执行promise
+function promiseQueue (promises, isFinally = true) {
+  let queue = Promise.resolve()
+  const type = isFinally ? 'finally' : 'then'
+  for (let item of promises) {
+    queue = queue[type](item)
+  }
+  return queue
+}
+
 export default {
   name: 'router-tab',
   components: { RouterAlive },
@@ -277,67 +287,66 @@ export default {
     },
 
     // 关闭页签
-    async close (id = this.activedTab) {
+    close (id = this.activedTab) {
       let { activedTab, items, $router } = this
       const idx = items.findIndex(item => item.id === id)
 
-      await this.closeTabItem(id)
-
-      // 如果关闭当前页签，则打开后一个页签
-      if (activedTab === id) {
-        let nextTab = items[idx] || items[idx - 1]
-        $router.replace(nextTab.to)
-      }
+      this.closeTabItem(id).then(() => {
+        // 如果关闭当前页签，则打开后一个页签
+        if (activedTab === id) {
+          let nextTab = items[idx] || items[idx - 1]
+          $router.replace(nextTab.to)
+        }
+      })
     },
 
     // 关闭多个页签
-    async closeMulti (tabs) {
+    closeMulti (tabs) {
       let { items, $router, contextmenu, closeTabItem } = this
       let nextTab = items.find(({ id }) => id === contextmenu.id)
 
-      for (let { id } of tabs) {
-        try {
-          await closeTabItem(id)
-        } catch (e) {}
-      }
-
-      // 当前页签如已关闭，则打开右键选中页签
-      if (items.findIndex(({ id }) => id === this.activedTab) === -1) {
-        $router.replace(nextTab.to)
-      }
+      // 队列执行关闭promise
+      promiseQueue(tabs.map(
+        ({ id }) => () => { closeTabItem(id) }
+      )).finally(() => {
+        // 当前页签如已关闭，则打开右键选中页签
+        if (items.findIndex(({ id }) => id === this.activedTab) === -1) {
+          $router.replace(nextTab.to)
+        }
+      })
     },
 
     // 刷新指定页签
-    async refresh (id = this.activedTab) {
-      try {
-        await this.pageLeavePromise(id, 'refresh')
+    refresh (id = this.activedTab) {
+      this.pageLeavePromise(id, 'refresh').then(() => {
         this.$refs.routerAlive.clear(id)
         this.reloadRouter()
-      } catch (e) {}
+      })
     },
 
     /**
      * 刷新所有页签
      * @param {boolean} [force=false] 是否强制刷新，如果强制则忽略页面beforePageLeave
      */
-    async refreshAll (force = false) {
+    refreshAll (force = false) {
       const $alive = this.$refs.routerAlive
       const { cache } = $alive
-      for (const id in cache) {
+
+      const promises = Object.keys(cache).map(id => () => {
         if (!force) {
-          try {
-            await this.pageLeavePromise(id, 'refresh')
+          return this.pageLeavePromise(id, 'refresh').then(() => {
             $alive.clear(id)
-          } catch (e) {}
+          })
         } else {
           $alive.clear(id)
         }
-      }
-      this.reloadRouter()
+      })
+
+      promiseQueue(promises).finally(this.reloadRouter)
     },
 
     // 重载路由组件
-    async reloadRouter () {
+    reloadRouter () {
       this.isRouterAlive = false // 页面过渡结束后会设置为true
     },
 
