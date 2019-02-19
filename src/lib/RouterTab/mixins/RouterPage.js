@@ -26,7 +26,7 @@ export default {
   },
 
   // 解决webpack热加载后组件缓存不更新
-  async activated () {
+  activated () {
     const { $routerTab, $vnode } = this
 
     if (!($vnode && $vnode.data.routerAlive)) return false
