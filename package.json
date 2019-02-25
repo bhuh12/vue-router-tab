@@ -10,7 +10,7 @@
   "author": "碧海幽虹",
   "private": false,
   "license": "MIT",
-  "main": "dist/lib/vue-router-tab.common.js",
+  "main": "dist/lib/vue-router-tab.umd.min.js",
   "scripts": {
     "demo:serve": "vue-cli-service serve",
     "demo:build": "vue-cli-service build --dest dist/demo",

@@ -180,7 +180,8 @@ $color-primary: #409eff;
   &-container {
     position: relative;
     flex: auto;
-    overflow: hidden auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     background: #fff;
 		transition: all .4s ease-in-out;
   }

@@ -65,6 +65,7 @@ export default {
       })
     }
   },
+
   data () {
     return {
       loading: false, // 路由页面loading
@@ -119,6 +120,7 @@ export default {
       this.loading = false
       this.hideContextmenu()
       this.updateActivedTab()
+      this.fixCommentPage()
     },
 
     activedTab () {
@@ -346,8 +348,16 @@ export default {
     },
 
     // 重载路由组件
-    reloadRouter () {
-      this.isRouterAlive = false // 页面过渡结束后会设置为true
+    reloadRouter (ignoreTransition = false) {
+      this.isRouterAlive = false
+
+      // 默认在页面过渡结束后会设置 isRouterAlive 为 true
+      // 如果过渡事件失效，则需传入 ignoreTransition 为 true 手动更改
+      if (ignoreTransition) {
+        this.$nextTick(() => {
+          this.isRouterAlive = true
+        })
+      }
     },
 
     // 页签过渡结束
@@ -393,6 +403,13 @@ export default {
 
       if ($cur && isScroll) {
         scrollTo($scr, $cur.offsetLeft + ($cur.clientWidth - $scr.clientWidth) / 2)
+      }
+    },
+
+    // 修复：当快速频繁切换页签时，旧页面离开过渡效果尚未完成，新页面内容无法正常mount，内容节点为comment类型
+    fixCommentPage () {
+      if (this.$refs.routerAlive.$el.nodeType === 8) {
+        this.reloadRouter(true)
       }
     }
   }
