@@ -4,8 +4,10 @@ src/
 public/
 
 # 忽略指定文件
+yarn.lock
 babel.config.js
 tsconfig.json
 tslint.json
 vue.config.js
+.editorconfig
 *.map
