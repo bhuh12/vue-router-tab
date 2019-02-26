@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import RouterAlive, { isAlikeRoute, emptyObj, emptyArray } from './RouterAlive'
+import langs from '../lang'
 
 // 滚动
 function scrollTo ($el, left = 0, top = 0) {
@@ -40,6 +41,14 @@ export default {
   props: {
     // 缓存key，如果为函数，则参数为route
     aliveKey: RouterAlive.props.aliveKey,
+
+    // 国际化
+    // - 为字符串时，可以设置为内置的语言 'zh-CN' (默认) 和 'en'
+    // - 为对象时，可设置自定义的语言
+    i18n: {
+      type: [ String, Object ],
+      default: 'zh-CN'
+    },
 
     // 初始页签数据
     tabs: {
@@ -83,6 +92,23 @@ export default {
   },
 
   computed: {
+    // 语言内容
+    lang () {
+      let lang = null
+      let i18n = this.i18n
+
+      if (typeof i18n === 'string') {
+        lang = langs[i18n]
+      } else if (typeof i18n === 'object') {
+        lang = i18n
+      }
+
+      // 找不到语言配置，则使用英文
+      if (!lang) lang = langs['en']
+
+      return lang
+    },
+
     // 右键菜单是否当前页签
     isContextTabActived () {
       return this.contextmenu.id === this.activedTab

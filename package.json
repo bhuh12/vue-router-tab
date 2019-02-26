@@ -1,21 +1,29 @@
 {
   "name": "vue-router-tab",
-  "version": "0.1.0",
-  "description": "基于 Vue 和 Vue Router 的 Tab 页签组件",
-  "keyword": [
+  "version": "0.1.1",
+  "description": "Vue.js tab components, based on Vue Router",
+  "keywords": [
     "vue",
     "router",
     "tab"
   ],
-  "author": "碧海幽虹",
+  "author": "bhuh12 <bihaiyouhong12@126.com> (https://bhuh.net)",
   "private": false,
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhuh12/vue-router-tab.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bhuh12/vue-router-tab/issues"
+  },
   "main": "dist/lib/vue-router-tab.umd.min.js",
   "scripts": {
     "demo:serve": "vue-cli-service serve",
     "demo:build": "vue-cli-service build --dest dist/demo",
     "lib:build": "vue-cli-service build --target lib --dest dist/lib ./src/lib/RouterTab/index.js",
     "lib:build:report": "vue-cli-service build --report --target lib --dest dist/lib ./src/lib/RouterTab/index.js",
+    "lib:publish": "npm run lib:build && npm publish",
     "lint": "vue-cli-service lint",
     "lint:fix": "vue-cli-service lint --fix"
   },

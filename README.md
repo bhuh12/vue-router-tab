@@ -1,6 +1,6 @@
 # Vue Router Tab
 
-Vue Router Tab 是基于 Vue Router 的路由页签组件。
+Vue Router Tab 是基于 `Vue Router` 的路由页签组件。
 
 > 由于 Vue 内置的 `<keep-alive>` 只能根据组件的 `name` 来缓存页面，难以实现同一个组件对应多个页签的缓存，本组件定制了 `<router-alive>` 缓存组件
 
@@ -14,7 +14,7 @@ Vue Router Tab 是基于 Vue Router 的路由页签组件。
 - [x] [自定义页签模板](#自定义页签模板)
 - [x] [动态更新页签信息 (标题/图标/提示)](#动态更新页签信息)
 - [x] [路由页面离开 (页签关闭/刷新/替换) 前确认](#路由页面离开前确认)
-- [ ] 国际化
+- [x] 国际化：zh-CN (默认) / en
 
 ---
 
@@ -23,7 +23,11 @@ Vue Router Tab 是基于 Vue Router 的路由页签组件。
 ### NPM
 
 ``` bash
-npm install @bihaiyouhong12/vue-router-tab -S
+# npm
+npm install vue-router-tab -S
+
+# yarn
+yarn add vue-router-tab
 ```
 
 ## 引入
@@ -36,7 +40,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // 引入组件和样式
-import RouterTab from '@bihaiyouhong12/vue-router-tab'
+import RouterTab from 'vue-router-tab'
 import 'vue-router-tab/dist/lib/vue-router-tab.css'
 
 Vue.use(RouterTab)
@@ -84,6 +88,52 @@ Template:
 <router-tab :alive-key="route => route.fullPath + '1'"></router-tab>
 ```
 
+### `i18n`
+
+国际化语言配置
+
+- 类型: `string | Object`
+
+  - 如果类型为 `string` ，可以设置为内置的语言 `'zh-CN'` (默认) 和 `'en'`
+
+  - 如果类型为 `Object` ，可设置自定义的语言
+
+- 默认值: `'zh-CN'`
+
+
+**指定内置语言**
+
+``` html
+<router-tab i18n="en"></router-tab>
+```
+
+**自定义语言**
+
+``` html
+<router-tab :i18n="lang"></router-tab>
+```
+
+``` javascript
+export default {
+  data () {
+    return {
+      lang: {
+        tab: {
+          untitled: 'Untitled Page'
+        },
+        contextmenu: {
+          refresh: 'Refresh This',
+          refreshAll: 'Refresh All',
+          close: 'Close This',
+          closeLefts: 'Close to the Left',
+          closeRights: 'Close to the Right',
+          closeOthers: 'Close Others'
+        }
+      }
+    }
+  }
+}
+```
 
 ### `tabs`
 

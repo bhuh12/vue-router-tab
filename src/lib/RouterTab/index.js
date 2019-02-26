@@ -2,7 +2,10 @@ import RouterPage from './mixins/RouterPage'
 import RouterTab from './components/RouterTab.vue'
 
 // 安装
-RouterTab.install = (Vue, options) => {
+RouterTab.install = function install (Vue, options) {
+  if (install.installed) return
+  install.installed = true
+
   Vue.component(RouterTab.name, RouterTab)
   Vue.mixin(RouterPage)
 }
