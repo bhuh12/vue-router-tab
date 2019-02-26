@@ -24,8 +24,8 @@
               index
             }">
               <i v-if="icon" class="tab-icon" :class="icon"></i>
-              <span class="tab-title">{{title || '新页签'}}</span>
-              <i class="tab-close" v-if="closable !== false && items.length > 1" @click.prevent="close(id)"></i>
+              <span class="tab-title">{{title || lang.tab.untitled}}</span>
+              <i class="tab-close" v-if="closable !== false && items.length > 1" :title="lang.contextmenu.close" @click.prevent="close(id)"></i>
             </slot>
           </router-link>
         </transition-group>
@@ -52,17 +52,29 @@
     <!-- 右键菜单 -->
     <transition name="router-tab-zoom-lt">
       <div class="router-tab-contextmenu" :style="`left: ${contextmenu.left}px; top: ${contextmenu.top}px;`" v-if="contextmenu.id">
-        <a class="contextmenu-item" :disabled="!isContextTabActived" @click="isContextTabActived && refresh(contextmenu.id)">刷新</a>
+        <a class="contextmenu-item" :disabled="!isContextTabActived" @click="isContextTabActived && refresh(contextmenu.id)">
+          {{lang.contextmenu.refresh}}
+        </a>
 
-        <a class="contextmenu-item" :disabled="items.length < 2" @click="items.length > 1 && refreshAll()">刷新所有</a>
+        <a class="contextmenu-item" :disabled="items.length < 2" @click="items.length > 1 && refreshAll()">
+          {{lang.contextmenu.refreshAll}}
+        </a>
 
-        <a class="contextmenu-item" :disabled="!isContextTabCanBeClosed" @click="isContextTabCanBeClosed && close(contextmenu.id)">关闭</a>
+        <a class="contextmenu-item" :disabled="!isContextTabCanBeClosed" @click="isContextTabCanBeClosed && close(contextmenu.id)">
+          {{lang.contextmenu.close}}
+        </a>
 
-        <a class="contextmenu-item" :disabled="!tabsLeft.length" @click="tabsLeft.length && closeMulti(tabsLeft)">关闭左侧</a>
+        <a class="contextmenu-item" :disabled="!tabsLeft.length" @click="tabsLeft.length && closeMulti(tabsLeft)">
+          {{lang.contextmenu.closeLefts}}
+        </a>
 
-        <a class="contextmenu-item" :disabled="!tabsRight.length" @click="tabsRight.length && closeMulti(tabsRight)">关闭右侧</a>
+        <a class="contextmenu-item" :disabled="!tabsRight.length" @click="tabsRight.length && closeMulti(tabsRight)">
+          {{lang.contextmenu.closeRights}}
+        </a>
 
-        <a class="contextmenu-item" :disabled="!tabsOther.length" @click="tabsOther.length && closeMulti(tabsOther)">关闭其他</a>
+        <a class="contextmenu-item" :disabled="!tabsOther.length" @click="tabsOther.length && closeMulti(tabsOther)">
+          {{lang.contextmenu.closeOthers}}
+        </a>
       </div>
     </transition>
   </div>
