@@ -1,39 +1,7 @@
 import Vue from 'vue'
-import RouterAlive, { isAlikeRoute, emptyObj, emptyArray } from './RouterAlive'
+import RouterAlive from './RouterAlive'
 import langs from '../lang'
-
-// 滚动
-function scrollTo ($el, left = 0, top = 0) {
-  if ($el.scrollTo) {
-    $el.scrollTo({ left, top, behavior: 'smooth' })
-  } else {
-    $el.scrollLeft = left
-    $el.scrollTop = top
-  }
-}
-
-// 防抖
-function debounce (fn, delay = 200) {
-  let timeout = null
-  return function () {
-    let context = this
-    let args = arguments
-    clearTimeout(timeout)
-    timeout = setTimeout(() => {
-      fn.call(context, args)
-    }, delay)
-  }
-}
-
-// 队列执行promise
-function promiseQueue (promises, isFinally = true) {
-  let queue = Promise.resolve()
-  const type = isFinally ? 'finally' : 'then'
-  for (let item of promises) {
-    queue = queue[type](item)
-  }
-  return queue
-}
+import { emptyObj, emptyArray, scrollTo, debounce, promiseQueue, getAliveKey, isAlikeRoute } from '../util'
 
 export default {
   name: 'router-tab',
@@ -203,7 +171,7 @@ export default {
   },
 
   methods: {
-    getAliveKey: RouterAlive.methods.getAliveKey,
+    getAliveKey,
 
     // 页面离开导航守卫
     routerPageLeaveGuard (to, from, next) {

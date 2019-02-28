@@ -1,46 +1,4 @@
-// 空对象和数组
-export const emptyObj = Object.create(null)
-export const emptyArray = []
-
-function isDef (v) {
-  return v !== undefined && v !== null
-}
-
-function getFirstComponentChild (children) {
-  if (Array.isArray(children)) {
-    for (let i = 0; i < children.length; i++) {
-      const c = children[i]
-      if (
-        isDef(c) &&
-        (isDef(c.componentOptions) || isAsyncPlaceholder(c))
-      ) {
-        return c
-      }
-    }
-  }
-}
-
-function isAsyncPlaceholder (node) {
-  return node.isComment && node.asyncFactory
-}
-
-// 获取路由不带hash的路径
-const getPathWithoutHash = route => route.hash
-  ? route.fullPath.replace(route.hash, '')
-  : route.fullPath
-
-// 是否相似路由
-export const isAlikeRoute = function isAlikeRoute (route1, route2) {
-  return getPathWithoutHash(route1) === getPathWithoutHash(route2)
-}
-
-// 获取路由页面组件
-const getRouteComponent = ({ matched }) => matched[matched.length - 1].components.default
-
-// 路由是否共用组件
-function isSameComponentRoute (route1, route2) {
-  return getRouteComponent(route1) === getRouteComponent(route2)
-}
+import { emptyObj, getAliveKey, getFirstComponentChild, isAlikeRoute, isSameComponentRoute } from '../util'
 
 export default {
   name: 'router-alive',
@@ -121,14 +79,7 @@ export default {
   },
 
   methods: {
-    // 获取缓存key
-    getAliveKey (route = this.$route) {
-      let aliveKey = (route.meta && route.meta.aliveKey) || this.aliveKey || 'path'
-      if (typeof aliveKey === 'function') {
-        return aliveKey.bind(this)(route)
-      }
-      return route[aliveKey]
-    },
+    getAliveKey,
 
     // 设置缓存项
     set (key, item) {
