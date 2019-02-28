@@ -1,20 +1,26 @@
 # Vue Router Tab
 
+<!-- <p align="center">
+  <a href="https://npmcharts.com/compare/vue-router-tab?minimal=true"><img src="https://img.shields.io/npm/dm/vue-router-tab.svg" alt="Downloads"></a>
+  <a href="https://www.npmjs.com/package/vue-router-tab"><img src="https://img.shields.io/npm/v/vue-router-tab.svg" alt="Version"></a>
+  <a href="https://www.npmjs.com/package/vue-router-tab"><img src="https://img.shields.io/npm/l/vue-router-tab.svg" alt="License"></a>
+</p> -->
+
 Vue Router Tab 是基于 `Vue Router` 的路由页签组件。
 
 > 由于 Vue 内置的 `<keep-alive>` 只能根据组件的 `name` 来缓存页面，难以实现同一个组件对应多个页签的缓存，本组件定制了 `<router-alive>` 缓存组件
 
 ## 功能
 
-- [x] 根据路由变化新增或切换页签，不同的页签缓存独立的页面
-- [x] 页签关闭和刷新，支持右键操作菜单批量操作
+- [x] 响应路由变化新增或切换页签，不同的页签缓存独立的页面
+- [x] 页签关闭和刷新，右键菜单批量操作
 - [x] [全局](#alive-key)和[针对特定路由](#meta.aliveKey)的页签缓存规则配置
-- [x] [配置初始展示的页签](#tabs)，页签可设置为不可关闭
-- [x] [页签和页面过渡效果配置 (已内置过渡效果)](#tab-transition)
-- [x] [自定义页签模板](#自定义页签模板)
+- [x] [初始展示页签](#tabs)，页签可设置为不可关闭
+- [x] [内置页签和页面过渡效果，支持自定义配置](#tab-transition)
+- [x] [自定义页签项模板](#自定义页签项模板)
 - [x] [动态更新页签信息 (标题/图标/提示)](#动态更新页签信息)
 - [x] [路由页面离开 (页签关闭/刷新/替换) 前确认](#路由页面离开前确认)
-- [x] 国际化：zh-CN (默认) / en
+- [x] [国际化](#i18n)：zh-CN (默认) / en，自定义语言
 
 ---
 
@@ -24,7 +30,7 @@ Vue Router Tab 是基于 `Vue Router` 的路由页签组件。
 
 ``` bash
 # npm
-npm install vue-router-tab -S
+npm i vue-router-tab -S
 
 # yarn
 yarn add vue-router-tab
@@ -43,7 +49,7 @@ import Router from 'vue-router'
 import RouterTab from 'vue-router-tab'
 import 'vue-router-tab/dist/lib/vue-router-tab.css'
 
-Vue.use(RouterTab)
+vue-router-tab.use(RouterTab)
 ```
 
 Template:
@@ -217,7 +223,7 @@ export default {
 }`
 
 
-### 自定义页签模板
+### 自定义页签项模板
 
 ``` html
 <router-tab>
