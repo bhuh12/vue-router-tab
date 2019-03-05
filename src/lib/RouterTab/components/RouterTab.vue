@@ -25,7 +25,7 @@
             }">
               <i v-if="icon" class="tab-icon" :class="icon"></i>
               <span class="tab-title">{{title || lang.tab.untitled}}</span>
-              <i class="tab-close" v-if="closable !== false && items.length > 1" :title="lang.contextmenu.close" @click.prevent="close(id)"></i>
+              <i class="tab-close" v-if="closable !== false && items.length > 1" :title="lang.contextmenu.close" @click.prevent="closeTab(id)"></i>
             </slot>
           </router-link>
         </transition-group>
@@ -52,7 +52,7 @@
     <!-- 右键菜单 -->
     <transition name="router-tab-zoom-lt">
       <div class="router-tab-contextmenu" :style="`left: ${contextmenu.left}px; top: ${contextmenu.top}px;`" v-if="contextmenu.id">
-        <a class="contextmenu-item" :disabled="!isContextTabActived" @click="isContextTabActived && refresh(contextmenu.id)">
+        <a class="contextmenu-item" :disabled="!isContextTabActived" @click="isContextTabActived && refreshTab(contextmenu.id)">
           {{lang.contextmenu.refresh}}
         </a>
 
@@ -60,7 +60,7 @@
           {{lang.contextmenu.refreshAll}}
         </a>
 
-        <a class="contextmenu-item" :disabled="!isContextTabCanBeClosed" @click="isContextTabCanBeClosed && close(contextmenu.id)">
+        <a class="contextmenu-item" :disabled="!isContextTabCanBeClosed" @click="isContextTabCanBeClosed && closeTab(contextmenu.id)">
           {{lang.contextmenu.close}}
         </a>
 
