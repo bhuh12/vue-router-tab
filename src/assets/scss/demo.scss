@@ -1,0 +1,117 @@
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+[class^="rt-icon-"],
+[class*=" rt-icon-"] {
+  font-family: "rtfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.app-ct {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+
+	.app-hd {
+		flex: none;
+		position: relative;
+		z-index: 99;
+		box-shadow: 0 0 8px rgba(0,0,0,.2);
+
+		h2 {
+			margin: 0 0 0 1.5rem;
+			line-height: 50px;
+			font-weight: 400;
+			font-size: 1.3rem;
+
+			strong {
+				font-weight: 400;
+				color: $color;
+			}
+		}
+	}
+
+	.app-bd {
+		display: flex;
+		flex: auto;
+	}
+}
+
+.app-sd {
+	flex: 0 0 200px;
+	padding-top: 2rem;
+	border-right: 1px solid #eaecef;
+
+	
+	> .menu-group {
+		margin-bottom: 1rem;
+	}
+
+	.menu-group {
+
+		.menu-title {
+			padding: 0 1.25rem;
+			margin-top: 0;
+			margin-bottom: .5rem;
+			font-size: 1.1em;
+			font-weight: 700;
+		}
+
+		.menu-list {
+			margin: 0;
+			padding: 0;
+		}
+	
+		.menu-item {
+			padding: .35rem 1rem .35rem 1.25rem;
+			list-style: none;
+			font-size: 15px;
+
+			> a {
+				color: #2c3e50;
+				text-decoration: none;
+				cursor: pointer;
+		
+				&.router-link-active,
+				&:hover {
+					color: $color;
+				}
+		
+				&.router-link-active {
+					font-weight: 700;
+				}
+			}
+
+			.menu-group .router-link-active {
+					font-weight: 400;
+			}
+		}
+	}
+}
+
+.app-main {
+	flex: auto;
+	overflow: hidden;
+}
+
+.app-page {
+  padding: 15px;
+  font-size: 14px;
+	line-height: 1.5;
+}
