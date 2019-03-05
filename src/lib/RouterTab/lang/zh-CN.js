@@ -9,5 +9,8 @@ export default {
     closeLefts: '关闭左侧',
     closeRights: '关闭右侧',
     closeOthers: '关闭其他'
+  },
+  msg: {
+    keepOneTab: '至少应保留1个页签'
   }
 }

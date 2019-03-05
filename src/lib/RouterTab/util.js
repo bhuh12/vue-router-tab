@@ -1,6 +1,7 @@
 // 空对象和数组
 export const emptyObj = Object.create(null)
 export const emptyArray = []
+export const logPrefix = '[vue-router-tab]:'
 
 // 是否定义
 export function isDef (v) {

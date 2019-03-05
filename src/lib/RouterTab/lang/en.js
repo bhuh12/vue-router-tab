@@ -9,5 +9,8 @@ export default {
     closeLefts: 'Close to the Left',
     closeRights: 'Close to the Right',
     closeOthers: 'Close Others'
+  },
+  msg: {
+    keepOneTab: 'Keep at least 1 tab'
   }
 }

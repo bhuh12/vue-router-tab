@@ -1,7 +1,7 @@
 import { emptyObj, getAliveKey, getFirstComponentChild, isAlikeRoute, isSameComponentRoute } from '../util'
 
 export default {
-  name: 'router-alive',
+  name: 'RouterAlive',
   props: {
     // 缓存key，如果为函数，则参数为route
     aliveKey: {

@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import RouterAlive from './RouterAlive'
 import langs from '../lang'
-import { emptyObj, emptyArray, scrollTo, debounce, promiseQueue, getAliveKey, isAlikeRoute } from '../util'
+import { emptyObj, emptyArray, logPrefix, scrollTo, debounce, promiseQueue, getAliveKey, isAlikeRoute, getPathWithoutHash } from '../util'
 
 export default {
-  name: 'router-tab',
+  name: 'RouterTab',
   components: { RouterAlive },
   props: {
     // 缓存key，如果为函数，则参数为route
@@ -205,7 +205,7 @@ export default {
       let ids = {}
 
       this.items = tabs.map((item, index) => {
-        let { to, closable } = typeof item === 'string'
+        let { to, closable, title, tips } = typeof item === 'string'
           ? { to: item }
           : (item || emptyObj)
         let route = to && $router.match(to)
@@ -216,7 +216,12 @@ export default {
 
           // 根据id去重
           if (!ids[id]) {
-            return (ids[id] = Object.assign(tab, { closable: closable !== false }))
+            // 初始 tab 数据
+            if (title) tab.title = title
+            if (tips) tab.tips = tips
+            tab.closable = closable !== false
+
+            return (ids[id] = tab)
           }
         }
       }).filter(item => !!item)
@@ -240,6 +245,25 @@ export default {
         this.$set(items, matchIdx, item)
       } else {
         items.push(item)
+      }
+    },
+
+    // 从路由地址获取 AliveKey
+    getTabIdByLocation (location, fullMatch = true) {
+      if (!location) return
+
+      let $route = this.$router.match(location)
+
+      // 路由地址精确匹配页签
+      if (fullMatch) {
+        let matchPath = getPathWithoutHash($route)
+        let matchTab = this.items.find(({ to }) => to.split('#')[0] === matchPath)
+
+        if (matchTab) {
+          return matchTab.id
+        }
+      } else {
+        return this.getAliveKey($route)
       }
     },
 
@@ -275,6 +299,10 @@ export default {
       let $alive = this.$refs.routerAlive
       const idx = items.findIndex(item => item.id === id)
 
+      if (items.length === 1) {
+        return Promise.reject(new Error(this.lang.msg.keepOneTab))
+      }
+
       return this.pageLeavePromise(id, 'close').then(function () {
         // 承诺关闭后移除页签和缓存
         $alive.remove(id)
@@ -282,8 +310,20 @@ export default {
       }).catch(e => {})
     },
 
-    // 关闭页签
-    close (id = this.activedTab) {
+    // 通过路由地址关闭页签
+    close (location, fullMatch = true) {
+      if (location) {
+        let id = this.getTabIdByLocation(location, fullMatch)
+        if (id) {
+          this.closeTab(id)
+        }
+      } else {
+        this.closeTab()
+      }
+    },
+
+    // 通过页签id关闭页签
+    closeTab (id = this.activedTab) {
       let { activedTab, items, $router } = this
       const idx = items.findIndex(item => item.id === id)
 
@@ -293,7 +333,7 @@ export default {
           let nextTab = items[idx] || items[idx - 1]
           $router.replace(nextTab.to)
         }
-      })
+      }).catch(e => console.warn(logPrefix, e.message))
     },
 
     // 关闭多个页签
@@ -312,11 +352,23 @@ export default {
       })
     },
 
-    // 刷新指定页签
-    refresh (id = this.activedTab) {
+    // 通过路由地址刷新页签
+    refresh (location, fullMatch = true) {
+      if (location) {
+        let id = this.getTabIdByLocation(location, fullMatch)
+        if (id) {
+          this.refreshTab(id)
+        }
+      } else {
+        this.refreshTab()
+      }
+    },
+
+    // 通过页签id刷新页签
+    refreshTab (id = this.activedTab) {
       this.pageLeavePromise(id, 'refresh').then(() => {
         this.$refs.routerAlive.clear(id)
-        this.reloadRouter()
+        if (id === this.activedTab) this.reloadRouter()
       })
     },
 

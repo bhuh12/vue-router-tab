@@ -36,7 +36,7 @@ export default {
     // 热加载后Ctor.cid改变
     if (this._ctorId && this._ctorId !== ctorId) {
       this.$destroy()
-      $routerTab.refresh()
+      $routerTab.refreshTab()
     }
 
     this._ctorId = ctorId
