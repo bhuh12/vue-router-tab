@@ -1,7 +1,8 @@
 # 忽略目录
 node_modules
-src/
+docs/
 public/
+src/
 
 # 忽略指定文件
 yarn.lock
