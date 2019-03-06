@@ -4,20 +4,24 @@ module.exports = {
 
   // 主题配置
   themeConfig: {
+    // 页头
+    displayAllHeaders: true,
+
+    // 页头导航
     nav: [
       { text: '教程', link: '/guide.html' },
       { text: 'API', link: '/api.html' },
-      { text: '实例', link: 'https://bhuh12.github.io/vue-router-tab/demo/' }
+      { text: '实例', link: 'https://bhuh12.github.io/vue-router-tab/demo/' },
+      { text: '主页', link: 'https://bhuh.net' }
     ],
+
+    // 侧边栏
     sidebar: 'auto',
-    displayAllHeaders: true,
 
     // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
     repo: 'bhuh12/vue-router-tab',
 
-    // 自定义仓库链接文字。默认从 `themeConfig.repo` 中自动推断为
-    // "GitHub"/"GitLab"/"Bitbucket" 其中之一，或是 "Source"。
-    repoLabel: '查看源码',
+    repoLabel: 'GitHub',
 
     // 假如文档放在一个特定的分支下：
     docsBranch: 'dev',

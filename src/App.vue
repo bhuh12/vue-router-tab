@@ -1,8 +1,9 @@
 <template>
   <div class="app-ct">
     <header class="app-hd">
-      <h2>
-        <strong>Vue Router Tab</strong> - Demo
+      <img class="site-logo" src="@/assets/img/logo.png" alt="Vue Router Tab - logo">
+      <h2 class="site-title">
+        <a href="../">Vue Router Tab</a> - Demo
       </h2>
     </header>
 
