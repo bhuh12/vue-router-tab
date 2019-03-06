@@ -580,6 +580,13 @@ module.exports = (
 
 /***/ }),
 
+/***/ "199b":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "1af6":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1112,6 +1119,148 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "28a5":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var isRegExp = __webpack_require__("aae3");
+var anObject = __webpack_require__("cb7c");
+var speciesConstructor = __webpack_require__("ebd6");
+var advanceStringIndex = __webpack_require__("0390");
+var toLength = __webpack_require__("9def");
+var callRegExpExec = __webpack_require__("5f1b");
+var regexpExec = __webpack_require__("520a");
+var fails = __webpack_require__("79e5");
+var $min = Math.min;
+var $push = [].push;
+var $SPLIT = 'split';
+var LENGTH = 'length';
+var LAST_INDEX = 'lastIndex';
+var MAX_UINT32 = 0xffffffff;
+
+// babel-minify transpiles RegExp('x', 'y') -> /x/y and it causes SyntaxError
+var SUPPORTS_Y = !fails(function () { RegExp(MAX_UINT32, 'y'); });
+
+// @@split logic
+__webpack_require__("214f")('split', 2, function (defined, SPLIT, $split, maybeCallNative) {
+  var internalSplit;
+  if (
+    'abbc'[$SPLIT](/(b)*/)[1] == 'c' ||
+    'test'[$SPLIT](/(?:)/, -1)[LENGTH] != 4 ||
+    'ab'[$SPLIT](/(?:ab)*/)[LENGTH] != 2 ||
+    '.'[$SPLIT](/(.?)(.?)/)[LENGTH] != 4 ||
+    '.'[$SPLIT](/()()/)[LENGTH] > 1 ||
+    ''[$SPLIT](/.?/)[LENGTH]
+  ) {
+    // based on es5-shim implementation, need to rework it
+    internalSplit = function (separator, limit) {
+      var string = String(this);
+      if (separator === undefined && limit === 0) return [];
+      // If `separator` is not a regex, use native split
+      if (!isRegExp(separator)) return $split.call(string, separator, limit);
+      var output = [];
+      var flags = (separator.ignoreCase ? 'i' : '') +
+                  (separator.multiline ? 'm' : '') +
+                  (separator.unicode ? 'u' : '') +
+                  (separator.sticky ? 'y' : '');
+      var lastLastIndex = 0;
+      var splitLimit = limit === undefined ? MAX_UINT32 : limit >>> 0;
+      // Make `global` and avoid `lastIndex` issues by working with a copy
+      var separatorCopy = new RegExp(separator.source, flags + 'g');
+      var match, lastIndex, lastLength;
+      while (match = regexpExec.call(separatorCopy, string)) {
+        lastIndex = separatorCopy[LAST_INDEX];
+        if (lastIndex > lastLastIndex) {
+          output.push(string.slice(lastLastIndex, match.index));
+          if (match[LENGTH] > 1 && match.index < string[LENGTH]) $push.apply(output, match.slice(1));
+          lastLength = match[0][LENGTH];
+          lastLastIndex = lastIndex;
+          if (output[LENGTH] >= splitLimit) break;
+        }
+        if (separatorCopy[LAST_INDEX] === match.index) separatorCopy[LAST_INDEX]++; // Avoid an infinite loop
+      }
+      if (lastLastIndex === string[LENGTH]) {
+        if (lastLength || !separatorCopy.test('')) output.push('');
+      } else output.push(string.slice(lastLastIndex));
+      return output[LENGTH] > splitLimit ? output.slice(0, splitLimit) : output;
+    };
+  // Chakra, V8
+  } else if ('0'[$SPLIT](undefined, 0)[LENGTH]) {
+    internalSplit = function (separator, limit) {
+      return separator === undefined && limit === 0 ? [] : $split.call(this, separator, limit);
+    };
+  } else {
+    internalSplit = $split;
+  }
+
+  return [
+    // `String.prototype.split` method
+    // https://tc39.github.io/ecma262/#sec-string.prototype.split
+    function split(separator, limit) {
+      var O = defined(this);
+      var splitter = separator == undefined ? undefined : separator[SPLIT];
+      return splitter !== undefined
+        ? splitter.call(separator, O, limit)
+        : internalSplit.call(String(O), separator, limit);
+    },
+    // `RegExp.prototype[@@split]` method
+    // https://tc39.github.io/ecma262/#sec-regexp.prototype-@@split
+    //
+    // NOTE: This cannot be properly polyfilled in engines that don't support
+    // the 'y' flag.
+    function (regexp, limit) {
+      var res = maybeCallNative(internalSplit, regexp, this, limit, internalSplit !== $split);
+      if (res.done) return res.value;
+
+      var rx = anObject(regexp);
+      var S = String(this);
+      var C = speciesConstructor(rx, RegExp);
+
+      var unicodeMatching = rx.unicode;
+      var flags = (rx.ignoreCase ? 'i' : '') +
+                  (rx.multiline ? 'm' : '') +
+                  (rx.unicode ? 'u' : '') +
+                  (SUPPORTS_Y ? 'y' : 'g');
+
+      // ^(? + rx + ) is needed, in combination with some S slicing, to
+      // simulate the 'y' flag.
+      var splitter = new C(SUPPORTS_Y ? rx : '^(?:' + rx.source + ')', flags);
+      var lim = limit === undefined ? MAX_UINT32 : limit >>> 0;
+      if (lim === 0) return [];
+      if (S.length === 0) return callRegExpExec(splitter, S) === null ? [S] : [];
+      var p = 0;
+      var q = 0;
+      var A = [];
+      while (q < S.length) {
+        splitter.lastIndex = SUPPORTS_Y ? q : 0;
+        var z = callRegExpExec(splitter, SUPPORTS_Y ? S : S.slice(q));
+        var e;
+        if (
+          z === null ||
+          (e = $min(toLength(splitter.lastIndex + (SUPPORTS_Y ? 0 : q)), S.length)) === p
+        ) {
+          q = advanceStringIndex(S, q, unicodeMatching);
+        } else {
+          A.push(S.slice(p, q));
+          if (A.length === lim) return A;
+          for (var i = 1; i <= z.length - 1; i++) {
+            A.push(z[i]);
+            if (A.length === lim) return A;
+          }
+          q = p = e;
+        }
+      }
+      A.push(S.slice(p));
+      return A;
+    }
+  ];
+});
+
+
+/***/ }),
+
 /***/ "294c":
 /***/ (function(module, exports) {
 
@@ -1132,7 +1281,7 @@ module.exports = function (exec) {
 var global = __webpack_require__("7726");
 var hide = __webpack_require__("32e9");
 var has = __webpack_require__("69a8");
-var SRC = __webpack_require__("ca5aa")('src');
+var SRC = __webpack_require__("ca5a")('src');
 var $toString = __webpack_require__("fa5b");
 var TO_STRING = 'toString';
 var TPL = ('' + $toString).split(TO_STRING);
@@ -1168,7 +1317,7 @@ __webpack_require__("8378").inspectSource = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var store = __webpack_require__("5537")('wks');
-var uid = __webpack_require__("ca5aa");
+var uid = __webpack_require__("ca5a");
 var Symbol = __webpack_require__("7726").Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
 
@@ -1187,13 +1336,6 @@ $exports.store = store;
 
 module.exports = false;
 
-
-/***/ }),
-
-/***/ "2d3b":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -2584,6 +2726,13 @@ exports.f = __webpack_require__("9e1e") ? Object.defineProperty : function defin
 
 /***/ }),
 
+/***/ "8880":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "8aae":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3034,6 +3183,21 @@ module.exports = __webpack_require__("f410");
 
 /***/ }),
 
+/***/ "aae3":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.2.8 IsRegExp(argument)
+var isObject = __webpack_require__("d3f4");
+var cof = __webpack_require__("2d95");
+var MATCH = __webpack_require__("2b4c")('match');
+module.exports = function (it) {
+  var isRegExp;
+  return isObject(it) && ((isRegExp = it[MATCH]) !== undefined ? !!isRegExp : cof(it) == 'RegExp');
+};
+
+
+/***/ }),
+
 /***/ "aba2":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3321,13 +3485,6 @@ module.exports = !__webpack_require__("9e1e") && !__webpack_require__("79e5")(fu
 /***/ }),
 
 /***/ "ca5a":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
-/***/ "ca5aa":
 /***/ (function(module, exports) {
 
 var id = 0;
@@ -3459,10 +3616,10 @@ module.exports = __webpack_require__("ccb9").f('iterator');
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_transition_scss_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("2d3b");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_transition_scss_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_transition_scss_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_cli_service_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_transition_scss_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("199b");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_cli_service_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_transition_scss_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_cli_service_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_transition_scss_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_transition_scss_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_cli_service_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_transition_scss_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -3683,10 +3840,10 @@ var meta = module.exports = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_RouterTab_scss_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("ca5a");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_RouterTab_scss_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_RouterTab_scss_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_cli_service_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_RouterTab_scss_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("8880");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_cli_service_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_RouterTab_scss_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_cli_service_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_RouterTab_scss_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_RouterTab_scss_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_cli_service_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_RouterTab_scss_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -3802,29 +3959,29 @@ var es6_function_name = __webpack_require__("7f7f");
 
     if (this._ctorId && this._ctorId !== ctorId) {
       this.$destroy();
-      $routerTab.refresh();
+      $routerTab.refreshTab();
     }
 
     this._ctorId = ctorId;
   }
 });
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4c0e9f38-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/lib/RouterTab/components/RouterTab.vue?vue&type=template&id=00ef18e6&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab"},[_c('header',{staticClass:"router-tab-header"},[_c('div',{staticClass:"router-tab-scroll"},[_c('transition-group',_vm._b({staticClass:"router-tab-nav",attrs:{"tag":"ul"},on:{"after-enter":_vm.onTabTransitionEnd,"after-leave":_vm.onTabTransitionEnd}},'transition-group',typeof _vm.tabTransition === 'string' ? { name: _vm.tabTransition } : _vm.tabTransition,false),_vm._l((_vm.items),function(ref,index){
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"f02e117e-vue-loader-template"}!./node_modules/@vue/cli-service/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/@vue/cli-service/node_modules/vue-loader/lib??vue-loader-options!./src/lib/RouterTab/components/RouterTab.vue?vue&type=template&id=275388c3&
+var RouterTabvue_type_template_id_275388c3_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab"},[_c('header',{staticClass:"router-tab-header"},[_c('div',{staticClass:"router-tab-scroll"},[_c('transition-group',_vm._b({staticClass:"router-tab-nav",attrs:{"tag":"ul"},on:{"after-enter":_vm.onTabTransitionEnd,"after-leave":_vm.onTabTransitionEnd}},'transition-group',typeof _vm.tabTransition === 'string' ? { name: _vm.tabTransition } : _vm.tabTransition,false),_vm._l((_vm.items),function(ref,index){
 var id = ref.id;
 var to = ref.to;
 var title = ref.title;
 var icon = ref.icon;
 var tips = ref.tips;
 var closable = ref.closable;
-return _c('router-link',{key:id || to,staticClass:"router-tab-item",class:{ actived: _vm.activedTab === id, contextmenu: _vm.contextmenu.id === id },attrs:{"tag":"li","title":tips || title || '',"to":to},nativeOn:{"contextmenu":function($event){$event.preventDefault();return (function (e) { return _vm.showContextmenu(id, index, e); })($event)}}},[_vm._t("default",[(icon)?_c('i',{staticClass:"tab-icon",class:icon}):_vm._e(),_c('span',{staticClass:"tab-title"},[_vm._v(_vm._s(title || _vm.lang.tab.untitled))]),(closable !== false && _vm.items.length > 1)?_c('i',{staticClass:"tab-close",attrs:{"title":_vm.lang.contextmenu.close},on:{"click":function($event){$event.preventDefault();return _vm.close(id)}}}):_vm._e()],null,{
+return _c('router-link',{key:id || to,staticClass:"router-tab-item",class:{ actived: _vm.activedTab === id, contextmenu: _vm.contextmenu.id === id },attrs:{"tag":"li","title":tips || title || '',"to":to},nativeOn:{"contextmenu":function($event){$event.preventDefault();return (function (e) { return _vm.showContextmenu(id, index, e); })($event)}}},[_vm._t("default",[(icon)?_c('i',{staticClass:"tab-icon",class:icon}):_vm._e(),_c('span',{staticClass:"tab-title"},[_vm._v(_vm._s(title || _vm.lang.tab.untitled))]),(closable !== false && _vm.items.length > 1)?_c('i',{staticClass:"tab-close",attrs:{"title":_vm.lang.contextmenu.close},on:{"click":function($event){$event.preventDefault();return _vm.closeTab(id)}}}):_vm._e()],null,{
             tab: _vm.items[index],
             tabs: _vm.items,
             index: index
-          })],2)}),1)],1),_c('a',{staticClass:"el-icon-caret-left nav-prev",on:{"click":function($event){return _vm.tabScroll('left')}}}),_c('a',{staticClass:"el-icon-caret-right nav-next",on:{"click":function($event){return _vm.tabScroll('right')}}})]),_c('div',{staticClass:"router-tab-container",class:{ loading: _vm.loading }},[_c('router-alive',{ref:"routerAlive",attrs:{"alive-key":_vm.aliveKey},on:{"update":_vm.updateTab}},[_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onPageTransitionEnd,"after-leave":_vm.onPageTransitionEnd}},'transition',typeof _vm.pageTransition === 'string' ? { name: _vm.pageTransition } : _vm.pageTransition,false),[(_vm.isRouterAlive)?_c('router-view',_vm._b({ref:"routerView"},'router-view',_vm.routerView,false)):_vm._e()],1)],1)],1),_c('transition',{attrs:{"name":"router-tab-zoom-lt"}},[(_vm.contextmenu.id)?_c('div',{staticClass:"router-tab-contextmenu",style:(("left: " + (_vm.contextmenu.left) + "px; top: " + (_vm.contextmenu.top) + "px;"))},[_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabActived},on:{"click":function($event){_vm.isContextTabActived && _vm.refresh(_vm.contextmenu.id)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.refresh)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":_vm.items.length < 2},on:{"click":function($event){_vm.items.length > 1 && _vm.refreshAll()}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.refreshAll)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabCanBeClosed},on:{"click":function($event){_vm.isContextTabCanBeClosed && _vm.close(_vm.contextmenu.id)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.close)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsLeft.length},on:{"click":function($event){_vm.tabsLeft.length && _vm.closeMulti(_vm.tabsLeft)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeLefts)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsRight.length},on:{"click":function($event){_vm.tabsRight.length && _vm.closeMulti(_vm.tabsRight)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeRights)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsOther.length},on:{"click":function($event){_vm.tabsOther.length && _vm.closeMulti(_vm.tabsOther)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeOthers)+"\n      ")])]):_vm._e()])],1)}
+          })],2)}),1)],1),_c('a',{staticClass:"el-icon-caret-left nav-prev",on:{"click":function($event){return _vm.tabScroll('left')}}}),_c('a',{staticClass:"el-icon-caret-right nav-next",on:{"click":function($event){return _vm.tabScroll('right')}}})]),_c('div',{staticClass:"router-tab-container",class:{ loading: _vm.loading }},[_c('router-alive',{ref:"routerAlive",attrs:{"alive-key":_vm.aliveKey},on:{"update":_vm.updateTab}},[_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onPageTransitionEnd,"after-leave":_vm.onPageTransitionEnd}},'transition',typeof _vm.pageTransition === 'string' ? { name: _vm.pageTransition } : _vm.pageTransition,false),[(_vm.isRouterAlive)?_c('router-view',_vm._b({ref:"routerView"},'router-view',_vm.routerView,false)):_vm._e()],1)],1)],1),_c('transition',{attrs:{"name":"router-tab-zoom-lt"}},[(_vm.contextmenu.id)?_c('div',{staticClass:"router-tab-contextmenu",style:(("left: " + (_vm.contextmenu.left) + "px; top: " + (_vm.contextmenu.top) + "px;"))},[_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabActived},on:{"click":function($event){_vm.isContextTabActived && _vm.refreshTab(_vm.contextmenu.id)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.refresh)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":_vm.items.length < 2},on:{"click":function($event){_vm.items.length > 1 && _vm.refreshAll()}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.refreshAll)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabCanBeClosed},on:{"click":function($event){_vm.isContextTabCanBeClosed && _vm.closeTab(_vm.contextmenu.id)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.close)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsLeft.length},on:{"click":function($event){_vm.tabsLeft.length && _vm.closeMulti(_vm.tabsLeft)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeLefts)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsRight.length},on:{"click":function($event){_vm.tabsRight.length && _vm.closeMulti(_vm.tabsRight)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeRights)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsOther.length},on:{"click":function($event){_vm.tabsOther.length && _vm.closeMulti(_vm.tabsOther)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeOthers)+"\n      ")])]):_vm._e()])],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/lib/RouterTab/components/RouterTab.vue?vue&type=template&id=00ef18e6&
+// CONCATENATED MODULE: ./src/lib/RouterTab/components/RouterTab.vue?vue&type=template&id=275388c3&
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/keys.js
 var keys = __webpack_require__("a4bb");
@@ -3836,15 +3993,22 @@ var es7_promise_finally = __webpack_require__("097d");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.replace.js
 var es6_regexp_replace = __webpack_require__("a481");
 
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/promise.js
+var promise = __webpack_require__("795b");
+var promise_default = /*#__PURE__*/__webpack_require__.n(promise);
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.split.js
+var es6_regexp_split = __webpack_require__("28a5");
+
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.find.js
 var es6_array_find = __webpack_require__("7514");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.find-index.js
-var es6_array_find_index = __webpack_require__("20d6");
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/assign.js
 var object_assign = __webpack_require__("5176");
 var assign_default = /*#__PURE__*/__webpack_require__.n(object_assign);
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.find-index.js
+var es6_array_find_index = __webpack_require__("20d6");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.match.js
 var es6_regexp_match = __webpack_require__("4917");
@@ -3876,27 +4040,24 @@ function typeof_typeof(obj) {
 
   return typeof_typeof(obj);
 }
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/get-iterator.js
-var get_iterator = __webpack_require__("5d73");
-var get_iterator_default = /*#__PURE__*/__webpack_require__.n(get_iterator);
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/promise.js
-var promise = __webpack_require__("795b");
-var promise_default = /*#__PURE__*/__webpack_require__.n(promise);
-
 // EXTERNAL MODULE: external {"commonjs":"vue","commonjs2":"vue","root":"Vue"}
 var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
 var external_commonjs_vue_commonjs2_vue_root_Vue_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_vue_commonjs2_vue_root_Vue_);
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/array/is-array.js
-var is_array = __webpack_require__("a745");
-var is_array_default = /*#__PURE__*/__webpack_require__.n(is_array);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/create.js
 var create = __webpack_require__("4aa6");
 var create_default = /*#__PURE__*/__webpack_require__.n(create);
 
-// CONCATENATED MODULE: ./src/lib/RouterTab/components/RouterAlive.js
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/array/is-array.js
+var is_array = __webpack_require__("a745");
+var is_array_default = /*#__PURE__*/__webpack_require__.n(is_array);
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/get-iterator.js
+var get_iterator = __webpack_require__("5d73");
+var get_iterator_default = /*#__PURE__*/__webpack_require__.n(get_iterator);
+
+// CONCATENATED MODULE: ./src/lib/RouterTab/util.js
+
 
 
 
@@ -3904,10 +4065,75 @@ var create_default = /*#__PURE__*/__webpack_require__.n(create);
 // 空对象和数组
 var emptyObj = create_default()(null);
 var emptyArray = [];
+var logPrefix = '[vue-router-tab]:'; // 是否定义
 
 function isDef(v) {
   return v !== undefined && v !== null;
+} // 防抖
+
+function debounce(fn) {
+  var delay = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 200;
+  var timeout = null;
+  return function () {
+    var context = this;
+    var args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      fn.call(context, args);
+    }, delay);
+  };
+} // 队列执行promise
+
+function promiseQueue(promises) {
+  var isFinally = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+  var queue = promise_default.a.resolve();
+
+  var type = isFinally ? 'finally' : 'then';
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = get_iterator_default()(promises), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var item = _step.value;
+      queue = queue[type](item);
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return != null) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+
+  return queue;
+} // 滚动
+
+function scrollTo($el) {
+  var left = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  var top = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+
+  if ($el.scrollTo) {
+    $el.scrollTo({
+      left: left,
+      top: top,
+      behavior: 'smooth'
+    });
+  } else {
+    $el.scrollLeft = left;
+    $el.scrollTop = top;
+  }
 }
+/* 组件方法 */
+// 获取第一个子组件
 
 function getFirstComponentChild(children) {
   if (is_array_default()(children)) {
@@ -3919,34 +4145,47 @@ function getFirstComponentChild(children) {
       }
     }
   }
+} // 获取缓存key
+
+function getAliveKey() {
+  var route = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.$route;
+  var aliveKey = route.meta && route.meta.aliveKey || this.aliveKey || 'path';
+
+  if (typeof aliveKey === 'function') {
+    return aliveKey.bind(this)(route);
+  }
+
+  return route[aliveKey];
 }
+/* 路由方法 */
+// 是否异步占位
 
 function isAsyncPlaceholder(node) {
   return node.isComment && node.asyncFactory;
 } // 获取路由不带hash的路径
 
-
-var getPathWithoutHash = function getPathWithoutHash(route) {
+function getPathWithoutHash(route) {
   return route.hash ? route.fullPath.replace(route.hash, '') : route.fullPath;
-}; // 是否相似路由
+} // 是否相似路由
 
-
-var isAlikeRoute = function isAlikeRoute(route1, route2) {
+function isAlikeRoute(route1, route2) {
   return getPathWithoutHash(route1) === getPathWithoutHash(route2);
-}; // 获取路由页面组件
+} // 获取路由页面组件
 
-var getRouteComponent = function getRouteComponent(_ref) {
+function getRouteComponent(_ref) {
   var matched = _ref.matched;
   return matched[matched.length - 1].components.default;
-}; // 路由是否共用组件
-
+} // 路由是否共用组件
 
 function isSameComponentRoute(route1, route2) {
   return getRouteComponent(route1) === getRouteComponent(route2);
 }
+// CONCATENATED MODULE: ./src/lib/RouterTab/components/RouterAlive.js
+
+
 
 /* harmony default export */ var RouterAlive = ({
-  name: 'router-alive',
+  name: 'RouterAlive',
   props: {
     // 缓存key，如果为函数，则参数为route
     aliveKey: {
@@ -3977,9 +4216,9 @@ function isSameComponentRoute(route1, route2) {
         var key = this.getAliveKey();
         var cacheItem = cache[key];
 
-        var _ref2 = cacheItem || emptyObj,
-            cacheVm = _ref2.vm,
-            cacheRoute = _ref2.route; // 是否需要重载路由强制刷新页面组件
+        var _ref = cacheItem || emptyObj,
+            cacheVm = _ref.vm,
+            cacheRoute = _ref.route; // 是否需要重载路由强制刷新页面组件
 
 
         var needReloadRouter = false; // 路由是否改变
@@ -4022,17 +4261,7 @@ function isSameComponentRoute(route1, route2) {
     return vnode || slot && slot[0];
   },
   methods: {
-    // 获取缓存key
-    getAliveKey: function getAliveKey() {
-      var route = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.$route;
-      var aliveKey = route.meta && route.meta.aliveKey || this.aliveKey || 'path';
-
-      if (typeof aliveKey === 'function') {
-        return aliveKey.bind(this)(route);
-      }
-
-      return route[aliveKey];
-    },
+    getAliveKey: getAliveKey,
     // 设置缓存项
     set: function set(key, item) {
       var cache = this.cache;
@@ -4076,6 +4305,9 @@ function isSameComponentRoute(route1, route2) {
     closeLefts: '关闭左侧',
     closeRights: '关闭右侧',
     closeOthers: '关闭其他'
+  },
+  msg: {
+    keepOneTab: '至少应保留1个页签'
   }
 });
 // CONCATENATED MODULE: ./src/lib/RouterTab/lang/en.js
@@ -4090,6 +4322,9 @@ function isSameComponentRoute(route1, route2) {
     closeLefts: 'Close to the Left',
     closeRights: 'Close to the Right',
     closeOthers: 'Close Others'
+  },
+  msg: {
+    keepOneTab: 'Keep at least 1 tab'
   }
 });
 // CONCATENATED MODULE: ./src/lib/RouterTab/lang/index.js
@@ -4112,81 +4347,17 @@ function isSameComponentRoute(route1, route2) {
 
 
 
- // 滚动
 
-function scrollTo($el) {
-  var left = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  var top = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-
-  if ($el.scrollTo) {
-    $el.scrollTo({
-      left: left,
-      top: top,
-      behavior: 'smooth'
-    });
-  } else {
-    $el.scrollLeft = left;
-    $el.scrollTop = top;
-  }
-} // 防抖
-
-
-function debounce(fn) {
-  var delay = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 200;
-  var timeout = null;
-  return function () {
-    var context = this;
-    var args = arguments;
-    clearTimeout(timeout);
-    timeout = setTimeout(function () {
-      fn.call(context, args);
-    }, delay);
-  };
-} // 队列执行promise
-
-
-function promiseQueue(promises) {
-  var isFinally = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-
-  var queue = promise_default.a.resolve();
-
-  var type = isFinally ? 'finally' : 'then';
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
-
-  try {
-    for (var _iterator = get_iterator_default()(promises), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var item = _step.value;
-      queue = queue[type](item);
-    }
-  } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion && _iterator.return != null) {
-        _iterator.return();
-      }
-    } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
-      }
-    }
-  }
-
-  return queue;
-}
 
 /* harmony default export */ var RouterTabvue_type_script_lang_js_ = ({
-  name: 'router-tab',
+  name: 'RouterTab',
   components: {
     RouterAlive: RouterAlive
   },
   props: {
     // 缓存key，如果为函数，则参数为route
     aliveKey: RouterAlive.props.aliveKey,
-    // 国际化
+    // 语言配置
     // - 为字符串时，可以设置为内置的语言 'zh-CN' (默认) 和 'en'
     // - 为对象时，可设置自定义的语言
     i18n: {
@@ -4358,7 +4529,7 @@ function promiseQueue(promises) {
     window.removeEventListener('resize', this.onResize);
   },
   methods: {
-    getAliveKey: RouterAlive.methods.getAliveKey,
+    getAliveKey: getAliveKey,
     // 页面离开导航守卫
     routerPageLeaveGuard: function routerPageLeaveGuard(to, from, next) {
       if (this._isDestroyed) {
@@ -4398,7 +4569,9 @@ function promiseQueue(promises) {
           to: item
         } : item || emptyObj,
             to = _ref5.to,
-            closable = _ref5.closable;
+            closable = _ref5.closable,
+            title = _ref5.title,
+            tips = _ref5.tips;
 
         var route = to && $router.match(to);
 
@@ -4408,9 +4581,11 @@ function promiseQueue(promises) {
           var id = tab.id; // 根据id去重
 
           if (!ids[id]) {
-            return ids[id] = assign_default()(tab, {
-              closable: closable !== false
-            });
+            // 初始 tab 数据
+            if (title) tab.title = title;
+            if (tips) tab.tips = tips;
+            tab.closable = closable !== false;
+            return ids[id] = tab;
           }
         }
       }).filter(function (item) {
@@ -4442,6 +4617,26 @@ function promiseQueue(promises) {
         items.push(item);
       }
     },
+    // 从路由地址获取 AliveKey
+    getTabIdByLocation: function getTabIdByLocation(location) {
+      var fullMatch = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+      if (!location) return;
+      var $route = this.$router.match(location); // 路由地址精确匹配页签
+
+      if (fullMatch) {
+        var matchPath = getPathWithoutHash($route);
+        var matchTab = this.items.find(function (_ref8) {
+          var to = _ref8.to;
+          return to.split('#')[0] === matchPath;
+        });
+
+        if (matchTab) {
+          return matchTab.id;
+        }
+      } else {
+        return this.getAliveKey($route);
+      }
+    },
     // 从route中获取tab数据
     getRouteTab: function getRouteTab(route) {
       var id = this.getAliveKey(route);
@@ -4470,8 +4665,8 @@ function promiseQueue(promises) {
         }); // 当前页签
 
 
-        var _ref8 = $alive.cache[id] || emptyObj,
-            vm = _ref8.vm; // 缓存数据
+        var _ref9 = $alive.cache[id] || emptyObj,
+            vm = _ref9.vm; // 缓存数据
 
 
         var beforePageLeave = vm && vm.$vnode.componentOptions.Ctor.options.beforePageLeave;
@@ -4491,14 +4686,33 @@ function promiseQueue(promises) {
       var idx = items.findIndex(function (item) {
         return item.id === id;
       });
+
+      if (items.length === 1) {
+        return promise_default.a.reject(new Error(this.lang.msg.keepOneTab));
+      }
+
       return this.pageLeavePromise(id, 'close').then(function () {
         // 承诺关闭后移除页签和缓存
         $alive.remove(id);
         idx > -1 && items.splice(idx, 1);
       }).catch(function (e) {});
     },
-    // 关闭页签
-    close: function close() {
+    // 通过路由地址关闭页签
+    close: function close(location) {
+      var fullMatch = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+      if (location) {
+        var id = this.getTabIdByLocation(location, fullMatch);
+
+        if (id) {
+          this.closeTab(id);
+        }
+      } else {
+        this.closeTab();
+      }
+    },
+    // 通过页签id关闭页签
+    closeTab: function closeTab() {
       var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.activedTab;
       var activedTab = this.activedTab,
           items = this.items,
@@ -4512,6 +4726,8 @@ function promiseQueue(promises) {
           var nextTab = items[idx] || items[idx - 1];
           $router.replace(nextTab.to);
         }
+      }).catch(function (e) {
+        return console.warn(logPrefix, e.message);
       });
     },
     // 关闭多个页签
@@ -4522,35 +4738,49 @@ function promiseQueue(promises) {
           $router = this.$router,
           contextmenu = this.contextmenu,
           closeTabItem = this.closeTabItem;
-      var nextTab = items.find(function (_ref9) {
-        var id = _ref9.id;
+      var nextTab = items.find(function (_ref10) {
+        var id = _ref10.id;
         return id === contextmenu.id;
       }); // 队列执行关闭promise
 
-      promiseQueue(tabs.map(function (_ref10) {
-        var id = _ref10.id;
+      promiseQueue(tabs.map(function (_ref11) {
+        var id = _ref11.id;
         return function () {
           closeTabItem(id);
         };
       })).finally(function () {
         // 当前页签如已关闭，则打开右键选中页签
-        if (items.findIndex(function (_ref11) {
-          var id = _ref11.id;
+        if (items.findIndex(function (_ref12) {
+          var id = _ref12.id;
           return id === _this5.activedTab;
         }) === -1) {
           $router.replace(nextTab.to);
         }
       });
     },
-    // 刷新指定页签
-    refresh: function refresh() {
+    // 通过路由地址刷新页签
+    refresh: function refresh(location) {
+      var fullMatch = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+      if (location) {
+        var id = this.getTabIdByLocation(location, fullMatch);
+
+        if (id) {
+          this.refreshTab(id);
+        }
+      } else {
+        this.refreshTab();
+      }
+    },
+    // 通过页签id刷新页签
+    refreshTab: function refreshTab() {
       var _this6 = this;
 
       var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.activedTab;
       this.pageLeavePromise(id, 'refresh').then(function () {
         _this6.$refs.routerAlive.clear(id);
 
-        _this6.reloadRouter();
+        if (id === _this6.activedTab) _this6.reloadRouter();
       });
     },
 
@@ -4604,9 +4834,9 @@ function promiseQueue(promises) {
     // 显示页签右键菜单
     showContextmenu: function showContextmenu(id, index, e) {
       // 菜单定位
-      var _ref12 = e || emptyObj,
-          top = _ref12.y,
-          left = _ref12.x;
+      var _ref13 = e || emptyObj,
+          top = _ref13.y,
+          left = _ref13.x;
 
       assign_default()(this.contextmenu, {
         id: id,
@@ -4656,7 +4886,7 @@ var RouterTabvue_type_style_index_0_lang_scss_ = __webpack_require__("f143");
 // EXTERNAL MODULE: ./src/lib/RouterTab/scss/transition.scss?vue&type=style&index=1&lang=scss&
 var transitionvue_type_style_index_1_lang_scss_ = __webpack_require__("d8de");
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
+// CONCATENATED MODULE: ./node_modules/@vue/cli-service/node_modules/vue-loader/lib/runtime/componentNormalizer.js
 /* globals __VUE_SSR_CONTEXT__ */
 
 // IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
@@ -4763,7 +4993,7 @@ function normalizeComponent (
 
 var component = normalizeComponent(
   components_RouterTabvue_type_script_lang_js_,
-  render,
+  RouterTabvue_type_template_id_275388c3_render,
   staticRenderFns,
   false,
   null,
