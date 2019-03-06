@@ -9,7 +9,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: 16px;
-    color: #2c3e50;
+    color: $text;
 }
 
 [class^="rt-icon-"],
@@ -21,6 +21,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a:link {
+	transition: color .3s ease-in-out;
+}
+
 
 .app-ct {
 	display: flex;
@@ -30,19 +34,34 @@ body {
 
 	.app-hd {
 		flex: none;
+		display: flex;
 		position: relative;
 		z-index: 99;
+		height: 50px;
 		box-shadow: 0 0 8px rgba(0,0,0,.2);
+		align-items: center;
 
-		h2 {
-			margin: 0 0 0 1.5rem;
-			line-height: 50px;
+		.site-logo {
+			$s: 1.3rem;
+			margin: 0 .5rem 0 1.5rem;
+			width: $s;
+			height: $s;
+		}
+
+		.site-title {
+			margin: 0;
 			font-weight: 400;
 			font-size: 1.3rem;
+			line-height: 1;
 
-			strong {
-				font-weight: 400;
-				color: $color;
+			a {
+				font-weight: 600;
+				text-decoration: none;
+				color: $text;
+
+				&:hover {
+					color: $color;
+				}
 			}
 		}
 	}
