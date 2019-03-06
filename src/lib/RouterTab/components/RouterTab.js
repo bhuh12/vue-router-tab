@@ -10,7 +10,7 @@ export default {
     // 缓存key，如果为函数，则参数为route
     aliveKey: RouterAlive.props.aliveKey,
 
-    // 国际化
+    // 语言配置
     // - 为字符串时，可以设置为内置的语言 'zh-CN' (默认) 和 'en'
     // - 为对象时，可设置自定义的语言
     i18n: {
