@@ -1,6 +1,6 @@
 {
   "name": "vue-router-tab",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "Vue.js tab components, based on Vue Router",
   "keywords": [
     "vue",
@@ -19,7 +19,9 @@
   },
   "main": "dist/lib/vue-router-tab.umd.min.js",
   "scripts": {
-    "demo:serve": "vue-cli-service serve",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "demo:dev": "vue-cli-service serve",
     "demo:build": "vue-cli-service build --dest dist/demo",
     "lib:build": "vue-cli-service build --target lib --dest dist/lib ./src/lib/RouterTab/index.js",
     "lib:build:report": "vue-cli-service build --report --target lib --dest dist/lib ./src/lib/RouterTab/index.js",
@@ -28,7 +30,7 @@
     "lint:fix": "vue-cli-service lint --fix"
   },
   "dependencies": {
-    "vue": "^2.5.22",
+    "vue": "^2.6.0",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
@@ -36,13 +38,15 @@
     "@vue/cli-plugin-eslint": "^3.4.0",
     "@vue/cli-service": "^3.4.0",
     "@vue/eslint-config-standard": "^4.0.0",
+    "@vuepress/plugin-back-to-top": "^1.0.0-alpha.42",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
     "lint-staged": "^8.1.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.5.21"
+    "vue-template-compiler": "^2.5.21",
+    "vuepress": "^1.0.0-alpha.42"
   },
   "eslintConfig": {
     "root": true,
