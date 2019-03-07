@@ -2,13 +2,16 @@
 <p align="center"><a href="https://bhuh12.github.io/vue-router-tab/" target="_blank" rel="noopener noreferrer"><img width="100" src="./src/assets/img/logo.png" alt="Vue Router Tab logo"></a></p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/vue-router-tab">
+  <a target="_blank" href="https://www.travis-ci.org/bhuh12/vue-router-tab">
+    <img src="https://www.travis-ci.org/bhuh12/vue-router-tab.svg?branch=dev" alt="Build">
+  </a>
+  <a target="_blank" href="https://www.npmjs.com/package/vue-router-tab">
     <img src="https://img.shields.io/npm/v/vue-router-tab.svg" alt="Version">
   </a>
-  <a href="https://npmcharts.com/compare/vue-router-tab?minimal=true">
+  <a target="_blank" href="https://npmcharts.com/compare/vue-router-tab?minimal=true">
     <img src="https://img.shields.io/npm/dm/vue-router-tab.svg" alt="Downloads">
   </a>
-  <a href="https://www.npmjs.com/package/vue-router-tab">
+  <a target="_blank" href="https://www.npmjs.com/package/vue-router-tab">
     <img src="https://img.shields.io/npm/l/vue-router-tab.svg" alt="License">
   </a>
 </p>

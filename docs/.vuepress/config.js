@@ -2,6 +2,12 @@ module.exports = {
   title: 'Vue Router Tab',
   description: '基于 Vue Router 的路由页签组件',
 
+  // 基础路径
+  base: '/vue-router-tab/',
+
+  // 输出目录
+  dest: 'dist/docs',
+
   // 主题配置
   themeConfig: {
     // 页头
@@ -26,7 +32,7 @@ module.exports = {
     // 假如文档放在一个特定的分支下：
     docsBranch: 'dev',
     
-    lastUpdated: '上次更新: ',
+    lastUpdated: '上次更新',
   },
 
   // markdow 配置

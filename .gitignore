@@ -1,6 +1,4 @@
 .DS_Store
-node_modules
-/dist/demo
 
 # local env files
 .env.local
@@ -19,3 +17,9 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+
+# npm 包
+node_modules
+
+# 发布输出目录
+dist/docs
