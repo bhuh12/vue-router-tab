@@ -22,7 +22,7 @@
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
     "demo:dev": "vue-cli-service serve",
-    "demo:build": "vue-cli-service build --dest dist/demo",
+    "demo:build": "vue-cli-service build",
     "lib:build": "vue-cli-service build --target lib --dest dist/lib ./src/lib/RouterTab/index.js",
     "lib:build:report": "vue-cli-service build --report --target lib --dest dist/lib ./src/lib/RouterTab/index.js",
     "lib:publish": "npm run lib:build && npm publish",

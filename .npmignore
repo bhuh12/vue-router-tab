@@ -1,5 +1,7 @@
-# 忽略目录
+# 忽略目录/文件
 node_modules
+dist/docs
+dist/lib/**.html
 docs/
 public/
 src/
@@ -10,7 +12,7 @@ babel.config.js
 tsconfig.json
 tslint.json
 vue.config.js
-.editorconfig
-*.map
 
-dist/lib/**.html
+.editorconfig
+.travis.yml
+*.map
