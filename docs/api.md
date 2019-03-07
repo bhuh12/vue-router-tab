@@ -1,12 +1,8 @@
 # API 参考
 
-::: tip
-在 Vue 实例内部，你可以通过 `$routerTab` 访问路由页签实例。因此你可以调用 `vm.$routerTab.close()`。
-:::
-
 ## RouterTab Props
 
-### `alive-key`
+### alive-key
 
 页面组件缓存的键
 
@@ -36,7 +32,7 @@
   <router-tab :alive-key="route => route.fullPath + '1'"></router-tab>
   ```
 
-### `i18n`
+### i18n
 
 语言配置
 
@@ -87,13 +83,13 @@
     }
     ```
 
-### `tabs`
+### tabs
 
 **初始页签数据**，进入页面时默认显示的页签。相同 `aliveKey` 的页签只保留第一个
 
 - 类型: `Array <string | Object>`
   
-  - tabs子元素类型为 `string` 时，应配置为要打开页面的 `fullPath` ，页签的标题/图片/提示等信息会从对应页面的 `router` 配置中获取
+  - tabs子元素类型为 `string` 时，应配置为要打开页面的 `fullPath` ，页签的标题、图标、提示等信息会从对应页面的 `router` 配置中获取
 
   - tabs子元素类型为 `Object` 时：
     
@@ -105,7 +101,7 @@
 
 - 默认值: `[]`
 
-### `router-view`
+### router-view
 
 **Vue Router Tab 内置 `<router-view>` 组件的配置**
 
@@ -117,7 +113,7 @@
 
 
 
-### `tab-transition`
+### tab-transition
 
 **页签过渡效果**，新增和关闭页签时的过渡
 
@@ -140,7 +136,7 @@
   ```
 
 
-### `page-transition`
+### page-transition
 
 **页面过渡效果**
 
@@ -172,15 +168,18 @@
 
 ## RouterTab 实例属性
 
-### `routerTab.activedTab`
+### routerTab.activedTab
 
 当前激活的页签id
 
 
 ## RouterTab 实例方法
 
+::: tip
+在 Vue 实例内部，你可以通过 `this.$routerTab` 来访问路由页签实例。例如：调用 `this.$routerTab.close()` 来关闭当前页签。
+:::
 
-### `routerTab.close`
+### routerTab.close
 
 - **参数**：
   - `{string | Object} [location]` 路由地址 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
@@ -212,7 +211,7 @@
   ```
 
   
-### `routerTab.refresh`
+### routerTab.refresh
 
 - **参数**：
   - `{string | Object} [location]` 路由地址 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
@@ -243,7 +242,7 @@
   vm.$routerTab.refresh('/page/1', false)
   ```
 
-### `routerTab.refreshAll`
+### routerTab.refreshAll
 
 - **参数**：
   - `{Boolean} [force = false]` 如果 `force` 为 `true`，则忽略页面组件的 `beforePageLeave` 配置，强制刷新所有页签
@@ -256,15 +255,17 @@
 
   ``` js
   // 刷新所有页签
-  vm.routerTab.refreshAll()
+  vm.$routerTab.refreshAll()
 
   // 强制刷新所有页签
-  vm.routerTab.refreshAll(true)
+  vm.$routerTab.refreshAll(true)
   ```
 
-## Route.meta 路由元
+## Route.meta 路由元信息
 
-### `meta.title`
+通过路由的 `meta`，我们可以配置路由页签的标题、图标、提示和缓存规则
+
+### meta.title
 
 - 类型: `string`
 - 默认值: `'新页签'`
@@ -272,15 +273,14 @@
 页签标题
 
 
-
-### `meta.icon`
+### meta.icon
 
 - 类型: `string`
 
 页签图标
 
 
-### `meta.tips`
+### meta.tips
 
 - 类型: `string`
 - 默认值: 默认和页签标题 `meta.title` 保持一致
@@ -288,8 +288,30 @@
 页签提示
 
 
-### `meta.aliveKey`
+### meta.aliveKey
 
 页面组件缓存的键，用以设置路由独立的页签缓存规则。
 
 配置参考: [RouterTab Props > alive-key](#alive-key)
+
+
+## RouterPage 路由页面
+
+通过 `<router-tab>` 加载的页面组件实例
+
+### vm.$routerTab
+
+为了方便调用，`<router-tab>` 将实例挂载在 `Vue.prototype` 上。因此，在所有 Vue 组件内部，你都可以通过 `this.$routerTab` 来访问路由页签实例
+
+
+### vm.routeTab
+
+**路由页签配置**。`<router-tab>` 通过监听页面组件的 `this.routeTab` 来更新页面对应页签的标题、图标、提示
+
+### vm._isRouterPage
+
+**是否是路由页面**：在通过 `<router-tab>` 加载的页面组件内部，访问 `this._isRouterPage` 会返回 `true`
+
+::: tip
+应用：在需要给路由页面添加全局混入 `mixin` 时，可在生命周期钩子（ `created` 之后）里判断 `this._isRouterPage`
+:::

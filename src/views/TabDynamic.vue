@@ -5,14 +5,14 @@
     <div class="form-item">
       <label>
         <p>修改页签标题</p>
-        <input type="text" v-model="routerTab.title">
+        <input type="text" v-model="routeTab.title">
       </label>
     </div>
 
     <div class="form-item">
       <label>
         <p>修改页签提示</p>
-        <input type="text" v-model="routerTab.tips">
+        <input type="text" v-model="routeTab.tips">
       </label>
     </div>
 
@@ -22,9 +22,9 @@
         class="tab-icon"
         v-for="icon in icons"
         :key="icon"
-        :class="`${icon === routerTab.icon ? 'actived' : ''} ${icon}`"
+        :class="`${icon === routeTab.icon ? 'actived' : ''} ${icon}`"
         title="设置页签图标"
-        @click="routerTab.icon = icon"
+        @click="routeTab.icon = icon"
       ></a>
     </div>
 
@@ -35,7 +35,7 @@
 export default {
   data () {
     return {
-      routerTab: {
+      routeTab: {
         title: '动态页签',
         icon: 'rt-icon-log',
         tips: ''
