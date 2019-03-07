@@ -149,7 +149,7 @@ export default new Router({
 
 ### 动态页签信息
 
-`RouterTab` 会监听组件 `vm.routerTab` 来动态更新页签信息。您可以通过设置 `vm.routerTab` 来更改页签的**标题**、**图标**和**提示**。
+`RouterTab` 会监听组件 `vm.routeTab` 来动态更新页签信息。您可以通过设置 `vm.routeTab` 来更改页签的标题、图标、提示。
 
 <doc-links demo="/default/tab-dynamic"></doc-links>
 
@@ -165,10 +165,10 @@ export default {
       let { id } = this.$route.params
 
       // 只更新页签标题
-      this.routerTab = `页面${id}动态标题`
+      this.routeTab = `页面${id}动态标题`
 
-      // 更新其他页签信息
-      this.routerTab = {
+      // 更新多个页签信息
+      this.routeTab = {
         title: `页面${id}动态标题`,
         icon: 'el-icon-document',
         tips: `页面${id}动态提示`

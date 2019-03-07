@@ -7,6 +7,9 @@ export default {
 
     if (!$alive) return false
 
+    // 标记为路由页面
+    this._isRouterPage = true
+
     const key = $alive.getAliveKey($route)
 
     // 更新缓存数据
@@ -16,7 +19,7 @@ export default {
     })
 
     // 监听routerTab字段，更新页签信息
-    this.$watch('routerTab', function (val, old) {
+    this.$watch('routeTab', function (val, old) {
       cacheItem.tab = typeof val === 'string' ? { title: val } : val
       $alive.set(key, cacheItem)
     }, {
@@ -27,9 +30,9 @@ export default {
 
   // 解决webpack热加载后组件缓存不更新
   activated () {
-    const { $routerTab, $vnode } = this
+    const { $routerTab, $vnode, _isRouterPage } = this
 
-    if (!($vnode && $vnode.data.routerAlive)) return false
+    if (!_isRouterPage) return false
 
     let ctorId = $vnode.componentOptions.Ctor.cid
 
