@@ -105,24 +105,6 @@
 
 - 默认值: `[]`
 
-- 示例：
-
-  ``` html
-  <!-- 默认页签 -->
-  <router-tab :tabs="[
-    '/page1',
-    { to: '/page/2', title: '页面2' },
-    { to: '/page/3', closable: false },
-    { to: {
-      name: 'page',
-      params: { id: 4 },
-      query: { t: 2 }
-    }},
-    { to: '/page/2?t=1', title: '页面2-1' }
-  ]"></router-tab>
-  <!-- '/page/2'与'/page/2?t=1'两个路由的aliveKey一致，将只保留前一个页签 -->
-  ```
-
 ### `router-view`
 
 **Vue Router Tab 内置 `<router-view>` 组件的配置**
