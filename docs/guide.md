@@ -96,7 +96,7 @@ export default new Router({
         icon: 'icon-doc'
       }
     }, {
-      path: '/page2',
+      path: '/page2/:id',
       component: importPage('Page2'),
       meta: {
         title: '页面2',
@@ -120,9 +120,38 @@ export default new Router({
 
 ## 进阶
 
+**基础** 中的配置已经能满足大部分使用场景了，您还可以根据下面的内容实现更多功能。
+
+### 初始展示页签
+
+进入页面时默认显示的页签
+
+<doc-links api="#tabs" demo="/initial-tabs/page/1"></doc-links>
+
+**示例**：
+
+  ``` html
+  <!-- 默认页签 -->
+  <router-tab :tabs="[
+    '/page1',
+    { to: '/page/2', title: '页面2' },
+    { to: '/page/3', closable: false },
+    { to: {
+      name: 'page',
+      params: { id: 4 },
+      query: { t: 2 }
+    }},
+    { to: '/page/2?t=1', title: '页面2-1' }
+  ]"></router-tab>
+  <!-- '/page/2'与'/page/2?t=1'两个路由的aliveKey一致，将只保留前一个页签 -->
+  ```
+
+
 ### 动态页签信息
 
 `RouterTab` 会监听组件 `vm.routerTab` 来动态更新页签信息。您可以通过设置 `vm.routerTab` 来更改页签的**标题**、**图标**和**提示**。
+
+<doc-links demo="/default/tab-dynamic"></doc-links>
 
 **示例：**
 
@@ -160,6 +189,8 @@ export default {
 - 如果还需要在浏览器页面关闭或刷新前阻止，请使用 
 [`onbeforeunload`](https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload)
 :::
+
+<doc-links demo="/default/page-leave"></doc-links>
 
 **示例：**
 

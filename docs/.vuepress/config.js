@@ -1,3 +1,5 @@
+const demoUrl = 'https://bhuh12.github.io/vue-router-tab/demo/'
+
 module.exports = {
   title: 'Vue Router Tab',
   description: '基于 Vue Router 的路由页签组件',
@@ -17,12 +19,15 @@ module.exports = {
     nav: [
       { text: '教程', link: '/guide.html' },
       { text: 'API', link: '/api.html' },
-      { text: '实例', link: 'https://bhuh12.github.io/vue-router-tab/demo/' },
+      { text: 'Demo', link: demoUrl },
       { text: '主页', link: 'https://bhuh.net' }
     ],
 
     // 侧边栏
     sidebar: 'auto',
+
+    // Demo路径
+    demoUrl: demoUrl,
 
     // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
     repo: 'bhuh12/vue-router-tab',
