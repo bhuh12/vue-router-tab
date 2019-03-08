@@ -1,6 +1,7 @@
 <template>
-  <div class="app-ct">
+  <div class="app-ct" :class="{ 'sidebar-open': sidebarOpen }">
     <header class="app-hd">
+      <a class="rt-icon-menu toggle-side" @click="sidebarOpen = !sidebarOpen"></a>
       <img class="site-logo" src="@/assets/img/logo.png" alt="Vue Router Tab - logo">
       <h2 class="site-title">
         <a href="../">Vue Router Tab</a> - Demo
@@ -8,6 +9,7 @@
     </header>
 
     <div class="app-bd">
+      <div class="app-sd-mask" @click="sidebarOpen = false"></div>
       <aside class="app-sd">
         <menu-group v-for="(item, index) in menu" :key="index" :data="item"/>
       </aside>
@@ -26,6 +28,7 @@ export default {
   components: { MenuGroup },
   data () {
     return {
+      sidebarOpen: false,
       menu: [{
         title: 'RouterTab 配置',
         data: [
@@ -50,6 +53,14 @@ export default {
           { text: '页签操作', to: '/default/tab-operate' }
         ]
       }]
+    }
+  },
+
+  watch: {
+    // 路由切换
+    $route ($route) {
+      // 关闭侧边栏
+      this.sidebarOpen = false
     }
   }
 }

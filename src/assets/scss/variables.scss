@@ -1,3 +1,20 @@
 $color: #42b983;
 
 $text: #2c3e50;
+
+// 移动端尺寸
+$smallScreen: 767.98px;
+
+// 移动端样式
+@mixin screen-mob {
+    @media screen and (max-width: $smallScreen) {
+        @content;
+    }
+}
+
+// PC端样式
+@mixin screen-pc {
+    @media screen and (min-width: $smallScreen) {
+        @content;
+    }
+}
