@@ -111,8 +111,8 @@ export default new Router({
         icon: 'icon-page'
       }
     }, {
-        path: '*',
-        redirect: '/404'
+      path: '*',
+      redirect: '/404'
     }]
 }
 ```

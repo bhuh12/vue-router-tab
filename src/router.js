@@ -16,13 +16,6 @@ let pageRoutes = [{
     icon: 'rt-icon-doc'
   }
 }, {
-  path: 'tab-operate',
-  component: importPage('TabOperate'),
-  meta: {
-    title: '页签操作',
-    icon: 'rt-icon-doc'
-  }
-}, {
   path: 'tab-dynamic',
   component: importPage('TabDynamic'),
   meta: {
@@ -67,5 +60,15 @@ export default new Router({
     component: importLayout('Slot'),
     redirect: '/slot/page/1',
     children: pageRoutes
+  }, {
+    path: '/404',
+    component: importPage('404'),
+    meta: {
+      title: '找不到页面',
+      icon: 'rt-icon-warning'
+    }
+  }, {
+    path: '*',
+    redirect: '/404'
   }]
 })
