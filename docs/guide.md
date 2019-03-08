@@ -45,9 +45,13 @@ new Vue({
 
 ```
 
-### 布局文件
+### 应用组件
 
 配置参考: [RouterTab Props](api.md#routertab-props)
+
+::: danger
+`<router-tab>` 仅支持单例模式，请勿在同一个页面中引入多个 `<router-tab>` 组件！
+:::
 
 **示例：**
 
