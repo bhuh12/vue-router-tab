@@ -3941,7 +3941,9 @@ var es6_function_name = __webpack_require__("7f7f");
     var $route = this.$route,
         $vnode = this.$vnode;
     var $alive = $vnode && $vnode.data.routerAlive;
-    if (!$alive) return false;
+    if (!$alive) return false; // 标记为路由页面
+
+    this._isRouterPage = true;
     var key = $alive.getAliveKey($route); // 更新缓存数据
 
     var cacheItem = $alive.set(key, {
@@ -3949,7 +3951,7 @@ var es6_function_name = __webpack_require__("7f7f");
       vm: this
     }); // 监听routerTab字段，更新页签信息
 
-    this.$watch('routerTab', function (val, old) {
+    this.$watch('routeTab', function (val, old) {
       cacheItem.tab = typeof val === 'string' ? {
         title: val
       } : val;
@@ -3962,8 +3964,9 @@ var es6_function_name = __webpack_require__("7f7f");
   // 解决webpack热加载后组件缓存不更新
   activated: function activated() {
     var $routerTab = this.$routerTab,
-        $vnode = this.$vnode;
-    if (!($vnode && $vnode.data.routerAlive)) return false;
+        $vnode = this.$vnode,
+        _isRouterPage = this._isRouterPage;
+    if (!_isRouterPage) return false;
     var ctorId = $vnode.componentOptions.Ctor.cid; // 热加载后Ctor.cid改变
 
     if (this._ctorId && this._ctorId !== ctorId) {
@@ -3974,7 +3977,7 @@ var es6_function_name = __webpack_require__("7f7f");
     this._ctorId = ctorId;
   }
 });
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"f02e117e-vue-loader-template"}!./node_modules/@vue/cli-service/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/@vue/cli-service/node_modules/vue-loader/lib??vue-loader-options!./src/lib/RouterTab/components/RouterTab.vue?vue&type=template&id=275388c3&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"7e9a7162-vue-loader-template"}!./node_modules/@vue/cli-service/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/@vue/cli-service/node_modules/vue-loader/lib??vue-loader-options!./src/lib/RouterTab/components/RouterTab.vue?vue&type=template&id=275388c3&
 var RouterTabvue_type_template_id_275388c3_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab"},[_c('header',{staticClass:"router-tab-header"},[_c('div',{staticClass:"router-tab-scroll"},[_c('transition-group',_vm._b({staticClass:"router-tab-nav",attrs:{"tag":"ul"},on:{"after-enter":_vm.onTabTransitionEnd,"after-leave":_vm.onTabTransitionEnd}},'transition-group',typeof _vm.tabTransition === 'string' ? { name: _vm.tabTransition } : _vm.tabTransition,false),_vm._l((_vm.items),function(ref,index){
 var id = ref.id;
 var to = ref.to;
