@@ -3968,7 +3968,7 @@ var es6_function_name = __webpack_require__("7f7f");
     this._ctorId = ctorId;
   }
 });
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"7e9a7162-vue-loader-template"}!./node_modules/@vue/cli-service/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/@vue/cli-service/node_modules/vue-loader/lib??vue-loader-options!./src/lib/RouterTab/components/RouterTab.vue?vue&type=template&id=275388c3&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"3ddf277b-vue-loader-template"}!./node_modules/@vue/cli-service/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/@vue/cli-service/node_modules/vue-loader/lib??vue-loader-options!./src/lib/RouterTab/components/RouterTab.vue?vue&type=template&id=275388c3&
 var RouterTabvue_type_template_id_275388c3_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab"},[_c('header',{staticClass:"router-tab-header"},[_c('div',{staticClass:"router-tab-scroll"},[_c('transition-group',_vm._b({staticClass:"router-tab-nav",attrs:{"tag":"ul"},on:{"after-enter":_vm.onTabTransitionEnd,"after-leave":_vm.onTabTransitionEnd}},'transition-group',typeof _vm.tabTransition === 'string' ? { name: _vm.tabTransition } : _vm.tabTransition,false),_vm._l((_vm.items),function(ref,index){
 var id = ref.id;
 var to = ref.to;
@@ -4624,7 +4624,7 @@ function isSameComponentRoute(route1, route2) {
     getTabIdByLocation: function getTabIdByLocation(location) {
       var fullMatch = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
       if (!location) return;
-      var $route = this.$router.match(location); // 路由地址精确匹配页签
+      var $route = this.$router.match(location, this.$router.currentRoute); // 路由地址精确匹配页签
 
       if (fullMatch) {
         var matchPath = getPathWithoutHash($route);
