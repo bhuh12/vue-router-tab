@@ -189,27 +189,6 @@
 
   关闭指定 `location` 的页签
 
-- **示例**：
-
-  ``` js
-  // 如果未提供 `location`，则默认关闭当前激活的页签
-  vm.$routerTab.close()
-
-  // 关闭指定 fullPath 的页签
-  vm.$routerTab.close('/page/1')
-
-  // 关闭指定 location 的页签
-  vm.$routerTab.close({
-    name: 'page',
-    params: {
-      id: 2
-    }
-  })
-  
-  // 关闭与给定地址相同 aliveKey 的页签，即使地址不完全匹配
-  vm.$routerTab.close('/page/1', false)
-  ```
-
   
 ### routerTab.refresh
 
@@ -221,26 +200,6 @@
 
   刷新指定 `location` 的页签
 
-- **示例**：
-
-  ``` js
-  // 如果未提供 `location`，则默认刷新当前激活的页签
-  vm.$routerTab.refresh()
-
-  // 刷新指定 fullPath 的页签
-  vm.$routerTab.refresh('/page/1')
-
-  // 刷新指定 location 的页签
-  vm.$routerTab.refresh({
-    name: 'page',
-    params: {
-      id: 2
-    }
-  })
-  
-  // 刷新与给定地址相同 aliveKey 的页签，即使地址不完全匹配
-  vm.$routerTab.refresh('/page/1', false)
-  ```
 
 ### routerTab.refreshAll
 
@@ -251,15 +210,7 @@
 
   刷新所有页签
 
-- **示例**：
 
-  ``` js
-  // 刷新所有页签
-  vm.$routerTab.refreshAll()
-
-  // 强制刷新所有页签
-  vm.$routerTab.refreshAll(true)
-  ```
 
 ## Route.meta 路由元信息
 

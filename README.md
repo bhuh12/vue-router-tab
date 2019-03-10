@@ -45,7 +45,7 @@ Vue Router Tab 是基于 `Vue Router` 的路由页签组件。
 - [x] [初始页签数据](docs/api.md#tabs)，进入页面时默认显示的页签
 - [x] 内置页签和页面[过渡效果](docs/api.md#tab-transition)，支持自定义配置
 - [x] 自定义[页签项模板](docs/api.md#自定义页签项模板)
-- [x] [动态页签信息](docs/guide.md#动态页签信息) (标题/图标/提示)
+- [x] [动态更新页签](docs/guide.md#动态更新页签) (标题/图标/提示)
 - [x] [页签离开 (页签关闭/刷新/替换) 前确认](docs/guide.md#页签离开前确认)
 - [x] [语言配置](docs/api.md#i18n)：zh-CN (默认) / en，自定义语言
 
