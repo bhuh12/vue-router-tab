@@ -1,7 +1,8 @@
 <template>
   <div class="app-page">
     <h2 @click="click">页面{{pageId}}</h2>
-    <p>你在<strong>{{pageTime}}</strong>秒前打开本页面</p>
+
+    <p class="page-time-tips">你在 <strong class="time">{{pageTime}}</strong> 秒前打开本页面</p>
 
     <h3>页签操作</h3>
 
@@ -92,6 +93,13 @@
       $activeColor: mix(#000, $color, 20%);
       color: $activeColor;
       border-color: $activeColor;
+    }
+  }
+
+  .page-time-tips {
+    .time {
+      font-size: 1.2em;
+      color: red;
     }
   }
 
