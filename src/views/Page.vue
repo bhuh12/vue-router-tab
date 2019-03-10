@@ -22,9 +22,9 @@
         @click.native="$routerTab.refresh('/default/page/'+ prevId)">刷新并打开“页面{{prevId}}”
       </router-link>
 
-      <router-link class="btn" to="/default/tab-dynamic">打开“动态页签”</router-link>
+      <router-link class="btn" to="/default/tab-dynamic">打开“动态更新页签”</router-link>
 
-      <a class="btn" @click="$routerTab.close('/default/tab-dynamic')">关闭“动态页签”</a>
+      <a class="btn" @click="$routerTab.close('/default/tab-dynamic')">关闭“动态更新页签”</a>
 
       <a class="btn" @click="$routerTab.refresh()">刷新当前页面</a>
 

@@ -19,7 +19,7 @@ let pageRoutes = [{
   path: 'tab-dynamic',
   component: importPage('TabDynamic'),
   meta: {
-    title: '动态页签',
+    title: '动态更新页签',
     icon: 'rt-icon-log'
   }
 }, {

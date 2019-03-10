@@ -48,7 +48,7 @@ export default {
       }, {
         title: '页面配置',
         data: [
-          { text: '动态页签配置', to: '/default/tab-dynamic' },
+          { text: '动态更新页签配置', to: '/default/tab-dynamic' },
           { text: '页面离开提示', to: '/default/page-leave' }
         ]
       }]

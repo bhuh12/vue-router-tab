@@ -50,7 +50,7 @@ new Vue({
 配置参考: [RouterTab Props](api.md#routertab-props)
 
 ::: danger
-`<router-tab>` 仅支持单例模式，请勿在同一个页面中引入多个 `<router-tab>` 组件！
+`vue-router-tab` 仅支持单例模式，请勿在同一个页面中引入多个 `<router-tab>` 组件！
 :::
 
 **示例：**
@@ -121,10 +121,131 @@ export default new Router({
 }
 ```
 
+## 页签操作
+
+### 打开/切换页签
+
+`vue-router-tab` 通过响应路由变化来新增或切换页签，直接使用 `vue-router` 提供的方法即可。
+
+参考文档：[Vue Router 导航](https://router.vuejs.org/zh/guide/essentials/navigation.html)
+
+<doc-links demo="/default/page/1"></doc-links>
+
+1. **`router-link` 组件方式**
+
+  打开和切换到页签
+  
+  ``` html
+  <router-link to="/page/1">页面1</router-link>
+  ```
+
+  全新打开页签 (**刷新已有页签**)
+
+  ``` html
+  <router-link to="/page/2"click.native="$routerTab.refresh('/page/2')">页面2”<router-link>
+  ```
+
+2. **通过 `router.push`、`router.replace`、`router.go`**
+
+  注意：在 Vue 实例内部，你可以通过 $router 访问路由实例。因此你可以调用 this.$router.push。
+
+  ``` javascript
+  // 如果需要全新打开请加上：
+  // this.$routerTab.refresh('/page/1')
+  this.$router.push('/page/1')
+  ```
+
+### 关闭页签
+
+您可以通过 `router-tab` 的实例方法 [`routerTab.close(location, fullMatch?)`](api.md#routertab-close) 来关闭页签
+
+::: tip
+在 Vue 实例内部，你可以通过 `$routerTab` 访问路由页签实例。因此你可以调用 `this.$routerTab.close`。
+:::
+
+<doc-links api="#routertab-close" demo="/default/page/1"></doc-links>
+
+**关闭当前页签**
+
+``` js
+this.$routerTab.close()
+```
+
+**关闭指定页签**
+``` js
+// 关闭指定 fullPath 的页签
+this.$routerTab.close('/page/1')
+
+// 关闭指定 location 的页签
+this.$routerTab.close({
+  name: 'page',
+  params: {
+    id: 2
+  }
+})
+```
+
+**模糊关闭页签**
+``` js
+// 关闭与给定地址共用页签的地址，即使地址不完全匹配
+// 默认 `alive-key` 规则下，类似 '/page/1?query=2' 这样的页签也能被匹配关闭
+this.$routerTab.close('/page/1', false)
+```
+
+
+### 刷新页签
+
+您可以通过 `router-tab` 的实例方法 [`routerTab.refresh(location, fullMatch?)`](api.md#routertab-refresh) 来刷新页签
+
+<doc-links api="#routertab-refresh" demo="/default/page/1"></doc-links>
+
+**刷新当前页签**
+
+``` js
+this.$routerTab.refresh()
+```
+
+**刷新指定页签**
+``` js
+// 刷新指定 fullPath 的页签
+this.$routerTab.refresh('/page/1')
+
+// 刷新指定 location 的页签
+this.$routerTab.refresh({
+  name: 'page',
+  params: {
+    id: 2
+  }
+})
+```
+
+**模糊刷新页签**
+``` js
+// 刷新与给定地址共用页签的地址，即使地址不完全匹配
+// 默认 `alive-key` 规则下，类似 '/page/1?query=2' 这样的页签也能被匹配刷新
+this.$routerTab.close('/page/1', false)
+```
+
+### 刷新所有页签
+
+您可以通过 `router-tab` 的实例方法 [`routerTab.refreshAll(force?)`](api.md#routertab-refreshall) 来刷新所有页签
+
+**刷新所有页签**
+
+``` js
+vm.$routerTab.refreshAll()
+```
+
+**强制刷新所有页签**，忽略页面组件的 `beforePageLeave` 配置
+
+``` js
+vm.$routerTab.refreshAll(true)
+```
+
 
 ## 进阶
 
-**基础** 中的配置已经能满足大部分使用场景了，您还可以根据下面的内容实现更多功能。
+前面的内容已经能满足大部分使用场景了，您还可以根据下面的内容实现更多功能。
 
 ### 初始展示页签
 
@@ -151,9 +272,9 @@ export default new Router({
   ```
 
 
-### 动态页签信息
+### 动态更新页签
 
-`RouterTab` 会监听组件 `vm.routeTab` 来动态更新页签信息。您可以通过设置 `vm.routeTab` 来更改页签的标题、图标、提示。
+`RouterTab` 会监听组件 `this.routeTab` 来动态更新页签信息。您可以通过设置 `this.routeTab` 来更改页签的标题、图标、提示。
 
 <doc-links demo="/default/tab-dynamic"></doc-links>
 
