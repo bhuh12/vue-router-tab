@@ -5,87 +5,109 @@
 
     <h3>页签操作</h3>
 
-    <div class="btn-list">
-      <router-link class="btn" :to="'/default/page/'+ nextId">打开“页面{{nextId}}”</router-link>
+    <div class="btn-group">
+      <router-link class="btn" :to="'../page/'+ nextId">打开“页面{{nextId}}”</router-link>
+    </div>
+
+    <div class="btn-group" v-if="prevId > 0">
+      <router-link class="btn" :to="'../page/'+ prevId">打开“页面{{prevId}}”</router-link>
 
       <router-link
         class="btn"
-        v-if="prevId > 0"
-        :to="'/default/page/'+ prevId">
-        打开“页面{{prevId}}”
+        :to="'../page/'+ prevId"
+        @click.native="$routerTab.refresh('../page/'+ prevId)"
+      >
+        全新打开“页面{{prevId}}”
       </router-link>
+    </div>
 
-      <router-link
-        class="btn"
-        v-if="prevId > 0"
-        :to="'/default/page/'+ prevId"
-        @click.native="$routerTab.refresh('/default/page/'+ prevId)">刷新并打开“页面{{prevId}}”
-      </router-link>
+    <div class="btn-group">
+      <a class="btn" @click="$router.push('../tab-dynamic')">打开“动态更新页签”</a>
 
-      <router-link class="btn" to="/default/tab-dynamic">打开“动态更新页签”</router-link>
+      <a class="btn" @click="$routerTab.close('../tab-dynamic')">关闭“动态更新页签”</a>
+    </div>
 
-      <a class="btn" @click="$routerTab.close('/default/tab-dynamic')">关闭“动态更新页签”</a>
-
+    <div class="btn-group">
       <a class="btn" @click="$routerTab.refresh()">刷新当前页面</a>
 
       <a class="btn" @click="$routerTab.close()">关闭当前页面</a>
     </div>
 
     <div>
-      <input type="text"/>
+      <input type="text" />
     </div>
 
     <h3>路由信息</h3>
 
-    <dl class="route-info">
-      <dt>name</dt>
-      <dd>{{$route.name}}</dd>
-      <dt>path</dt>
-      <dd>{{$route.path}}</dd>
-      <dt>params</dt>
-      <dd>{{$route.params}}</dd>
-      <dt>query</dt>
-      <dd>{{$route.query}}</dd>
-      <dt>hash</dt>
-      <dd>{{$route.hash}}</dd>
-      <dt>fullPath</dt>
-      <dd>{{$route.fullPath}}</dd>
-    </dl>
+    <table class="route-info">
+      <tr>
+        <th width="80">name</th>
+        <td>{{$route.name}}</td>
+      </tr>
+      <tr>
+        <th>path</th>
+        <td>{{$route.path}}</td>
+      </tr>
+      <tr>
+        <th>params</th>
+        <td>{{$route.params}}</td>
+      </tr>
+      <tr>
+        <th>query</th>
+        <td>{{$route.query}}</td>
+      </tr>
+      <tr>
+        <th>hash</th>
+        <td>{{$route.hash}}</td>
+      </tr>
+      <tr>
+        <th>fullPath</th>
+        <td>{{$route.fullPath}}</td>
+      </tr>
+    </table>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .app-page {
-  .btn-list {
-    display: inline-flex;
-    flex-direction: column;
-  }
-
   .btn {
     display: inline-block;
     margin-bottom: 1em;
+    margin-right: 1em;
     padding: 2px 8px;
     font-size: 14px;
     color: #333;
     text-decoration: none;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 3px;
     border: 1px solid #ccc;
+    transition: all .3s ease;
 
     &:hover {
       color: $color;
+      border-color: $color;
+    }
+
+    &:active {
+      $activeColor: mix(#000, $color, 20%);
+      color: $activeColor;
+      border-color: $activeColor;
     }
   }
 
   .route-info {
-    dt {
-      float: left;
-      width: 150px;
-      font-weight: 700;
+    min-width: 300px;
+    border-collapse: collapse;
+
+    th, td {
+      padding: 5px 8px;
+      border: 1px solid #ddd;
     }
 
-    dd {
-      min-height: 1.5em;
+    th {
+      text-align: left;
+      font-weight: 400;
+      background-color: #f7f7f7;
     }
   }
 }
@@ -96,7 +118,7 @@ import pageTimer from '@/mixins/pageTimer'
 
 export default {
   name: 'Page',
-  mixins: [ pageTimer ],
+  mixins: [pageTimer],
   data () {
     let id = this.$route.params.id
     return {
