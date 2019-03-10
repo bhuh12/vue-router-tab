@@ -252,7 +252,7 @@ export default {
     getTabIdByLocation (location, fullMatch = true) {
       if (!location) return
 
-      let $route = this.$router.match(location)
+      let $route = this.$router.match(location, this.$router.currentRoute)
 
       // 路由地址精确匹配页签
       if (fullMatch) {
