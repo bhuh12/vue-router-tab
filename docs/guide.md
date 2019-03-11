@@ -50,7 +50,7 @@ new Vue({
 配置参考: [RouterTab Props](api.md#routertab-props)
 
 ::: danger
-`vue-router-tab` 仅支持单例模式，请勿在同一个页面中引入多个 `<router-tab>` 组件！
+`RouterTab` 仅支持单例模式，请勿在同一个页面中引入多个 `RouterTab` 组件！
 :::
 
 **示例：**
@@ -125,11 +125,11 @@ export default new Router({
 
 ### 打开/切换页签
 
-`vue-router-tab` 通过响应路由变化来新增或切换页签，直接使用 `vue-router` 提供的方法即可。
+`RouterTab` 通过响应路由变化来新增或切换页签，直接使用 `vue-router` 提供的方法即可。
 
 参考文档：[Vue Router 导航](https://router.vuejs.org/zh/guide/essentials/navigation.html)
 
-<doc-links demo="/default/page/1"></doc-links>
+<doc-links demo="/default/"></doc-links>
 
 1. **`router-link` 组件方式**
 
@@ -147,7 +147,7 @@ export default new Router({
 
 2. **通过 `router.push`、`router.replace`、`router.go`**
 
-  注意：在 Vue 实例内部，你可以通过 $router 访问路由实例。因此你可以调用 this.$router.push。
+  注意：在 Vue 实例内部，您可以通过 $router 访问路由实例。因此您可以调用 this.$router.push。
 
   ``` javascript
   // 如果需要全新打开请加上：
@@ -157,13 +157,13 @@ export default new Router({
 
 ### 关闭页签
 
-您可以通过 `router-tab` 的实例方法 [`routerTab.close(location, fullMatch?)`](api.md#routertab-close) 来关闭页签
+您可以通过 `RouterTab` 的实例方法 [`routerTab.close(location, fullMatch?)`](api.md#routertab-close) 来关闭页签
 
 ::: tip
-在 Vue 实例内部，你可以通过 `$routerTab` 访问路由页签实例。因此你可以调用 `this.$routerTab.close`。
+在 Vue 实例内部，您可以通过 `$routerTab` 访问路由页签实例。因此您可以调用 `this.$routerTab.close`。
 :::
 
-<doc-links api="#routertab-close" demo="/default/page/1"></doc-links>
+<doc-links api="#routertab-close" demo="/default/"></doc-links>
 
 **关闭当前页签**
 
@@ -195,9 +195,9 @@ this.$routerTab.close('/page/1', false)
 
 ### 刷新页签
 
-您可以通过 `router-tab` 的实例方法 [`routerTab.refresh(location, fullMatch?)`](api.md#routertab-refresh) 来刷新页签
+您可以通过 `RouterTab` 的实例方法 [`routerTab.refresh(location, fullMatch?)`](api.md#routertab-refresh) 来刷新页签
 
-<doc-links api="#routertab-refresh" demo="/default/page/1"></doc-links>
+<doc-links api="#routertab-refresh" demo="/default/"></doc-links>
 
 **刷新当前页签**
 
@@ -228,18 +228,18 @@ this.$routerTab.close('/page/1', false)
 
 ### 刷新所有页签
 
-您可以通过 `router-tab` 的实例方法 [`routerTab.refreshAll(force?)`](api.md#routertab-refreshall) 来刷新所有页签
+您可以通过 `RouterTab` 的实例方法 [`routerTab.refreshAll(force?)`](api.md#routertab-refreshall) 来刷新所有页签
 
 **刷新所有页签**
 
 ``` js
-vm.$routerTab.refreshAll()
+this.$routerTab.refreshAll()
 ```
 
 **强制刷新所有页签**，忽略页面组件的 `beforePageLeave` 配置
 
 ``` js
-vm.$routerTab.refreshAll(true)
+this.$routerTab.refreshAll(true)
 ```
 
 
@@ -247,30 +247,147 @@ vm.$routerTab.refreshAll(true)
 
 前面的内容已经能满足大部分使用场景了，您还可以根据下面的内容实现更多功能。
 
+### 过渡效果
+
+您可以通过配置组件的 `tab-transition` 和 `page-transition` 属性，分别替换默认的页签和页面过渡效果
+
+::: warning
+- 如果是组件作用域内的 CSS(配置了 `scoped`)，需要在选择器前添加 `/deep/`才能生效
+
+- 页签项 `.router-tab-item` 默认设置了 `transition` 和 `transform-origin` 的样式，您可能需要覆盖它已避免影响到自定义的过渡效果
+:::
+
+<doc-links api="#tab-transition" demo="/transition/"></doc-links>
+
+**页签过渡效果-示例：**
+
+``` html {2,6}
+<template>
+  <router-tab tab-transition="tab-scale"/>
+</template>
+
+<style lang="scss" scoped>
+/deep/ .tab-scale {
+  &-enter-active,
+  &-leave-active {
+    transition: opacity .5s, transform .5s;
+  }
+
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+</style>
+```
+
+<doc-links api="#page-transition" demo="/transition/"></doc-links>
+
+**页面过渡效果-示例：**
+
+``` html {2,6}
+<template>
+  <router-tab page-transition="page-fade"/>
+</template>
+
+<style lang="scss" scoped>
+/deep/ .page-fade {
+  &-enter-active,
+  &-leave-active {
+    transition: opacity .5s;
+  }
+
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+  }
+}
+</style>
+```
+
+#### 详细配置
+
+您还可以使用对象的方式设置 `tab-transition` 和 `page-transition` 的值，以实现详细的过渡效果配置
+
+配置参考: [Vue - transition](https://cn.vuejs.org/v2/api/#transition)
+
+``` html
+<router-tab :tab-transition="{
+  name: 'my-transition',
+  'enter-class': 'my-transition-enter'
+}"/>
+```
+
+
+### 自定义页签模板
+
+通过组件的默认作用域插槽，我们可以自定义页签显示的内容
+
+插槽的作用域提供以下属性供模板使用：
+  - **tab** {Object} 页签项信息，包括 `id`, `title`, `icon`, `closable` 等
+  - **tabs** {Array} 页签列表
+  - **index** {Number} 索引
+
+<doc-links demo="/slot/"></doc-links>
+
+**示例：**
+
+``` html {2}
+<router-tab>
+  <template v-slot="{ tab: { id, title, icon, closable }, tabs, index}">
+    <i v-if="icon" class="tab-icon" :class="icon"></i>
+    <span class="tab-title">{{title || '未命名页签'}}</span>
+    <span class="tab-badge">{{index}}</span>
+    <i class="tab-close el-icon-close" v-if="closable !== false &&tabs.length > 1" @click.prevent="$routerTab.close(id)"></i>
+  </template>
+</router-tab>
+```
+
+
 ### 初始展示页签
 
-进入页面时默认显示的页签
+通过配置组件的 `tabs` 属性，可以设置进入页面时默认显示的页签。
 
-<doc-links api="#tabs" demo="/initial-tabs/page/1"></doc-links>
+<doc-links api="#tabs" demo="/initial-tabs/"></doc-links>
 
-**示例**：
+**示例：**
 
   ``` html
-  <!-- 默认页签 -->
-  <router-tab :tabs="[
-    '/page1',
-    { to: '/page/2', title: '页面2' },
-    { to: '/page/3', closable: false },
-    { to: {
-      name: 'page',
-      params: { id: 4 },
-      query: { t: 2 }
-    }},
-    { to: '/page/2?t=1', title: '页面2-1' }
-  ]"></router-tab>
-  <!-- '/page/2'与'/page/2?t=1'两个路由的aliveKey一致，将只保留前一个页签 -->
+  <router-tab :tabs="tabs"/>
   ```
 
+  ``` javascript {7}
+  export default {
+    data () {
+      return {
+        // 默认页签项
+        tabs: [
+          // 推荐 fullPath 方式配置默认页签项。RouterTab 会自动获取路由里的页签配置
+          '/page/1',
+
+          // 设置初始 title，用于需要动态展示页签信息的路由页面
+          { to: '/page/2', title: '页面2', icon: 'icon-page' },
+
+          // 设置 closable 为 false，可以禁止页签被关闭
+          { to: '/page/3', closable: false },
+
+          // 也可以 location 方式设置默认页签项
+          {
+            to: {
+              name: 'page',
+              params: { id: 4 },
+              query: { t: 2 }
+            }
+          },
+          
+          // 此页面与'/page/2'的aliveKey一致，将只保留先设置的页签
+          { to: '/page/2?t=1', title: '页面2-1' }
+        ]
+      }
+    }
+  }
+  ```
 
 ### 动态更新页签
 
@@ -280,9 +397,7 @@ vm.$routerTab.refreshAll(true)
 
 **示例：**
 
-``` javascript
-// src/views/Page.js
-
+``` javascript {8,11}
 export default {
   name: 'page',
   mounted () {
@@ -303,9 +418,57 @@ export default {
 }
 ```
 
-### 页签离开前确认
 
-当页签**关闭**、**刷新**或**替换**时会触发 `beforePageLeave`，使用 `Promise` 的 `resolve` 和 `reject` 来允许和阻止页签页面的离开。
+### 语言配置
+
+通过配置组件的 `i18n` 属性，可以设置组件显示的语言 (主要表现为页签右键菜单)。
+
+
+`RouterTab` 默认语言是 `zh-CN`，另外内置了 `en`。
+
+<doc-links api="#i18n" demo="/language/"></doc-links>
+
+**指定组件显示为英文**
+
+``` html
+<router-tab i18n="en"/>
+```
+
+**自定义的语言**
+
+``` html
+<router-tab :i18n="lang"/>
+```
+
+``` javascript
+export default {
+  data () {
+    return {
+      lang: {
+        tab: {
+          untitled: 'Untitled Page'
+        },
+        contextmenu: {
+          refresh: 'Refresh This',
+          refreshAll: 'Refresh All',
+          close: 'Close This',
+          closeLefts: 'Close to the Left',
+          closeRights: 'Close to the Right',
+          closeOthers: 'Close Others'
+        },
+        msg: {
+          keepOneTab: 'Keep at least 1 tab'
+        }
+      }
+    }
+  }
+}
+```
+
+
+### 页面离开确认
+
+当页签**关闭**、**刷新**或**替换**时会触发 `beforePageLeave`，通过 `Promise` 的 `resolve` 和 `reject` 来允许或者阻止页签页面的离开。
 
 ::: warning
 
@@ -315,27 +478,45 @@ export default {
 [`onbeforeunload`](https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload)
 :::
 
-<doc-links demo="/default/page-leave"></doc-links>
+<doc-links demo="/initial-tabs/page-leave"></doc-links>
 
 **示例：**
 
-``` javascript
-// src/views/Page.js
-
+``` javascript {3,17,23,25,30}
 export default {
-  name: 'page',
-
-  // 路由页面离开前确认
+  // 页面离开前确认
   beforePageLeave (resolve, reject, tab, type) {
-    let action = (type === 'close' && '关闭') ||
-      (type === 'refresh' && '刷新') ||
-      (type === 'replace' && '替换')
+    // 离开类型
+    const types = {
+      close: '关闭',
+      refresh: '刷新',
+      replace: '替换'
+    }
 
+    const action = types[type]
+
+    const msg = `您确认要${action}页签“${tab.title}”吗？`
+
+    // 值未改变，则直接离开页签
+    if (this.editValue === this.value) {
+      resolve()
+      return
+    }
+
+    // 值改变则确认提示
+    if (confirm(msg)) {
+      resolve()
+    } else {
+      reject('拒绝了页面离开')
+    }
+
+    /*
     // 此处使用了 Element 的 confirm 组件
     // 需将 closeOnHashChange 配置为 false，以避免路由切换导致确认框关闭
-    this.$confirm(`您确认要${action}页签“${tab.title}”吗？`, '提示', { closeOnHashChange: false })
+    this.$confirm(msg, '提示', { closeOnHashChange: false })
       .then(resolve)
       .catch(reject)
+    */
   }
 }
 ```

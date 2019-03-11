@@ -42,12 +42,12 @@ Vue Router Tab 是基于 `Vue Router` 的路由页签组件。
 - [x] 响应路由变化来新增或切换页签
 - [x] 页签关闭和刷新，右键菜单操作
 - [x] [全局](docs/api.md#alive-key)和[针对特定路由](docs/api.md#meta.aliveKey)的页签缓存规则配置
-- [x] [初始页签数据](docs/api.md#tabs)，进入页面时默认显示的页签
-- [x] 内置页签和页面[过渡效果](docs/api.md#tab-transition)，支持自定义配置
-- [x] 自定义[页签项模板](docs/api.md#自定义页签项模板)
+- [x] [初始页签数据](docs/guide.md#初始展示页签)，进入页面时默认显示的页签
+- [x] 内置页签和页面[过渡效果](docs/guide.md#过渡效果)，支持自定义配置
+- [x] [自定义页签模板](docs/guide.md#自定义页签模板)
 - [x] [动态更新页签](docs/guide.md#动态更新页签) (标题/图标/提示)
-- [x] [页签离开 (页签关闭/刷新/替换) 前确认](docs/guide.md#页签离开前确认)
-- [x] [语言配置](docs/api.md#i18n)：zh-CN (默认) / en，自定义语言
+- [x] [页签页面离开 (页签关闭/刷新/替换) 前确认](docs/guide.md#页面离开确认)
+- [x] [语言配置](docs/guide.md#语言配置)：zh-CN (默认) / en，自定义语言
 
 ## 文档：
 [https://bhuh12.github.io/vue-router-tab/](https://bhuh12.github.io/vue-router-tab/)

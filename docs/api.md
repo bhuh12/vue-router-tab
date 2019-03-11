@@ -26,10 +26,10 @@
 
   ``` html
   <!-- 取 $route.fullPath -->
-  <router-tab alive-key="fullPath"></router-tab>
+  <router-tab alive-key="fullPath"/>
 
   <!-- 函数方式 -->
-  <router-tab :alive-key="route => route.fullPath + '1'"></router-tab>
+  <router-tab :alive-key="route => route.fullPath + '1'"/>
   ```
 
 ### i18n
@@ -44,44 +44,6 @@
 
 - 默认值: `'zh-CN'`
 
-- 示例：
-
-  - **指定内置语言**
-
-    ``` html
-    <router-tab i18n="en"></router-tab>
-    ```
-
-  - **自定义语言**
-
-    ``` html
-    <router-tab :i18n="lang"></router-tab>
-    ```
-
-    ``` javascript
-    export default {
-      data () {
-        return {
-          lang: {
-            tab: {
-              untitled: 'Untitled Page'
-            },
-            contextmenu: {
-              refresh: 'Refresh This',
-              refreshAll: 'Refresh All',
-              close: 'Close This',
-              closeLefts: 'Close to the Left',
-              closeRights: 'Close to the Right',
-              closeOthers: 'Close Others'
-            },
-            msg: {
-              keepOneTab: 'Keep at least 1 tab'
-            }
-          }
-        }
-      }
-    }
-    ```
 
 ### tabs
 
@@ -123,17 +85,7 @@
 
   - 类型为 `Object` 时，配置参考: [Vue - transition](https://cn.vuejs.org/v2/api/#transition)
 
-- 默认值: `'router-tab-zoom-lb'`
-
-- 示例：
-
-  ``` html
-  <!-- 直接配置过渡名称 -->
-  <router-tab tab-transition="my-transition"></router-tab>
-
-  <!-- 过渡详细配置 -->
-  <router-tab :tab-transition="{ name: 'my-transition', 'enter-class': 'my-transition-enter' }"></router-tab>
-  ```
+- 默认值: `'router-tab-zoom'`
 
 
 ### page-transition
@@ -150,22 +102,6 @@
 }`
 
 
-## RouterTab 插槽
-
-### 页签项
-
-- **示例：**
-  ``` html
-  <router-tab>
-    <template v-slot="{ tab: { id, title, icon, closable }, tabs, index}">
-      <i v-if="icon" class="tab-icon" :class="icon"></i>
-      <span class="tab-index">{{index}}</span>
-      <span class="tab-title">{{title || '未命名页签'}}</span>
-      <i class="tab-close el-icon-close" v-if="closable !== false &&tabs.length > 1" @click.prevent="close(id)"></i>
-    </template>
-  </router-tab>
-  ```
-
 ## RouterTab 实例属性
 
 ### routerTab.activedTab
@@ -176,7 +112,7 @@
 ## RouterTab 实例方法
 
 ::: tip
-在 Vue 实例内部，你可以通过 `this.$routerTab` 来访问路由页签实例。例如：调用 `this.$routerTab.close()` 来关闭当前页签。
+在 Vue 实例内部，您可以通过 `this.$routerTab` 来访问路由页签实例。例如：调用 `this.$routerTab.close()` 来关闭当前页签。
 :::
 
 ### routerTab.close
@@ -248,20 +184,32 @@
 
 ## RouterPage 路由页面
 
-通过 `<router-tab>` 加载的页面组件实例
+通过 `RouterTab` 加载的页面组件
+
+
+### beforePageLeave
+ 
+  - **参数**: 
+    - `{Function} resolve` 执行后允许离开页签
+    - `{Function} reject` 执行后阻止离开页签
+    - `{Object} tab` 页签信息
+    - `{string} type` 离开类型：`close`: '关闭', `refresh`: '刷新', `replace`: '替换'
+
+  - **说明**: 页面离开确认。页面组件选项，与 `data`, `methods` 并列
+
 
 ### vm.$routerTab
 
-为了方便调用，`<router-tab>` 将实例挂载在 `Vue.prototype` 上。因此，在所有 Vue 组件内部，你都可以通过 `this.$routerTab` 来访问路由页签实例
+为了方便调用，`RouterTab` 将实例挂载在 `Vue.prototype` 上。因此，在所有 Vue 组件内部，您都可以通过 `this.$routerTab` 来访问路由页签实例
 
 
 ### vm.routeTab
 
-**路由页签配置**。`<router-tab>` 通过监听页面组件的 `this.routeTab` 来更新页面对应页签的标题、图标、提示
+**路由页签配置**。`RouterTab` 通过监听页面组件的 `this.routeTab` 来更新页面对应页签的标题、图标、提示
 
 ### vm._isRouterPage
 
-**是否是路由页面**：在通过 `<router-tab>` 加载的页面组件内部，访问 `this._isRouterPage` 会返回 `true`
+**是否是路由页面**：在通过 `RouterTab` 加载的页面组件内部，访问 `this._isRouterPage` 会返回 `true`
 
 ::: tip
 应用：在需要给路由页面添加全局混入 `mixin` 时，可在生命周期钩子（ `created` 之后）里判断 `this._isRouterPage`
