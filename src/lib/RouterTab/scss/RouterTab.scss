@@ -17,7 +17,6 @@ $color-primary: #409eff;
     border-bottom: 2px solid $color-primary;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12), 0 0 3px 0 rgba(0, 0, 0, .04);
     transition: all .2s ease-in-out;
-    flex: none;
 
     &.is-scroll {
       padding: 0 $slideW;
@@ -183,7 +182,8 @@ $color-primary: #409eff;
   // 页面容器
   &-container {
     position: relative;
-    flex: auto;
+    flex: 1;
+    height: 0;
     overflow-x: hidden;
     overflow-y: auto;
     background: #fff;

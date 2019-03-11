@@ -158,6 +158,7 @@ export default {
     this.updateActivedTab()
 
     this.$router.beforeEach(this.routerPageLeaveGuard)
+    this.$nextTick(this.adjust)
   },
 
   mounted () {
