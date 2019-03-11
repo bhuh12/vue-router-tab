@@ -9,6 +9,7 @@
           v-bind="typeof tabTransition === 'string' ? { name: tabTransition } : tabTransition"
           @after-enter="onTabTransitionEnd"
           @after-leave="onTabTransitionEnd">
+
           <router-link
             class="router-tab-item"
             tag="li"
@@ -18,6 +19,7 @@
             :key="id || to"
             :to="to"
             @contextmenu.native.prevent="e => showContextmenu(id, index, e)">
+
             <slot v-bind="{
               tab: items[index],
               tabs: items,

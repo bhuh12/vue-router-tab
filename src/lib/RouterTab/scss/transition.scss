@@ -1,32 +1,15 @@
 // transition 过渡样式
 .router-tab {
-  &-zoom-lt,
-  &-zoom-lb {
+  &-zoom {
     &-enter-active,
     &-leave-active {
-      transition: all .3s;
+      transition: all .4s;
     }
 
     &-enter,
     &-leave-to {
       transform: scale(0);
       opacity: 0;
-    }
-  }
-
-  // 缩放-左上
-  &-zoom-lt {
-    &-enter-active,
-    &-leave-active {
-      transform-origin: left top;
-    }
-  }
-
-  // 缩放-左下
-  &-zoom-lb {
-    &-enter-active,
-    &-leave-active {
-      transform-origin: left bottom;
     }
   }
 

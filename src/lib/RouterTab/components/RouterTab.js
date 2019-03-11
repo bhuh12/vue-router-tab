@@ -30,7 +30,7 @@ export default {
     // 页签过渡效果
     tabTransition: {
       type: [ String, Object ],
-      default: 'router-tab-zoom-lb'
+      default: 'router-tab-zoom'
     },
 
     // 页面过渡效果
