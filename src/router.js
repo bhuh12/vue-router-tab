@@ -26,7 +26,7 @@ let pageRoutes = [{
   path: 'page-leave',
   component: importPage('PageLeave'),
   meta: {
-    title: '页面离开提示',
+    title: '页面离开确认',
     icon: 'rt-icon-contact'
   }
 }]
@@ -39,6 +39,11 @@ export default new Router({
     path: '/default/',
     component: importLayout('Default'),
     redirect: '/default/page/1',
+    children: pageRoutes
+  }, {
+    path: '/transition/',
+    component: importLayout('Transition'),
+    redirect: '/transition/page/1',
     children: pageRoutes
   }, {
     path: '/initial-tabs/',

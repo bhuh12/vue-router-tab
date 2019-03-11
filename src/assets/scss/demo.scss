@@ -25,7 +25,7 @@ a:link {
   transition: color .3s ease-in-out;
 }
 
-
+/* 布局 */
 .app-ct {
   display: flex;
   flex-direction: column;
@@ -33,7 +33,6 @@ a:link {
   height: 100%;
 
   .app-hd {
-    flex: none;
     display: flex;
     position: relative;
     z-index: 99;
@@ -83,7 +82,8 @@ a:link {
   }
 
   .app-bd {
-    flex: auto;
+    flex: 1;
+    height: 0;
     position: relative;
   }
 }
@@ -197,4 +197,38 @@ $just-trans: all .2s ease-in-out;
   padding: 15px;
   font-size: 14px;
   line-height: 1.5;
+}
+
+/* UI */
+
+// 强提示
+.text-strong {
+  font-weight: 600;
+  font-size: 1.2em;
+  color: #f50;
+}
+
+// 按钮
+.demo-btn {
+  display: inline-block;
+  margin: 0 1em .5em 0;
+  padding: 3px 8px;
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  transition: all .3s ease;
+
+  &:hover {
+    color: $color;
+    border-color: $color;
+  }
+
+  &:active {
+    $activeColor: mix(#000, $color, 20%);
+    color: $activeColor;
+    border-color: $activeColor;
+  }
 }

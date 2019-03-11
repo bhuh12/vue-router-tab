@@ -18,10 +18,11 @@ export default {
 <style lang="stylus" scoped>
 .doc-links
   float right
-  margin-top -5px
+  margin-top -3px
   padding 5px 1em
   background-color #f7f7f7
   border-radius 2em
+  box-shadow inset 0 0 2px rgba(0,0,0,.05)
 
   > a
     margin-right 1em
