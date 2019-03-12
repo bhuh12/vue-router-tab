@@ -3944,7 +3944,7 @@ var es6_function_name = __webpack_require__("7f7f");
     if (!$alive) return false; // 标记为路由页面
 
     this._isRouterPage = true;
-    var key = $alive.getAliveKey($route); // 更新缓存数据
+    var key = $alive.getAliveId($route); // 更新缓存数据
 
     var cacheItem = $alive.set(key, {
       route: $route,
@@ -3977,8 +3977,8 @@ var es6_function_name = __webpack_require__("7f7f");
     this._ctorId = ctorId;
   }
 });
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"3ddf277b-vue-loader-template"}!./node_modules/@vue/cli-service/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/@vue/cli-service/node_modules/vue-loader/lib??vue-loader-options!./src/lib/RouterTab/components/RouterTab.vue?vue&type=template&id=275388c3&
-var RouterTabvue_type_template_id_275388c3_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab"},[_c('header',{staticClass:"router-tab-header"},[_c('div',{staticClass:"router-tab-scroll"},[_c('transition-group',_vm._b({staticClass:"router-tab-nav",attrs:{"tag":"ul"},on:{"after-enter":_vm.onTabTransitionEnd,"after-leave":_vm.onTabTransitionEnd}},'transition-group',typeof _vm.tabTransition === 'string' ? { name: _vm.tabTransition } : _vm.tabTransition,false),_vm._l((_vm.items),function(ref,index){
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"ec9ebaf6-vue-loader-template"}!./node_modules/@vue/cli-service/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/@vue/cli-service/node_modules/vue-loader/lib??vue-loader-options!./src/lib/RouterTab/components/RouterTab.vue?vue&type=template&id=6424321e&
+var RouterTabvue_type_template_id_6424321e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab"},[_c('header',{staticClass:"router-tab-header"},[_c('div',{staticClass:"router-tab-scroll"},[_c('transition-group',_vm._b({staticClass:"router-tab-nav",attrs:{"tag":"ul"},on:{"after-enter":_vm.onTabTransitionEnd,"after-leave":_vm.onTabTransitionEnd}},'transition-group',typeof _vm.tabTransition === 'string' ? { name: _vm.tabTransition } : _vm.tabTransition,false),_vm._l((_vm.items),function(ref,index){
 var id = ref.id;
 var to = ref.to;
 var title = ref.title;
@@ -3989,11 +3989,11 @@ return _c('router-link',{key:id || to,staticClass:"router-tab-item",class:{ acti
             tab: _vm.items[index],
             tabs: _vm.items,
             index: index
-          })],2)}),1)],1),_c('a',{staticClass:"el-icon-caret-left nav-prev",on:{"click":function($event){return _vm.tabScroll('left')}}}),_c('a',{staticClass:"el-icon-caret-right nav-next",on:{"click":function($event){return _vm.tabScroll('right')}}})]),_c('div',{staticClass:"router-tab-container",class:{ loading: _vm.loading }},[_c('router-alive',{ref:"routerAlive",attrs:{"alive-key":_vm.aliveKey},on:{"update":_vm.updateTab}},[_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onPageTransitionEnd,"after-leave":_vm.onPageTransitionEnd}},'transition',typeof _vm.pageTransition === 'string' ? { name: _vm.pageTransition } : _vm.pageTransition,false),[(_vm.isRouterAlive)?_c('router-view',_vm._b({ref:"routerView"},'router-view',_vm.routerView,false)):_vm._e()],1)],1)],1),_c('transition',{attrs:{"name":"router-tab-zoom-lt"}},[(_vm.contextmenu.id)?_c('div',{staticClass:"router-tab-contextmenu",style:(("left: " + (_vm.contextmenu.left) + "px; top: " + (_vm.contextmenu.top) + "px;"))},[_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabActived},on:{"click":function($event){_vm.isContextTabActived && _vm.refreshTab(_vm.contextmenu.id)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.refresh)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":_vm.items.length < 2},on:{"click":function($event){_vm.items.length > 1 && _vm.refreshAll()}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.refreshAll)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabCanBeClosed},on:{"click":function($event){_vm.isContextTabCanBeClosed && _vm.closeTab(_vm.contextmenu.id)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.close)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsLeft.length},on:{"click":function($event){_vm.tabsLeft.length && _vm.closeMulti(_vm.tabsLeft)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeLefts)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsRight.length},on:{"click":function($event){_vm.tabsRight.length && _vm.closeMulti(_vm.tabsRight)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeRights)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsOther.length},on:{"click":function($event){_vm.tabsOther.length && _vm.closeMulti(_vm.tabsOther)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeOthers)+"\n      ")])]):_vm._e()])],1)}
+          })],2)}),1)],1),_c('a',{staticClass:"el-icon-caret-left nav-prev",on:{"click":function($event){return _vm.tabScroll('left')}}}),_c('a',{staticClass:"el-icon-caret-right nav-next",on:{"click":function($event){return _vm.tabScroll('right')}}})]),_c('div',{staticClass:"router-tab-container",class:{ loading: _vm.loading }},[_c('router-alive',{ref:"routerAlive",attrs:{"alive-id":_vm.aliveId},on:{"update":_vm.updateTab}},[_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onPageTransitionEnd,"after-leave":_vm.onPageTransitionEnd}},'transition',typeof _vm.pageTransition === 'string' ? { name: _vm.pageTransition } : _vm.pageTransition,false),[(_vm.isRouterAlive)?_c('router-view',_vm._b({ref:"routerView"},'router-view',_vm.routerView,false)):_vm._e()],1)],1)],1),_c('transition',{attrs:{"name":"router-tab-zoom-lt"}},[(_vm.contextmenu.id)?_c('div',{staticClass:"router-tab-contextmenu",style:(("left: " + (_vm.contextmenu.left) + "px; top: " + (_vm.contextmenu.top) + "px;"))},[_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabActived},on:{"click":function($event){_vm.isContextTabActived && _vm.refreshTab(_vm.contextmenu.id)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.refresh)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":_vm.items.length < 2},on:{"click":function($event){_vm.items.length > 1 && _vm.refreshAll()}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.refreshAll)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabCanBeClosed},on:{"click":function($event){_vm.isContextTabCanBeClosed && _vm.closeTab(_vm.contextmenu.id)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.close)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsLeft.length},on:{"click":function($event){_vm.tabsLeft.length && _vm.closeMulti(_vm.tabsLeft)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeLefts)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsRight.length},on:{"click":function($event){_vm.tabsRight.length && _vm.closeMulti(_vm.tabsRight)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeRights)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsOther.length},on:{"click":function($event){_vm.tabsOther.length && _vm.closeMulti(_vm.tabsOther)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeOthers)+"\n      ")])]):_vm._e()])],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/lib/RouterTab/components/RouterTab.vue?vue&type=template&id=275388c3&
+// CONCATENATED MODULE: ./src/lib/RouterTab/components/RouterTab.vue?vue&type=template&id=6424321e&
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/keys.js
 var keys = __webpack_require__("a4bb");
@@ -4159,15 +4159,15 @@ function getFirstComponentChild(children) {
   }
 } // 获取缓存key
 
-function getAliveKey() {
+function getAliveId() {
   var route = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.$route;
-  var aliveKey = route.meta && route.meta.aliveKey || this.aliveKey || 'path';
+  var aliveId = route.meta && route.meta.aliveId || this.aliveId || 'path';
 
-  if (typeof aliveKey === 'function') {
-    return aliveKey.bind(this)(route);
+  if (typeof aliveId === 'function') {
+    return aliveId.bind(this)(route);
   }
 
-  return route[aliveKey];
+  return route[aliveId];
 }
 /* 路由方法 */
 // 是否异步占位
@@ -4200,7 +4200,7 @@ function isSameComponentRoute(route1, route2) {
   name: 'RouterAlive',
   props: {
     // 缓存key，如果为函数，则参数为route
-    aliveKey: {
+    aliveId: {
       type: [String, Function],
       default: 'path'
     }
@@ -4225,7 +4225,7 @@ function isSameComponentRoute(route1, route2) {
 
       if (pageNode && pageNode.componentOptions) {
         // 获取缓存
-        var key = this.getAliveKey();
+        var key = this.getAliveId();
         var cacheItem = cache[key];
 
         var _ref = cacheItem || emptyObj,
@@ -4273,7 +4273,7 @@ function isSameComponentRoute(route1, route2) {
     return vnode || slot && slot[0];
   },
   methods: {
-    getAliveKey: getAliveKey,
+    getAliveId: getAliveId,
     // 设置缓存项
     set: function set(key, item) {
       var cache = this.cache;
@@ -4368,7 +4368,7 @@ function isSameComponentRoute(route1, route2) {
   },
   props: {
     // 缓存key，如果为函数，则参数为route
-    aliveKey: RouterAlive.props.aliveKey,
+    aliveId: RouterAlive.props.aliveId,
     // 语言配置
     // - 为字符串时，可以设置为内置的语言 'zh-CN' (默认) 和 'en'
     // - 为对象时，可设置自定义的语言
@@ -4388,7 +4388,7 @@ function isSameComponentRoute(route1, route2) {
     // 页签过渡效果
     tabTransition: {
       type: [String, Object],
-      default: 'router-tab-zoom-lb'
+      default: 'router-tab-zoom'
     },
     // 页面过渡效果
     pageTransition: {
@@ -4531,6 +4531,7 @@ function isSameComponentRoute(route1, route2) {
     this.getTabItems();
     this.updateActivedTab();
     this.$router.beforeEach(this.routerPageLeaveGuard);
+    this.$nextTick(this.adjust);
   },
   mounted: function mounted() {
     // 页面载入和浏览器窗口大小改变时调整Tab滚动显示
@@ -4541,7 +4542,7 @@ function isSameComponentRoute(route1, route2) {
     window.removeEventListener('resize', this.onResize);
   },
   methods: {
-    getAliveKey: getAliveKey,
+    getAliveId: getAliveId,
     // 页面离开导航守卫
     routerPageLeaveGuard: function routerPageLeaveGuard(to, from, next) {
       if (this._isDestroyed) {
@@ -4551,7 +4552,7 @@ function isSameComponentRoute(route1, route2) {
         if (idx > -1) hooks.splice(idx, 1);
         next();
       } else {
-        var id = this.getAliveKey(to);
+        var id = this.getAliveId(to);
         var $alive = this.$refs.routerAlive;
 
         var _ref4 = $alive && $alive.cache[id] || emptyObj,
@@ -4606,7 +4607,7 @@ function isSameComponentRoute(route1, route2) {
     },
     // 更新激活的页签
     updateActivedTab: function updateActivedTab() {
-      this.activedTab = this.getAliveKey();
+      this.activedTab = this.getAliveId();
     },
     // 更新tab数据
     updateTab: function updateTab(key, _ref6) {
@@ -4646,12 +4647,12 @@ function isSameComponentRoute(route1, route2) {
           return matchTab.id;
         }
       } else {
-        return this.getAliveKey($route);
+        return this.getAliveId($route);
       }
     },
     // 从route中获取tab数据
     getRouteTab: function getRouteTab(route) {
-      var id = this.getAliveKey(route);
+      var id = this.getAliveId(route);
       var to = route.fullPath,
           meta = route.meta;
       var title = meta.title,
@@ -5005,7 +5006,7 @@ function normalizeComponent (
 
 var component = normalizeComponent(
   components_RouterTabvue_type_script_lang_js_,
-  RouterTabvue_type_template_id_275388c3_render,
+  RouterTabvue_type_template_id_6424321e_render,
   staticRenderFns,
   false,
   null,
