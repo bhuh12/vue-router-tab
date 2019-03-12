@@ -18,3 +18,47 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.menu-group {
+  .menu-title {
+    padding: 0 1.25rem;
+    margin-top: 0;
+    margin-bottom: .5rem;
+    font-size: 1.1em;
+    font-weight: 600;
+  }
+
+  .menu-list {
+    margin: 0;
+    padding: 0;
+    padding-left: 1rem;
+  }
+
+  .menu-item {
+    list-style: none;
+    font-size: .875rem;
+
+    > a {
+      display: block;
+      padding: .35rem 1rem .35rem 1.25rem;
+      color: #2c3e50;
+      text-decoration: none;
+      cursor: pointer;
+
+      &.router-link-active,
+      &:hover {
+        color: $color;
+      }
+
+      &.router-link-active {
+        font-weight: 700;
+      }
+    }
+
+    .menu-group .router-link-active {
+        font-weight: 400;
+    }
+  }
+}
+</style>

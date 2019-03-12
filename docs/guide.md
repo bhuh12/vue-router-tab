@@ -249,7 +249,7 @@ this.$routerTab.refreshAll(true)
 
 ### 过渡效果
 
-您可以通过配置组件的 `tab-transition` 和 `page-transition` 属性，分别替换默认的页签和页面过渡效果
+您可以通过配置组件的 `tab-transition` 和 `page-transition` 属性，分别替换默认的**页签**和**页面**过渡效果
 
 ::: warning
 - 如果是组件作用域内的 CSS(配置了 `scoped`)，需要在选择器前添加 `/deep/`才能生效
