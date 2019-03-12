@@ -63,12 +63,12 @@ export function getFirstComponentChild (children) {
 }
 
 // 获取缓存key
-export function getAliveKey (route = this.$route) {
-  let aliveKey = (route.meta && route.meta.aliveKey) || this.aliveKey || 'path'
-  if (typeof aliveKey === 'function') {
-    return aliveKey.bind(this)(route)
+export function getAliveId (route = this.$route) {
+  let aliveId = (route.meta && route.meta.aliveId) || this.aliveId || 'path'
+  if (typeof aliveId === 'function') {
+    return aliveId.bind(this)(route)
   }
-  return route[aliveKey]
+  return route[aliveId]
 }
 
 /* 路由方法 */

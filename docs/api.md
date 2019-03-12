@@ -2,35 +2,20 @@
 
 ## RouterTab Props
 
-### alive-key
+### alive-id
 
-页面组件缓存的键
+页面组件缓存的 id
 
 - 类型: `string | Function`
 
-  - 如果类型为 `string` ，则取 `$route[aliveKey]` 的值
+  - 如果类型为 `string` ，则取 `$route[aliveId]` 的值
 
-  - 如果类型为 `Function` ，则取 `aliveKey($route)` 返回的字符串。该函数不应返回随机变化的字符串，以免页签无法与缓存的页面对应
+  - 如果类型为 `Function` ，则取 `aliveId($route)` 返回的字符串。该函数不应返回随机变化的字符串，以免页签无法与缓存的页面对应
 
 - 默认值: `'path'`
   
   根据 `$route.path` 来缓存页面组件。
 
-  - 同一路由-不同 `$route.params` 的页面，各自打开独立的页签，单独缓存
-
-  - 同一路由-相同 `$route.params` -不同 `$route.query` 的页面，共用同一个页签，后打开的页面将会替换之前页签内的页面，并且旧的页面缓存也被清除
-
-  - 仅仅 `$route.hash` 不同的页面，共用同一页签和缓存
-
-- 示例：
-
-  ``` html
-  <!-- 取 $route.fullPath -->
-  <router-tab alive-key="fullPath"/>
-
-  <!-- 函数方式 -->
-  <router-tab :alive-key="route => route.fullPath + '1'"/>
-  ```
 
 ### i18n
 
@@ -47,7 +32,7 @@
 
 ### tabs
 
-**初始页签数据**，进入页面时默认显示的页签。相同 `aliveKey` 的页签只保留第一个
+**初始页签数据**，进入页面时默认显示的页签。相同 `aliveId` 的页签只保留第一个
 
 - 类型: `Array <string | Object>`
   
@@ -175,11 +160,11 @@
 页签提示
 
 
-### meta.aliveKey
+### meta.aliveId
 
-页面组件缓存的键，用以设置路由独立的页签缓存规则。
+页面组件缓存的 id，用以设置路由独立的页签缓存规则。
 
-配置参考: [RouterTab Props > alive-key](#alive-key)
+配置参考: [RouterTab Props > alive-id](#alive-id)
 
 
 ## RouterPage 路由页面

@@ -41,7 +41,7 @@ Vue Router Tab 是基于 `Vue Router` 的路由页签组件。
 
 - [x] 响应路由变化来新增或切换页签
 - [x] 页签关闭和刷新，右键菜单操作
-- [x] [全局](docs/api.md#alive-key)和[针对特定路由](docs/api.md#meta.aliveKey)的页签缓存规则配置
+- [x] 全局和针对特定路由的[页签规则](docs/guide.md#页签规则)配置
 - [x] [初始页签数据](docs/guide.md#初始展示页签)，进入页面时默认显示的页签
 - [x] 内置页签和页面[过渡效果](docs/guide.md#过渡效果)，支持自定义配置
 - [x] [自定义页签模板](docs/guide.md#自定义页签模板)

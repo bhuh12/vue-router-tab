@@ -10,7 +10,7 @@ export default {
     // 标记为路由页面
     this._isRouterPage = true
 
-    const key = $alive.getAliveKey($route)
+    const key = $alive.getAliveId($route)
 
     // 更新缓存数据
     let cacheItem = $alive.set(key, {

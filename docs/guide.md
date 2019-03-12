@@ -188,7 +188,7 @@ this.$routerTab.close({
 **模糊关闭页签**
 ``` js
 // 关闭与给定地址共用页签的地址，即使地址不完全匹配
-// 默认 `alive-key` 规则下，类似 '/page/1?query=2' 这样的页签也能被匹配关闭
+// 默认 `alive-id` 规则下，类似 '/page/1?query=2' 这样的页签也能被匹配关闭
 this.$routerTab.close('/page/1', false)
 ```
 
@@ -222,7 +222,7 @@ this.$routerTab.refresh({
 **模糊刷新页签**
 ``` js
 // 刷新与给定地址共用页签的地址，即使地址不完全匹配
-// 默认 `alive-key` 规则下，类似 '/page/1?query=2' 这样的页签也能被匹配刷新
+// 默认 `alive-id` 规则下，类似 '/page/1?query=2' 这样的页签也能被匹配刷新
 this.$routerTab.close('/page/1', false)
 ```
 
@@ -243,13 +243,101 @@ this.$routerTab.refreshAll(true)
 ```
 
 
+## 页签规则
+
+不同的页签维护着各自的页面缓存，而**页签规则**定义了不同的路由**打开页签的方式**。
+
+### 默认页签规则
+
+`RouterTab` 默认取页面路由的 `$route.path` 作为缓存的 `alive-id`。
+
+这意味着，`$route.path` 相同的页面在同一个页签打开，新打开的页面会替换旧的页面，而 `$route.path` 不同的页面则打开独立的页签。
+
+::: tip 规则说明：
+  - 同一路由、不同 `$route.params` 的页面，各自打开独立的页签，单独缓存
+
+  - 同一路由、相同 `$route.params` 、不同 `$route.query` 的页面，共用同一个页签，后打开的页面将会替换之前页签内的页面，并且旧的页面缓存也被清除
+
+  - 仅仅 `$route.hash` 不同的页面，共用同一页签和缓存
+:::
+
+
+例如：下面表格的前三个地址的 `$route.path` 都是 **/page/1**，它们打开同一个页签。后三个地址的 `$route.path` 都是 **/page/2**，它们打开时共用另一个页签。
+
+| 地址 | `$route.path` |
+| ---- | ---- |
+| /page/1 | /page/1 |
+| /page/1?query=2 | /page/1 |
+| /page/1#hash1 | /page/1 |
+| /page/2 | /page/2 |
+| /page/2?query=2 | /page/2 |
+| /page/2#hash1 | /page/2 |
+
+
+### 全局页签规则
+
+通过配置 `router-tab` 组件的 `alive-id` 属性，您可以定义全局的页签规则
+
+<doc-links api="#alive-id" demo="/global-rule/rule/a/1"></doc-links>
+
+**示例：**
+
+``` html
+<router-tab :alive-id="route => route.fullPath.replace(route.hash, '')"/>
+```
+
+例子中，配置 `alive-id` 为 `fullPath` 去除 `hash` 部分。这样，“page/1” 和 “page/1?query=2”、“page/2”、“page/2?query=2” 这四个地址都是打开不同的页签。而 “page/1” 和 “page/1#hash1” 是同一个页签，因为它们忽略 `hash` 后的路径一致。
+
+
+### 路由页签规则
+
+通过配置**路由**的 `meta.aliveId` 属性，您可以针对特定路由定制页签规则
+
+<doc-links api="#meta-aliveid" demo="/default/route-rule/a/1"></doc-links>
+
+**示例：**
+
+``` javascript {19,21,23,24,25}
+// @/router.js
+import Vue from 'vue'
+import Router from 'vue-router'
+
+// 引入布局和页面
+import Admin from './components/layout/Admin.vue'
+
+// 异步页面组件
+const importPage = view => () => import(/* webpackChunkName: "p-[request]" */ `./views/${view}.vue`)
+
+Vue.use(Router)
+
+export default new Router({
+  routes: [{
+    path: '/',
+    redirect: '/route-rule/1/1',
+    component: Admin,
+    children: [{
+      path: 'route-rule/:catalog/:type',
+      component: importPage('CustomRule'),
+      meta: {
+        title: '定制规则',
+        aliveId (route) {
+          return `route-rule/${route.params.catalog}`
+        }
+      }
+    }]
+  }]
+})
+```
+
+
 ## 进阶
 
 前面的内容已经能满足大部分使用场景了，您还可以根据下面的内容实现更多功能。
 
+
 ### 过渡效果
 
-您可以通过配置组件的 `tab-transition` 和 `page-transition` 属性，分别替换默认的**页签**和**页面**过渡效果
+您可以通过配置 `router-tab` 组件的 `tab-transition` 和 `page-transition` 属性，分别替换默认的**页签**和**页面**过渡效果
 
 ::: warning
 - 如果是组件作用域内的 CSS(配置了 `scoped`)，需要在选择器前添加 `/deep/`才能生效
@@ -322,7 +410,7 @@ this.$routerTab.refreshAll(true)
 
 ### 自定义页签模板
 
-通过组件的默认作用域插槽，我们可以自定义页签显示的内容
+通过 `router-tab` 组件的默认作用域插槽，我们可以自定义页签显示的内容
 
 插槽的作用域提供以下属性供模板使用：
   - **tab** {Object} 页签项信息，包括 `id`, `title`, `icon`, `closable` 等
@@ -347,7 +435,7 @@ this.$routerTab.refreshAll(true)
 
 ### 初始展示页签
 
-通过配置组件的 `tabs` 属性，可以设置进入页面时默认显示的页签。
+通过配置 `router-tab` 组件的 `tabs` 属性，可以设置进入页面时默认显示的页签。
 
 <doc-links api="#tabs" demo="/initial-tabs/"></doc-links>
 
@@ -381,7 +469,7 @@ this.$routerTab.refreshAll(true)
             }
           },
           
-          // 此页面与'/page/2'的aliveKey一致，将只保留先设置的页签
+          // 此页面与'/page/2'的aliveId一致，将只保留先设置的页签
           { to: '/page/2?t=1', title: '页面2-1' }
         ]
       }
@@ -421,7 +509,7 @@ export default {
 
 ### 语言配置
 
-通过配置组件的 `i18n` 属性，可以设置组件显示的语言 (主要表现为页签右键菜单)。
+通过配置 `router-tab` 组件的 `i18n` 属性，可以设置组件显示的语言 (主要表现为页签右键菜单)。
 
 
 `RouterTab` 默认语言是 `zh-CN`，另外内置了 `en`。
