@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import RouterAlive from './RouterAlive'
 import langs from '../lang'
-import { emptyObj, emptyArray, logPrefix, scrollTo, debounce, promiseQueue, getAliveKey, isAlikeRoute, getPathWithoutHash } from '../util'
+import { emptyObj, emptyArray, logPrefix, scrollTo, debounce, promiseQueue, getAliveId, isAlikeRoute, getPathWithoutHash } from '../util'
 
 export default {
   name: 'RouterTab',
   components: { RouterAlive },
   props: {
     // 缓存key，如果为函数，则参数为route
-    aliveKey: RouterAlive.props.aliveKey,
+    aliveId: RouterAlive.props.aliveId,
 
     // 语言配置
     // - 为字符串时，可以设置为内置的语言 'zh-CN' (默认) 和 'en'
@@ -172,7 +172,7 @@ export default {
   },
 
   methods: {
-    getAliveKey,
+    getAliveId,
 
     // 页面离开导航守卫
     routerPageLeaveGuard (to, from, next) {
@@ -185,7 +185,7 @@ export default {
 
         next()
       } else {
-        const id = this.getAliveKey(to)
+        const id = this.getAliveId(to)
         const $alive = this.$refs.routerAlive
         const { route: cacheRoute } = ($alive && $alive.cache[id]) || emptyObj
 
@@ -230,7 +230,7 @@ export default {
 
     // 更新激活的页签
     updateActivedTab () {
-      this.activedTab = this.getAliveKey()
+      this.activedTab = this.getAliveId()
     },
 
     // 更新tab数据
@@ -264,13 +264,13 @@ export default {
           return matchTab.id
         }
       } else {
-        return this.getAliveKey($route)
+        return this.getAliveId($route)
       }
     },
 
     // 从route中获取tab数据
     getRouteTab (route) {
-      let id = this.getAliveKey(route)
+      let id = this.getAliveId(route)
       let { fullPath: to, meta } = route
       let { title, icon, tips } = meta
 

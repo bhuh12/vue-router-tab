@@ -20,7 +20,7 @@ export default {
           },
           title: '页面2'
         }, // <router-link> location 方式配置
-        { to: '/initial-tabs/page/2?t=1', title: '页面2-1' } // 默认 aliveKey 配置下，该页签与 '/initial-tabs/page/2' 页签的 aliveKey 一致，将只保留第一个出现的页签
+        { to: '/initial-tabs/page/2?t=1', title: '页面2-1' } // 默认 aliveId 配置下，该页签与 '/initial-tabs/page/2' 页签的 aliveId 一致，将只保留第一个出现的页签
       ]
     }
   }

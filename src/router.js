@@ -16,6 +16,23 @@ let pageRoutes = [{
     icon: 'rt-icon-doc'
   }
 }, {
+  path: 'rule/:catalog/:type',
+  component: importPage('Rule'),
+  meta: {
+    title: '默认规则',
+    icon: 'rt-icon-log'
+  }
+}, {
+  path: 'route-rule/:catalog/:type',
+  component: importPage('Rule'),
+  meta: {
+    title: '路由规则',
+    icon: 'rt-icon-log',
+    aliveId (route) {
+      return `route-rule/${route.params.catalog}`
+    }
+  }
+}, {
   path: 'tab-dynamic',
   component: importPage('TabDynamic'),
   meta: {
@@ -64,6 +81,11 @@ export default new Router({
     path: '/slot/',
     component: importLayout('Slot'),
     redirect: '/slot/page/1',
+    children: pageRoutes
+  }, {
+    path: '/global-rule/',
+    component: importLayout('GlobalRule'),
+    redirect: '/global-rule/rule/a/1',
     children: pageRoutes
   }, {
     path: '/404',

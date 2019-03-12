@@ -40,7 +40,7 @@
 
     <!-- 页面容器 -->
     <div class="router-tab-container" :class="{ loading }">
-      <router-alive ref="routerAlive" :alive-key="aliveKey" @update="updateTab">
+      <router-alive ref="routerAlive" :alive-id="aliveId" @update="updateTab">
         <transition
           v-bind="typeof pageTransition === 'string' ? { name: pageTransition } : pageTransition"
           @after-enter="onPageTransitionEnd"

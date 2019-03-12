@@ -1,10 +1,10 @@
-import { emptyObj, getAliveKey, getFirstComponentChild, isAlikeRoute, isSameComponentRoute } from '../util'
+import { emptyObj, getAliveId, getFirstComponentChild, isAlikeRoute, isSameComponentRoute } from '../util'
 
 export default {
   name: 'RouterAlive',
   props: {
     // 缓存key，如果为函数，则参数为route
-    aliveKey: {
+    aliveId: {
       type: [ String, Function ],
       default: 'path'
     }
@@ -30,7 +30,7 @@ export default {
 
       if (pageNode && pageNode.componentOptions) {
         // 获取缓存
-        const key = this.getAliveKey()
+        const key = this.getAliveId()
         const cacheItem = cache[key]
         const { vm: cacheVm, route: cacheRoute } = cacheItem || emptyObj
 
@@ -79,7 +79,7 @@ export default {
   },
 
   methods: {
-    getAliveKey,
+    getAliveId,
 
     // 设置缓存项
     set (key, item) {
