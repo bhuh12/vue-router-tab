@@ -6,22 +6,27 @@
 
     <h3>{{ruleLabel}}页签规则</h3>
 
-    <p class="text-tips" v-if="ruleType === 'global'">不同“目录”、“分类”或 “query” 的页面打开独立的页签</p>
+    <p class="rule-desc" v-if="ruleType === 'global'">页签ID: <strong>route => route.fullPath.replace(route.hash, '')`</strong></p>
 
-    <p class="text-tips" v-else-if="ruleType === 'route'">相同“目录”的页面共用同一页签，不同“目录”打开不同页签</p>
+    <p class="rule-desc" v-else-if="ruleType === 'route'">页签ID: <strong>route => `route-rule/${route.params.catalog}`</strong></p>
 
-    <p class="text-tips" v-else>不同“目录”或“分类”的页面打开独立的页签，相同“目录”、“分类”但不同 “query” 的页面共用页签</p>
+    <p class="rule-desc" v-else>页签ID: <strong>route.path</strong></p>
 
-    <table>
-      <tr v-for="cat in catalogs" :key="cat">
-        <td v-for="type in types" :key="type">
-          <router-link class="demo-btn" :to="`../../rule/${cat}/${type}`">{{cat}}/{{type}}</router-link>
-        </td>
-        <td>
-          <router-link class="demo-btn" :to="`../../rule/${cat}/1?query=abc`">{{cat}}/1?query=abc</router-link>
-        </td>
-      </tr>
-    </table>
+    <h4>点击下面的链接，并观察页签和路由地址的改变</h4>
+
+    <ul class="btn-list">
+      <li v-for="cat in catalogs" :key="cat">
+        <router-link
+          v-for="type in types"
+          :key="type"
+          class="demo-btn"
+          :to="`../${cat}/${type}`">
+          {{cat}}/{{type}}
+        </router-link>
+        <router-link class="demo-btn" :to="`../${cat}/1?query=abc`">{{cat}}/1?query=abc</router-link>
+        <router-link class="demo-btn" :to="`../${cat}/1?query=def`">{{cat}}/1?query=def</router-link>
+      </li>
+    </ul>
 
     <h3>路由信息</h3>
 
@@ -68,3 +73,25 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.rule-desc {
+  strong {
+    font-size: 1rem;
+    font-weight: 600;
+    color: $color-primary;
+  }
+}
+
+.btn-list {
+  padding: 0;
+
+  li {
+    list-style: none;
+
+    .demo-btn {
+      margin-right: .5em;
+    }
+  }
+}
+</style>
