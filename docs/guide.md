@@ -313,7 +313,7 @@ Vue.use(Router)
 export default new Router({
   routes: [{
     path: '/',
-    redirect: '/route-rule/1/1',
+    redirect: '/route-rule/a/1',
     component: Admin,
     children: [{
       path: 'route-rule/:catalog/:type',

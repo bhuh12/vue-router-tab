@@ -1,7 +1,30 @@
+$color = #3eaf7c;
+
+/*滚动条*/
+::-webkit-scrollbar
+  $w = 6px
+
+  width $w
+  height $w
+
+  &-thumb
+    background rgba(0, 0, 0, .1)
+    border-radius 20px
+
+    &:hover
+      background rgba($color, .5)
+      
+    &:active
+      background rgba($color, .8)
+
+  &-corner
+    display none
+
+
 // 站点名称前注入 logo
 .navbar .home-link
-  position: relative;
-  top: -2px;
+  position relative
+  top -2px
 
   &::before
     $s = 1.3rem
@@ -10,7 +33,7 @@
     margin-right .3rem
     width $s
     height $s
-    vertical-align: middle
+    vertical-align middle
     background url(https://raw.githubusercontent.com/bhuh12/vue-router-tab/dev/docs/.vuepress/public/img/logo.png)
     background-size cover
 
