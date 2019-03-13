@@ -22,7 +22,7 @@ yarn add vue-router-tab
 **示例：**
 
 ``` javascript {8,9,15}
-// @/main.js
+// @/main.js 入口
 
 // router-tab 组件依赖 vue 和 vue-router
 import Vue from 'vue'
@@ -56,7 +56,7 @@ new Vue({
 **示例：**
 
 ``` html {6}
-<!-- @/components/layout/Admin.vue -->
+<!-- @/components/layout/Frame.vue 布局框架 -->
 <template>
   <div class="app-header">头部</div>
   <div class="app-body">
@@ -66,23 +66,23 @@ new Vue({
 </template>
 ```
 
-### 路由配置
+### 页签信息配置
 
-通过路由的 `meta` 信息，来设置页签的**标题**、**图标**、**提示**和页签**缓存规则**
+通过路由的 `meta` 信息，来设置页签的**标题**、**图标**、**提示**和**路由页签规则**
 
-配置参考: [Route.meta 路由元](api.md#route-meta-路由元)
+配置参考: [Route.meta 路由元信息](api.md#route-meta-路由元信息)
 
 **示例：**
 
-``` javascript {17,21,22,23,24,28,29,30,31,32}
-// @/router.js
+``` javascript {5,6,17,18,21,22,23,24,25,26}
+// @/router.js 路由
 import Vue from 'vue'
 import Router from 'vue-router'
 
-// 引入布局和页面
-import Admin from './components/layout/Admin.vue'
+// 引入布局框架组件
+import Frame from './components/layout/Frame.vue'
 
-// 异步页面组件
+// 异步加载页面组件
 const importPage = view => () => import(/* webpackChunkName: "p-[request]" */ `./views/${view}.vue`)
 
 Vue.use(Router)
@@ -91,21 +91,15 @@ export default new Router({
   routes: [{
     path: '/',
     redirect: '/page1',
-    component: Admin,
-    children: [{
-      path: '/page1',
-      component: importPage('Page1'),
+    component: Frame, // 父路由组件内必须包含 <router-tab>
+    children: [{ // 子路由里配置需要通过页签打开的页面路由
+      path: '/page/:id',
+      component: importPage('Page'),
       meta: {
-        title: '页面1',
-        icon: 'icon-doc'
-      }
-    }, {
-      path: '/page2/:id',
-      component: importPage('Page2'),
-      meta: {
-        title: '页面2',
-        icon: 'icon-user',
-        tips: '这是页面2'
+        title: '页面', // 页签标题
+        icon: 'icon-user', // 页签图标，可选
+        tips: '这是一个页面', // 页签提示，可选，如未设置则跟title一致
+        aliveKey: 'fullPath', // 路由打开页签规则，可选
       }
     }, {
       path: '/404',
@@ -160,7 +154,9 @@ export default new Router({
 您可以通过 `RouterTab` 的实例方法 [`routerTab.close(location, fullMatch?)`](api.md#routertab-close) 来关闭页签
 
 ::: tip
-在 Vue 实例内部，您可以通过 `$routerTab` 访问路由页签实例。因此您可以调用 `this.$routerTab.close`。
+1. 在 Vue 实例内部，您可以通过 `$routerTab` 访问路由页签实例。因此您可以调用 `this.$routerTab.close`。
+
+2. 当 `RouterTab` 组件只有一个页签，或者初始页签的 `closable` 配置为 `false`，页签关闭操作将不生效。
 :::
 
 <doc-links api="#routertab-close" demo="/default/"></doc-links>
@@ -286,7 +282,9 @@ this.$routerTab.refreshAll(true)
 <router-tab :alive-id="route => route.fullPath.replace(route.hash, '')"/>
 ```
 
-例子中，配置 `alive-id` 为 `fullPath` 去除 `hash` 部分。这样，“page/1” 和 “page/1?query=2”、“page/2”、“page/2?query=2” 这四个地址都是打开不同的页签。而 “page/1” 和 “page/1#hash1” 是同一个页签，因为它们忽略 `hash` 后的路径一致。
+例子中，配置 `alive-id` 为 `fullPath` 去除 `hash` 部分。
+
+根据该规则，`page/1` 和 `page/1?query=2`、`page/2`、`page/2?query=2` 这四个地址都是打开**不同**的页签。而 `page/1` 和 `page/1#hash1` 是同一个页签，因为它们忽略 `hash` 后的路径一致。
 
 
 ### 路由页签规则
@@ -297,37 +295,22 @@ this.$routerTab.refreshAll(true)
 
 **示例：**
 
-``` javascript {19,21,23,24,25}
-// @/router.js
-import Vue from 'vue'
-import Router from 'vue-router'
-
-// 引入布局和页面
-import Admin from './components/layout/Admin.vue'
-
-// 异步页面组件
-const importPage = view => () => import(/* webpackChunkName: "p-[request]" */ `./views/${view}.vue`)
-
-Vue.use(Router)
-
-export default new Router({
-  routes: [{
-    path: '/',
-    redirect: '/route-rule/a/1',
-    component: Admin,
-    children: [{
-      path: 'route-rule/:catalog/:type',
-      component: importPage('CustomRule'),
-      meta: {
-        title: '定制规则',
-        aliveId (route) {
-          return `route-rule/${route.params.catalog}`
-        }
-      }
-    }]
-  }]
-})
+``` javascript {8,9,10}
+const route = {
+  path: '/my-page/:catalog/:type',
+  component: {
+    template: '<div>定制规则：{{$route.params.catalog}}/{{$route.params.type}}</div>'
+  },
+  meta: {
+    title: '定制规则',
+    aliveId (route) {
+      return `/my-page/${route.params.catalog}`
+    }
+  }
+}
 ```
+
+根据示例中的页签规则，`/my-page/a/1` 和 `/my-page/a/2` 打开的是**同一个**页签。而 `/my-page/b/1` 和 `/my-page/b/2` 则打开另外一个页签
 
 
 ## 进阶
@@ -445,7 +428,7 @@ export default new Router({
   <router-tab :tabs="tabs"/>
   ```
 
-  ``` javascript {7}
+  ``` javascript {7,10,13,16,17,18,19,20,21,22}
   export default {
     data () {
       return {
@@ -454,7 +437,7 @@ export default new Router({
           // 推荐 fullPath 方式配置默认页签项。RouterTab 会自动获取路由里的页签配置
           '/page/1',
 
-          // 设置初始 title，用于需要动态展示页签信息的路由页面
+          // 设置初始 title，用于需要动态更新页签信息的路由页面
           { to: '/page/2', title: '页面2', icon: 'icon-page' },
 
           // 设置 closable 为 false，可以禁止页签被关闭
@@ -485,7 +468,7 @@ export default new Router({
 
 **示例：**
 
-``` javascript {8,11}
+``` javascript {8,11,12,13,14,15}
 export default {
   name: 'page',
   mounted () {
@@ -514,7 +497,7 @@ export default {
 
 `RouterTab` 默认语言是 `zh-CN`，另外内置了 `en`。
 
-<doc-links api="#i18n" demo="/language/"></doc-links>
+<doc-links api="#i18n" demo="/lang-en/"></doc-links>
 
 **指定组件显示为英文**
 
@@ -522,17 +505,17 @@ export default {
 <router-tab i18n="en"/>
 ```
 
-**自定义的语言**
+**自定义的语言** ([参考配置](https://github.com/bhuh12/vue-router-tab/blob/dev/src/lib/RouterTab/lang/en.js))
 
 ``` html
-<router-tab :i18n="lang"/>
+<router-tab :i18n="customLanguage"/>
 ```
 
 ``` javascript
 export default {
   data () {
     return {
-      lang: {
+      customLanguage: {
         tab: {
           untitled: 'Untitled Page'
         },

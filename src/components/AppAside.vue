@@ -19,32 +19,30 @@ export default {
   data () {
     return {
       menu: [{
-        title: 'RouterTab 配置',
-        data: [
+        text: 'RouterTab 配置',
+        children: [
           { text: '默认配置', to: '/default/' },
           { text: '过渡效果', to: '/transition/' },
           { text: '初始展示页签', to: '/initial-tabs/' },
           {
             text: '语言配置',
-            to: '/language/',
-            children: {
-              data: [
-                { text: '自定义语言', to: '/language/custom' }
-              ]
-            }
+            children: [
+              { text: '指定语言', to: '/lang-en/' },
+              { text: '自定义语言', to: '/lang-custom' }
+            ]
           },
           { text: '自定义页签模板', to: '/slot/' }
         ]
       }, {
-        title: '页签规则',
-        data: [
+        text: '页签规则',
+        children: [
           { text: '默认页签规则', to: '/default/rule/a/1' },
           { text: '全局页签规则', to: '/global-rule/rule/a/1' },
           { text: '路由页签规则', to: '/default/route-rule/a/1' }
         ]
       }, {
-        title: '页面配置',
-        data: [
+        text: '页面配置',
+        children: [
           { text: '动态更新页签配置', to: '/default/tab-dynamic' },
           { text: '页面离开确认', to: '/initial-tabs/page-leave' }
         ]

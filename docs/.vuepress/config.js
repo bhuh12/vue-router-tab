@@ -20,6 +20,7 @@ module.exports = {
       { text: '教程', link: '/guide.html' },
       { text: 'API', link: '/api.html' },
       { text: 'Demo', link: demoUrl },
+      { text: '反馈', link: 'mailto: bihaiyouhong12@126.com?subject=' + encodeURIComponent('vue-router-tab 问题和建议') },
       { text: '主页', link: 'https://bhuh.net' }
     ],
 
