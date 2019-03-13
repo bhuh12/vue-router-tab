@@ -142,7 +142,7 @@ export default new Router({
   全新打开页签 (**刷新已有页签**)
 
   ``` html
-  <router-link to="/page/2"click.native="$routerTab.refresh('/page/2')">页面2”<router-link>
+  <router-link to="/page/2" @click.native="$routerTab.refresh('/page/2')">页面2”<router-link>
   ```
 
 2. **通过 `router.push`、`router.replace`、`router.go`**
