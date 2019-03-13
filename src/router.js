@@ -68,14 +68,14 @@ export default new Router({
     redirect: '/initial-tabs/page/1',
     children: pageRoutes
   }, {
-    path: '/language/',
+    path: '/lang-en/',
     component: importLayout('Language'),
-    redirect: '/language/page/1',
+    redirect: '/lang-en/page/1',
     children: pageRoutes
   }, {
-    path: '/language/custom/',
+    path: '/lang-custom/',
     component: importLayout('LanguageCustom'),
-    redirect: '/language/custom/page/1',
+    redirect: '/lang-custom/page/1',
     children: pageRoutes
   }, {
     path: '/slot/',
