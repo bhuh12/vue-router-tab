@@ -1,7 +1,7 @@
 
 <p align="center">
   <a href="https://bhuh12.github.io/vue-router-tab/" target="_blank" rel="noopener noreferrer">
-    <img width="100" src="./src/assets/img/logo.png" alt="Vue Router Tab logo">
+    <img width="100" src="public/img/logo.png" alt="Vue Router Tab logo">
   </a>
 </p>
 

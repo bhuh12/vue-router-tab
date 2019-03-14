@@ -24,13 +24,13 @@ export default {
         icon: 'api',
         url: 'https://bhuh12.github.io/vue-router-tab/'
       }, {
+        label: 'Issues',
+        icon: 'feedback',
+        url: 'https://github.com/bhuh12/vue-router-tab/issues'
+      }, {
         label: '作者主页',
         icon: 'home',
         url: 'https://bhuh.net'
-      }, {
-        label: '问题和建议',
-        icon: 'feedback',
-        url: 'mailto: bihaiyouhong12@126.com?subject=' + encodeURIComponent('vue-router-tab 问题和建议')
       }]
     }
   }
