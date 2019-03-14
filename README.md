@@ -74,6 +74,8 @@ yarn add vue-router-tab
 ## 演示：
 [https://bhuh12.github.io/vue-router-tab/demo/](https://bhuh12.github.io/vue-router-tab/demo/)
 
+## 更新日志
+[https://github.com/bhuh12/vue-router-tab/releases](https://github.com/bhuh12/vue-router-tab/releases)
 
 ---
 
@@ -115,53 +117,24 @@ yarn add vue-router-tab
 ---
 
 
-## 项目命令
+## NPM 任务
 
-**插件打包**
-   
-1. 更改 `babel.config.js` 中的 `useBuiltIns` 值为 `false`
+| 任务 | 命令 | 备注 |
+| ---- | ---- | ---- |
+| **插件**：构建 | `npm run lib:build` | 操作前：更改 `babel.config.js` 中的 `useBuiltIns` 值为 `false` 以去除 `ployfill` |
+| **插件**：构建并生成报告 | `npm run lib:build:report` | - 同上 |
+| **插件**：发布 | `npm run lib:publish` | 操作前：更改 `package.json` 中的 `version` 为新的版本号 |
+| **文档**：开发 | `npm run docs:dev` |
+| **文档**：构建 | `npm run docs:build` |
+| **Demo**： 开发 | `npm run demo:dev` |
+| **Demo**： 构建 | `npm run demo:build` |
+| **代码**风格：检查 | `npm run lint` |
+| **代码**风格：检查并修复 | `npm run lint:fix` |
+| **代码**：提交 | `npm run commit` |
 
-2. 更改 `package.json` 中的 `version`
 
-3. 执行命令 `npm run lib:build`
+## License
 
+[MIT](http://opensource.org/licenses/MIT)
 
-**插件打包并生成报告**
-``` bash
-npm run lib:build:report
-```
-
-**插件发布**
-``` bash
-npm run lib:publish
-```
-
-**文档开发**
-``` bash
-npm run docs:dev
-```
-
-**文档打包**
-``` bash
-npm run docs:build
-```
-
-**Demo 演示开发**
-``` bash
-npm run demo:dev
-```
-
-**Demo 演示打包**
-``` bash
-npm run demo:build
-```
-
-**代码风格检查**
-``` bash
-npm run lint
-```
-
-**代码风格检查并修复**
-``` bash
-npm run lint:fix
-```
+Copyright (c) 2019-present, bhuh12
