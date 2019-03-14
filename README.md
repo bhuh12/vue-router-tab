@@ -1,10 +1,26 @@
 
-<p align="center"><a href="https://bhuh12.github.io/vue-router-tab/" target="_blank" rel="noopener noreferrer"><img width="100" src="./src/assets/img/logo.png" alt="Vue Router Tab logo"></a></p>
+<p align="center">
+  <a href="https://bhuh12.github.io/vue-router-tab/" target="_blank" rel="noopener noreferrer">
+    <img width="100" src="./src/assets/img/logo.png" alt="Vue Router Tab logo">
+  </a>
+</p>
 
 <p align="center">
   <a target="_blank" href="https://www.travis-ci.org/bhuh12/vue-router-tab">
     <img src="https://www.travis-ci.org/bhuh12/vue-router-tab.svg?branch=dev" alt="Build">
   </a>
+  <a href="https://github.com/vuejs/vue">
+    <img src="https://img.shields.io/badge/vue-2.5.22-brightgreen.svg" alt="vue">
+  </a>
+  <a href="https://github.com/vuejs/vue-router">
+    <img src="https://img.shields.io/badge/vue--router-3.0.1-brightgreen.svg" alt="vue-router">
+  </a>
+  <a target="_blank" href="https://github.com/bhuh12/vue-router-tab">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/bhuh12/vue-router-tab.svg">
+  </a>
+</p>
+
+<p align="center">
   <a target="_blank" href="https://www.npmjs.com/package/vue-router-tab">
     <img src="https://img.shields.io/npm/v/vue-router-tab.svg" alt="Version">
   </a>
@@ -12,6 +28,9 @@
     <img src="https://img.shields.io/npm/dm/vue-router-tab.svg" alt="Downloads">
   </a>
   <a target="_blank" href="https://www.npmjs.com/package/vue-router-tab">
+    <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/vue-router-tab.svg">
+  </a>
+  <a target="_blank" href="https://github.com/bhuh12/vue-router-tab/blob/dev/LICENSE">
     <img src="https://img.shields.io/npm/l/vue-router-tab.svg" alt="License">
   </a>
 </p>
@@ -19,6 +38,45 @@
 <h2 align="center">Vue Router Tab</h2>
 
 Vue Router Tab 是基于 `Vue Router` 的路由页签组件。
+
+
+## 安装
+
+### npm
+
+``` bash
+npm i vue-router-tab -S
+```
+
+### yarn (推荐)
+
+``` bash
+yarn add vue-router-tab
+```
+
+
+## 功能
+
+- [x] 响应路由变化来打开或切换页签
+- [x] 页签关闭和刷新，右键菜单操作
+- [x] 全局和针对特定路由的[页签规则](docs/guide.md#页签规则)配置
+- [x] [初始页签数据](docs/guide.md#初始展示页签)，进入页面时默认显示的页签
+- [x] 内置页签和页面[过渡效果](docs/guide.md#过渡效果)，支持自定义配置
+- [x] [自定义页签模板](docs/guide.md#自定义页签模板)
+- [x] [动态更新页签信息](docs/guide.md#动态更新页签) (标题/图标/提示)
+- [x] [页签页面离开 (页签关闭/刷新/替换) 前确认](docs/guide.md#页面离开确认)
+- [x] [语言配置](docs/guide.md#语言配置)：zh-CN (默认) / en，自定义语言
+
+
+## 文档：
+[https://bhuh12.github.io/vue-router-tab/](https://bhuh12.github.io/vue-router-tab/)
+
+## 演示：
+[https://bhuh12.github.io/vue-router-tab/demo/](https://bhuh12.github.io/vue-router-tab/demo/)
+
+
+---
+
 
 ## 主流多页签方案的缺陷
 
@@ -35,6 +93,7 @@ Vue Router Tab 是基于 `Vue Router` 的路由页签组件。
 
 另外还有一种方案，是弃用 `Vue Router`，自行实现路由和缓存控制。该方案需要使用其提供的 API 来控制页签打开和切换，对于现有的 `Vue Router` 项目引入改动量比较大。
 
+---
 
 ## Vue Router Tab 方案
 
@@ -53,30 +112,19 @@ Vue Router Tab 是基于 `Vue Router` 的路由页签组件。
 6. 提供完善的文档说明、代码示例和Demo演示
 
 
-## 功能
+---
 
-- [x] 响应路由变化来打开或切换页签
-- [x] 页签关闭和刷新，右键菜单操作
-- [x] 全局和针对特定路由的[页签规则](docs/guide.md#页签规则)配置
-- [x] [初始页签数据](docs/guide.md#初始展示页签)，进入页面时默认显示的页签
-- [x] 内置页签和页面[过渡效果](docs/guide.md#过渡效果)，支持自定义配置
-- [x] [自定义页签模板](docs/guide.md#自定义页签模板)
-- [x] [动态更新页签](docs/guide.md#动态更新页签) (标题/图标/提示)
-- [x] [页签页面离开 (页签关闭/刷新/替换) 前确认](docs/guide.md#页面离开确认)
-- [x] [语言配置](docs/guide.md#语言配置)：zh-CN (默认) / en，自定义语言
-
-## 文档：
-[https://bhuh12.github.io/vue-router-tab/](https://bhuh12.github.io/vue-router-tab/)
-
-## 演示：
-[https://bhuh12.github.io/vue-router-tab/demo/](https://bhuh12.github.io/vue-router-tab/demo/)
 
 ## 项目命令
 
 **插件打包**
-``` bash
-npm run lib:build
-```
+   
+1. 更改 `babel.config.js` 中的 `useBuiltIns` 值为 `false`
+
+2. 更改 `package.json` 中的 `version`
+
+3. 执行命令 `npm run lib:build`
+
 
 **插件打包并生成报告**
 ``` bash
