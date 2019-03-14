@@ -69,12 +69,12 @@ export default new Router({
     children: pageRoutes
   }, {
     path: '/lang-en/',
-    component: importLayout('Language'),
+    component: importLayout('LangEn'),
     redirect: '/lang-en/page/1',
     children: pageRoutes
   }, {
     path: '/lang-custom/',
-    component: importLayout('LanguageCustom'),
+    component: importLayout('LangCustom'),
     redirect: '/lang-custom/page/1',
     children: pageRoutes
   }, {

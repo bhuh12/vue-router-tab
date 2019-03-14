@@ -1,15 +1,15 @@
 <template>
   <main class="app-main">
-    <router-tab :i18n="lang"/>
+    <router-tab :i18n="customLanguage"/>
   </main>
 </template>
 
 <script>
 export default {
-  name: 'LanguageCustom',
+  name: 'LangCustom',
   data () {
     return {
-      lang: {
+      customLanguage: {
         tab: {
           untitled: 'Untitled Page'
         },
@@ -20,6 +20,9 @@ export default {
           closeLefts: 'Close to the Left',
           closeRights: 'Close to the Right',
           closeOthers: 'Close Others'
+        },
+        msg: {
+          keepOneTab: 'Keep at least 1 tab'
         }
       }
     }
