@@ -99,7 +99,7 @@ export default new Router({
         title: '页面', // 页签标题
         icon: 'icon-user', // 页签图标，可选
         tips: '这是一个页面', // 页签提示，可选，如未设置则跟title一致
-        aliveKey: 'fullPath', // 路由打开页签规则，可选
+        aliveId: 'fullPath', // 路由打开页签规则，可选
       }
     }, {
       path: '/404',
@@ -553,18 +553,16 @@ export default {
 
 **示例：**
 
-``` javascript {3,17,23,25,30}
+``` javascript {3,15,21,23,28}
 export default {
   // 页面离开前确认
   beforePageLeave (resolve, reject, tab, type) {
     // 离开类型
-    const types = {
+    const action = {
       close: '关闭',
       refresh: '刷新',
       replace: '替换'
-    }
-
-    const action = types[type]
+    }[type]
 
     const msg = `您确认要${action}页签“${tab.title}”吗？`
 

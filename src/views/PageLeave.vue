@@ -38,13 +38,11 @@ export default {
   // 页面离开前确认
   beforePageLeave (resolve, reject, tab, type) {
     // 离开类型
-    const types = {
+    const action = {
       close: '关闭',
       refresh: '刷新',
       replace: '替换'
-    }
-
-    const action = types[type]
+    }[type]
 
     const msg = `您确认要${action}页签“${tab.title}”吗？`
 
