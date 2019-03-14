@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import RouterAlive from './RouterAlive'
 import langs from '../lang'
-import { emptyObj, emptyArray, logPrefix, scrollTo, debounce, promiseQueue, getAliveId, isAlikeRoute, getPathWithoutHash } from '../util'
+import { emptyObj, emptyArray, scrollTo, debounce, getAliveId, isAlikeRoute, getPathWithoutHash } from '../util'
 
 export default {
   name: 'RouterTab',
@@ -117,19 +117,19 @@ export default {
       this.fixCommentPage()
     },
 
-    activedTab () {
+    async activedTab () {
       // 激活页签时，如果当前页签不在可视区域，则滚动显示页签
-      this.$nextTick(() => {
-        let $cur = this.$el.querySelector('.router-tab-nav .actived')
-        let $scr = this.$el.querySelector('.router-tab-scroll')
-        if ($cur) {
-          let cLeft = $cur.offsetLeft
-          let sLeft = $scr.scrollLeft
-          if (cLeft < sLeft || cLeft + $cur.clientWidth > sLeft + $scr.clientWidth) {
-            this.adjust()
-          }
+      await this.$nextTick()
+
+      let $cur = this.$el.querySelector('.router-tab-nav .actived')
+      let $scr = this.$el.querySelector('.router-tab-scroll')
+      if ($cur) {
+        let cLeft = $cur.offsetLeft
+        let sLeft = $scr.scrollLeft
+        if (cLeft < sLeft || cLeft + $cur.clientWidth > sLeft + $scr.clientWidth) {
+          this.adjust()
         }
-      })
+      }
     },
 
     // 监听右键菜单显示关闭
@@ -235,10 +235,10 @@ export default {
 
     // 更新tab数据
     updateTab (key, { route, tab }) {
-      let { items, getRouteTab } = this
+      let { items } = this
       let matchIdx = items.findIndex(({ id }) => id === key)
 
-      let item = Object.assign(getRouteTab(route), tab)
+      let item = Object.assign(this.getRouteTab(route), tab)
 
       if (matchIdx > -1) {
         let matchTab = items[matchIdx]
@@ -249,8 +249,8 @@ export default {
       }
     },
 
-    // 从路由地址获取 AliveKey
-    getTabIdByLocation (location, fullMatch = true) {
+    // 从路由地址获取 aliveId
+    getIdByLocation (location, fullMatch = true) {
       if (!location) return
 
       let $route = this.$router.match(location, this.$router.currentRoute)
@@ -294,27 +294,29 @@ export default {
       })
     },
 
-    // 关闭tab项
-    closeTabItem (id) {
+    // 移除tab项
+    async removeTab (id) {
       let { items } = this
       let $alive = this.$refs.routerAlive
       const idx = items.findIndex(item => item.id === id)
 
       if (items.length === 1) {
-        return Promise.reject(new Error(this.lang.msg.keepOneTab))
+        throw new Error(this.lang.msg.keepOneTab)
       }
 
-      return this.pageLeavePromise(id, 'close').then(function () {
+      try {
+        await this.pageLeavePromise(id, 'close')
+
         // 承诺关闭后移除页签和缓存
         $alive.remove(id)
         idx > -1 && items.splice(idx, 1)
-      }).catch(e => {})
+      } catch (e) {}
     },
 
     // 通过路由地址关闭页签
     close (location, fullMatch = true) {
       if (location) {
-        let id = this.getTabIdByLocation(location, fullMatch)
+        let id = this.getIdByLocation(location, fullMatch)
         if (id) {
           this.closeTab(id)
         }
@@ -324,39 +326,44 @@ export default {
     },
 
     // 通过页签id关闭页签
-    closeTab (id = this.activedTab) {
+    async closeTab (id = this.activedTab) {
       let { activedTab, items, $router } = this
       const idx = items.findIndex(item => item.id === id)
 
-      this.closeTabItem(id).then(() => {
+      try {
+        await this.removeTab(id)
+
         // 如果关闭当前页签，则打开后一个页签
         if (activedTab === id) {
           let nextTab = items[idx] || items[idx - 1]
           $router.replace(nextTab.to)
         }
-      }).catch(e => console.warn(logPrefix, e.message))
+      } catch (e) {
+        console.warn(e)
+      }
     },
 
     // 关闭多个页签
-    closeMulti (tabs) {
-      let { items, $router, contextmenu, closeTabItem } = this
+    async closeMulti (tabs) {
+      let { items, $router, contextmenu } = this
       let nextTab = items.find(({ id }) => id === contextmenu.id)
 
-      // 队列执行关闭promise
-      promiseQueue(tabs.map(
-        ({ id }) => () => { closeTabItem(id) }
-      )).finally(() => {
-        // 当前页签如已关闭，则打开右键选中页签
-        if (items.findIndex(({ id }) => id === this.activedTab) === -1) {
-          $router.replace(nextTab.to)
-        }
-      })
+      for (let { id } of tabs) {
+        try {
+          await this.removeTab(id)
+        } catch (e) {}
+      }
+
+      // 当前页签如已关闭，则打开右键选中页签
+      if (items.findIndex(({ id }) => id === this.activedTab) === -1) {
+        $router.replace(nextTab.to)
+      }
     },
 
     // 通过路由地址刷新页签
     refresh (location, fullMatch = true) {
       if (location) {
-        let id = this.getTabIdByLocation(location, fullMatch)
+        let id = this.getIdByLocation(location, fullMatch)
         if (id) {
           this.refreshTab(id)
         }
@@ -365,45 +372,44 @@ export default {
       }
     },
 
-    // 通过页签id刷新页签
-    refreshTab (id = this.activedTab) {
-      this.pageLeavePromise(id, 'refresh').then(() => {
+    // 刷新指定页签
+    async refreshTab (id = this.activedTab) {
+      try {
+        await this.pageLeavePromise(id, 'refresh')
         this.$refs.routerAlive.clear(id)
         if (id === this.activedTab) this.reloadRouter()
-      })
+      } catch (e) {}
     },
 
     /**
      * 刷新所有页签
      * @param {boolean} [force=false] 是否强制刷新，如果强制则忽略页面beforePageLeave
      */
-    refreshAll (force = false) {
+    async refreshAll (force = false) {
       const $alive = this.$refs.routerAlive
       const { cache } = $alive
-
-      const promises = Object.keys(cache).map(id => () => {
+      for (const id in cache) {
         if (!force) {
-          return this.pageLeavePromise(id, 'refresh').then(() => {
+          try {
+            await this.pageLeavePromise(id, 'refresh')
             $alive.clear(id)
-          })
+          } catch (e) {}
         } else {
           $alive.clear(id)
         }
-      })
-
-      promiseQueue(promises).finally(this.reloadRouter)
+      }
+      this.reloadRouter()
     },
 
     // 重载路由组件
-    reloadRouter (ignoreTransition = false) {
+    async reloadRouter (ignoreTransition = false) {
       this.isRouterAlive = false
 
       // 默认在页面过渡结束后会设置 isRouterAlive 为 true
       // 如果过渡事件失效，则需传入 ignoreTransition 为 true 手动更改
       if (ignoreTransition) {
-        this.$nextTick(() => {
-          this.isRouterAlive = true
-        })
+        await this.$nextTick()
+        this.isRouterAlive = true
       }
     },
 

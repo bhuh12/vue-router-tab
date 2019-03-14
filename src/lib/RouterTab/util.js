@@ -1,7 +1,6 @@
 // 空对象和数组
 export const emptyObj = Object.create(null)
 export const emptyArray = []
-export const logPrefix = '[vue-router-tab]:'
 
 // 是否定义
 export function isDef (v) {
@@ -19,16 +18,6 @@ export function debounce (fn, delay = 200) {
       fn.call(context, args)
     }, delay)
   }
-}
-
-// 队列执行promise
-export function promiseQueue (promises, isFinally = true) {
-  let queue = Promise.resolve()
-  const type = isFinally ? 'finally' : 'then'
-  for (let item of promises) {
-    queue = queue[type](item)
-  }
-  return queue
 }
 
 // 滚动
