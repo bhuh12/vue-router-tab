@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: ./img/logo.png
+heroImage: https://bhuh12.github.io/vue-router-tab/demo/img/logo.png
 heroText: Vue Router Tab
 tagline: 基于 Vue Router 的路由页签组件。
 actionText: 快速上手 →

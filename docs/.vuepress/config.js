@@ -4,6 +4,10 @@ module.exports = {
   title: 'Vue Router Tab',
   description: '基于 Vue Router 的路由页签组件',
 
+  head: [
+    ['link', { rel: 'icon', href: 'https://bhuh12.github.io/vue-router-tab/demo/img/logo.png' }]
+  ],
+
   // 基础路径
   base: '/vue-router-tab/',
 
@@ -20,7 +24,7 @@ module.exports = {
       { text: '教程', link: '/guide.html' },
       { text: 'API', link: '/api.html' },
       { text: 'Demo', link: demoUrl },
-      { text: '反馈', link: 'mailto: bihaiyouhong12@126.com?subject=' + encodeURIComponent('vue-router-tab 问题和建议') },
+      { text: '更新日志', link: 'https://github.com/bhuh12/vue-router-tab/releases' },
       { text: '主页', link: 'https://bhuh.net' }
     ],
 
