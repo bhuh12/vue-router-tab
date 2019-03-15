@@ -137,4 +137,4 @@ yarn add vue-router-tab
 
 [MIT](http://opensource.org/licenses/MIT)
 
-Copyright (c) 2019-present, bhuh12
+Copyright (c) 2019-present, 碧海幽虹
