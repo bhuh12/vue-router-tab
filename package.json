@@ -58,10 +58,12 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/essential",
+      "plugin:vue/recommended",
       "@vue/standard"
     ],
-    "rules": {},
+    "rules": {
+      "vue/require-default-prop": false
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }

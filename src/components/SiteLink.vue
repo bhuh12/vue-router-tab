@@ -3,10 +3,11 @@
     <a
       v-for="({label, icon, url}, index) in links"
       :key="index"
-      :href="url" :target="url.indexOf('http') === 0 ? '_blank' : '_self'"
+      :href="url"
+      :target="url.indexOf('http') === 0 ? '_blank' : '_self'"
       :title="label"
       :class="`rt-icon-${icon}`"
-      ></a>
+    />
   </div>
 </template>
 

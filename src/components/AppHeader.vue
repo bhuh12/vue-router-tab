@@ -1,14 +1,21 @@
 <template>
   <header class="app-hd">
     <div class="app-home">
-      <a class="rt-icon-menu toggle-side" @click="$emit('sidebar-change')"></a>
-      <img class="site-logo" src="img/logo.png" alt="Vue Router Tab - logo">
+      <a
+        class="rt-icon-menu toggle-side"
+        @click="$emit('sidebar-change')"
+      />
+      <img
+        class="site-logo"
+        src="img/logo.png"
+        alt="Vue Router Tab - logo"
+      >
       <h2 class="site-title">
         <a href="../">Vue Router Tab</a> - Demo
       </h2>
     </div>
 
-    <site-link/>
+    <site-link />
   </header>
 </template>
 

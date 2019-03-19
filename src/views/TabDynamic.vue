@@ -5,29 +5,34 @@
     <div class="form-item">
       <label>
         <p>修改页签标题</p>
-        <input type="text" v-model="routeTab.title">
+        <input
+          v-model="routeTab.title"
+          type="text"
+        >
       </label>
     </div>
 
     <div class="form-item">
       <label>
         <p>修改页签提示</p>
-        <input type="text" v-model="routeTab.tips">
+        <input
+          v-model="routeTab.tips"
+          type="text"
+        >
       </label>
     </div>
 
     <div class="form-item tab-icons">
       <p>切换图标</p>
       <a
-        class="tab-icon"
         v-for="icon in icons"
         :key="icon"
+        class="tab-icon"
         :class="`${icon === routeTab.icon ? 'actived' : ''} ${icon}`"
         title="设置页签图标"
         @click="routeTab.icon = icon"
-      ></a>
+      />
     </div>
-
   </div>
 </template>
 

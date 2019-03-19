@@ -1,6 +1,6 @@
 <template>
   <main class="app-main">
-    <router-tab :i18n="'en'"/>
+    <router-tab :i18n="'en'" />
   </main>
 </template>
 
