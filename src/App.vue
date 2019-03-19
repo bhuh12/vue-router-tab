@@ -1,11 +1,17 @@
 <template>
-  <div class="app-ct" :class="{ 'sidebar-open': sidebarOpen }">
-    <app-header @sidebar-change="sidebarOpen = !sidebarOpen"/>
+  <div
+    class="app-ct"
+    :class="{ 'sidebar-open': sidebarOpen }"
+  >
+    <app-header @sidebar-change="sidebarOpen = !sidebarOpen" />
 
     <div class="app-bd">
-      <div class="app-sd-mask" @click="sidebarOpen = false"></div>
-      <app-aside/>
-      <router-view/>
+      <div
+        class="app-sd-mask"
+        @click="sidebarOpen = false"
+      />
+      <app-aside />
+      <router-view />
     </div>
   </div>
 </template>

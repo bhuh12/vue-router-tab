@@ -1,6 +1,6 @@
 <template>
   <main class="app-main">
-    <router-tab :tabs="tabs"/>
+    <router-tab :tabs="tabs" />
   </main>
 </template>
 

@@ -1,36 +1,65 @@
 <template>
   <div class="app-page">
-    <h2>{{ruleLabel}}页签规则</h2>
+    <h2>{{ ruleLabel }}页签规则</h2>
 
-    <p>你在 <strong class="text-strong">{{pageTime}}</strong> 秒前打开本页面</p>
+    <p>你在 <strong class="text-strong">{{ pageTime }}</strong> 秒前打开本页面</p>
 
-    <h3>{{ruleLabel}}页签规则</h3>
+    <h3>{{ ruleLabel }}页签规则</h3>
 
-    <p class="rule-desc" v-if="ruleType === 'global'">页签ID: <strong>route => route.fullPath.replace(route.hash, '')`</strong></p>
+    <p
+      v-if="ruleType === 'global'"
+      class="rule-desc"
+    >
+      页签ID: <strong>route => route.fullPath.replace(route.hash, '')`</strong>
+    </p>
 
-    <p class="rule-desc" v-else-if="ruleType === 'route'">页签ID: <strong>route => `route-rule/${route.params.catalog}`</strong></p>
+    <p
+      v-else-if="ruleType === 'route'"
+      class="rule-desc"
+    >
+      页签ID: <strong>route => `route-rule/${route.params.catalog}`</strong>
+    </p>
 
-    <p class="rule-desc" v-else>页签ID: <strong>route.path</strong></p>
+    <p
+      v-else
+      class="rule-desc"
+    >
+      页签ID: <strong>route.path</strong>
+    </p>
 
     <h4>点击下面的链接，并观察页签的变化</h4>
 
     <ul class="btn-list">
-      <li v-for="cat in catalogs" :key="cat">
+      <li
+        v-for="cat in catalogs"
+        :key="cat"
+      >
         <router-link
-          v-for="type in types"
-          :key="type"
+          v-for="t in types"
+          :key="t"
           class="demo-btn"
-          :to="`../${cat}/${type}`">
-          {{cat}}/{{type}}
+          :to="`../${cat}/${t}`"
+        >
+          {{ cat }}/{{ type }}
         </router-link>
-        <router-link class="demo-btn" :to="`../${cat}/1?q=abc`">{{cat}}/1?q=abc</router-link>
-        <router-link class="demo-btn" :to="`../${cat}/1?q=def`">{{cat}}/1?q=def</router-link>
+        <router-link
+          class="demo-btn"
+          :to="`../${cat}/1?q=abc`"
+        >
+          {{ cat }}/1?q=abc
+        </router-link>
+        <router-link
+          class="demo-btn"
+          :to="`../${cat}/1?q=def`"
+        >
+          {{ cat }}/1?q=def
+        </router-link>
       </li>
     </ul>
 
     <h3>路由信息</h3>
 
-    <page-route-info/>
+    <page-route-info />
   </div>
 </template>
 
@@ -40,8 +69,8 @@ import PageRouteInfo from '@/components/PageRouteInfo'
 
 export default {
   name: 'Rule',
-  mixins: [ pageTimer ],
   components: { PageRouteInfo },
+  mixins: [ pageTimer ],
   data () {
     let route = this.$route
     let { catalog, type } = route.params

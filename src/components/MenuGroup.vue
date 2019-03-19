@@ -1,12 +1,22 @@
 <template>
-  <div class="menu-group" v-if="data.children && data.children.length">
-    <menu-item :data="data"/>
+  <div
+    v-if="data.children && data.children.length"
+    class="menu-group"
+  >
+    <menu-item :data="data" />
     <div class="menu-list">
-      <menu-group v-for="(item, index) in data.children" :key="index" :data="item"/>
+      <menu-group
+        v-for="(item, index) in data.children"
+        :key="index"
+        :data="item"
+      />
     </div>
   </div>
 
-  <menu-item v-else :data="data"/>
+  <menu-item
+    v-else
+    :data="data"
+  />
 </template>
 
 <script>
@@ -14,10 +24,10 @@ import MenuItem from './MenuItem.vue'
 
 export default {
   name: 'MenuGroup',
+  components: { MenuItem },
   props: {
     data: Object
-  },
-  components: { MenuItem }
+  }
 }
 </script>
 

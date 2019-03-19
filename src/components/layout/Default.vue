@@ -1,5 +1,5 @@
 <template>
   <main class="app-main">
-    <router-tab/>
+    <router-tab />
   </main>
 </template>

@@ -1,10 +1,14 @@
 <template>
   <aside class="app-sd">
     <div class="app-sd-menu">
-      <menu-group v-for="(item, index) in menu" :key="index" :data="item"/>
+      <menu-group
+        v-for="(item, index) in menu"
+        :key="index"
+        :data="item"
+      />
     </div>
     <footer class="app-sd-ft">
-      <site-link/>
+      <site-link />
     </footer>
   </aside>
 </template>
