@@ -6,24 +6,24 @@
 
 页面组件缓存的 id
 
-- 类型: `string | Function`
+- 类型: `String | Function`
 
-  - 如果类型为 `string` ，则取 `$route[aliveId]` 的值
+  - 如果类型为 `String` ，则可使用内置的缓存规则，`path` (默认) 和 `fullPath`
 
-  - 如果类型为 `Function` ，则取 `aliveId($route)` 返回的字符串。该函数不应返回随机变化的字符串，以免页签无法与缓存的页面对应
+  - 如果类型为 `Function` ，则取 `aliveId(route)` 返回的字符串。该函数传入相同的 `route` 应返回固定的字符串，以免页签无法与缓存的页面对应
 
 - 默认值: `'path'`
   
-  根据 `$route.path` 来缓存页面组件。
+  根据 `route.path` 来缓存页面组件。
 
 
 ### i18n
 
 语言配置
 
-- 类型: `string | Object`
+- 类型: `String | Object`
 
-  - 如果类型为 `string` ，可以设置为内置的语言 `'zh-CN'` (默认) 和 `'en'`
+  - 如果类型为 `String` ，可以设置为内置的语言 `'zh-CN'` (默认) 和 `'en'`
 
   - 如果类型为 `Object` ，可设置自定义的语言
 
@@ -34,9 +34,9 @@
 
 **初始页签数据**，进入页面时默认显示的页签。相同 `aliveId` 的页签只保留第一个
 
-- 类型: `Array <string | Object>`
+- 类型: `Array <String | Object>`
   
-  - tabs子元素类型为 `string` 时，应配置为要打开页面的 `fullPath` ，页签的标题、图标、提示等信息会从对应页面的 `router` 配置中获取
+  - tabs子元素类型为 `String` 时，应配置为要打开页面的 `fullPath` ，页签的标题、图标、提示等信息会从对应页面的 `router` 配置中获取
 
   - tabs子元素类型为 `Object` 时：
     
@@ -64,9 +64,9 @@
 
 **页签过渡效果**，新增和关闭页签时的过渡
 
-- 类型: `string | Object`
+- 类型: `String | Object`
 
-  - 类型为 `string` 时，应配置为 `transition.name`
+  - 类型为 `String` 时，应配置为 `transition.name`
 
   - 类型为 `Object` 时，配置参考: [Vue - transition](https://cn.vuejs.org/v2/api/#transition)
 
@@ -77,7 +77,7 @@
 
 **页面过渡效果**
 
-- 类型: `string | Object`
+- 类型: `String | Object`
   
   同 [`tab-transition`](#tab-transition)
 
@@ -103,7 +103,7 @@
 ### routerTab.close
 
 - **参数**：
-  - `{string | Object} [location]` 路由地址 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
+  - `{String | Object} [location]` 路由地址 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
   - `{Boolean} [fullMatch = true]` 是否全匹配（匹配fullPath去除hash部分）
 
 - **说明**：
@@ -114,7 +114,7 @@
 ### routerTab.refresh
 
 - **参数**：
-  - `{string | Object} [location]` 路由地址 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
+  - `{String | Object} [location]` 路由地址 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
   - `{Boolean} [fullMatch = true]` 是否全匹配（匹配fullPath去除hash部分）
 
 - **说明**：
@@ -139,7 +139,7 @@
 
 ### meta.title
 
-- 类型: `string`
+- 类型: `String`
 - 默认值: `'新页签'`
 
 页签标题
@@ -147,14 +147,14 @@
 
 ### meta.icon
 
-- 类型: `string`
+- 类型: `String`
 
 页签图标
 
 
 ### meta.tips
 
-- 类型: `string`
+- 类型: `String`
 - 默认值: 默认和页签标题 `meta.title` 保持一致
 
 页签提示
@@ -178,7 +178,7 @@
     - `{Function} resolve` 执行后允许离开页签
     - `{Function} reject` 执行后阻止离开页签
     - `{Object} tab` 页签信息
-    - `{string} type` 离开类型：`close`: '关闭', `refresh`: '刷新', `replace`: '替换'
+    - `{String} type` 离开类型：`close`: '关闭', `refresh`: '刷新', `replace`: '替换'
 
   - **说明**: 页面离开确认。页面组件选项，与 `data`, `methods` 并列
 

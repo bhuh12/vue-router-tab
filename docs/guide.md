@@ -243,31 +243,18 @@ this.$routerTab.refreshAll(true)
 
 不同的页签维护着各自的页面缓存，而**页签规则**定义了不同的路由**打开页签的方式**。
 
-### 默认页签规则
 
-`RouterTab` 默认取页面路由的 `$route.path` 作为缓存的 `alive-id`。
+### 内置规则
 
-这意味着，`$route.path` 相同的页面在同一个页签打开，新打开的页面会替换旧的页面，而 `$route.path` 不同的页面则打开独立的页签。
+- `path` (默认规则)
+  - 规则：`route => route.path` 
+  - 说明：相同route.params的路由共用页签
+  - <demo-link href="/default/rule/a/1"/>
 
-::: tip 规则说明：
-  - 同一路由、不同 `$route.params` 的页面，各自打开独立的页签，单独缓存
-
-  - 同一路由、相同 `$route.params` 、不同 `$route.query` 的页面，共用同一个页签，后打开的页面将会替换之前页签内的页面，并且旧的页面缓存也被清除
-
-  - 仅仅 `$route.hash` 不同的页面，共用同一页签和缓存
-:::
-
-
-例如：下面表格的前三个地址的 `$route.path` 都是 **/page/1**，它们打开同一个页签。后三个地址的 `$route.path` 都是 **/page/2**，它们打开时共用另一个页签。
-
-| 地址 | `$route.path` |
-| ---- | ---- |
-| /page/1 | /page/1 |
-| /page/1?query=2 | /page/1 |
-| /page/1#hash1 | /page/1 |
-| /page/2 | /page/2 |
-| /page/2?query=2 | /page/2 |
-| /page/2#hash1 | /page/2 |
+- `fullPath`
+  - 规则：`route => route.fullPath.replace(route.hash, '')` 
+  - 说明：相同route.params和route.query的路由共用页签
+  - <demo-link href="/global-rule/rule/a/1"/>
 
 
 ### 全局页签规则
@@ -285,6 +272,12 @@ this.$routerTab.refreshAll(true)
 例子中，配置 `alive-id` 为 `fullPath` 去除 `hash` 部分。
 
 根据该规则，`page/1` 和 `page/1?query=2`、`page/2`、`page/2?query=2` 这四个地址都是打开**不同**的页签。而 `page/1` 和 `page/1#hash1` 是同一个页签，因为它们忽略 `hash` 后的路径一致。
+
+该规则已经内置在 `RouterTab` 中了，因此，您也可以直接这样使用：
+
+``` html
+<router-tab alive-id="fullPath"/>
+```
 
 
 ### 路由页签规则

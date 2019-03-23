@@ -95,3 +95,20 @@ a:link {
     border-color: $activeColor;
   }
 }
+
+// 表格
+.demo-table {
+  min-width: 300px;
+  border-collapse: collapse;
+
+  th, td {
+    padding: 5px 8px;
+    border: 1px solid #ddd;
+  }
+
+  th {
+    text-align: left;
+    font-weight: 400;
+    background-color: #f7f7f7;
+  }
+}

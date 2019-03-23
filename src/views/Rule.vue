@@ -1,31 +1,25 @@
 <template>
   <div class="app-page">
-    <h2>{{ ruleLabel }}页签规则</h2>
+    <h2>{{ curRule.label }}页签规则</h2>
 
     <p>你在 <strong class="text-strong">{{ pageTime }}</strong> 秒前打开本页面</p>
 
-    <h3>{{ ruleLabel }}页签规则</h3>
-
-    <p
-      v-if="ruleType === 'global'"
-      class="rule-desc"
-    >
-      页签ID: <strong>route => route.fullPath.replace(route.hash, '')`</strong>
-    </p>
-
-    <p
-      v-else-if="ruleType === 'route'"
-      class="rule-desc"
-    >
-      页签ID: <strong>route => `route-rule/${route.params.catalog}`</strong>
-    </p>
-
-    <p
-      v-else
-      class="rule-desc"
-    >
-      页签ID: <strong>route.path</strong>
-    </p>
+    <table class="demo-table">
+      <tr>
+        <th>规则类型</th>
+        <td>{{ curRule.type }}</td>
+      </tr>
+      <tr>
+        <th>实现方法</th>
+        <td class="rule-fn">
+          {{ curRule.fn }}
+        </td>
+      </tr>
+      <tr>
+        <th>规则说明</th>
+        <td>{{ curRule.desc }}</td>
+      </tr>
+    </table>
 
     <h4>点击下面的链接，并观察页签的变化</h4>
 
@@ -40,7 +34,7 @@
           class="demo-btn"
           :to="`../${cat}/${t}`"
         >
-          {{ cat }}/{{ type }}
+          {{ cat }}/{{ t }}
         </router-link>
         <router-link
           class="demo-btn"
@@ -83,33 +77,47 @@ export default {
       ruleType = 'global'
     }
 
-    let ruleLabel = {
-      default: '默认',
-      route: '路由',
-      global: '全局'
-    }[ruleType]
+    let rules = {
+      default: {
+        label: '默认',
+        type: '内置规则："path"',
+        fn: 'route => route.path',
+        desc: '相同route.params的路由共用页签'
+      },
+      global: {
+        label: '全局',
+        type: '内置规则："fullPath"',
+        fn: 'route => route.fullPath.replace(route.hash, \'\')',
+        desc: '相同route.params和route.query的路由共用页签'
+      },
+      route: {
+        label: '路由',
+        type: '自定义规则',
+        fn: 'route => \'route-rule/\' + route.params.catalog',
+        desc: '相同catalog参数的路由共用页签'
+      }
+    }
+
+    let curRule = rules[ruleType]
 
     return {
-      ruleType,
-      ruleLabel,
+      curRule,
       catalog,
       type,
       catalogs: ['a', 'b', 'c'],
       types: [ 1, 2 ],
       link: { catalog, type },
-      routeTab: `${ruleLabel}规则${catalog}/${type}`
+      routeTab: `${curRule.label}规则${catalog}/${type}`
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.rule-desc {
-  strong {
-    font-size: 1rem;
-    font-weight: 600;
-    color: $color-primary;
-  }
+.rule-fn {
+  font-size: 1rem;
+  font-style: italic;
+  color: $color;
 }
 
 .btn-list {

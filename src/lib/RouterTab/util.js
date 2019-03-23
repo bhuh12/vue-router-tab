@@ -1,3 +1,5 @@
+import rules from './rules'
+
 // 空对象和数组
 export const emptyObj = Object.create(null)
 export const emptyArray = []
@@ -51,13 +53,19 @@ export function getFirstComponentChild (children) {
   }
 }
 
-// 获取缓存key
+// 获取缓存 id
 export function getAliveId (route = this.$route) {
-  let aliveId = (route.meta && route.meta.aliveId) || this.aliveId || 'path'
-  if (typeof aliveId === 'function') {
-    return aliveId.bind(this)(route)
+  let rule = (route.meta && route.meta.aliveId) || this.aliveId
+
+  if (typeof rule === 'string') {
+    rule = rules[rule.toLowerCase()]
   }
-  return route[aliveId]
+
+  if (typeof rule !== 'function') {
+    rule = rules.path
+  }
+
+  return rule.bind(this)(route)
 }
 
 /* 路由方法 */
