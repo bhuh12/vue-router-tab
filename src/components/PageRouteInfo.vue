@@ -1,5 +1,5 @@
 <template>
-  <table class="route-info">
+  <table class="demo-table">
     <tr>
       <th width="80">
         name
@@ -28,21 +28,3 @@
     </tr>
   </table>
 </template>
-
-<style lang="scss" scoped>
-.route-info {
-  min-width: 300px;
-  border-collapse: collapse;
-
-  th, td {
-    padding: 5px 8px;
-    border: 1px solid #ddd;
-  }
-
-  th {
-    text-align: left;
-    font-weight: 400;
-    background-color: #f7f7f7;
-  }
-}
-</style>
