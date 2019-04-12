@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import RouterTab from '@/lib/RouterTab'
+import RouterTab from '../src'
 
 import App from './App.vue'
 import router from './router'

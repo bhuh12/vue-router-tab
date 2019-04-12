@@ -75,6 +75,7 @@
             v-if="isRouterAlive"
             ref="routerView"
             v-bind="routerView"
+            class="router-tab-page"
           />
         </transition>
       </router-alive>
@@ -141,5 +142,5 @@
 
 <script src="./RouterTab.js"></script>
 
-<style lang="scss" src="../scss/RouterTab.scss"></style>
+<style lang="scss" src="../scss/routerTab.scss"></style>
 <style lang="scss" src="../scss/transition.scss"></style>

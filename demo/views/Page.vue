@@ -69,8 +69,8 @@
 </template>
 
 <script>
-import pageTimer from '@/mixins/pageTimer'
-import PageRouteInfo from '@/components/PageRouteInfo'
+import pageTimer from '../mixins/pageTimer'
+import PageRouteInfo from '../components/PageRouteInfo'
 
 export default {
   name: 'Page',

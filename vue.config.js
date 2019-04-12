@@ -1,8 +1,10 @@
+// 构建目标是否为库
+const isBuildLib = process.env.npm_lifecycle_script.indexOf('--target lib') > 0
+
 module.exports = {
   publicPath: '', // 相对路径
 
-  // 输出目录
-  outputDir: 'dist/docs/demo',
+  outputDir: isBuildLib ? 'dist/lib' : 'dist/docs/demo',
 
   // webpack 链式配置
   chainWebpack: config => {
@@ -14,7 +16,7 @@ module.exports = {
     loaderOptions: {
       sass: {
         // scss公共变量
-        data: `@import "@/assets/scss/variables.scss";`
+        data: isBuildLib ? undefined : `@import "demo/assets/scss/variables.scss";`
       }
     }
   }

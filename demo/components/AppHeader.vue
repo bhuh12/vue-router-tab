@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import SiteLink from '@/components/SiteLink.vue'
+import SiteLink from './SiteLink.vue'
 
 export default {
   name: 'AppHeader',

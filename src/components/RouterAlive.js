@@ -1,9 +1,12 @@
-import { emptyObj, getAliveId, getFirstComponentChild, isAlikeRoute, isSameComponentRoute } from '../util'
+import { emptyObj } from '../util'
+import { getAliveId } from '../util/alive'
+import { getFirstComponentChild } from '../util/dom'
+import { isAlikeRoute, isSameComponentRoute } from '../util/route'
 
 export default {
   name: 'RouterAlive',
   props: {
-    // 缓存key，如果为函数，则参数为route
+    // 缓存id，如果为函数，则参数为route
     aliveId: {
       type: [ String, Function ],
       default: 'path'

@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import pageTimer from '@/mixins/pageTimer'
+import pageTimer from '../mixins/pageTimer'
 
 export default {
   name: 'PageLeave',

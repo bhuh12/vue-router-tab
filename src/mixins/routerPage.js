@@ -30,16 +30,14 @@ export default {
 
   // 解决webpack热加载后组件缓存不更新
   activated () {
-    const { $routerTab, $vnode, _isRouterPage } = this
+    if (!this._isRouterPage) return false
 
-    if (!_isRouterPage) return false
-
-    let ctorId = $vnode.componentOptions.Ctor.cid
+    let ctorId = this.$vnode.componentOptions.Ctor.cid
 
     // 热加载后Ctor.cid改变
     if (this._ctorId && this._ctorId !== ctorId) {
       this.$destroy()
-      $routerTab.refreshTab()
+      this.$routerTab.refreshTab()
     }
 
     this._ctorId = ctorId

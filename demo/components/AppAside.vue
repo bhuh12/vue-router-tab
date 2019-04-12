@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import MenuGroup from '@/components/MenuGroup.vue'
-import SiteLink from '@/components/SiteLink.vue'
+import MenuGroup from './MenuGroup.vue'
+import SiteLink from './SiteLink.vue'
 
 export default {
   name: 'AppAside',

@@ -1,10 +1,12 @@
 # 忽略目录/文件
-node_modules
+demo
 dist/docs
 dist/lib/**.html
-docs/
-public/
-src/
+docs
+node_modules
+public
+scripts
+src
 
 # 忽略指定文件
 yarn.lock

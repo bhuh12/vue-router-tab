@@ -130,13 +130,13 @@ yarn add vue-router-tab
 
 | 任务 | 命令 | 备注 |
 | ---- | ---- | ---- |
-| **插件**：构建 | `npm run lib:build` | 操作前：更改 `babel.config.js` 中的 `useBuiltIns` 值为 `false` 以去除 `ployfill` |
-| **插件**：构建并生成报告 | `npm run lib:build:report` | - 同上 |
+| **插件**：构建 | `npm run lib:build` |
+| **插件**：构建并生成报告 | `npm run lib:build:report` |
 | **插件**：发布 | `npm run lib:publish` | 操作前：更改 `package.json` 中的 `version` 为新的版本号 |
-| **文档**：开发 | `npm run docs:dev` |
-| **文档**：构建 | `npm run docs:build` |
 | **Demo**： 开发 | `npm run demo:dev` |
 | **Demo**： 构建 | `npm run demo:build` |
+| **文档**：开发 | `npm run docs:dev` |
+| **文档**：构建 | `npm run docs:build` |
 | **代码**风格：检查 | `npm run lint` |
 | **代码**风格：检查并修复 | `npm run lint:fix` |
 | **代码**：提交 | `npm run commit` |

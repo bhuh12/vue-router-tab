@@ -1,5 +1,5 @@
-import RouterPage from './mixins/RouterPage'
 import RouterTab from './components/RouterTab.vue'
+import routerPage from './mixins/routerPage'
 
 // 安装
 RouterTab.install = function install (Vue, options) {
@@ -7,7 +7,7 @@ RouterTab.install = function install (Vue, options) {
   install.installed = true
 
   Vue.component(RouterTab.name, RouterTab)
-  Vue.mixin(RouterPage)
+  Vue.mixin(routerPage)
 }
 
 // 如果浏览器环境且拥有全局Vue，则自动安装组件

@@ -19,12 +19,12 @@
   },
   "main": "dist/lib/vue-router-tab.umd.min.js",
   "scripts": {
-    "demo:dev": "vue-cli-service serve",
-    "demo:build": "vue-cli-service build",
-    "docs:dev": "vuepress dev docs",
+    "demo:dev": "vue-cli-service serve --open demo/main.js",
+    "demo:build": "vue-cli-service build demo/main.js",
+    "docs:dev": "vuepress dev docs --open",
     "docs:build": "vuepress build docs",
-    "lib:build": "vue-cli-service build --target lib --dest dist/lib ./src/lib/RouterTab/index.js",
-    "lib:build:report": "vue-cli-service build --report --target lib --dest dist/lib ./src/lib/RouterTab/index.js",
+    "lib:build": "vue-cli-service build --target lib src/index.js",
+    "lib:build:report": "vue-cli-service build --report --target lib src/index.js",
     "lib:publish": "npm run lib:build && npm publish",
     "lint": "vue-cli-service lint",
     "lint:fix": "vue-cli-service lint --fix",
@@ -49,7 +49,7 @@
     "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.22",
-    "vuepress": "^1.0.0-alpha.42",
+    "vuepress": "^1.0.0-alpha.47",
     "yorkie": "^2.0.0"
   },
   "eslintConfig": {

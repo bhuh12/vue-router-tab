@@ -1,13 +1,22 @@
 import Vue from 'vue'
-import RouterAlive from './RouterAlive'
+
+// 方法
+import { emptyObj, emptyArray, debounce } from '../util'
+import { getAliveId } from '../util/alive'
+import { scrollTo } from '../util/dom'
+import { isAlikeRoute, getPathWithoutHash } from '../util/route'
+
+// 语言配置
 import langs from '../lang'
-import { emptyObj, emptyArray, scrollTo, debounce, getAliveId, isAlikeRoute, getPathWithoutHash } from '../util'
+
+// 子组件
+import RouterAlive from './RouterAlive'
 
 export default {
   name: 'RouterTab',
   components: { RouterAlive },
   props: {
-    // 缓存key，如果为函数，则参数为route
+    // 缓存id，如果为函数，则参数为route
     aliveId: RouterAlive.props.aliveId,
 
     // 语言配置
@@ -151,6 +160,10 @@ export default {
   beforeCreate () {
     // 添加到原型链
     Vue.prototype.$routerTab = this
+
+    // 获取跟路径
+    let matched = this.$route.matched
+    this.basePath = (matched[matched.length - 2] || {}).path
   },
 
   created () {

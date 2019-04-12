@@ -19,8 +19,8 @@
 <style lang="scss" src="./assets/scss/demo.scss"></style>
 
 <script>
-import AppHeader from '@/components/AppHeader.vue'
-import AppAside from '@/components/AppAside.vue'
+import AppHeader from './components/AppHeader.vue'
+import AppAside from './components/AppAside.vue'
 
 export default {
   name: 'App',
