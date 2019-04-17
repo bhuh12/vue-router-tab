@@ -95,6 +95,7 @@ $just-trans: all .2s ease-in-out;
 }
 
 .app-main {
+  display: block;
   padding-left: $side-width;
   height: 100%;
   transition: $just-trans;
