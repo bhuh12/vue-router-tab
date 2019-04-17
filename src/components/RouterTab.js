@@ -439,7 +439,7 @@ export default {
     // 显示页签右键菜单
     showContextmenu (id, index, e) {
       // 菜单定位
-      let { y: top, x: left } = e || emptyObj
+      let { clientY: top, clientX: left } = e || emptyObj
       Object.assign(this.contextmenu, { id, index, top, left })
     },
 
