@@ -63,7 +63,6 @@ $just-trans: all .2s ease-in-out;
 
   .app-bd {
     flex: 1;
-    height: 0;
     position: relative;
   }
 }
@@ -95,13 +94,16 @@ $just-trans: all .2s ease-in-out;
 }
 
 .app-main {
-  display: block;
-  padding-left: $side-width;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: $side-width;
   height: 100%;
   transition: $just-trans;
 
   @include screen-mob {
-    padding-left: 0;
+    left: 0;
   }
 
   /deep/ .router-tab {
