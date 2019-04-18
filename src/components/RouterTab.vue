@@ -82,7 +82,7 @@
     </div>
 
     <!-- 右键菜单 -->
-    <transition name="router-tab-zoom-lt">
+    <transition name="router-tab-zoom">
       <div
         v-if="contextmenu.id"
         class="router-tab-contextmenu"

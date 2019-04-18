@@ -184,7 +184,6 @@ $color-primary: #409eff;
   &-container {
     position: relative;
     flex: 1;
-    height: 0;
     overflow-x: hidden;
     overflow-y: auto;
     background: #fff;
@@ -200,7 +199,7 @@ $color-primary: #409eff;
     font-size: 13px;
 		background: #fff;
     box-shadow: 0 1px 6px 3px rgba(0,0,0,.2);
-    transition: all .3s ease-in-out;
+    transition: all .3s ease-in;
     transform-origin: left top;
 
 		.contextmenu-item {
