@@ -12,9 +12,13 @@ import langs from '../lang'
 // 子组件
 import RouterAlive from './RouterAlive'
 
+// 功能混入
+import iframe from '../mixins/routerTab/iframe'
+
 export default {
   name: 'RouterTab',
   components: { RouterAlive },
+  mixins: [ iframe ],
   props: {
     // 缓存id，如果为函数，则参数为route
     aliveId: RouterAlive.props.aliveId,

@@ -79,6 +79,21 @@
           />
         </transition>
       </router-alive>
+
+      <transition-group
+        v-bind="typeof pageTransition === 'string' ? { name: pageTransition } : pageTransition"
+        tag="div"
+        class="router-tab-iframes"
+      >
+        <iframe
+          v-for="url in iframes"
+          v-show="url === currentIframe"
+          :key="url"
+          :src="url"
+          frameborder="0"
+          class="router-tab-iframe"
+        />
+      </transition-group>
     </div>
 
     <!-- 右键菜单 -->

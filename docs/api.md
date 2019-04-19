@@ -106,9 +106,7 @@
   - `{String | Object} [location]` 路由地址 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
   - `{Boolean} [fullMatch = true]` 是否全匹配（匹配fullPath去除hash部分）
 
-- **说明**：
-
-  关闭指定 `location` 的页签
+- **说明**：关闭指定 `location` 的页签
 
   
 ### routerTab.refresh
@@ -117,9 +115,7 @@
   - `{String | Object} [location]` 路由地址 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
   - `{Boolean} [fullMatch = true]` 是否全匹配（匹配fullPath去除hash部分）
 
-- **说明**：
-
-  刷新指定 `location` 的页签
+- **说明**：刷新指定 `location` 的页签
 
 
 ### routerTab.refreshAll
@@ -127,9 +123,33 @@
 - **参数**：
   - `{Boolean} [force = false]` 如果 `force` 为 `true`，则忽略页面组件的 `beforePageLeave` 配置，强制刷新所有页签
 
-- **说明**：
+- **说明**：刷新所有页签
 
-  刷新所有页签
+
+### routerTab.openIframeTab
+
+- **参数**：
+  - `{String} [src]` 要打开的 iframe 页签链接
+  - `{String} [title]` 页签标题
+  - `{String} [icon]` 页签图标
+
+- **说明**：打开 iframe 页签
+
+
+### routerTab.closeIframeTab
+
+- **参数**：
+  - `{String} [src]` 要关闭的 iframe 页签链接
+
+- **说明**：关闭 iframe 页签
+
+
+### routerTab.refreshIframeTab
+
+- **参数**：
+  - `{String} [src]` 要刷新的 iframe 页签链接
+
+- **说明**：刷新 iframe 页签
 
 
 

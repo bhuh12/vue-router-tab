@@ -73,6 +73,7 @@ yarn add vue-router-tab
 - [x] 内置页签和页面[过渡效果](docs/guide.md#过渡效果)，支持自定义配置
 - [x] [自定义页签模板](docs/guide.md#自定义页签模板)
 - [x] [动态更新页签信息](docs/guide.md#动态更新页签) (标题/图标/提示)
+- [x] [iframe 页签嵌入外部网站](docs/guide.md#iframe-页签操作)
 - [x] [页签页面离开 (页签关闭/刷新/替换) 前确认](docs/guide.md#页面离开确认)
 - [x] [语言配置](docs/guide.md#语言配置)：zh-CN (默认) / en，自定义语言
 

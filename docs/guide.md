@@ -66,18 +66,22 @@ new Vue({
 </template>
 ```
 
-### 页签信息配置
+### 路由配置
 
-通过路由的 `meta` 信息，来设置页签的**标题**、**图标**、**提示**和**路由页签规则**
+1. 引入 `RouterTab` 内置路由以支持[操作 iframe 页签](#iframe-页签操作)
+2. 通过路由的 `meta` 信息，来设置页签的**标题**、**图标**、**提示**和**路由页签规则**
 
 配置参考: [Route.meta 路由元信息](api.md#route-meta-路由元信息)
 
 **示例：**
 
-``` javascript {5,6,17,18,21,22,23,24,25,26}
+``` javascript {6,9,22,25,28,33,34,35,36}
 // @/router.js 路由
 import Vue from 'vue'
 import Router from 'vue-router'
+
+// RouterTab 内置路由
+import { RouterTabRoutes } from 'vue-router-tab'
 
 // 引入布局框架组件
 import Frame from './components/layout/Frame.vue'
@@ -91,27 +95,38 @@ export default new Router({
   routes: [{
     path: '/',
     redirect: '/page1',
-    component: Frame, // 父路由组件内必须包含 <router-tab>
-    children: [{ // 子路由里配置需要通过页签打开的页面路由
-      path: '/page/:id',
-      component: importPage('Page'),
-      meta: {
-        title: '页面', // 页签标题
-        icon: 'icon-user', // 页签图标，可选
-        tips: '这是一个页面', // 页签提示，可选，如未设置则跟title一致
-        aliveId: 'fullPath', // 路由打开页签规则，可选
+
+    // 父路由组件内必须包含 <router-tab>
+    component: Frame,
+
+    // 子路由里配置需要通过页签打开的页面路由
+    children: [
+
+      // 引入 RouterTab 内置路由以支持操作 iframe 页签
+      ...RouterTabRoutes,
+      {
+        path: '/page/:id',
+        component: importPage('Page'),
+        meta: {
+          title: '页面', // 页签标题
+          icon: 'icon-user', // 页签图标，可选
+          tips: '这是一个页面', // 页签提示，可选，如未设置则跟title一致
+          aliveId: 'fullPath', // 路由打开页签规则，可选
+        }
+      },
+      {
+        path: '/404',
+        component: importPage('404'),
+        meta: {
+          title: '找不到页面',
+          icon: 'icon-page'
+        }
+      },
+      {
+        path: '*',
+        redirect: '/404'
       }
-    }, {
-      path: '/404',
-      component: importPage('404'),
-      meta: {
-        title: '找不到页面',
-        icon: 'icon-page'
-      }
-    }, {
-      path: '*',
-      redirect: '/404'
-    }]
+    ]
 }
 ```
 
@@ -236,6 +251,35 @@ this.$routerTab.refreshAll()
 
 ``` js
 this.$routerTab.refreshAll(true)
+```
+
+### iframe 页签操作
+
+`RouterTab` 支持通过 iframe 页签嵌入外部网站。
+
+::: warning
+该功能需要引入 `RouterTab` 内置路由，请参考 [基础 - 路由配置](#路由配置)
+:::
+
+<doc-links api="#routertab-openiframetab" demo="/default/"></doc-links>
+
+**打开 iframe 页签**
+
+``` js
+// 三个参数分别为：链接、页签标题、图标
+this.$routerTab.openIframeTab('https://map.baidu.com/', '百度地图', 'icon-web')
+```
+
+**关闭 iframe 页签**
+
+``` js
+this.$routerTab.closeIframeTab('https://map.baidu.com/')
+```
+
+**刷新 iframe 页签**
+
+``` js
+this.$routerTab.refreshIframeTab('https://map.baidu.com/')
 ```
 
 

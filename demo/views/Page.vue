@@ -9,6 +9,18 @@
     <h3>页签操作</h3>
 
     <p>
+      <a
+        class="demo-btn"
+        @click="$routerTab.refresh()"
+      >刷新当前页面</a>
+
+      <a
+        class="demo-btn"
+        @click="$routerTab.close()"
+      >关闭当前页面</a>
+    </p>
+
+    <p>
       <router-link
         class="demo-btn"
         :to="'../page/'+ nextId"
@@ -46,16 +58,40 @@
       >关闭“动态更新页签”</a>
     </p>
 
+    <h4>iframe 页签</h4>
+
     <p>
       <a
         class="demo-btn"
-        @click="$routerTab.refresh()"
-      >刷新当前页面</a>
+        @click="$routerTab.openIframeTab('https://www.baidu.com', '百度')"
+      >打开“百度”</a>
 
       <a
         class="demo-btn"
-        @click="$routerTab.close()"
-      >关闭当前页面</a>
+        @click="$routerTab.refreshIframeTab('https://www.baidu.com')"
+      >刷新“百度”</a>
+
+      <a
+        class="demo-btn"
+        @click="$routerTab.closeIframeTab('https://www.baidu.com')"
+      >关闭“百度”</a>
+    </p>
+
+    <p>
+      <a
+        class="demo-btn"
+        @click="$routerTab.openIframeTab('https://map.baidu.com/', '百度地图', 'rt-icon-web')"
+      >打开“百度地图”</a>
+
+      <a
+        class="demo-btn"
+        @click="$routerTab.refreshIframeTab('https://map.baidu.com/')"
+      >刷新“百度地图”</a>
+
+      <a
+        class="demo-btn"
+        @click="$routerTab.closeIframeTab('https://map.baidu.com/')"
+      >关闭“百度地图”</a>
     </p>
 
     <div>
@@ -90,7 +126,7 @@ export default {
 
   methods: {
     click () {
-      console.log('aaa')
+      console.log(`页面${this.pageId}`)
     }
   }
 }

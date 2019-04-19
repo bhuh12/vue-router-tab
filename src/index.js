@@ -1,5 +1,6 @@
 import RouterTab from './components/RouterTab.vue'
 import routerPage from './mixins/routerPage'
+import routes from './util/routes'
 
 // 安装
 RouterTab.install = function install (Vue, options) {
@@ -16,3 +17,6 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default RouterTab
+
+// 路由
+export const RouterTabRoutes = routes

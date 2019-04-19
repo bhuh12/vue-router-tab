@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import { RouterTabRoutes } from '../src'
 
 const importPage = view => () => import(/* webpackChunkName: "p-[request]" */ `./views/${view}.vue`)
 
@@ -46,7 +47,7 @@ let pageRoutes = [{
     title: '页面离开确认',
     icon: 'rt-icon-contact'
   }
-}]
+}, ...RouterTabRoutes]
 
 export default new Router({
   routes: [{
