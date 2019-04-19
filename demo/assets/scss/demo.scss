@@ -74,6 +74,8 @@ a:link {
 
 // 按钮
 .demo-btn {
+  $activeColor: mix(#000, $color, 20%);
+
   display: inline-block;
   margin: 0 1em .5em 0;
   padding: 3px 8px;
@@ -91,9 +93,22 @@ a:link {
   }
 
   &:active {
-    $activeColor: mix(#000, $color, 20%);
     color: $activeColor;
     border-color: $activeColor;
+  }
+
+  &.primary {
+    color: #fff;
+    background: $color;
+    border-color: $color;
+
+    &:hover {
+      border-color: $activeColor;
+    }
+
+    &:active {
+      background: $activeColor;
+    }
   }
 }
 

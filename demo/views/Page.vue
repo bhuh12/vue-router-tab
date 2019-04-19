@@ -58,12 +58,12 @@
       >关闭“动态更新页签”</a>
     </p>
 
-    <h4>iframe 页签</h4>
+    <h3>iframe 页签操作</h3>
 
     <p>
       <a
         class="demo-btn"
-        @click="$routerTab.openIframeTab('https://www.baidu.com', '百度')"
+        @click="$routerTab.openIframeTab('https://www.baidu.com', '百度', 'rt-icon-web')"
       >打开“百度”</a>
 
       <a
@@ -77,25 +77,31 @@
       >关闭“百度”</a>
     </p>
 
-    <p>
-      <a
-        class="demo-btn"
-        @click="$routerTab.openIframeTab('https://map.baidu.com/', '百度地图', 'rt-icon-web')"
-      >打开“百度地图”</a>
+    <h3>打开 iframe 页签</h3>
+
+    <div class="custom-iframe">
+      <label>
+        名称：
+        <input
+          v-model="iframe.title"
+          name="title"
+          placeholder="页签标题"
+        >
+      </label>
+
+      <label>
+        网址：
+        <input
+          v-model="iframe.src"
+          name="src"
+          placeholder="请输入完整的网址"
+        >
+      </label>
 
       <a
-        class="demo-btn"
-        @click="$routerTab.refreshIframeTab('https://map.baidu.com/')"
-      >刷新“百度地图”</a>
-
-      <a
-        class="demo-btn"
-        @click="$routerTab.closeIframeTab('https://map.baidu.com/')"
-      >关闭“百度地图”</a>
-    </p>
-
-    <div>
-      <input type="text">
+        class="demo-btn primary"
+        @click="iframe.src && $routerTab.openIframeTab(iframe.src, iframe.title, 'rt-icon-web')"
+      >打开页签</a>
     </div>
 
     <h3>路由信息</h3>
@@ -120,6 +126,11 @@ export default {
       prevId: +id - 1,
       routeTab: {
         title: '页面' + id
+      },
+
+      iframe: {
+        src: 'https://www.hao123.com/',
+        title: 'Hao123'
       }
     }
   },
@@ -131,3 +142,16 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.custom-iframe {
+  label {
+    display: block;
+    margin-bottom: .8em;
+  }
+
+  input {
+    padding: .4em .8em;
+  }
+}
+</style>

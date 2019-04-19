@@ -267,19 +267,19 @@ this.$routerTab.refreshAll(true)
 
 ``` js
 // 三个参数分别为：链接、页签标题、图标
-this.$routerTab.openIframeTab('https://map.baidu.com/', '百度地图', 'icon-web')
+this.$routerTab.openIframeTab('https://www.baidu.com', '百度', 'icon-web')
 ```
 
 **关闭 iframe 页签**
 
 ``` js
-this.$routerTab.closeIframeTab('https://map.baidu.com/')
+this.$routerTab.closeIframeTab('https://www.baidu.com')
 ```
 
 **刷新 iframe 页签**
 
 ``` js
-this.$routerTab.refreshIframeTab('https://map.baidu.com/')
+this.$routerTab.refreshIframeTab('https://www.baidu.com')
 ```
 
 
