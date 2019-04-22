@@ -1,4 +1,4 @@
-// iframe 页签功能混入
+// iframe 页签
 export default {
   data () {
     return {

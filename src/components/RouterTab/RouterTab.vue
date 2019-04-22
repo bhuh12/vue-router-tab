@@ -155,7 +155,7 @@
   </div>
 </template>
 
-<script src="./RouterTab.js"></script>
+<script src="./index.js"></script>
 
-<style lang="scss" src="../scss/routerTab.scss"></style>
-<style lang="scss" src="../scss/transition.scss"></style>
+<style lang="scss" src="../../scss/routerTab.scss"></style>
+<style lang="scss" src="../../scss/transition.scss"></style>

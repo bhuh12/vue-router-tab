@@ -1,17 +1,12 @@
 import { emptyObj } from '../util'
-import { getAliveId } from '../util/alive'
 import { getFirstComponentChild } from '../util/dom'
 import { isAlikeRoute, isSameComponentRoute } from '../util/route'
 
+import rule from './RouterTab/rule'
+
 export default {
   name: 'RouterAlive',
-  props: {
-    // 缓存id，如果为函数，则参数为route
-    aliveId: {
-      type: [ String, Function ],
-      default: 'path'
-    }
-  },
+  mixins: [ rule ],
 
   beforeCreate () {
     Object.assign(this, {
@@ -82,8 +77,6 @@ export default {
   },
 
   methods: {
-    getAliveId,
-
     // 设置缓存项
     set (key, item) {
       const { cache } = this

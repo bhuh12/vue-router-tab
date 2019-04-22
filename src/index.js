@@ -1,4 +1,4 @@
-import RouterTab from './components/RouterTab.vue'
+import RouterTab from './components/RouterTab/RouterTab.vue'
 import routerPage from './mixins/routerPage'
 import routes from './util/routes'
 
