@@ -17,7 +17,7 @@
   根据 `route.path` 来缓存页面组件。
 
 
-### i18n
+### language
 
 语言配置
 

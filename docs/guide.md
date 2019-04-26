@@ -529,23 +529,23 @@ export default {
 
 ### 语言配置
 
-通过配置 `router-tab` 组件的 `i18n` 属性，可以设置组件显示的语言 (主要表现为页签右键菜单)。
+通过配置 `router-tab` 组件的 `language` 属性，可以设置组件显示的语言 (主要表现为页签右键菜单)。
 
 
 `RouterTab` 默认语言是 `zh-CN`，另外内置了 `en`。
 
-<doc-links api="#i18n" demo="/lang-en/"></doc-links>
+<doc-links api="#language" demo="/lang-en/"></doc-links>
 
 **指定组件显示为英文**
 
 ``` html
-<router-tab i18n="en"/>
+<router-tab language="en"/>
 ```
 
 **自定义的语言** ([参考配置](https://github.com/bhuh12/vue-router-tab/blob/dev/src/lib/RouterTab/lang/en.js))
 
 ``` html
-<router-tab :i18n="customLanguage"/>
+<router-tab :language="customLanguage"/>
 ```
 
 ``` javascript
@@ -553,20 +553,7 @@ export default {
   data () {
     return {
       customLanguage: {
-        tab: {
-          untitled: 'Untitled Page'
-        },
-        contextmenu: {
-          refresh: 'Refresh This',
-          refreshAll: 'Refresh All',
-          close: 'Close This',
-          closeLefts: 'Close to the Left',
-          closeRights: 'Close to the Right',
-          closeOthers: 'Close Others'
-        },
-        msg: {
-          keepOneTab: 'Keep at least 1 tab'
-        }
+        ...
       }
     }
   }

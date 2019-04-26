@@ -1,6 +1,6 @@
 <template>
   <main class="app-main">
-    <router-tab :i18n="customLanguage" />
+    <router-tab :language="customLanguage" />
   </main>
 </template>
 
