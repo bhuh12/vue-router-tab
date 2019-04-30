@@ -108,6 +108,13 @@ $just-trans: all .2s ease-in-out;
 
   /deep/ .router-tab {
     height: 100%;
+
+    // 路由页面
+    &-page {
+      padding: 15px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
   }
 }
 </style>

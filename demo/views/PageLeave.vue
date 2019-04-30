@@ -1,5 +1,5 @@
 <template>
-  <div class="app-page">
+  <div>
     <h2>页面离开确认</h2>
 
     <p>你在 <strong class="text-strong">{{ pageTime }}</strong> 秒前打开本页面</p>

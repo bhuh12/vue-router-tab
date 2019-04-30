@@ -1,5 +1,5 @@
 <template>
-  <div class="app-page">
+  <div>
     <h2>动态更新页签</h2>
 
     <div class="form-item">

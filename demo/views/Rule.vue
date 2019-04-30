@@ -1,5 +1,5 @@
 <template>
-  <div class="app-page">
+  <div>
     <h2>{{ curRule.label }}页签规则</h2>
 
     <p>你在 <strong class="text-strong">{{ pageTime }}</strong> 秒前打开本页面</p>

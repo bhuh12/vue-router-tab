@@ -283,6 +283,93 @@ this.$routerTab.refreshIframeTab('https://www.baidu.com')
 ```
 
 
+## i18n
+
+### 页签国际化
+
+`router-tab` 组件提供了 `i18n` 属性，用以配置自定义的国际化转换方法，从而实现路由页签的多语言展示。
+
+目前支持国际化的字段有：页签的 `title` 和 `tips`。
+
+组件提供两种方式定义国际化字段：
+
+- `'i18n:custom.i18n.key'`: 字符串方式， `i18n:` 前缀 + 国际化字段的 `key`
+
+- `['custom.i18n.key', ...params]`: 数组方式，第一项为国际化字段的 `key`，后面为参数列表。适用于动态的国际化内容。
+  - 参考: [动态更新页签](#动态更新页签)
+
+
+<doc-links api="#i18n" demo="/i18n/"></doc-links>
+
+**配置自定义国际化方法**
+
+``` html
+<template>
+  <router-tab :i18n="i18n" />
+</template>
+
+<script>
+export default {
+  methods: {
+    // 自定义国际化转换方法
+    i18n (key, params) {
+      // $getI18n 为项目的公共国际化方法
+      return this.$getI18n(key, params)
+    }
+  }
+}
+</script>
+```
+
+**路由配置国际化页签**
+``` javascript {5}
+{
+  path: '/page1',
+  component: pageComponent,
+  meta: {
+    title: 'i18n:routerTab.page1', // 通过配置 'i18n:key' 的方式来设置国际化字段 'routerTab.page1'
+    icon: 'icon-user', // 页签图标，可选
+    tips: 'i18n:routerTab.page1Tips', // 页签提示同样支持国际化
+  }
+}
+```
+
+
+
+### 组件语言
+
+通过配置 `router-tab` 组件的 `language` 属性，可以设置组件显示的语言 (主要表现为页签右键菜单)。
+
+
+`RouterTab` 默认语言是 `zh-CN`，另外内置了 `en`。
+
+<doc-links api="#language" demo="/lang-en/"></doc-links>
+
+**指定组件显示为英文**
+
+``` html
+<router-tab language="en"/>
+```
+
+**自定义的语言** ([参考配置](https://github.com/bhuh12/vue-router-tab/blob/dev/src/lib/RouterTab/lang/en.js))
+
+``` html
+<router-tab :language="customLanguage"/>
+```
+
+``` javascript
+export default {
+  data () {
+    return {
+      customLanguage: {
+        ...
+      }
+    }
+  }
+}
+```
+
+
 ## 页签规则
 
 不同的页签维护着各自的页面缓存，而**页签规则**定义了不同的路由**打开页签的方式**。
@@ -505,9 +592,16 @@ const route = {
 
 **示例：**
 
-``` javascript {8,11,12,13,14,15}
+``` javascript {7,15,18,27}
 export default {
-  name: 'page',
+  name: 'goods',
+  data () {
+    return {
+      goodsName: '商品名',
+      goodsDesc: '商品简介',
+      routeTab: null // routeTab 存放在 data 中以支持响应
+    }
+  },
   mounted () {
     setTimeout(() => {
       let { id } = this.$route.params
@@ -517,45 +611,18 @@ export default {
 
       // 更新多个页签信息
       this.routeTab = {
-        title: `页面${id}动态标题`,
-        icon: 'el-icon-document',
-        tips: `页面${id}动态提示`
+        title: `商品-${this.goodsName}`,
+        icon: 'el-icon-goods',
+        tips: this.goodsDesc
       }
+
+      // 国际化页签标题
+      this.routeTab = {
+        // 以数组方式定义带参数列表的国际化，格式：['i18nKey', ...params]
+        title: ['routerTab.goods', this.goodsName]
+      }
+      
     }, 300)
-  }
-}
-```
-
-
-### 语言配置
-
-通过配置 `router-tab` 组件的 `language` 属性，可以设置组件显示的语言 (主要表现为页签右键菜单)。
-
-
-`RouterTab` 默认语言是 `zh-CN`，另外内置了 `en`。
-
-<doc-links api="#language" demo="/lang-en/"></doc-links>
-
-**指定组件显示为英文**
-
-``` html
-<router-tab language="en"/>
-```
-
-**自定义的语言** ([参考配置](https://github.com/bhuh12/vue-router-tab/blob/dev/src/lib/RouterTab/lang/en.js))
-
-``` html
-<router-tab :language="customLanguage"/>
-```
-
-``` javascript
-export default {
-  data () {
-    return {
-      customLanguage: {
-        ...
-      }
-    }
   }
 }
 ```

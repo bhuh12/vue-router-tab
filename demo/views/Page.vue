@@ -1,5 +1,5 @@
 <template>
-  <div class="app-page">
+  <div>
     <h2 @click="click">
       页面{{ pageId }}
     </h2>
@@ -120,12 +120,15 @@ export default {
   mixins: [ pageTimer ],
   data () {
     let id = this.$route.params.id
+    let isI18nPage = this.$route.fullPath.indexOf('/i18n/') > -1
     return {
       pageId: id,
       nextId: +id + 1,
       prevId: +id - 1,
       routeTab: {
-        title: '页面' + id
+        title: isI18nPage
+          ? ['page', id]
+          : '页面' + id
       },
 
       iframe: {

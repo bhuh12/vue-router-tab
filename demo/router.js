@@ -69,6 +69,25 @@ export default new Router({
     redirect: '/initial-tabs/page/1',
     children: pageRoutes
   }, {
+    path: '/i18n/',
+    component: importLayout('I18n'),
+    redirect: '/i18n/lang',
+    children: [{
+      path: 'lang',
+      component: importPage('I18n'),
+      meta: {
+        title: 'i18n:i18n',
+        icon: 'rt-icon-doc'
+      }
+    }, {
+      path: 'page/:id',
+      component: importPage('Page'),
+      meta: {
+        title: 'i18n:page',
+        icon: 'rt-icon-doc'
+      }
+    }, ...RouterTabRoutes]
+  }, {
     path: '/lang-en/',
     component: importLayout('LangEn'),
     redirect: '/lang-en/page/1',

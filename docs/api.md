@@ -17,9 +17,24 @@
   根据 `route.path` 来缓存页面组件。
 
 
+### i18n
+
+页签国际化转换
+
+- 类型: `Function`
+
+- 参数: 
+  
+  - `{String} [key]`: 国际化字段 `key`
+
+  - `{Array} [params]` 国际化字段参数列表
+
+- 返回: `Strong` 国际化转换后的字符串
+
+
 ### language
 
-语言配置
+组件语言
 
 - 类型: `String | Object`
 
@@ -48,6 +63,7 @@
 
 - 默认值: `[]`
 
+
 ### router-view
 
 **Vue Router Tab 内置 `<router-view>` 组件的配置**
@@ -57,7 +73,6 @@
   配置参考: [Vue Router - \<router-view\> Props](https://router.vuejs.org/zh/api/#router-view-props)
 
 - 默认值: `{}`
-
 
 
 ### tab-transition
@@ -102,54 +117,54 @@
 
 ### routerTab.close
 
+- **说明**：关闭指定 `location` 的页签
+
 - **参数**：
   - `{String | Object} [location]` 路由地址 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
   - `{Boolean} [fullMatch = true]` 是否全匹配（匹配fullPath去除hash部分）
-
-- **说明**：关闭指定 `location` 的页签
 
   
 ### routerTab.refresh
 
+- **说明**：刷新指定 `location` 的页签
+
 - **参数**：
   - `{String | Object} [location]` 路由地址 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
   - `{Boolean} [fullMatch = true]` 是否全匹配（匹配fullPath去除hash部分）
 
-- **说明**：刷新指定 `location` 的页签
-
 
 ### routerTab.refreshAll
+
+- **说明**：刷新所有页签
 
 - **参数**：
   - `{Boolean} [force = false]` 如果 `force` 为 `true`，则忽略页面组件的 `beforePageLeave` 配置，强制刷新所有页签
 
-- **说明**：刷新所有页签
-
 
 ### routerTab.openIframeTab
+
+- **说明**：打开 iframe 页签
 
 - **参数**：
   - `{String} [src]` 要打开的 iframe 页签链接
   - `{String} [title]` 页签标题
   - `{String} [icon]` 页签图标
 
-- **说明**：打开 iframe 页签
-
 
 ### routerTab.closeIframeTab
+
+- **说明**：关闭 iframe 页签
 
 - **参数**：
   - `{String} [src]` 要关闭的 iframe 页签链接
 
-- **说明**：关闭 iframe 页签
-
 
 ### routerTab.refreshIframeTab
 
+- **说明**：刷新 iframe 页签
+
 - **参数**：
   - `{String} [src]` 要刷新的 iframe 页签链接
-
-- **说明**：刷新 iframe 页签
 
 
 
@@ -193,14 +208,14 @@
 
 
 ### beforePageLeave
+
+  - **说明**: 页面离开确认。页面组件选项，与 `data`, `methods` 并列
  
   - **参数**: 
     - `{Function} resolve` 执行后允许离开页签
     - `{Function} reject` 执行后阻止离开页签
     - `{Object} tab` 页签信息
     - `{String} type` 离开类型：`close`: '关闭', `refresh`: '刷新', `replace`: '替换'
-
-  - **说明**: 页面离开确认。页面组件选项，与 `data`, `methods` 并列
 
 
 ### vm.$routerTab

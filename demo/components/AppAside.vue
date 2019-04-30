@@ -29,10 +29,11 @@ export default {
           { text: '过渡效果', to: '/transition/' },
           { text: '初始展示页签', to: '/initial-tabs/' },
           {
-            text: '语言配置',
+            text: 'i18n',
             children: [
-              { text: '指定语言', to: '/lang-en/' },
-              { text: '自定义语言', to: '/lang-custom' }
+              { text: '页签国际化', to: '/i18n/' },
+              { text: '组件语言', to: '/lang-en/' },
+              { text: '组件自定义语言', to: '/lang-custom' }
             ]
           },
           { text: '自定义页签模板', to: '/slot/' }
