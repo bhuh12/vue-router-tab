@@ -1,3 +1,7 @@
+---
+sidebar: auto
+---
+
 # API 参考
 
 ## RouterTab Props
@@ -53,7 +57,7 @@
   
   - tabs子元素类型为 `String` 时，应配置为要打开页面的 `fullPath` ，页签的标题、图标、提示等信息会从对应页面的 `router` 配置中获取
 
-  - tabs子元素类型为 `Object` 时：
+  - tabs子元素类型为 `Object` 时: 
     
     - to: 页签路由地址，跟 `router.push` 的 `location` 参数一致，可以为 `fullPath`，也可以为 `location` 对象 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
     
@@ -66,7 +70,7 @@
 
 ### router-view
 
-**Vue Router Tab 内置 `<router-view>` 组件的配置**
+内置 `router-view` 组件的配置
 
 - 类型: `Object`
   
@@ -90,7 +94,7 @@
 
 ### page-transition
 
-**页面过渡效果**
+页面过渡效果
 
 - 类型: `String | Object`
   
@@ -106,46 +110,46 @@
 
 ### routerTab.activedTab
 
-当前激活的页签id
+当前激活的页签 id
 
 
 ## RouterTab 实例方法
 
 ::: tip
-在 Vue 实例内部，您可以通过 `this.$routerTab` 来访问路由页签实例。例如：调用 `this.$routerTab.close()` 来关闭当前页签。
+在 Vue 实例内部，您可以通过 `this.$routerTab` 来访问路由页签实例。例如: 调用 `this.$routerTab.close()` 来关闭当前页签。
 :::
 
 ### routerTab.close
 
-- **说明**：关闭指定 `location` 的页签
+关闭指定 `location` 的页签
 
-- **参数**：
+- 参数: 
   - `{String | Object} [location]` 路由地址 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
   - `{Boolean} [fullMatch = true]` 是否全匹配（匹配fullPath去除hash部分）
 
   
 ### routerTab.refresh
 
-- **说明**：刷新指定 `location` 的页签
+刷新指定 `location` 的页签
 
-- **参数**：
+- 参数: 
   - `{String | Object} [location]` 路由地址 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
   - `{Boolean} [fullMatch = true]` 是否全匹配（匹配fullPath去除hash部分）
 
 
 ### routerTab.refreshAll
 
-- **说明**：刷新所有页签
+刷新所有页签
 
-- **参数**：
+- 参数: 
   - `{Boolean} [force = false]` 如果 `force` 为 `true`，则忽略页面组件的 `beforePageLeave` 配置，强制刷新所有页签
 
 
 ### routerTab.openIframeTab
 
-- **说明**：打开 iframe 页签
+打开 iframe 页签
 
-- **参数**：
+- 参数: 
   - `{String} [src]` 要打开的 iframe 页签链接
   - `{String} [title]` 页签标题
   - `{String} [icon]` 页签图标
@@ -153,17 +157,17 @@
 
 ### routerTab.closeIframeTab
 
-- **说明**：关闭 iframe 页签
+关闭 iframe 页签
 
-- **参数**：
+- 参数: 
   - `{String} [src]` 要关闭的 iframe 页签链接
 
 
 ### routerTab.refreshIframeTab
 
-- **说明**：刷新 iframe 页签
+刷新 iframe 页签
 
-- **参数**：
+- 参数: 
   - `{String} [src]` 要刷新的 iframe 页签链接
 
 
@@ -174,25 +178,29 @@
 
 ### meta.title
 
-- 类型: `String`
+页签标题
+
+- 类型: `String | Array`
 - 默认值: `'新页签'`
 
-页签标题
+该字段支持国际化配置，参考: [教程 - 多语言支持](../guide/essentials/i18n.md)
 
 
 ### meta.icon
 
-- 类型: `String`
-
 页签图标
+
+- 类型: `String`
 
 
 ### meta.tips
 
-- 类型: `String`
+页签提示
+
+- 类型: `String | Array`
 - 默认值: 默认和页签标题 `meta.title` 保持一致
 
-页签提示
+该字段支持国际化配置，参考: [教程 - 多语言支持](../guide/essentials/i18n.md)
 
 
 ### meta.aliveId
@@ -209,13 +217,13 @@
 
 ### beforePageLeave
 
-  - **说明**: 页面离开确认。页面组件选项，与 `data`, `methods` 并列
+页面离开确认。页面组件选项，与 `data`, `methods` 并列
  
-  - **参数**: 
-    - `{Function} resolve` 执行后允许离开页签
-    - `{Function} reject` 执行后阻止离开页签
-    - `{Object} tab` 页签信息
-    - `{String} type` 离开类型：`close`: '关闭', `refresh`: '刷新', `replace`: '替换'
+- 参数: 
+  - `{Function} resolve` 执行后允许离开页签
+  - `{Function} reject` 执行后阻止离开页签
+  - `{Object} tab` 页签信息
+  - `{String} type` 离开类型: `close`: '关闭', `refresh`: '刷新', `replace`: '替换'
 
 
 ### vm.$routerTab
@@ -229,8 +237,8 @@
 
 ### vm._isRouterPage
 
-**是否是路由页面**：在通过 `RouterTab` 加载的页面组件内部，访问 `this._isRouterPage` 会返回 `true`
+**是否是路由页面**: 在通过 `RouterTab` 加载的页面组件内部，访问 `this._isRouterPage` 会返回 `true`
 
 ::: tip
-应用：在需要给路由页面添加全局混入 `mixin` 时，可在生命周期钩子（ `created` 之后）里判断 `this._isRouterPage`
+应用: 在需要给路由页面添加全局混入 `mixin` 时，可在生命周期钩子（ `created` 之后）里判断 `this._isRouterPage`
 :::

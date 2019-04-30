@@ -4,7 +4,7 @@ heroImage: https://bhuh12.github.io/vue-router-tab/demo/img/logo.png
 heroText: Vue Router Tab
 tagline: 基于 Vue Router 的路由页签组件。
 actionText: 快速上手 →
-actionLink: ./guide.html
+actionLink: ./guide/
 features:
 - title: 简洁至上
   details: 配置简单，引入组件后通过路由的 "meta" 元信息配置页签信息即可运行。

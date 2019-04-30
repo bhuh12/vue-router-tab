@@ -23,22 +23,18 @@ $color = #3eaf7c;
 
 // 站点名称前注入 logo
 .navbar .home-link
-  position relative
-  top -2px
-
   &::before
     $s = 1.3rem
     content ''
     display inline-block
     margin-right .3rem
+    margin-top .45rem
     width $s
     height $s
-    vertical-align middle
+    vertical-align: top
     background url(https://bhuh12.github.io/vue-router-tab/demo/img/logo.png)
     background-size cover
 
-  .site-name
-    vertical-align middle
 
 // Logo 图片
 .home .hero img

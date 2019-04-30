@@ -16,20 +16,72 @@ module.exports = {
 
   // 主题配置
   themeConfig: {
-    // 页头
-    displayAllHeaders: true,
-
     // 页头导航
     nav: [
-      { text: '教程', link: '/guide.html' },
-      { text: 'API', link: '/api.html' },
+      { text: '教程', link: '/guide/' },
+      { text: 'API', link: '/api/' },
       { text: 'Demo', link: demoUrl },
       { text: '更新日志', link: 'https://github.com/bhuh12/vue-router-tab/releases' },
       { text: '主页', link: 'https://bhuh.net' }
     ],
 
+    // 侧边栏显示所有子集菜单 (默认显示活动)
+    // displayAllHeaders: true,
+
     // 侧边栏
-    sidebar: 'auto',
+    sidebar: {
+      '/guide/': [
+        '',
+        'installation',
+        {
+          title: '基础',
+          collapsable: false,
+          children: [
+            'essentials/',
+            'essentials/operate',
+            'essentials/iframe',
+            'essentials/rule',
+            'essentials/i18n'
+          ]
+        },
+        {
+          title: '进阶',
+          collapsable: false,
+          children: [
+            'advanced/transition',
+            'advanced/slot',
+            'advanced/initial-tabs',
+            'advanced/dynamic-tab-info',
+            'advanced/page-leave'
+          ]
+        }
+      ]
+    }/* [
+      '/guide/',
+      '/guide/installation',
+      {
+        title: '基础',
+        collapsable: false,
+        children: [
+          '/guide/essentials/',
+          '/guide/essentials/operate',
+          '/guide/essentials/rule',
+          '/guide/essentials/i18n'
+        ]
+      },
+      {
+        title: '进阶',
+        collapsable: false,
+        children: [
+          '/guide/advanced/',
+          '/guide/advanced/transition',
+          '/guide/advanced/slot',
+          '/guide/advanced/initial-tabs',
+          '/guide/advanced/dynamic-tab-info',
+          '/guide/advanced/page-leave'
+        ]
+      }
+    ] */,
 
     // Demo路径
     demoUrl: demoUrl,
