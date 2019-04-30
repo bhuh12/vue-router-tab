@@ -56,32 +56,7 @@ module.exports = {
           ]
         }
       ]
-    }/* [
-      '/guide/',
-      '/guide/installation',
-      {
-        title: '基础',
-        collapsable: false,
-        children: [
-          '/guide/essentials/',
-          '/guide/essentials/operate',
-          '/guide/essentials/rule',
-          '/guide/essentials/i18n'
-        ]
-      },
-      {
-        title: '进阶',
-        collapsable: false,
-        children: [
-          '/guide/advanced/',
-          '/guide/advanced/transition',
-          '/guide/advanced/slot',
-          '/guide/advanced/initial-tabs',
-          '/guide/advanced/dynamic-tab-info',
-          '/guide/advanced/page-leave'
-        ]
-      }
-    ] */,
+    },
 
     // Demo路径
     demoUrl: demoUrl,
@@ -95,6 +70,12 @@ module.exports = {
     docsBranch: 'dev',
     
     lastUpdated: '上次更新',
+
+    // Algolia 搜索
+    algolia: {
+      apiKey: 'fdd2c011c382dd55036237094d62bd9e',
+      indexName: 'vue-router-tab'
+    }
   },
 
   // markdow 配置

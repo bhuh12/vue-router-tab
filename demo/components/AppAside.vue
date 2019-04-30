@@ -29,7 +29,7 @@ export default {
           { text: '过渡效果', to: '/transition/' },
           { text: '初始展示页签', to: '/initial-tabs/' },
           {
-            text: 'i18n',
+            text: '多语言支持',
             children: [
               { text: '页签国际化', to: '/i18n/' },
               { text: '组件语言', to: '/lang-en/' },
