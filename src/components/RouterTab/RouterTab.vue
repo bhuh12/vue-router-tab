@@ -1,8 +1,9 @@
 <template>
   <div class="router-tab">
-    <!-- 页签列表 -->
+    <!-- 页签头部 -->
     <header class="router-tab-header">
       <div class="router-tab-scroll">
+        <!-- 页签列表 -->
         <transition-group
           tag="ul"
           class="router-tab-nav"
@@ -16,7 +17,7 @@
             class="router-tab-item"
             tag="li"
             :class="{ actived: activedTab === id, contextmenu: contextmenu.id === id }"
-            :title="tips || title || ''"
+            :title="i18nText(tips || title) || lang.tab.untitled"
             :to="to"
             @contextmenu.native.prevent="e => showContextmenu(id, index, e)"
           >
@@ -32,7 +33,7 @@
                 class="tab-icon"
                 :class="icon"
               />
-              <span class="tab-title">{{ title || lang.tab.untitled }}</span>
+              <span class="tab-title">{{ i18nText(title) || lang.tab.untitled }}</span>
               <i
                 v-if="closable !== false && items.length > 1"
                 class="tab-close"
@@ -60,6 +61,7 @@
       class="router-tab-container"
       :class="{ loading }"
     >
+      <!-- 路由页面 -->
       <router-alive
         ref="routerAlive"
         :alive-id="aliveId"
@@ -80,6 +82,7 @@
         </transition>
       </router-alive>
 
+      <!-- iframe 页面 -->
       <transition-group
         v-bind="typeof pageTransition === 'string' ? { name: pageTransition } : pageTransition"
         tag="div"

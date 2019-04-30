@@ -11,6 +11,7 @@ export default {
     closeOthers: 'Close Others'
   },
   msg: {
-    keepOneTab: 'Keep at least 1 tab'
+    keepOneTab: 'Keep at least 1 tab',
+    i18nProp: 'Method "i18n" is not defined on the instance'
   }
 }
