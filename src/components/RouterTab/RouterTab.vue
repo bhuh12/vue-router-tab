@@ -47,11 +47,11 @@
 
       <!-- 页签滚动 -->
       <a
-        class="el-icon-caret-left nav-prev"
+        class="nav-prev"
         @click="tabScroll('left')"
       />
       <a
-        class="el-icon-caret-right nav-next"
+        class="nav-next"
         @click="tabScroll('right')"
       />
     </header>
