@@ -48,7 +48,7 @@ export default {
 
   data () {
     return {
-      loading: false, // 路由页面loading
+      loading: false, // 路由页面 loading
       items: [], // 页签项
       activedTab: null, // 当前激活的页签
       isRouterAlive: true
@@ -94,7 +94,7 @@ export default {
           let tab = this.getRouteTab(route)
           let id = tab.id
 
-          // 根据id去重
+          // 根据 id 去重
           if (!ids[id]) {
             // 初始 tab 数据
             if (title) tab.title = title
@@ -112,7 +112,7 @@ export default {
       this.activedTab = this.getAliveId()
     },
 
-    // 更新tab数据
+    // 更新 tab 数据
     updateTab (key, { route, tab }) {
       let { items } = this
       let matchIdx = items.findIndex(({ id }) => id === key)
@@ -147,7 +147,7 @@ export default {
       }
     },
 
-    // 从route中获取tab数据
+    // 从 route 中获取 tab 数据
     getRouteTab (route) {
       let id = this.getAliveId(route)
       let { fullPath: to, meta } = route
@@ -156,7 +156,7 @@ export default {
       return { id, to, title, icon, tips }
     },
 
-    // 移除tab项
+    // 移除 tab 项
     async removeTab (id) {
       let { items } = this
       let $alive = this.$refs.routerAlive
@@ -187,7 +187,7 @@ export default {
       }
     },
 
-    // 通过页签id关闭页签
+    // 通过页签 id 关闭页签
     async closeTab (id = this.activedTab) {
       let { activedTab, items, $router } = this
       const idx = items.findIndex(item => item.id === id)
@@ -228,7 +228,7 @@ export default {
 
     /**
      * 刷新所有页签
-     * @param {boolean} [force=false] 是否强制刷新，如果强制则忽略页面beforePageLeave
+     * @param {boolean} [force=false] 是否强制刷新，如果强制则忽略页面 beforePageLeave
      */
     async refreshAll (force = false) {
       const $alive = this.$refs.routerAlive
@@ -268,7 +268,7 @@ export default {
       if (!this.isRouterAlive) this.isRouterAlive = true
     },
 
-    // 修复：当快速频繁切换页签时，旧页面离开过渡效果尚未完成，新页面内容无法正常mount，内容节点为comment类型
+    // 修复：当快速频繁切换页签时，旧页面离开过渡效果尚未完成，新页面内容无法正常 mount，内容节点为 comment 类型
     fixCommentPage () {
       if (this.$refs.routerAlive.$el.nodeType === 8) {
         this.reloadRouter(true)

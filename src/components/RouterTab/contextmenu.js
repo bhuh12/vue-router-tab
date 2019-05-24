@@ -47,7 +47,7 @@ export default {
   },
 
   watch: {
-    // 路由切换更新激活的页签
+    // 路由切换隐藏右键菜单
     $route ($route) {
       this.hideContextmenu()
     },
