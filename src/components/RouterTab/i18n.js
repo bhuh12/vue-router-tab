@@ -35,7 +35,7 @@ export default {
   methods: {
     // 获取国际化内容
     i18nText (text) {
-      let { key, params } = this.ii8nParse(text)
+      let { key, params } = this.i18nParse(text)
 
       if (key) {
         const hasI18nProp = typeof this.i18n === 'function'
@@ -55,7 +55,7 @@ export default {
     },
 
     // 解析国际化
-    ii8nParse (text) {
+    i18nParse (text) {
       let key
       let params
 
