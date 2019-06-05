@@ -7,12 +7,12 @@
           class="tab-icon"
           :class="icon"
         />
-        <span class="tab-title">{{ title || '未命名页签' }}</span>
+        <span class="tab-title">{{ $routerTab.i18nText(title) || '未命名页签' }}</span>
         <span class="tab-badge">{{ index }}</span>
         <i
-          v-if="closable !== false &&tabs.length > 1"
-          class="tab-close el-icon-close"
-          @click.prevent="$routerTab.close(id)"
+          v-if="closable !== false && tabs.length > 1"
+          class="tab-close"
+          @click.prevent="$routerTab.closeTab(id)"
         />
       </template>
     </router-tab>
