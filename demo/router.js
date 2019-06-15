@@ -8,8 +8,18 @@ const importLayout = view => () => import(/* webpackChunkName: "ly-[request]" */
 
 Vue.use(Router)
 
-// 路由页面
-let pageRoutes = [{
+// 404 路由
+const route404 = {
+  path: '404',
+  component: importPage('404'),
+  meta: {
+    title: '找不到页面',
+    icon: 'rt-icon-warning'
+  }
+}
+
+// 页面路由
+const pageRoutes = [{
   path: 'page/:id',
   component: importPage('Page'),
   meta: {
@@ -47,9 +57,10 @@ let pageRoutes = [{
     title: '页面离开确认',
     icon: 'rt-icon-contact'
   }
-}, ...RouterTabRoutes]
+}, route404, ...RouterTabRoutes]
 
-export default new Router({
+// Vue Router 实例
+const $router = new Router({
   routes: [{
     path: '/',
     redirect: '/default/page/1'
@@ -86,7 +97,7 @@ export default new Router({
         title: 'i18n:page',
         icon: 'rt-icon-doc'
       }
-    }, ...RouterTabRoutes]
+    }, route404, ...RouterTabRoutes]
   }, {
     path: '/lang-en/',
     component: importLayout('LangEn'),
@@ -107,15 +118,27 @@ export default new Router({
     component: importLayout('GlobalRule'),
     redirect: '/global-rule/rule/a/1',
     children: pageRoutes
-  }, {
-    path: '/404',
-    component: importPage('404'),
-    meta: {
-      title: '找不到页面',
-      icon: 'rt-icon-warning'
-    }
-  }, {
+  }, Object.assign({}, route404, {
+    path: '/404'
+  }), {
     path: '*',
-    redirect: '/404'
+    redirect (to) {
+      const match = /^(\/[^/]+\/)/.exec(to.path)
+
+      if (match) {
+        const base = match[1]
+        const matchParent = $router.options.routes.find(item => item.path === base)
+
+        // 跳转子路由 404
+        if (matchParent) {
+          return base + '404'
+        }
+      }
+
+      // 全局 404
+      return '/404'
+    }
   }]
 })
+
+export default $router
