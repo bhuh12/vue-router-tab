@@ -1,16 +1,23 @@
 # 安装
 
+::: warning
+请确保你的 Node.js 版本 >= 8.6，旧的版本可能存在错误。
+:::
+
 ### NPM
 
-``` bash
-npm install vue-router-tab
-```
-
-**yarn** (推荐)
+推荐使用 yarn：
 
 ``` bash
 yarn add vue-router-tab
 ```
+
+你也可以用 npm：
+
+``` bash
+npm i vue-router-tab -S
+```
+
 
 ### 构建开发版
 

@@ -46,73 +46,74 @@
 
 <h2 align="center">Vue Router Tab</h2>
 
-Vue Router Tab 是基于 `Vue Router` 的路由页签组件，用来实现多页签页面的管理。
+Vue Router Tab 是基于 Vue Router 的路由页签组件，用来实现多页签页面的管理。
 
 
-## 功能
+## 📌 功能
 
-- 响应路由变化来打开或切换页签
-- 页签右键菜单操作
-- [页签规则](https://bhuh12.github.io/vue-router-tab/guide/essentials/rule.html)配置
-- 内置页签和页面[过渡效果](https://bhuh12.github.io/vue-router-tab/guide/advanced/transition.html)，支持自定义配置
-- [自定义页签模板](https://bhuh12.github.io/vue-router-tab/guide/advanced/slot.html)
-- [初始页签数据](https://bhuh12.github.io/vue-router-tab/guide/advanced/initial-tabs.html)，进入页面时默认显示的页签
-- [动态更新页签信息](https://bhuh12.github.io/vue-router-tab/guide/advanced/dynamic-tab-info.html) (标题/图标/提示)
-- [iframe 页签嵌入外部网站](https://bhuh12.github.io/vue-router-tab/guide/essentials/iframe.html)
-- [页签页面离开 (页签关闭/刷新/替换) 前确认](https://bhuh12.github.io/vue-router-tab/guide/advanced/page-leave.html)
-- [多语言支持](https://bhuh12.github.io/vue-router-tab/guide/essentials/i18n.html)
+✅ 响应路由变化来打开或切换页签
 
+✅ 页签右键菜单操作
 
-## 安装
+✅ [页签规则](https://bhuh12.github.io/vue-router-tab/guide/essentials/rule.html)配置
 
-### npm
+✅ 内置页签和页面[过渡效果](https://bhuh12.github.io/vue-router-tab/guide/advanced/transition.html)，支持自定义配置
 
-``` bash
-npm i vue-router-tab -S
-```
+✅ [自定义页签模板](https://bhuh12.github.io/vue-router-tab/guide/advanced/slot.html)
 
-### yarn (推荐)
+✅ [初始页签数据](https://bhuh12.github.io/vue-router-tab/guide/advanced/initial-tabs.html)，进入页面时默认显示的页签
 
-``` bash
-yarn add vue-router-tab
-```
+✅ [动态更新页签信息](https://bhuh12.github.io/vue-router-tab/guide/advanced/dynamic-tab-info.html) (标题/图标/提示)
+
+✅ [iframe 页签嵌入外部网站](https://bhuh12.github.io/vue-router-tab/guide/essentials/iframe.html)
+
+✅ [页签页面离开 (页签关闭/刷新/替换) 前确认](https://bhuh12.github.io/vue-router-tab/guide/advanced/page-leave.html)
+
+✅ [多语言支持](https://bhuh12.github.io/vue-router-tab/guide/essentials/i18n.html)
 
 
-## 文档：
+## 🛠 安装
+
+[https://bhuh12.github.io/vue-router-tab/guide/installation.html](https://bhuh12.github.io/vue-router-tab/guide/installation.html)
+
+## 📝 文档
+
 [https://bhuh12.github.io/vue-router-tab/](https://bhuh12.github.io/vue-router-tab/)
 
   - 介绍：
   [https://bhuh12.github.io/vue-router-tab/guide/](https://bhuh12.github.io/vue-router-tab/guide/)
 
-  - 安装：
-  [https://bhuh12.github.io/vue-router-tab/guide/installation.html](https://bhuh12.github.io/vue-router-tab/guide/installation.html)
-
   - 入门：
   [https://bhuh12.github.io/vue-router-tab/guide/essentials/](https://bhuh12.github.io/vue-router-tab/guide/essentials/)
 
-## 演示：
+  - API：
+  [https://bhuh12.github.io/vue-router-tab/api/](https://bhuh12.github.io/vue-router-tab/api/)
+
+## 📺 演示
+
 [https://bhuh12.github.io/vue-router-tab/demo/](https://bhuh12.github.io/vue-router-tab/demo/)
 
-## 更新日志
+## 📃 更新日志
+
 [https://github.com/bhuh12/vue-router-tab/releases](https://github.com/bhuh12/vue-router-tab/releases)
 
 ---
 
 
-## NPM 任务
+## 🏷 NPM 任务
 
 | 任务 | 命令 | 备注 |
 | ---- | ---- | ---- |
-| **插件**：构建 | `npm run lib:build` |
-| **插件**：构建并生成报告 | `npm run lib:build:report` |
-| **插件**：发布 | `npm run lib:publish` | 操作前：更改 `package.json` 中的 `version` 为新的版本号 |
-| **Demo**：开发 | `npm run demo:dev` |
-| **Demo**：构建 | `npm run demo:build` |
-| **文档**：开发 | `npm run docs:dev` |
-| **文档**：构建 | `npm run docs:build` |
-| **代码**风格：检查 | `npm run lint` |
-| **代码**风格：检查并修复 | `npm run lint:fix` |
-| **代码**：提交 | `npm run commit` |
+| 插件构建 | `npm run lib:build` |
+| 插件构建并生成报告 | `npm run lib:build:report` |
+| 插件发布 | `npm run lib:publish` | 操作前更改 `package.json` 中的 `version` 为新的版本号 |
+| Demo 开发 | `npm run demo:dev` |
+| Demo 构建 | `npm run demo:build` |
+| 文档开发 | `npm run docs:dev` |
+| 文档构建 | `npm run docs:build` |
+| 代码风格检查 | `npm run lint` |
+| 代码风格检查并修复 | `npm run lint:fix` |
+| 代码提交 | `npm run commit` |
 
 
 ## License

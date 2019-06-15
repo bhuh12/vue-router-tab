@@ -14,6 +14,8 @@ module.exports = {
   // 输出目录
   dest: 'dist/docs',
 
+  host: 'localhost',
+
   // 主题配置
   themeConfig: {
     // 页头导航
@@ -54,7 +56,8 @@ module.exports = {
             'advanced/dynamic-tab-info',
             'advanced/page-leave'
           ]
-        }
+        },
+        'program',
       ]
     },
 
