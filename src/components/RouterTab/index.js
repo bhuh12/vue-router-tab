@@ -2,10 +2,7 @@ import Vue from 'vue'
 
 // 方法
 import { emptyObj } from '../../util'
-import { getPathWithoutHash } from '../../util/route'
-
-// 子组件
-import RouterAlive from '../RouterAlive'
+import { warn } from '../../util/warn'
 
 // 功能模块混入
 import contextmenu from './contextmenu'
@@ -18,7 +15,6 @@ import scroll from './scroll'
 // RouterTab 组件
 export default {
   name: 'RouterTab',
-  components: { RouterAlive },
   mixins: [ contextmenu, i18n, iframe, pageLeave, rule, scroll ],
   props: {
     // 初始页签数据
@@ -51,7 +47,7 @@ export default {
       loading: false, // 路由页面 loading
       items: [], // 页签项
       activedTab: null, // 当前激活的页签
-      isRouterAlive: true
+      isViewAlive: true
     }
   },
 
@@ -64,16 +60,10 @@ export default {
     }
   },
 
-  beforeCreate () {
+  created () {
     // 添加到原型链
     Vue.prototype.$routerTab = this
 
-    // 获取跟路径
-    let matched = this.$route.matched
-    this.basePath = (matched[matched.length - 2] || {}).path
-  },
-
-  created () {
     this.getTabItems()
     this.updateActivedTab()
   },
@@ -132,28 +122,27 @@ export default {
     getIdByLocation (location, fullMatch = true) {
       if (!location) return
 
-      let $route = this.$router.match(location, this.$router.currentRoute)
+      let route = this.$router.match(location, this.$router.currentRoute)
 
       // 路由地址精确匹配页签
       if (fullMatch) {
-        let matchPath = getPathWithoutHash($route)
+        let matchPath = this.getPathWithoutHash(route)
         let matchTab = this.items.find(({ to }) => to.split('#')[0] === matchPath)
 
         if (matchTab) {
           return matchTab.id
         }
       } else {
-        return this.getAliveId($route)
+        return this.getAliveId(route)
       }
     },
 
     // 从 route 中获取 tab 数据
-    getRouteTab (route) {
+    getRouteTab (route, matchRoutes = this.matchRoutes(route)) {
       let id = this.getAliveId(route)
-      let { fullPath: to, meta } = route
-      let { title, icon, tips } = meta
+      let { title, icon, tips } = matchRoutes.pageRoute.meta
 
-      return { id, to, title, icon, tips }
+      return { id, to: route.fullPath, title, icon, tips }
     },
 
     // 移除 tab 项
@@ -201,7 +190,7 @@ export default {
           $router.replace(nextTab.to)
         }
       } catch (e) {
-        console.warn(e)
+        warn(false, e)
       }
     },
 
@@ -222,7 +211,7 @@ export default {
       try {
         await this.pageLeavePromise(id, 'refresh')
         this.$refs.routerAlive.clear(id)
-        if (id === this.activedTab) this.reloadRouter()
+        if (id === this.activedTab) this.reloadView()
       } catch (e) {}
     },
 
@@ -243,18 +232,18 @@ export default {
           $alive.clear(id)
         }
       }
-      this.reloadRouter()
+      this.reloadView()
     },
 
-    // 重载路由组件
-    async reloadRouter (ignoreTransition = false) {
-      this.isRouterAlive = false
+    // 重载路由视图
+    async reloadView (ignoreTransition = false) {
+      this.isViewAlive = false
 
-      // 默认在页面过渡结束后会设置 isRouterAlive 为 true
+      // 默认在页面过渡结束后会设置 isViewAlive 为 true
       // 如果过渡事件失效，则需传入 ignoreTransition 为 true 手动更改
       if (ignoreTransition) {
         await this.$nextTick()
-        this.isRouterAlive = true
+        this.isViewAlive = true
       }
     },
 
@@ -265,13 +254,13 @@ export default {
 
     // 页面过渡结束
     onPageTransitionEnd () {
-      if (!this.isRouterAlive) this.isRouterAlive = true
+      if (!this.isViewAlive) this.isViewAlive = true
     },
 
     // 修复：当快速频繁切换页签时，旧页面离开过渡效果尚未完成，新页面内容无法正常 mount，内容节点为 comment 类型
     fixCommentPage () {
       if (this.$refs.routerAlive.$el.nodeType === 8) {
-        this.reloadRouter(true)
+        this.reloadView(true)
       }
     }
   }

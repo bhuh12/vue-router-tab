@@ -31,21 +31,15 @@
         <router-link
           v-for="t in types"
           :key="t"
-          class="demo-btn"
+          class="demo-btn link"
           :to="`../${cat}/${t}`"
         >
           {{ cat }}/{{ t }}
         </router-link>
-        <router-link
-          class="demo-btn"
-          :to="`../${cat}/1?q=abc`"
-        >
+        <router-link class="demo-btn link" :to="`../${cat}/1?q=abc`">
           {{ cat }}/1?q=abc
         </router-link>
-        <router-link
-          class="demo-btn"
-          :to="`../${cat}/1?q=def`"
-        >
+        <router-link class="demo-btn link" :to="`../${cat}/1?q=def`">
           {{ cat }}/1?q=def
         </router-link>
       </li>
@@ -81,20 +75,20 @@ export default {
       default: {
         label: '默认',
         type: '内置规则："path"',
-        fn: 'route => route.path',
-        desc: '相同route.params的路由共用页签'
+        fn: '(route, pagePath) => pagePath || route.path',
+        desc: '相同 route.params 的路由共用页签，嵌套路由页签根据 pagePath'
       },
       global: {
         label: '全局',
         type: '内置规则："fullPath"',
-        fn: 'route => route.fullPath.replace(route.hash, \'\')',
-        desc: '相同route.params和route.query的路由共用页签'
+        fn: '(route, pagePath) => pagePath || route.fullPath.replace(route.hash, \'\')',
+        desc: '相同 route.params 和 route.query 的路由共用页签，嵌套路由页签根据 pagePath'
       },
       route: {
         label: '路由',
         type: '自定义规则',
         fn: 'route => \'route-rule/\' + route.params.catalog',
-        desc: '相同catalog参数的路由共用页签'
+        desc: '相同 catalog 参数的路由共用页签'
       }
     }
 
@@ -128,17 +122,6 @@ export default {
 
     .demo-btn {
       margin-right: .5em;
-
-      &:hover {
-        color: $color-primary;
-        border-color: $color-primary;
-      }
-
-      &.router-link-exact-active {
-        color: #fff;
-        background-color: $color-primary;
-        border-color: rgba(0,0,0,.05);
-      }
     }
   }
 }

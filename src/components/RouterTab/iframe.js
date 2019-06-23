@@ -10,14 +10,12 @@ export default {
   methods: {
     // 获取 iframe 页签路由路径
     getIframePath (src, title = null, icon = null) {
-      let path = `${this.basePath}/iframe/${encodeURIComponent(src)}`
+      let path = `${this.getBasePath()}/iframe/${encodeURIComponent(src)}`
 
       if (title) {
         path += '/' + title
 
-        if (icon) {
-          path += '/' + icon
-        }
+        if (icon) path += '/' + icon
       }
 
       return path

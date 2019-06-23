@@ -62,7 +62,10 @@
       "@vue/standard"
     ],
     "rules": {
-      "vue/require-default-prop": false
+      "vue/require-default-prop": false,
+      "vue/max-attributes-per-line": ["error", {
+        "singleline": 3
+      }]
     },
     "parserOptions": {
       "parser": "babel-eslint"

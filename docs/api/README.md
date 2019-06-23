@@ -14,7 +14,10 @@ sidebar: auto
 
   - 如果类型为 `String` ，则可使用内置的缓存规则，`path` (默认) 和 `fullPath`
 
-  - 如果类型为 `Function` ，则取 `aliveId(route)` 返回的字符串。该函数传入相同的 `route` 应返回固定的字符串，以免页签无法与缓存的页面对应
+  - 如果类型为 `Function` ，则取 `aliveId(route, pagePath)` 返回的字符串。
+    - `route` 为页面路由对象。
+    - `pagePath` 当页面存在嵌套路由时生效，为匹配页面所在路由链的路径
+    - 该函数传入相同的 `route` 应返回固定的字符串，以免页签无法与缓存的页面对应
 
 - 默认值: `'path'`
   

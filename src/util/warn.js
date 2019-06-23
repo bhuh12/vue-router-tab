@@ -1,4 +1,4 @@
-const prefix = '[vue-router-tab]'
+const prefix = '[Vue Router Tab]'
 
 // 错误
 export function assert (condition, message) {

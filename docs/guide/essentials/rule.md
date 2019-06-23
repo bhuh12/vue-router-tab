@@ -6,13 +6,13 @@
 ## 内置规则
 
 - `path` (默认规则)
-  - 规则：`route => route.path` 
-  - 说明：相同route.params的路由共用页签
+  - 规则：`(route, pagePath) => pagePath || route.path` 
+  - 说明：相同 route.params 的路由共用页签，嵌套路由页签根据 pagePath
   - <demo-link href="/default/rule/a/1"/>
 
 - `fullPath`
-  - 规则：`route => route.fullPath.replace(route.hash, '')` 
-  - 说明：相同route.params和route.query的路由共用页签
+  - 规则：`(route, pagePath) => pagePath || route.fullPath.replace(route.hash, '')` 
+  - 说明：相同 route.params 和 route.query 的路由共用页签，嵌套路由页签根据 pagePath
   - <demo-link href="/global-rule/rule/a/1"/>
 
 
@@ -25,7 +25,7 @@
 **示例：**
 
 ``` html
-<router-tab :alive-id="route => route.fullPath.replace(route.hash, '')"/>
+<router-tab :alive-id="(route, pagePath) => pagePath || route.fullPath.replace(route.hash, '')"/>
 ```
 
 例子中，配置 `alive-id` 为 `fullPath` 去除 `hash` 部分。
@@ -55,7 +55,7 @@ const route = {
   },
   meta: {
     title: '定制规则',
-    aliveId (route) {
+    aliveId (route, pagePath) {
       return `/my-page/${route.params.catalog}`
     }
   }

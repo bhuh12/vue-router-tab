@@ -5,6 +5,8 @@ import { scrollTo } from '../../util/dom'
 export default {
   watch: {
     async activedTab () {
+      if (!this.$el) return
+
       // 激活页签时，如果当前页签不在可视区域，则滚动显示页签
       await this.$nextTick()
 
@@ -46,6 +48,8 @@ export default {
 
     // 调整Tab滚动显示
     adjust () {
+      if (!this.$el) return
+
       let $tab = this.$el.querySelector('.router-tab-header')
       let $scr = $tab.querySelector('.router-tab-scroll')
       let $nav = $scr.querySelector('.router-tab-nav')

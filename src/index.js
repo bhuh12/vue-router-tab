@@ -1,4 +1,5 @@
 import RouterTab from './components/RouterTab/RouterTab.vue'
+import RouterAlive from './components/RouterAlive'
 import routerPage from './mixins/routerPage'
 import routes from './util/routes'
 
@@ -8,6 +9,7 @@ RouterTab.install = function install (Vue, options) {
   install.installed = true
 
   Vue.component(RouterTab.name, RouterTab)
+  Vue.component(RouterAlive.name, RouterAlive)
   Vue.mixin(routerPage)
 }
 

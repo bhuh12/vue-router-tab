@@ -89,6 +89,19 @@ a:link {
     color: $activeColor;
     border-color: $activeColor;
   }
+  
+  &.link {
+    &:hover {
+      color: $color-primary;
+      border-color: $color-primary;
+    }
+  
+    &.router-link-exact-active {
+      color: #fff;
+      background-color: $color-primary;
+      border-color: rgba(0,0,0,.05);
+    }
+  }
 
   &.primary {
     color: #fff;

@@ -74,7 +74,7 @@
           @after-leave="onPageTransitionEnd"
         >
           <router-view
-            v-if="isRouterAlive"
+            v-if="isViewAlive"
             ref="routerView"
             v-bind="routerView"
             class="router-tab-page"

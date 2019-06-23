@@ -1,6 +1,5 @@
 import { emptyObj } from '../util'
 import { getFirstComponentChild } from '../util/dom'
-import { isAlikeRoute, isSameComponentRoute } from '../util/route'
 
 import rule from './RouterTab/rule'
 
@@ -8,7 +7,7 @@ export default {
   name: 'RouterAlive',
   mixins: [ rule ],
 
-  beforeCreate () {
+  created () {
     Object.assign(this, {
       cache: Object.create(null),
       lastRoute: this.$route
@@ -33,41 +32,43 @@ export default {
         const { vm: cacheVm, route: cacheRoute } = cacheItem || emptyObj
 
         // 是否需要重载路由强制刷新页面组件
-        let needReloadRouter = false
+        let needReloadView = false
 
         // 路由是否改变
         let isRouteChange = lastRoute !== $route
 
         // 是否跟上次路由共用组件
-        let isSameComponent = isRouteChange && isSameComponentRoute($route, lastRoute)
+        let isShareComp = isRouteChange &&
+          !this.isAlikeRoute($route, lastRoute) &&
+          this.getPageComp($route) === this.getPageComp(lastRoute)
 
         if (isRouteChange) {
           // 更新上次路由
           this.lastRoute = $route
 
           // 添加缓存
-          if (!cacheItem) this.set(key, { route: $route })
+          this.set(key, { route: $route })
         }
 
         if (cacheVm) {
-          // 缓存组件的路由地址除hash外一致则取缓存的组件
-          if (isAlikeRoute(cacheRoute, $route)) {
+          // 缓存组件的路由地址匹配则取缓存的组件
+          if (this.isAlikeRoute(cacheRoute, $route)) {
             pageNode.componentInstance = cacheVm
           } else {
             // 缓存组件路由地址不匹配则销毁缓存并重载路由
             cacheVm.$destroy()
             cacheItem.vm = null
-            needReloadRouter = true
+            needReloadView = true
           }
         }
 
-        // 路由改变后但组件相同需重载路由
-        if (isSameComponent) needReloadRouter = true
+        // 共用组件的路由切换需重载路由
+        if (isShareComp) needReloadView = true
 
         // 重载路由以强制更新页面
-        needReloadRouter && this.$routerTab.reloadRouter()
+        needReloadView && this.$routerTab.reloadView()
 
-        // 标记为keepAlive和routerAlive
+        // 标记为 keepAlive和 routerAlive
         pageNode.data.keepAlive = true
         pageNode.data.routerAlive = this
       }
@@ -80,6 +81,11 @@ export default {
     // 设置缓存项
     set (key, item) {
       const { cache } = this
+      const origin = cache[key]
+
+      if (origin) {
+        item = Object.assign(origin, item)
+      }
 
       this.$emit('update', key, item)
 
@@ -95,6 +101,7 @@ export default {
       // 销毁组件实例
       if (item) {
         item.vm && item.vm.$destroy()
+        item.vm = null
         delete cache[key]
       }
 
