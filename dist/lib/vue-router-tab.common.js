@@ -94,14 +94,6 @@ module.exports =
 
 /***/ }),
 
-/***/ "4795":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("96cf");
-
-
-/***/ }),
-
 /***/ "4ba7":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -853,6 +845,14 @@ try {
 
 /***/ }),
 
+/***/ "a34a":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("96cf");
+
+
+/***/ }),
+
 /***/ "e42d":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -871,6 +871,49 @@ try {
 
 /***/ }),
 
+/***/ "f6fd":
+/***/ (function(module, exports) {
+
+// document.currentScript polyfill by Adam Miller
+
+// MIT license
+
+(function(document){
+  var currentScript = "currentScript",
+      scripts = document.getElementsByTagName('script'); // Live NodeList collection
+
+  // If browser needs currentScript polyfill, add get currentScript() to the document object
+  if (!(currentScript in document)) {
+    Object.defineProperty(document, currentScript, {
+      get: function(){
+
+        // IE 6-10 supports script readyState
+        // IE 10+ support stack trace
+        try { throw new Error(); }
+        catch (err) {
+
+          // Find the second match for the "at" string to get file src url from stack.
+          // Specifically works with the format of stack traces in IE.
+          var i, res = ((/.*at [^\(]*\((.*):.+:.+\)$/ig).exec(err.stack) || [false])[1];
+
+          // For all scripts on the page, if src matches or if ready state is interactive, return the script tag
+          for(i in scripts){
+            if(scripts[i].src == res || scripts[i].readyState == "interactive"){
+              return scripts[i];
+            }
+          }
+
+          // If no match, return null
+          return null;
+        }
+      }
+    });
+  }
+})(document);
+
+
+/***/ }),
+
 /***/ "fb15":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -881,6 +924,10 @@ __webpack_require__.r(__webpack_exports__);
 // This file is imported into lib/wc client bundles.
 
 if (typeof window !== 'undefined') {
+  if (true) {
+    __webpack_require__("f6fd")
+  }
+
   var setPublicPath_i
   if ((setPublicPath_i = window.document.currentScript) && (setPublicPath_i = setPublicPath_i.src.match(/(.+\/)[^/]+\.js(\?.*)?$/))) {
     __webpack_require__.p = setPublicPath_i[1] // eslint-disable-line
@@ -890,8 +937,8 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"33e18d7e-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/RouterTab/RouterTab.vue?vue&type=template&id=cc9b1cda&
-var RouterTabvue_type_template_id_cc9b1cda_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab"},[_c('header',{staticClass:"router-tab-header"},[_c('div',{staticClass:"router-tab-scroll"},[_c('transition-group',_vm._b({staticClass:"router-tab-nav",attrs:{"tag":"ul"},on:{"after-enter":_vm.onTabTransitionEnd,"after-leave":_vm.onTabTransitionEnd}},'transition-group',typeof _vm.tabTransition === 'string' ? { name: _vm.tabTransition } : _vm.tabTransition,false),_vm._l((_vm.items),function(ref,index){
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"317dd495-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/RouterTab/RouterTab.vue?vue&type=template&id=5379346f&
+var RouterTabvue_type_template_id_5379346f_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab"},[_c('header',{staticClass:"router-tab-header"},[_c('div',{staticClass:"router-tab-scroll"},[_c('transition-group',_vm._b({staticClass:"router-tab-nav",attrs:{"tag":"ul"},on:{"after-enter":_vm.onTabTransitionEnd,"after-leave":_vm.onTabTransitionEnd}},'transition-group',typeof _vm.tabTransition === 'string' ? { name: _vm.tabTransition } : _vm.tabTransition,false),_vm._l((_vm.items),function(ref,index){
 var id = ref.id;
 var to = ref.to;
 var title = ref.title;
@@ -902,14 +949,14 @@ return _c('router-link',{key:id || to,staticClass:"router-tab-item",class:{ acti
               tab: _vm.items[index],
               tabs: _vm.items,
               index: index
-            })],2)}),1)],1),_c('a',{staticClass:"nav-prev",on:{"click":function($event){return _vm.tabScroll('left')}}}),_c('a',{staticClass:"nav-next",on:{"click":function($event){return _vm.tabScroll('right')}}})]),_c('div',{staticClass:"router-tab-container",class:{ loading: _vm.loading }},[_c('router-alive',{ref:"routerAlive",attrs:{"alive-id":_vm.aliveId},on:{"update":_vm.updateTab}},[_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onPageTransitionEnd,"after-leave":_vm.onPageTransitionEnd}},'transition',typeof _vm.pageTransition === 'string' ? { name: _vm.pageTransition } : _vm.pageTransition,false),[(_vm.isRouterAlive)?_c('router-view',_vm._b({ref:"routerView",staticClass:"router-tab-page"},'router-view',_vm.routerView,false)):_vm._e()],1)],1),_c('transition-group',_vm._b({staticClass:"router-tab-iframes",attrs:{"tag":"div"}},'transition-group',typeof _vm.pageTransition === 'string' ? { name: _vm.pageTransition } : _vm.pageTransition,false),_vm._l((_vm.iframes),function(url){return _c('iframe',{directives:[{name:"show",rawName:"v-show",value:(url === _vm.currentIframe),expression:"url === currentIframe"}],key:url,staticClass:"router-tab-iframe",attrs:{"src":url,"frameborder":"0"}})}),0)],1),_c('transition',{attrs:{"name":"router-tab-zoom"}},[(_vm.contextmenu.id)?_c('div',{staticClass:"router-tab-contextmenu",style:(("left: " + (_vm.contextmenu.left) + "px; top: " + (_vm.contextmenu.top) + "px;"))},[_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabActived},on:{"click":function($event){_vm.isContextTabActived && _vm.refreshTab(_vm.contextmenu.id)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.refresh)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":_vm.items.length < 2},on:{"click":function($event){_vm.items.length > 1 && _vm.refreshAll()}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.refreshAll)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabCanBeClosed},on:{"click":function($event){_vm.isContextTabCanBeClosed && _vm.closeTab(_vm.contextmenu.id)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.close)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsLeft.length},on:{"click":function($event){_vm.tabsLeft.length && _vm.closeMulti(_vm.tabsLeft)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeLefts)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsRight.length},on:{"click":function($event){_vm.tabsRight.length && _vm.closeMulti(_vm.tabsRight)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeRights)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsOther.length},on:{"click":function($event){_vm.tabsOther.length && _vm.closeMulti(_vm.tabsOther)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeOthers)+"\n      ")])]):_vm._e()])],1)}
+            })],2)}),1)],1),_c('a',{staticClass:"nav-prev",on:{"click":function($event){return _vm.tabScroll('left')}}}),_c('a',{staticClass:"nav-next",on:{"click":function($event){return _vm.tabScroll('right')}}})]),_c('div',{staticClass:"router-tab-container",class:{ loading: _vm.loading }},[_c('router-alive',{ref:"routerAlive",attrs:{"alive-id":_vm.aliveId},on:{"update":_vm.updateTab}},[_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onPageTransitionEnd,"after-leave":_vm.onPageTransitionEnd}},'transition',typeof _vm.pageTransition === 'string' ? { name: _vm.pageTransition } : _vm.pageTransition,false),[(_vm.isViewAlive)?_c('router-view',_vm._b({ref:"routerView",staticClass:"router-tab-page"},'router-view',_vm.routerView,false)):_vm._e()],1)],1),_c('transition-group',_vm._b({staticClass:"router-tab-iframes",attrs:{"tag":"div"}},'transition-group',typeof _vm.pageTransition === 'string' ? { name: _vm.pageTransition } : _vm.pageTransition,false),_vm._l((_vm.iframes),function(url){return _c('iframe',{directives:[{name:"show",rawName:"v-show",value:(url === _vm.currentIframe),expression:"url === currentIframe"}],key:url,staticClass:"router-tab-iframe",attrs:{"src":url,"frameborder":"0"}})}),0)],1),_c('transition',{attrs:{"name":"router-tab-zoom"}},[(_vm.contextmenu.id)?_c('div',{staticClass:"router-tab-contextmenu",style:(("left: " + (_vm.contextmenu.left) + "px; top: " + (_vm.contextmenu.top) + "px;"))},[_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabActived},on:{"click":function($event){_vm.isContextTabActived && _vm.refreshTab(_vm.contextmenu.id)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.refresh)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":_vm.items.length < 2},on:{"click":function($event){_vm.items.length > 1 && _vm.refreshAll()}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.refreshAll)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabCanBeClosed},on:{"click":function($event){_vm.isContextTabCanBeClosed && _vm.closeTab(_vm.contextmenu.id)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.close)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsLeft.length},on:{"click":function($event){_vm.tabsLeft.length && _vm.closeMulti(_vm.tabsLeft)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeLefts)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsRight.length},on:{"click":function($event){_vm.tabsRight.length && _vm.closeMulti(_vm.tabsRight)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeRights)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsOther.length},on:{"click":function($event){_vm.tabsOther.length && _vm.closeMulti(_vm.tabsOther)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeOthers)+"\n      ")])]):_vm._e()])],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/RouterTab/RouterTab.vue?vue&type=template&id=cc9b1cda&
+// CONCATENATED MODULE: ./src/components/RouterTab/RouterTab.vue?vue&type=template&id=5379346f&
 
-// EXTERNAL MODULE: ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator/index.js
-var regenerator = __webpack_require__("4795");
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/regenerator/index.js
+var regenerator = __webpack_require__("a34a");
 var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
 
 // EXTERNAL MODULE: external {"commonjs":"vue","commonjs2":"vue","root":"Vue"}
@@ -937,204 +984,18 @@ function debounce(fn) {
     }, delay);
   };
 }
-// CONCATENATED MODULE: ./src/util/route.js
-// 获取路由不带hash的路径
-function getPathWithoutHash(route) {
-  return route.hash ? route.fullPath.replace(route.hash, '') : route.fullPath;
-} // 是否相似路由
+// CONCATENATED MODULE: ./src/util/warn.js
+var prefix = '[Vue Router Tab]'; // 错误
 
-function isAlikeRoute(route1, route2) {
-  return getPathWithoutHash(route1) === getPathWithoutHash(route2);
-} // 获取路由页面组件
+function assert(condition, message) {
+  if (!condition) {
+    throw new Error("".concat(prefix, " ").concat(message));
+  }
+} // 警告
 
-function getRouteComponent(_ref) {
-  var matched = _ref.matched;
-  return matched[matched.length - 1].components.default;
-} // 路由是否共用组件
-
-function isSameComponentRoute(route1, route2) {
-  return getRouteComponent(route1) === getRouteComponent(route2);
+function warn(condition, message) {
+  if (false) {}
 }
-// CONCATENATED MODULE: ./src/util/dom.js
- // 滚动
-
-function scrollTo($el) {
-  var left = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  var top = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-
-  if ($el.scrollTo) {
-    $el.scrollTo({
-      left: left,
-      top: top,
-      behavior: 'smooth'
-    });
-  } else {
-    $el.scrollLeft = left;
-    $el.scrollTop = top;
-  }
-} // 获取第一个子组件
-
-function getFirstComponentChild(children) {
-  if (Array.isArray(children)) {
-    for (var i = 0; i < children.length; i++) {
-      var c = children[i];
-
-      if (isDef(c) && (isDef(c.componentOptions) || isAsyncPlaceholder(c))) {
-        return c;
-      }
-    }
-  }
-} // 是否异步占位
-
-function isAsyncPlaceholder(node) {
-  return node.isComment && node.asyncFactory;
-}
-// CONCATENATED MODULE: ./src/components/RouterTab/rule.js
-// 内置规则
-var rules = {
-  // 地址，例如："/page/1?type=a#title" 则取 "/page/1"
-  path: function path(route) {
-    return route.path;
-  },
-  // 完整地址 (忽略hash)，例如："/page/1?type=a#title" 则取 "/page/1?type=a"
-  fullpath: function fullpath(route) {
-    return route.fullPath.replace(route.hash, '');
-  }
-}; // 页签缓存规则
-
-/* harmony default export */ var rule = ({
-  props: {
-    // 缓存id，如果为函数，则参数为route
-    aliveId: {
-      type: [String, Function],
-      default: 'path'
-    }
-  },
-  methods: {
-    // 获取缓存 id
-    getAliveId: function getAliveId() {
-      var route = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.$route;
-      var rule = route.meta && route.meta.aliveId || this.aliveId;
-
-      if (typeof rule === 'string') {
-        rule = rules[rule.toLowerCase()];
-      }
-
-      if (typeof rule !== 'function') {
-        rule = rules.path;
-      }
-
-      return rule.bind(this)(route);
-    }
-  }
-});
-// CONCATENATED MODULE: ./src/components/RouterAlive.js
-
-
-
-
-/* harmony default export */ var RouterAlive = ({
-  name: 'RouterAlive',
-  mixins: [rule],
-  beforeCreate: function beforeCreate() {
-    Object.assign(this, {
-      cache: Object.create(null),
-      lastRoute: this.$route
-    });
-  },
-  render: function render() {
-    var slot = this.$slots.default;
-    var vnode = getFirstComponentChild(slot);
-    var vmOpts = vnode && vnode.componentOptions;
-
-    if (vmOpts) {
-      var cache = this.cache,
-          $route = this.$route,
-          lastRoute = this.lastRoute; // 如果是transition组件，页面组件则为子元素
-
-      var pageNode = vmOpts.tag === 'transition' ? vmOpts.children[0] : vnode;
-
-      if (pageNode && pageNode.componentOptions) {
-        // 获取缓存
-        var key = this.getAliveId();
-        var cacheItem = cache[key];
-
-        var _ref = cacheItem || emptyObj,
-            cacheVm = _ref.vm,
-            cacheRoute = _ref.route; // 是否需要重载路由强制刷新页面组件
-
-
-        var needReloadRouter = false; // 路由是否改变
-
-        var isRouteChange = lastRoute !== $route; // 是否跟上次路由共用组件
-
-        var isSameComponent = isRouteChange && isSameComponentRoute($route, lastRoute);
-
-        if (isRouteChange) {
-          // 更新上次路由
-          this.lastRoute = $route; // 添加缓存
-
-          if (!cacheItem) this.set(key, {
-            route: $route
-          });
-        }
-
-        if (cacheVm) {
-          // 缓存组件的路由地址除hash外一致则取缓存的组件
-          if (isAlikeRoute(cacheRoute, $route)) {
-            pageNode.componentInstance = cacheVm;
-          } else {
-            // 缓存组件路由地址不匹配则销毁缓存并重载路由
-            cacheVm.$destroy();
-            cacheItem.vm = null;
-            needReloadRouter = true;
-          }
-        } // 路由改变后但组件相同需重载路由
-
-
-        if (isSameComponent) needReloadRouter = true; // 重载路由以强制更新页面
-
-        needReloadRouter && this.$routerTab.reloadRouter(); // 标记为keepAlive和routerAlive
-
-        pageNode.data.keepAlive = true;
-        pageNode.data.routerAlive = this;
-      }
-    }
-
-    return vnode || slot && slot[0];
-  },
-  methods: {
-    // 设置缓存项
-    set: function set(key, item) {
-      var cache = this.cache;
-      this.$emit('update', key, item); // 更新缓存数据
-
-      return cache[key] = item;
-    },
-    // 删除缓存项
-    remove: function remove(key) {
-      var cache = this.cache;
-      var item = cache[key]; // 销毁组件实例
-
-      if (item) {
-        item.vm && item.vm.$destroy();
-        delete cache[key];
-      }
-
-      this.$emit('remove', [key]);
-    },
-    // 清理缓存
-    clear: function clear(key) {
-      var item = this.cache[key];
-      var vm = item && item.vm;
-
-      if (vm) {
-        vm.$destroy();
-        item.vm = null;
-      }
-    }
-  }
-});
 // CONCATENATED MODULE: ./src/components/RouterTab/contextmenu.js
 
 
@@ -1202,7 +1063,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   watch: {
-    // 路由切换更新激活的页签
+    // 路由切换隐藏右键菜单
     $route: function $route(_$route) {
       this.hideContextmenu();
     },
@@ -1392,18 +1253,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   'zh-CN': zh_CN,
   en: en
 });
-// CONCATENATED MODULE: ./src/util/warn.js
-var prefix = '[vue-router-tab]'; // 错误
-
-function assert(condition, message) {
-  if (!condition) {
-    throw new Error("".concat(prefix, " ").concat(message));
-  }
-} // 警告
-
-function warn(condition, message) {
-  if (false) {}
-}
 // CONCATENATED MODULE: ./src/components/RouterTab/i18n.js
 function _toArray(arr) { return _arrayWithHoles(arr) || _iterableToArray(arr) || _nonIterableRest(); }
 
@@ -1446,9 +1295,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   methods: {
     // 获取国际化内容
     i18nText: function i18nText(text) {
-      var _this$ii8nParse = this.ii8nParse(text),
-          key = _this$ii8nParse.key,
-          params = _this$ii8nParse.params;
+      var _this$i18nParse = this.i18nParse(text),
+          key = _this$i18nParse.key,
+          params = _this$i18nParse.params;
 
       if (key) {
         var hasI18nProp = typeof this.i18n === 'function'; // 未配置 i18n 方法则警告
@@ -1466,7 +1315,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       return text;
     },
     // 解析国际化
-    ii8nParse: function ii8nParse(text) {
+    i18nParse: function i18nParse(text) {
       var key;
       var params; // 获取国际化配置
 
@@ -1507,14 +1356,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     getIframePath: function getIframePath(src) {
       var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       var icon = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-      var path = "".concat(this.basePath, "/iframe/").concat(encodeURIComponent(src));
+      var path = "".concat(this.getBasePath(), "/iframe/").concat(encodeURIComponent(src));
 
       if (title) {
         path += '/' + title;
-
-        if (icon) {
-          path += '/' + icon;
-        }
+        if (icon) path += '/' + icon;
       }
 
       return path;
@@ -1537,7 +1383,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   }
 });
 // CONCATENATED MODULE: ./src/components/RouterTab/pageLeave.js
-
  // 页面离开
 
 /* harmony default export */ var pageLeave = ({
@@ -1549,7 +1394,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     routerPageLeaveGuard: function routerPageLeaveGuard(to, from, next) {
       if (this._isDestroyed) {
         var hooks = this.$router.beforeHooks;
-        var idx = hooks.indexOf(this.routerPageLeaveGuard); // 移除已销毁的RouterTab实例注册的导航守卫
+        var idx = hooks.indexOf(this.routerPageLeaveGuard); // 移除已销毁的 RouterTab 实例注册的导航守卫
 
         if (idx > -1) hooks.splice(idx, 1);
         next();
@@ -1558,10 +1403,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         var $alive = this.$refs.routerAlive;
 
         var _ref = $alive && $alive.cache[id] || emptyObj,
-            cacheRoute = _ref.route; // 如果不是相同路由则检查beforePageLeave
+            cacheRoute = _ref.route; // 如果不是相同路由则检查 beforePageLeave
 
 
-        if (cacheRoute && !isAlikeRoute(to, cacheRoute)) {
+        if (cacheRoute && !this.isAlikeRoute(to, cacheRoute)) {
           this.pageLeavePromise(id, 'replace').then(function () {
             return next();
           }).catch(function () {
@@ -1600,6 +1445,149 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     }
   }
 });
+// CONCATENATED MODULE: ./src/components/RouterTab/matched.js
+ // 匹配路由链
+
+/* harmony default export */ var RouterTab_matched = ({
+  methods: {
+    // 匹配路由
+    matchRoutes: function matchRoutes() {
+      var route = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.$route;
+      var matched = route.matched; // 页面所在路由 index
+
+      var pageRouteIdx = matched.findIndex(function (_ref) {
+        var instances = _ref.instances;
+        return !instances.default || // instances 为空
+        Object.values(instances).find(function (vm) {
+          return vm && vm._isRouterPage;
+        });
+      } // mounted 时 instances 会包含路由页面实例
+      );
+      warn(pageRouteIdx > -1, '未能匹配到路由信息');
+      return {
+        baseRoute: matched[pageRouteIdx - 1],
+        pageRoute: matched[pageRouteIdx],
+        pageRouteIdx: pageRouteIdx
+      };
+    },
+    // 解析匹配的路径
+    parsePath: function parsePath(path, params) {
+      for (var key in params) {
+        path = path.replace(':' + key, params[key]);
+      }
+
+      return path;
+    },
+    // 获取跟路径
+    getBasePath: function getBasePath() {
+      var path = this.matchRoutes().baseRoute.path;
+      var params = this.$route.params;
+      return this.parsePath(path, params);
+    },
+    // 获取嵌套路由的页面路径
+    getPagePath: function getPagePath() {
+      var route = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.$route;
+      var matchRoutes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.matchRoutes(route);
+      var pageRoute = matchRoutes.pageRoute,
+          pageRouteIdx = matchRoutes.pageRouteIdx; // 页面嵌套路由
+
+      if (pageRouteIdx !== route.matched.length - 1) {
+        return this.parsePath(pageRoute.path, route.params);
+      }
+    },
+    // 获取嵌套路由的页面组件
+    getPageComp: function getPageComp() {
+      var route = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.$route;
+      return this.matchRoutes(route).pageRoute.components.default;
+    },
+    // 获取路由不带hash的路径
+    getPathWithoutHash: function getPathWithoutHash(route) {
+      return route.hash ? route.fullPath.replace(route.hash, '') : route.fullPath;
+    },
+    // 是否相似路由
+    isAlikeRoute: function isAlikeRoute(route1, route2) {
+      var route1Path = this.getPagePath(route1);
+      var route2Path = this.getPagePath(route2);
+      return this.getPathWithoutHash(route1) === this.getPathWithoutHash(route2) || route1Path && route2Path && route1Path === route2Path;
+    }
+  }
+});
+// CONCATENATED MODULE: ./src/components/RouterTab/rule.js
+ // 内置规则
+
+var rules = {
+  // 地址，例如："/page/1?type=a#title" 则取 "/page/1"
+  path: function path(route, pagePath) {
+    return pagePath || route.path;
+  },
+  // 完整地址 (忽略 hash)，例如："/page/1?type=a#title" 则取 "/page/1?type=a"
+  fullpath: function fullpath(route, pagePath) {
+    return pagePath || route.fullPath.replace(route.hash, '');
+  }
+}; // 页签缓存规则
+
+/* harmony default export */ var rule = ({
+  props: {
+    // 缓存 id，如果为函数，则参数为 route
+    aliveId: {
+      type: [String, Function],
+      default: 'path'
+    }
+  },
+  mixins: [RouterTab_matched],
+  methods: {
+    // 获取缓存 id
+    getAliveId: function getAliveId() {
+      var route = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.$route;
+      var matchRoutes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.matchRoutes(route);
+      var rule = route.meta && route.meta.aliveId || this.aliveId;
+
+      if (typeof rule === 'string') {
+        rule = rules[rule.toLowerCase()];
+      }
+
+      if (typeof rule !== 'function') {
+        rule = rules.path;
+      }
+
+      return rule.bind(this)(route, this.getPagePath(route, matchRoutes));
+    }
+  }
+});
+// CONCATENATED MODULE: ./src/util/dom.js
+ // 滚动
+
+function scrollTo($el) {
+  var left = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  var top = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+
+  if ($el.scrollTo) {
+    $el.scrollTo({
+      left: left,
+      top: top,
+      behavior: 'smooth'
+    });
+  } else {
+    $el.scrollLeft = left;
+    $el.scrollTop = top;
+  }
+} // 获取第一个子组件
+
+function getFirstComponentChild(children) {
+  if (Array.isArray(children)) {
+    for (var i = 0; i < children.length; i++) {
+      var c = children[i];
+
+      if (isDef(c) && (isDef(c.componentOptions) || isAsyncPlaceholder(c))) {
+        return c;
+      }
+    }
+  }
+} // 是否异步占位
+
+function isAsyncPlaceholder(node) {
+  return node.isComment && node.asyncFactory;
+}
 // CONCATENATED MODULE: ./src/components/RouterTab/scroll.js
 
 
@@ -1621,10 +1609,18 @@ function scroll_asyncToGenerator(fn) { return function () { var self = this, arg
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return this.$nextTick();
+                if (this.$el) {
+                  _context.next = 2;
+                  break;
+                }
+
+                return _context.abrupt("return");
 
               case 2:
+                _context.next = 4;
+                return this.$nextTick();
+
+              case 4:
                 $cur = this.$el.querySelector('.router-tab-nav .actived');
                 $scr = this.$el.querySelector('.router-tab-scroll');
 
@@ -1637,7 +1633,7 @@ function scroll_asyncToGenerator(fn) { return function () { var self = this, arg
                   }
                 }
 
-              case 5:
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -1673,6 +1669,7 @@ function scroll_asyncToGenerator(fn) { return function () { var self = this, arg
     },
     // 调整Tab滚动显示
     adjust: function adjust() {
+      if (!this.$el) return;
       var $tab = this.$el.querySelector('.router-tab-header');
       var $scr = $tab.querySelector('.router-tab-scroll');
       var $nav = $scr.querySelector('.router-tab-nav');
@@ -1697,8 +1694,6 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
  // 方法
 
 
- // 子组件
-
  // 功能模块混入
 
 
@@ -1710,9 +1705,6 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
 
 /* harmony default export */ var RouterTab_vue_type_script_lang_js_ = ({
   name: 'RouterTab',
-  components: {
-    RouterAlive: RouterAlive
-  },
   mixins: [RouterTab_contextmenu, i18n, iframe, pageLeave, rule, RouterTab_scroll],
   props: {
     // 初始页签数据
@@ -1743,12 +1735,12 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
   data: function data() {
     return {
       loading: false,
-      // 路由页面loading
+      // 路由页面 loading
       items: [],
       // 页签项
       activedTab: null,
       // 当前激活的页签
-      isRouterAlive: true
+      isViewAlive: true
     };
   },
   watch: {
@@ -1759,14 +1751,9 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
       this.fixCommentPage();
     }
   },
-  beforeCreate: function beforeCreate() {
-    // 添加到原型链
-    external_commonjs_vue_commonjs2_vue_root_Vue_default.a.prototype.$routerTab = this; // 获取跟路径
-
-    var matched = this.$route.matched;
-    this.basePath = (matched[matched.length - 2] || {}).path;
-  },
   created: function created() {
+    // 添加到原型链
+    external_commonjs_vue_commonjs2_vue_root_Vue_default.a.prototype.$routerTab = this;
     this.getTabItems();
     this.updateActivedTab();
   },
@@ -1792,7 +1779,7 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
         if (route) {
           var tab = _this.getRouteTab(route);
 
-          var id = tab.id; // 根据id去重
+          var id = tab.id; // 根据 id 去重
 
           if (!ids[id]) {
             // 初始 tab 数据
@@ -1810,7 +1797,7 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
     updateActivedTab: function updateActivedTab() {
       this.activedTab = this.getAliveId();
     },
-    // 更新tab数据
+    // 更新 tab 数据
     updateTab: function updateTab(key, _ref2) {
       var route = _ref2.route,
           tab = _ref2.tab;
@@ -1833,10 +1820,10 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
     getIdByLocation: function getIdByLocation(location) {
       var fullMatch = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
       if (!location) return;
-      var $route = this.$router.match(location, this.$router.currentRoute); // 路由地址精确匹配页签
+      var route = this.$router.match(location, this.$router.currentRoute); // 路由地址精确匹配页签
 
       if (fullMatch) {
-        var matchPath = getPathWithoutHash($route);
+        var matchPath = this.getPathWithoutHash(route);
         var matchTab = this.items.find(function (_ref4) {
           var to = _ref4.to;
           return to.split('#')[0] === matchPath;
@@ -1846,26 +1833,26 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
           return matchTab.id;
         }
       } else {
-        return this.getAliveId($route);
+        return this.getAliveId(route);
       }
     },
-    // 从route中获取tab数据
+    // 从 route 中获取 tab 数据
     getRouteTab: function getRouteTab(route) {
+      var matchRoutes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.matchRoutes(route);
       var id = this.getAliveId(route);
-      var to = route.fullPath,
-          meta = route.meta;
-      var title = meta.title,
-          icon = meta.icon,
-          tips = meta.tips;
+      var _matchRoutes$pageRout = matchRoutes.pageRoute.meta,
+          title = _matchRoutes$pageRout.title,
+          icon = _matchRoutes$pageRout.icon,
+          tips = _matchRoutes$pageRout.tips;
       return {
         id: id,
-        to: to,
+        to: route.fullPath,
         title: title,
         icon: icon,
         tips: tips
       };
     },
-    // 移除tab项
+    // 移除 tab 项
     removeTab: function () {
       var _removeTab = RouterTab_vue_type_script_lang_js_asyncToGenerator(
       /*#__PURE__*/
@@ -1932,7 +1919,7 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
         this.closeTab();
       }
     },
-    // 通过页签id关闭页签
+    // 通过页签 id 关闭页签
     closeTab: function () {
       var _closeTab = RouterTab_vue_type_script_lang_js_asyncToGenerator(
       /*#__PURE__*/
@@ -1970,7 +1957,7 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
               case 9:
                 _context2.prev = 9;
                 _context2.t0 = _context2["catch"](3);
-                console.warn(_context2.t0);
+                warn(false, _context2.t0);
 
               case 12:
               case "end":
@@ -2018,7 +2005,7 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
 
               case 4:
                 this.$refs.routerAlive.clear(id);
-                if (id === this.activedTab) this.reloadRouter();
+                if (id === this.activedTab) this.reloadView();
                 _context3.next = 10;
                 break;
 
@@ -2043,7 +2030,7 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
 
     /**
      * 刷新所有页签
-     * @param {boolean} [force=false] 是否强制刷新，如果强制则忽略页面beforePageLeave
+     * @param {boolean} [force=false] 是否强制刷新，如果强制则忽略页面 beforePageLeave
      */
     refreshAll: function () {
       var _refreshAll = RouterTab_vue_type_script_lang_js_asyncToGenerator(
@@ -2101,7 +2088,7 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
                 break;
 
               case 20:
-                this.reloadRouter();
+                this.reloadView();
 
               case 21:
               case "end":
@@ -2117,9 +2104,9 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
 
       return refreshAll;
     }(),
-    // 重载路由组件
-    reloadRouter: function () {
-      var _reloadRouter = RouterTab_vue_type_script_lang_js_asyncToGenerator(
+    // 重载路由视图
+    reloadView: function () {
+      var _reloadView = RouterTab_vue_type_script_lang_js_asyncToGenerator(
       /*#__PURE__*/
       regenerator_default.a.mark(function _callee5() {
         var ignoreTransition,
@@ -2129,7 +2116,7 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
             switch (_context5.prev = _context5.next) {
               case 0:
                 ignoreTransition = _args5.length > 0 && _args5[0] !== undefined ? _args5[0] : false;
-                this.isRouterAlive = false; // 默认在页面过渡结束后会设置 isRouterAlive 为 true
+                this.isViewAlive = false; // 默认在页面过渡结束后会设置 isViewAlive 为 true
                 // 如果过渡事件失效，则需传入 ignoreTransition 为 true 手动更改
 
                 if (!ignoreTransition) {
@@ -2141,7 +2128,7 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
                 return this.$nextTick();
 
               case 5:
-                this.isRouterAlive = true;
+                this.isViewAlive = true;
 
               case 6:
               case "end":
@@ -2151,11 +2138,11 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
         }, _callee5, this);
       }));
 
-      function reloadRouter() {
-        return _reloadRouter.apply(this, arguments);
+      function reloadView() {
+        return _reloadView.apply(this, arguments);
       }
 
-      return reloadRouter;
+      return reloadView;
     }(),
     // 页签过渡结束
     onTabTransitionEnd: function onTabTransitionEnd() {
@@ -2163,12 +2150,12 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
     },
     // 页面过渡结束
     onPageTransitionEnd: function onPageTransitionEnd() {
-      if (!this.isRouterAlive) this.isRouterAlive = true;
+      if (!this.isViewAlive) this.isViewAlive = true;
     },
-    // 修复：当快速频繁切换页签时，旧页面离开过渡效果尚未完成，新页面内容无法正常mount，内容节点为comment类型
+    // 修复：当快速频繁切换页签时，旧页面离开过渡效果尚未完成，新页面内容无法正常 mount，内容节点为 comment 类型
     fixCommentPage: function fixCommentPage() {
       if (this.$refs.routerAlive.$el.nodeType === 8) {
-        this.reloadRouter(true);
+        this.reloadView(true);
       }
     }
   }
@@ -2288,7 +2275,7 @@ function normalizeComponent (
 
 var component = normalizeComponent(
   components_RouterTab_vue_type_script_lang_js_,
-  RouterTabvue_type_template_id_cc9b1cda_render,
+  RouterTabvue_type_template_id_5379346f_render,
   staticRenderFns,
   false,
   null,
@@ -2298,6 +2285,119 @@ var component = normalizeComponent(
 )
 
 /* harmony default export */ var RouterTab = (component.exports);
+// CONCATENATED MODULE: ./src/components/RouterAlive.js
+
+
+
+/* harmony default export */ var RouterAlive = ({
+  name: 'RouterAlive',
+  mixins: [rule],
+  created: function created() {
+    Object.assign(this, {
+      cache: Object.create(null),
+      lastRoute: this.$route
+    });
+  },
+  render: function render() {
+    var slot = this.$slots.default;
+    var vnode = getFirstComponentChild(slot);
+    var vmOpts = vnode && vnode.componentOptions;
+
+    if (vmOpts) {
+      var cache = this.cache,
+          $route = this.$route,
+          lastRoute = this.lastRoute; // 如果是transition组件，页面组件则为子元素
+
+      var pageNode = vmOpts.tag === 'transition' ? vmOpts.children[0] : vnode;
+
+      if (pageNode && pageNode.componentOptions) {
+        // 获取缓存
+        var key = this.getAliveId();
+        var cacheItem = cache[key];
+
+        var _ref = cacheItem || emptyObj,
+            cacheVm = _ref.vm,
+            cacheRoute = _ref.route; // 是否需要重载路由强制刷新页面组件
+
+
+        var needReloadView = false; // 路由是否改变
+
+        var isRouteChange = lastRoute !== $route; // 是否跟上次路由共用组件
+
+        var isShareComp = isRouteChange && !this.isAlikeRoute($route, lastRoute) && this.getPageComp($route) === this.getPageComp(lastRoute);
+
+        if (isRouteChange) {
+          // 更新上次路由
+          this.lastRoute = $route; // 添加缓存
+
+          this.set(key, {
+            route: $route
+          });
+        }
+
+        if (cacheVm) {
+          // 缓存组件的路由地址匹配则取缓存的组件
+          if (this.isAlikeRoute(cacheRoute, $route)) {
+            pageNode.componentInstance = cacheVm;
+          } else {
+            // 缓存组件路由地址不匹配则销毁缓存并重载路由
+            cacheVm.$destroy();
+            cacheItem.vm = null;
+            needReloadView = true;
+          }
+        } // 共用组件的路由切换需重载路由
+
+
+        if (isShareComp) needReloadView = true; // 重载路由以强制更新页面
+
+        needReloadView && this.$routerTab.reloadView(); // 标记为 keepAlive和 routerAlive
+
+        pageNode.data.keepAlive = true;
+        pageNode.data.routerAlive = this;
+      }
+    }
+
+    return vnode || slot && slot[0];
+  },
+  methods: {
+    // 设置缓存项
+    set: function set(key, item) {
+      var cache = this.cache;
+      var origin = cache[key];
+
+      if (origin) {
+        item = Object.assign(origin, item);
+      }
+
+      this.$emit('update', key, item); // 更新缓存数据
+
+      return cache[key] = item;
+    },
+    // 删除缓存项
+    remove: function remove(key) {
+      var cache = this.cache;
+      var item = cache[key]; // 销毁组件实例
+
+      if (item) {
+        item.vm && item.vm.$destroy();
+        item.vm = null;
+        delete cache[key];
+      }
+
+      this.$emit('remove', [key]);
+    },
+    // 清理缓存
+    clear: function clear(key) {
+      var item = this.cache[key];
+      var vm = item && item.vm;
+
+      if (vm) {
+        vm.$destroy();
+        item.vm = null;
+      }
+    }
+  }
+});
 // CONCATENATED MODULE: ./src/mixins/routerPage.js
 // 路由页面混入
 /* harmony default export */ var routerPage = ({
@@ -2339,7 +2439,7 @@ var component = normalizeComponent(
     this._ctorId = ctorId;
   }
 });
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"33e18d7e-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/page/Iframe.vue?vue&type=template&id=0c8e4776&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"317dd495-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/page/Iframe.vue?vue&type=template&id=0c8e4776&
 var Iframevue_type_template_id_0c8e4776_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab-iframe-fake"})}
 var Iframevue_type_template_id_0c8e4776_staticRenderFns = []
 
@@ -2437,12 +2537,14 @@ var Iframe_component = normalizeComponent(
 // CONCATENATED MODULE: ./src/index.js
 
 
+
  // 安装
 
 RouterTab.install = function install(Vue, options) {
   if (install.installed) return;
   install.installed = true;
   Vue.component(RouterTab.name, RouterTab);
+  Vue.component(RouterAlive.name, RouterAlive);
   Vue.mixin(routerPage);
 }; // 如果浏览器环境且拥有全局Vue，则自动安装组件
 
