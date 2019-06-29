@@ -14,7 +14,9 @@
           页面2
         </router-link>
       </nav>
-      <router-view class="page" />
+      <keep-alive>
+        <router-view class="page" />
+      </keep-alive>
     </div>
   </div>
 </template>
