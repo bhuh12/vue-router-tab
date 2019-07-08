@@ -2,7 +2,7 @@
   <div
     class="page-404"
     :class="{
-      'app-main': $route.path === '/404'
+      'global-404': $route.path === '/404'
     }"
   >
     <div>
@@ -12,7 +12,7 @@
 </template>
 
 <style lang="scss" scoped>
-.app-main {
+.global-404 {
   padding: 15px;
 }
 </style>

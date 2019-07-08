@@ -1,10 +1,5 @@
 <template>
-  <main class="app-main">
-    <router-tab
-      page-transition="page-fade"
-      tab-transition="tab-scale"
-    />
-  </main>
+  <router-tab page-transition="page-fade" tab-transition="tab-scale" />
 </template>
 
 <style lang="scss" scoped>

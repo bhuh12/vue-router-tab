@@ -1,18 +1,7 @@
-import { RouterTabRoutes } from '../../src'
 import { importPage } from '../utils'
 
-// 404 路由
-export const route404 = {
-  path: '404',
-  component: importPage('404'),
-  meta: {
-    title: '找不到页面',
-    icon: 'rt-icon-warning'
-  }
-}
-
 // 页面路由
-const pageRoutes = [{
+export default () => [{
   path: 'page/:id',
   component: importPage('Page'),
   meta: {
@@ -50,10 +39,7 @@ const pageRoutes = [{
     title: '页面离开确认',
     icon: 'rt-icon-contact'
   }
-}, route404, ...RouterTabRoutes]
-
-// 嵌套路由
-const nestRoute = {
+}, {
   path: 'nest/:nestId/',
   component: importPage('Nest'),
   meta: {
@@ -67,10 +53,4 @@ const nestRoute = {
     path: 'page2',
     component: importPage('Page2')
   }]
-}
-
-// 插入嵌套路由
-pageRoutes.unshift(nestRoute)
-
-// 页面路由
-export default pageRoutes
+}]

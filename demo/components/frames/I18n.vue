@@ -1,10 +1,5 @@
 <template>
-  <main class="app-main">
-    <router-tab
-      :i18n="i18n"
-      :tabs="tabs"
-    />
-  </main>
+  <router-tab :i18n="i18n" :tabs="tabs" />
 </template>
 
 <script>

@@ -1,8 +1,5 @@
 <template>
-  <div
-    v-if="data.children && data.children.length"
-    class="menu-group"
-  >
+  <div v-if="data.children && data.children.length" class="menu-group">
     <menu-item :data="data" />
     <div class="menu-list">
       <menu-group

@@ -85,7 +85,7 @@ export default new Router({
 
     // 子路由里配置需要通过页签打开的页面路由
     children: [
-
+      
       // 引入 RouterTab 内置路由以支持操作 iframe 页签
       ...RouterTabRoutes,
       {
@@ -97,19 +97,19 @@ export default new Router({
           tips: '这是一个页面', // 页签提示，可选，如未设置则跟title一致
           aliveId: 'fullPath', // 路由打开页签规则，可选
         }
-      },
-      {
+      }, {
         path: '/404',
         component: importPage('404'),
         meta: {
           title: '找不到页面',
           icon: 'icon-page'
         }
-      },
-      {
-        path: '*',
-        redirect: '/404'
       }
     ]
-}
+  }, {
+    // 其他路由 404
+    path: '*',
+    redirect: '/404'
+  }]
+})
 ```

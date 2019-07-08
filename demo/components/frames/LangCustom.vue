@@ -1,15 +1,13 @@
 <template>
-  <main class="app-main">
-    <router-tab :language="'en'" />
-  </main>
+  <router-tab :language="customLanguage" />
 </template>
 
 <script>
 export default {
-  name: 'Language',
+  name: 'LangCustom',
   data () {
     return {
-      lang: {
+      customLanguage: {
         tab: {
           untitled: 'Untitled Page'
         },
