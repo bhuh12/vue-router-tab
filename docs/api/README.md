@@ -174,6 +174,24 @@ sidebar: auto
   - `{String} [src]` 要刷新的 iframe 页签链接
 
 
+## RouterTab 事件
+
+### iframe-mounted
+
+iframe 节点挂载就绪
+
+- 参数: 
+  - `{String} [url]` iframe 的链接地址
+  - `{HTMLIFrameElement} [iframe]` iframe 节点
+
+### iframe-loaded
+
+iframe 内容加载成功
+
+- 参数: 
+  - `{String} [url]` iframe 的链接地址
+  - `{HTMLIFrameElement} [iframe]` iframe 节点
+
 
 ## Route.meta 路由元信息
 

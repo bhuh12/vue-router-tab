@@ -1,6 +1,7 @@
 import defaults from './default'
 import globalRule from './global-rule'
 import i18n from './i18n'
+import iframe from './iframe'
 import initialTabs from './initial-tabs'
 import langCustom from './lang-custom'
 import langEn from './lang-en'
@@ -13,6 +14,7 @@ const routes = [
   defaults,
   globalRule,
   i18n,
+  iframe,
   initialTabs,
   langCustom,
   langEn,

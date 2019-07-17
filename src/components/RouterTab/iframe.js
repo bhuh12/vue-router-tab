@@ -3,7 +3,8 @@ export default {
   data () {
     return {
       iframes: [],
-      currentIframe: null
+      currentIframe: null,
+      iframeNamePrefix: 'RouterTabIframe-'
     }
   },
 
@@ -37,6 +38,24 @@ export default {
     refreshIframeTab (src) {
       let path = this.getIframePath(src)
       this.refresh(path, false)
+    },
+
+    // 根据 url 获取 iframe 节点
+    getIframeEl (url) {
+      const name = this.iframeNamePrefix + url
+      return document.getElementsByName(name)[0]
+    },
+
+    // iframe 节点 mounted
+    iframeMounted (url) {
+      const iframe = this.getIframeEl(url)
+      this.$emit('iframe-mounted', url, iframe)
+    },
+
+    // iframe 加载成功
+    iframeLoaded (url) {
+      const iframe = this.getIframeEl(url)
+      this.$emit('iframe-loaded', url, iframe)
     }
   }
 }

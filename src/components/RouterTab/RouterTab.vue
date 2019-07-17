@@ -21,18 +21,8 @@
             :to="to"
             @contextmenu.native.prevent="e => showContextmenu(id, index, e)"
           >
-            <slot
-              v-bind="{
-                tab: items[index],
-                tabs: items,
-                index
-              }"
-            >
-              <i
-                v-if="icon"
-                class="tab-icon"
-                :class="icon"
-              />
+            <slot v-bind="{ tab: items[index], tabs: items, index }">
+              <i v-if="icon" class="tab-icon" :class="icon" />
               <span class="tab-title">{{ i18nText(title) || lang.tab.untitled }}</span>
               <i
                 v-if="closable !== false && items.length > 1"
@@ -46,27 +36,14 @@
       </div>
 
       <!-- 页签滚动 -->
-      <a
-        class="nav-prev"
-        @click="tabScroll('left')"
-      />
-      <a
-        class="nav-next"
-        @click="tabScroll('right')"
-      />
+      <a class="nav-prev" @click="tabScroll('left')" />
+      <a class="nav-next" @click="tabScroll('right')" />
     </header>
 
     <!-- 页面容器 -->
-    <div
-      class="router-tab-container"
-      :class="{ loading }"
-    >
+    <div class="router-tab-container" :class="{ loading }">
       <!-- 路由页面 -->
-      <router-alive
-        ref="routerAlive"
-        :alive-id="aliveId"
-        @update="updateTab"
-      >
+      <router-alive ref="routerAlive" :alive-id="aliveId" @update="updateTab">
         <transition
           v-bind="typeof pageTransition === 'string' ? { name: pageTransition } : pageTransition"
           appear
@@ -93,8 +70,10 @@
           v-show="url === currentIframe"
           :key="url"
           :src="url"
+          :name="iframeNamePrefix + url"
           frameborder="0"
           class="router-tab-iframe"
+          @load="iframeLoaded(url)"
         />
       </transition-group>
     </div>

@@ -19,7 +19,7 @@ export default {
     }
   },
 
-  mounted () {
+  async mounted () {
     let { src, title, icon, $routerTab: $tab } = this
     let { iframes } = $tab
 
@@ -30,6 +30,9 @@ export default {
     }
 
     $tab.currentIframe = src
+
+    await this.$nextTick()
+    this.$routerTab.iframeMounted(src)
   },
 
   activated () {
