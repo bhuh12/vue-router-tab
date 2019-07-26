@@ -10,58 +10,15 @@
 
 <doc-links api="#tab-transition" demo="/transition/"></doc-links>
 
-## 页签过渡效果
+**示例：**
 
-``` html {2,6}
-<template>
-  <router-tab tab-transition="tab-scale"/>
-</template>
-
-<style lang="scss" scoped>
-/deep/ .tab-scale {
-  &-enter-active,
-  &-leave-active {
-    transition: opacity .5s, transform .5s;
-  }
-
-  &-enter,
-  &-leave-to {
-    opacity: 0;
-    transform: scale(1.5);
-  }
-}
-</style>
-```
-
-<doc-links api="#page-transition" demo="/transition/"></doc-links>
-
-## 页面过渡效果
-
-``` html {2,6}
-<template>
-  <router-tab page-transition="page-fade"/>
-</template>
-
-<style lang="scss" scoped>
-/deep/ .page-fade {
-  &-enter-active,
-  &-leave-active {
-    transition: opacity .5s;
-  }
-
-  &-enter,
-  &-leave-to {
-    opacity: 0;
-  }
-}
-</style>
-```
+<<< @/demo/components/frames/Transition.vue{2,6,8,21}
 
 ## 详细配置
 
 您还可以使用对象的方式设置 `tab-transition` 和 `page-transition` 的值，以实现详细的过渡效果配置
 
-配置参考: [Vue - transition](https://cn.vuejs.org/v2/api/#transition)
+> 配置参考: [Vue - transition](https://cn.vuejs.org/v2/api/#transition)
 
 ``` html
 <router-tab :tab-transition="{

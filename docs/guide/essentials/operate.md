@@ -2,7 +2,7 @@
 
 ## 打开/切换页签
 
-`RouterTab` 通过响应路由变化来新增或切换页签，直接使用 `vue-router` 提供的方法即可。
+RouterTab 通过响应路由变化来新增或切换页签，直接使用 `vue-router` 提供的方法即可。
 
 参考文档：[Vue Router 导航](https://router.vuejs.org/zh/guide/essentials/navigation.html)
 
@@ -34,12 +34,12 @@
 
 ## 关闭页签
 
-您可以通过 `RouterTab` 的实例方法 [`routerTab.close(location, fullMatch?)`](../../api/README.md#routertab-close) 来关闭页签
+您可以通过 RouterTab 的实例方法 [`routerTab.close(location, fullMatch?)`](../../api/README.md#routertab-close) 来关闭页签
 
 ::: tip
 1. 在 Vue 实例内部，您可以通过 `$routerTab` 访问路由页签实例。因此您可以调用 `this.$routerTab.close`。
 
-2. 当 `RouterTab` 组件只有一个页签，或者初始页签的 `closable` 配置为 `false`，页签关闭操作将不生效。
+2. 当 RouterTab 组件只有一个页签，或者初始页签的 `closable` 配置为 `false`，页签关闭操作将不生效。
 :::
 
 <doc-links api="#routertab-close" demo="/default/"></doc-links>
@@ -74,7 +74,7 @@ this.$routerTab.close('/page/1', false)
 
 ## 刷新页签
 
-您可以通过 `RouterTab` 的实例方法 [`routerTab.refresh(location, fullMatch?)`](../../api/README.md#routertab-refresh) 来刷新页签
+您可以通过 RouterTab 的实例方法 [`routerTab.refresh(location, fullMatch?)`](../../api/README.md#routertab-refresh) 来刷新页签
 
 <doc-links api="#routertab-refresh" demo="/default/"></doc-links>
 
@@ -107,7 +107,7 @@ this.$routerTab.close('/page/1', false)
 
 ## 刷新所有页签
 
-您可以通过 `RouterTab` 的实例方法 [`routerTab.refreshAll(force?)`](../../api/README.md#routertab-refreshall) 来刷新所有页签
+您可以通过 RouterTab 的实例方法 [`routerTab.refreshAll(force?)`](../../api/README.md#routertab-refreshall) 来刷新所有页签
 
 **刷新所有页签**
 

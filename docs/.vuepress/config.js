@@ -57,7 +57,7 @@ module.exports = {
             'advanced/page-leave'
           ]
         },
-        'program',
+        'program'
       ]
     },
 

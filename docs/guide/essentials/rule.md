@@ -32,7 +32,7 @@
 
 根据该规则，`page/1` 和 `page/1?query=2`、`page/2`、`page/2?query=2` 这四个地址都是打开**不同**的页签。而 `page/1` 和 `page/1#hash1` 是同一个页签，因为它们忽略 `hash` 后的路径一致。
 
-该规则已经内置在 `RouterTab` 中了，因此，您也可以直接这样使用：
+该规则已经内置在 RouterTab 中了，因此，您也可以直接这样使用：
 
 ``` html
 <router-tab alive-id="fullPath"/>

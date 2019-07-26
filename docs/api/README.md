@@ -4,7 +4,7 @@ sidebar: auto
 
 # API 参考
 
-## RouterTab Props
+## RouterTab 配置参数
 
 ### alive-id
 
@@ -77,7 +77,7 @@ sidebar: auto
 
 - 类型: `Object`
   
-  配置参考: [Vue Router - \<router-view\> Props](https://router.vuejs.org/zh/api/#router-view-props)
+  > 配置参考: [Vue Router - \<router-view\> Props](https://router.vuejs.org/zh/api/#router-view-props)
 
 - 默认值: `{}`
 
@@ -109,11 +109,15 @@ sidebar: auto
 }`
 
 
+
 ## RouterTab 实例属性
+
+在组件内部可通过 `this.$routerTab.[prop]` 访问
 
 ### routerTab.activedTab
 
 当前激活的页签 id
+
 
 
 ## RouterTab 实例方法
@@ -174,6 +178,7 @@ sidebar: auto
   - `{String} [src]` 要刷新的 iframe 页签链接
 
 
+
 ## RouterTab 事件
 
 ### iframe-mounted
@@ -191,6 +196,7 @@ iframe 内容加载成功
 - 参数: 
   - `{String} [url]` iframe 的链接地址
   - `{HTMLIFrameElement} [iframe]` iframe 节点
+
 
 
 ## Route.meta 路由元信息
@@ -228,17 +234,23 @@ iframe 内容加载成功
 
 页面组件缓存的 id，用以设置路由独立的页签缓存规则。
 
-配置参考: [RouterTab Props > alive-id](#alive-id)
+> 配置参考: [RouterTab Props > alive-id](#alive-id)
 
 
-## RouterPage 路由页面
+## 扩展
 
-通过 `RouterTab` 加载的页面组件
+::: tip 说明
+`vm`: Vue 组件实例
+
+`pageVm`: 通过 RouterTab 加载的页面组件实例
+:::
 
 
 ### beforePageLeave
 
-页面离开确认。页面组件选项，与 `data`, `methods` 并列
+页面离开确认。
+
+页面组件选项，与 `data`, `methods` 等选项并列配置
  
 - 参数: 
   - `{Function} resolve` 执行后允许离开页签
@@ -249,16 +261,22 @@ iframe 内容加载成功
 
 ### vm.$routerTab
 
-为了方便调用，`RouterTab` 将实例挂载在 `Vue.prototype` 上。因此，在所有 Vue 组件内部，您都可以通过 `this.$routerTab` 来访问路由页签实例
+RouterTab 实例
+
+为了方便调用，RouterTab 将实例挂载在 `Vue.prototype` 上。因此，在所有 Vue 组件内部，您都可以通过 `this.$routerTab` 来访问路由页签实例
 
 
-### vm.routeTab
+### pageVm.routeTab
 
-**路由页签配置**。`RouterTab` 通过监听页面组件的 `this.routeTab` 来更新页面对应页签的标题、图标、提示
+路由页签配置
 
-### vm._isRouterPage
+RouterTab 通过监听页面组件的 `this.routeTab` 来更新页面对应页签的标题、图标、提示
 
-**是否是路由页面**: 在通过 `RouterTab` 加载的页面组件内部，访问 `this._isRouterPage` 会返回 `true`
+### pageVm._isRouterPage
+
+是否是路由页面
+
+在通过 RouterTab 加载的页面组件内部，访问 `this._isRouterPage` 会返回 `true`
 
 ::: tip
 应用: 在需要给路由页面添加全局混入 `mixin` 时，可在生命周期钩子（ `created` 之后）里判断 `this._isRouterPage`

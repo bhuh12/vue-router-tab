@@ -1,6 +1,6 @@
 # 动态更新页签
 
-`RouterTab` 会监听组件 `this.routeTab` 来动态更新页签信息。您可以通过设置 `this.routeTab` 来更改页签的标题、图标、提示。
+RouterTab 会监听组件 `this.routeTab` 来动态更新页签信息。您可以通过设置 `this.routeTab` 来更改页签的标题、图标、提示。
 
 <doc-links demo="/default/tab-dynamic"></doc-links>
 

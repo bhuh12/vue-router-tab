@@ -31,10 +31,10 @@ new Vue({
 
 ## 应用组件
 
-配置参考: [RouterTab Props](../../api/README.md#routertab-props)
+> 配置参考: [RouterTab 配置参数](../../api/README.md#routertab-配置参数)
 
 ::: danger
-`RouterTab` 仅支持单例模式，请勿在同一个页面中引入多个 `RouterTab` 组件！
+RouterTab 仅支持单例模式，请勿在同一个页面中引入多个 RouterTab 组件！
 :::
 
 **示例：**
@@ -52,10 +52,10 @@ new Vue({
 
 ## 路由配置
 
-1. 引入 `RouterTab` 内置路由以支持[操作 iframe 页签](operate.md#iframe-页签操作)
+1. 引入 RouterTab 内置路由以支持 [iframe 页签](iframe.md)
 2. 通过路由的 `meta` 信息，来设置页签的**标题**、**图标**、**提示**和**路由页签规则**
 
-配置参考: [Route.meta 路由元信息](../../api/README.md#route-meta-路由元信息)
+> 配置参考: [Route.meta 路由元信息](../../api/README.md#route-meta-路由元信息)
 
 **示例：**
 
@@ -86,7 +86,7 @@ export default new Router({
     // 子路由里配置需要通过页签打开的页面路由
     children: [
       
-      // 引入 RouterTab 内置路由以支持操作 iframe 页签
+      // 引入 RouterTab 内置路由以支持 iframe 页签
       ...RouterTabRoutes,
       {
         path: '/page/:id',
