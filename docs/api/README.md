@@ -152,7 +152,7 @@ sidebar: auto
   - `{Boolean} [force = false]` 如果 `force` 为 `true`，则忽略页面组件的 `beforePageLeave` 配置，强制刷新所有页签
 
 
-### routerTab.openIframeTab
+### routerTab.openIframe
 
 打开 iframe 页签
 
@@ -162,7 +162,7 @@ sidebar: auto
   - `{String} [icon]` 页签图标
 
 
-### routerTab.closeIframeTab
+### routerTab.closeIframe
 
 关闭 iframe 页签
 
@@ -170,7 +170,7 @@ sidebar: auto
   - `{String} [src]` 要关闭的 iframe 页签链接
 
 
-### routerTab.refreshIframeTab
+### routerTab.refreshIframe
 
 刷新 iframe 页签
 

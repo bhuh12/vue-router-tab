@@ -5,17 +5,17 @@
     <p>
       <a
         class="demo-btn"
-        @click="$routerTab.openIframeTab('https://www.baidu.com', '百度', 'rt-icon-web')"
+        @click="$routerTab.openIframe('https://www.baidu.com', '百度', 'rt-icon-web')"
       >打开“百度”</a>
 
       <a
         class="demo-btn"
-        @click="$routerTab.refreshIframeTab('https://www.baidu.com')"
+        @click="$routerTab.refreshIframe('https://www.baidu.com')"
       >刷新“百度”</a>
 
       <a
         class="demo-btn"
-        @click="$routerTab.closeIframeTab('https://www.baidu.com')"
+        @click="$routerTab.closeIframe('https://www.baidu.com')"
       >关闭“百度”</a>
     </p>
 
@@ -34,7 +34,7 @@
 
       <a
         class="demo-btn primary"
-        @click="iframe.src && $routerTab.openIframeTab(iframe.src, iframe.title, 'rt-icon-web')"
+        @click="iframe.src && $routerTab.openIframe(iframe.src, iframe.title, 'rt-icon-web')"
       >打开页签</a>
     </div>
 

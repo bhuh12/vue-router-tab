@@ -1,3 +1,5 @@
+import { warn, messages } from '../../util/warn'
+
 // iframe 页签
 export default {
   data () {
@@ -23,21 +25,39 @@ export default {
     },
 
     // 打开 iframe 页签
-    openIframeTab (src, title, icon) {
+    openIframe (src, title, icon) {
       let path = this.getIframePath(src, title, icon)
       this.$router.push(path)
     },
 
     // 关闭 iframe 页签
-    closeIframeTab (src) {
+    closeIframe (src) {
       let path = this.getIframePath(src)
       this.close(path, false)
     },
 
     // 刷新 iframe 页签
-    refreshIframeTab (src) {
+    refreshIframe (src) {
       let path = this.getIframePath(src)
       this.refresh(path, false)
+    },
+
+    // todo: 废弃
+    openIframeTab (...args) {
+      this.openIframe(...args)
+      warn(false, messages.renamed('openIframe'))
+    },
+
+    // todo: 废弃
+    closeIframeTab (...args) {
+      this.closeIframe(...args)
+      warn(false, messages.renamed('closeIframe'))
+    },
+
+    // todo: 废弃
+    refreshIframeTab (...args) {
+      this.refreshIframe(...args)
+      warn(false, messages.renamed('refreshIframe'))
     },
 
     // 根据 url 获取 iframe 节点
