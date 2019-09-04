@@ -937,23 +937,19 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"317dd495-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/RouterTab/RouterTab.vue?vue&type=template&id=5379346f&
-var RouterTabvue_type_template_id_5379346f_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab"},[_c('header',{staticClass:"router-tab-header"},[_c('div',{staticClass:"router-tab-scroll"},[_c('transition-group',_vm._b({staticClass:"router-tab-nav",attrs:{"tag":"ul"},on:{"after-enter":_vm.onTabTransitionEnd,"after-leave":_vm.onTabTransitionEnd}},'transition-group',typeof _vm.tabTransition === 'string' ? { name: _vm.tabTransition } : _vm.tabTransition,false),_vm._l((_vm.items),function(ref,index){
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"12aa0eb4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/RouterTab/RouterTab.vue?vue&type=template&id=4325820b&
+var RouterTabvue_type_template_id_4325820b_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab"},[_c('header',{staticClass:"router-tab-header"},[_c('div',{staticClass:"router-tab-scroll"},[_c('transition-group',_vm._b({staticClass:"router-tab-nav",attrs:{"tag":"ul"},on:{"after-enter":_vm.onTabTransitionEnd,"after-leave":_vm.onTabTransitionEnd}},'transition-group',typeof _vm.tabTransition === 'string' ? { name: _vm.tabTransition } : _vm.tabTransition,false),_vm._l((_vm.items),function(ref,index){
 var id = ref.id;
 var to = ref.to;
 var title = ref.title;
 var icon = ref.icon;
 var tips = ref.tips;
 var closable = ref.closable;
-return _c('router-link',{key:id || to,staticClass:"router-tab-item",class:{ actived: _vm.activedTab === id, contextmenu: _vm.contextmenu.id === id },attrs:{"tag":"li","title":_vm.i18nText(tips || title) || _vm.lang.tab.untitled,"to":to},nativeOn:{"contextmenu":function($event){$event.preventDefault();return (function (e) { return _vm.showContextmenu(id, index, e); })($event)}}},[_vm._t("default",[(icon)?_c('i',{staticClass:"tab-icon",class:icon}):_vm._e(),_c('span',{staticClass:"tab-title"},[_vm._v(_vm._s(_vm.i18nText(title) || _vm.lang.tab.untitled))]),(closable !== false && _vm.items.length > 1)?_c('i',{staticClass:"tab-close",attrs:{"title":_vm.lang.contextmenu.close},on:{"click":function($event){$event.preventDefault();return _vm.closeTab(id)}}}):_vm._e()],null,{
-              tab: _vm.items[index],
-              tabs: _vm.items,
-              index: index
-            })],2)}),1)],1),_c('a',{staticClass:"nav-prev",on:{"click":function($event){return _vm.tabScroll('left')}}}),_c('a',{staticClass:"nav-next",on:{"click":function($event){return _vm.tabScroll('right')}}})]),_c('div',{staticClass:"router-tab-container",class:{ loading: _vm.loading }},[_c('router-alive',{ref:"routerAlive",attrs:{"alive-id":_vm.aliveId},on:{"update":_vm.updateTab}},[_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onPageTransitionEnd,"after-leave":_vm.onPageTransitionEnd}},'transition',typeof _vm.pageTransition === 'string' ? { name: _vm.pageTransition } : _vm.pageTransition,false),[(_vm.isViewAlive)?_c('router-view',_vm._b({ref:"routerView",staticClass:"router-tab-page"},'router-view',_vm.routerView,false)):_vm._e()],1)],1),_c('transition-group',_vm._b({staticClass:"router-tab-iframes",attrs:{"tag":"div"}},'transition-group',typeof _vm.pageTransition === 'string' ? { name: _vm.pageTransition } : _vm.pageTransition,false),_vm._l((_vm.iframes),function(url){return _c('iframe',{directives:[{name:"show",rawName:"v-show",value:(url === _vm.currentIframe),expression:"url === currentIframe"}],key:url,staticClass:"router-tab-iframe",attrs:{"src":url,"frameborder":"0"}})}),0)],1),_c('transition',{attrs:{"name":"router-tab-zoom"}},[(_vm.contextmenu.id)?_c('div',{staticClass:"router-tab-contextmenu",style:(("left: " + (_vm.contextmenu.left) + "px; top: " + (_vm.contextmenu.top) + "px;"))},[_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabActived},on:{"click":function($event){_vm.isContextTabActived && _vm.refreshTab(_vm.contextmenu.id)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.refresh)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":_vm.items.length < 2},on:{"click":function($event){_vm.items.length > 1 && _vm.refreshAll()}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.refreshAll)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabCanBeClosed},on:{"click":function($event){_vm.isContextTabCanBeClosed && _vm.closeTab(_vm.contextmenu.id)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.close)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsLeft.length},on:{"click":function($event){_vm.tabsLeft.length && _vm.closeMulti(_vm.tabsLeft)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeLefts)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsRight.length},on:{"click":function($event){_vm.tabsRight.length && _vm.closeMulti(_vm.tabsRight)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeRights)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsOther.length},on:{"click":function($event){_vm.tabsOther.length && _vm.closeMulti(_vm.tabsOther)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeOthers)+"\n      ")])]):_vm._e()])],1)}
+return _c('router-link',{key:id || to,staticClass:"router-tab-item",class:{ actived: _vm.activedTab === id, contextmenu: _vm.contextmenu.id === id },attrs:{"tag":"li","title":_vm.i18nText(tips || title) || _vm.lang.tab.untitled,"to":to},nativeOn:{"contextmenu":function($event){$event.preventDefault();return (function (e) { return _vm.showContextmenu(id, index, e); })($event)}}},[_vm._t("default",[(icon)?_c('i',{staticClass:"tab-icon",class:icon}):_vm._e(),_c('span',{staticClass:"tab-title"},[_vm._v(_vm._s(_vm.i18nText(title) || _vm.lang.tab.untitled))]),(closable !== false && _vm.items.length > 1)?_c('i',{staticClass:"tab-close",attrs:{"title":_vm.lang.contextmenu.close},on:{"click":function($event){$event.preventDefault();return _vm.closeTab(id)}}}):_vm._e()],null,{ tab: _vm.items[index], tabs: _vm.items, index: index })],2)}),1)],1),_c('a',{staticClass:"nav-prev",on:{"click":function($event){return _vm.tabScroll('left')}}}),_c('a',{staticClass:"nav-next",on:{"click":function($event){return _vm.tabScroll('right')}}})]),_c('div',{staticClass:"router-tab-container",class:{ loading: _vm.loading }},[_c('router-alive',{ref:"routerAlive",attrs:{"alive-id":_vm.aliveId},on:{"update":_vm.updateTab}},[_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onPageTransitionEnd,"after-leave":_vm.onPageTransitionEnd}},'transition',typeof _vm.pageTransition === 'string' ? { name: _vm.pageTransition } : _vm.pageTransition,false),[(_vm.isViewAlive)?_c('router-view',_vm._b({ref:"routerView",staticClass:"router-tab-page"},'router-view',_vm.routerView,false)):_vm._e()],1)],1),_c('transition-group',_vm._b({staticClass:"router-tab-iframes",attrs:{"tag":"div"}},'transition-group',typeof _vm.pageTransition === 'string' ? { name: _vm.pageTransition } : _vm.pageTransition,false),_vm._l((_vm.iframes),function(url){return _c('iframe',{directives:[{name:"show",rawName:"v-show",value:(url === _vm.currentIframe),expression:"url === currentIframe"}],key:url,staticClass:"router-tab-iframe",attrs:{"src":url,"name":_vm.iframeNamePrefix + url,"frameborder":"0"},on:{"load":function($event){return _vm.iframeLoaded(url)}}})}),0)],1),_c('transition',{attrs:{"name":"router-tab-zoom"}},[(_vm.contextmenu.id)?_c('div',{staticClass:"router-tab-contextmenu",style:(("left: " + (_vm.contextmenu.left) + "px; top: " + (_vm.contextmenu.top) + "px;"))},[_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabActived},on:{"click":function($event){_vm.isContextTabActived && _vm.refreshTab(_vm.contextmenu.id)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.refresh)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":_vm.items.length < 2},on:{"click":function($event){_vm.items.length > 1 && _vm.refreshAll()}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.refreshAll)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabCanBeClosed},on:{"click":function($event){_vm.isContextTabCanBeClosed && _vm.closeTab(_vm.contextmenu.id)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.close)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsLeft.length},on:{"click":function($event){_vm.tabsLeft.length && _vm.closeMulti(_vm.tabsLeft)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeLefts)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsRight.length},on:{"click":function($event){_vm.tabsRight.length && _vm.closeMulti(_vm.tabsRight)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeRights)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsOther.length},on:{"click":function($event){_vm.tabsOther.length && _vm.closeMulti(_vm.tabsOther)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeOthers)+"\n      ")])]):_vm._e()])],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/RouterTab/RouterTab.vue?vue&type=template&id=5379346f&
+// CONCATENATED MODULE: ./src/components/RouterTab/RouterTab.vue?vue&type=template&id=4325820b&
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/regenerator/index.js
 var regenerator = __webpack_require__("a34a");
@@ -994,8 +990,17 @@ function assert(condition, message) {
 } // 警告
 
 function warn(condition, message) {
-  if (false) {}
-}
+  if (!condition) {
+    typeof console !== 'undefined' && console.warn("".concat(prefix, " ").concat(message));
+  }
+} // 常用消息
+
+var messages = {
+  renamed: function renamed(newName) {
+    var target = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '方法';
+    return "\u8BE5".concat(target, "\u5DF2\u66F4\u540D\u4E3A\u201C").concat(newName, "\u201D\uFF0C\u8BF7\u4FEE\u6539\u540E\u4F7F\u7528");
+  }
+};
 // CONCATENATED MODULE: ./src/components/RouterTab/contextmenu.js
 
 
@@ -1343,12 +1348,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   }
 });
 // CONCATENATED MODULE: ./src/components/RouterTab/iframe.js
-// iframe 页签
+ // iframe 页签
+
 /* harmony default export */ var iframe = ({
   data: function data() {
     return {
       iframes: [],
-      currentIframe: null
+      currentIframe: null,
+      iframeNamePrefix: 'RouterTabIframe-'
     };
   },
   methods: {
@@ -1366,19 +1373,49 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       return path;
     },
     // 打开 iframe 页签
-    openIframeTab: function openIframeTab(src, title, icon) {
+    openIframe: function openIframe(src, title, icon) {
       var path = this.getIframePath(src, title, icon);
       this.$router.push(path);
     },
     // 关闭 iframe 页签
-    closeIframeTab: function closeIframeTab(src) {
+    closeIframe: function closeIframe(src) {
       var path = this.getIframePath(src);
       this.close(path, false);
     },
     // 刷新 iframe 页签
-    refreshIframeTab: function refreshIframeTab(src) {
+    refreshIframe: function refreshIframe(src) {
       var path = this.getIframePath(src);
       this.refresh(path, false);
+    },
+    // todo: 废弃
+    openIframeTab: function openIframeTab() {
+      this.openIframe.apply(this, arguments);
+      warn(false, messages.renamed('openIframe'));
+    },
+    // todo: 废弃
+    closeIframeTab: function closeIframeTab() {
+      this.closeIframe.apply(this, arguments);
+      warn(false, messages.renamed('closeIframe'));
+    },
+    // todo: 废弃
+    refreshIframeTab: function refreshIframeTab() {
+      this.refreshIframe.apply(this, arguments);
+      warn(false, messages.renamed('refreshIframe'));
+    },
+    // 根据 url 获取 iframe 节点
+    getIframeEl: function getIframeEl(url) {
+      var name = this.iframeNamePrefix + url;
+      return document.getElementsByName(name)[0];
+    },
+    // iframe 节点 mounted
+    iframeMounted: function iframeMounted(url) {
+      var iframe = this.getIframeEl(url);
+      this.$emit('iframe-mounted', url, iframe);
+    },
+    // iframe 加载成功
+    iframeLoaded: function iframeLoaded(url) {
+      var iframe = this.getIframeEl(url);
+      this.$emit('iframe-loaded', url, iframe);
     }
   }
 });
@@ -1466,8 +1503,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       warn(pageRouteIdx > -1, '未能匹配到路由信息');
       return {
         baseRoute: matched[pageRouteIdx - 1],
+        // 跟路由
         pageRoute: matched[pageRouteIdx],
-        pageRouteIdx: pageRouteIdx
+        // 页面路由
+        pageRouteIdx: pageRouteIdx,
+        isNest: pageRouteIdx !== matched.length - 1 // 是否嵌套路由
+
       };
     },
     // 解析匹配的路径
@@ -1477,6 +1518,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       }
 
       return path;
+    },
+    // 获取 vnode 构造 id
+    getCtorIdByNode: function getCtorIdByNode(node) {
+      var opts = node.componentOptions;
+      return opts ? opts.Ctor.cid : null;
     },
     // 获取跟路径
     getBasePath: function getBasePath() {
@@ -1489,16 +1535,20 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       var route = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.$route;
       var matchRoutes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.matchRoutes(route);
       var pageRoute = matchRoutes.pageRoute,
-          pageRouteIdx = matchRoutes.pageRouteIdx; // 页面嵌套路由
+          isNest = matchRoutes.isNest; // 页面嵌套路由
 
-      if (pageRouteIdx !== route.matched.length - 1) {
+      if (isNest) {
         return this.parsePath(pageRoute.path, route.params);
       }
     },
     // 获取嵌套路由的页面组件
     getPageComp: function getPageComp() {
       var route = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.$route;
-      return this.matchRoutes(route).pageRoute.components.default;
+
+      var _this$matchRoutes = this.matchRoutes(route),
+          pageRoute = _this$matchRoutes.pageRoute;
+
+      return pageRoute ? pageRoute.components.default : null;
     },
     // 获取路由不带hash的路径
     getPathWithoutHash: function getPathWithoutHash(route) {
@@ -1509,6 +1559,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       var route1Path = this.getPagePath(route1);
       var route2Path = this.getPagePath(route2);
       return this.getPathWithoutHash(route1) === this.getPathWithoutHash(route2) || route1Path && route2Path && route1Path === route2Path;
+    },
+    // 是否嵌套路由
+    isNestRoute: function isNestRoute(route) {
+      var matchRoutes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.matchRoutes(route);
+      return matchRoutes.isNest;
     }
   }
 });
@@ -1757,6 +1812,12 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
     this.getTabItems();
     this.updateActivedTab();
   },
+  destroyed: function destroyed() {
+    // 取消原型挂载
+    if (external_commonjs_vue_commonjs2_vue_root_Vue_default.a.prototype.$routerTab === this) {
+      external_commonjs_vue_commonjs2_vue_root_Vue_default.a.prototype.$routerTab = null;
+    }
+  },
   methods: {
     // 根据初始页签数据生成页签列表
     getTabItems: function getTabItems() {
@@ -2004,7 +2065,7 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
                 return this.pageLeavePromise(id, 'refresh');
 
               case 4:
-                this.$refs.routerAlive.clear(id);
+                this.$refs.routerAlive.remove(id);
                 if (id === this.activedTab) this.reloadView();
                 _context3.next = 10;
                 break;
@@ -2068,7 +2129,7 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
                 return this.pageLeavePromise(id, 'refresh');
 
               case 10:
-                $alive.clear(id);
+                $alive.remove(id);
                 _context4.next = 15;
                 break;
 
@@ -2081,7 +2142,7 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
                 break;
 
               case 17:
-                $alive.clear(id);
+                $alive.remove(id);
 
               case 18:
                 _context4.next = 4;
@@ -2275,7 +2336,7 @@ function normalizeComponent (
 
 var component = normalizeComponent(
   components_RouterTab_vue_type_script_lang_js_,
-  RouterTabvue_type_template_id_5379346f_render,
+  RouterTabvue_type_template_id_4325820b_render,
   staticRenderFns,
   false,
   null,
@@ -2298,14 +2359,19 @@ var component = normalizeComponent(
       lastRoute: this.$route
     });
   },
+  // 销毁后清理缓存
+  destroyed: function destroyed() {
+    this.removeAll();
+    this.cache = null;
+    this.lastRoute = null;
+  },
   render: function render() {
     var slot = this.$slots.default;
     var vnode = getFirstComponentChild(slot);
     var vmOpts = vnode && vnode.componentOptions;
 
     if (vmOpts) {
-      var cache = this.cache,
-          $route = this.$route,
+      var $route = this.$route,
           lastRoute = this.lastRoute; // 如果是transition组件，页面组件则为子元素
 
       var pageNode = vmOpts.tag === 'transition' ? vmOpts.children[0] : vnode;
@@ -2313,7 +2379,7 @@ var component = normalizeComponent(
       if (pageNode && pageNode.componentOptions) {
         // 获取缓存
         var key = this.getAliveId();
-        var cacheItem = cache[key];
+        var cacheItem = this.get(key);
 
         var _ref = cacheItem || emptyObj,
             cacheVm = _ref.vm,
@@ -2322,9 +2388,11 @@ var component = normalizeComponent(
 
         var needReloadView = false; // 路由是否改变
 
-        var isRouteChange = lastRoute !== $route; // 是否跟上次路由共用组件
+        var isRouteChange = lastRoute !== $route; // 是否与上次路由相似
 
-        var isShareComp = isRouteChange && !this.isAlikeRoute($route, lastRoute) && this.getPageComp($route) === this.getPageComp(lastRoute);
+        var likeLastRoute = this.isAlikeRoute($route, lastRoute); // 是否跟上次路由不同单共用组件
+
+        var isShareComp = isRouteChange && !likeLastRoute && this.getPageComp($route) === this.getPageComp(lastRoute);
 
         if (isRouteChange) {
           // 更新上次路由
@@ -2336,15 +2404,23 @@ var component = normalizeComponent(
         }
 
         if (cacheVm) {
-          // 缓存组件的路由地址匹配则取缓存的组件
-          if (this.isAlikeRoute(cacheRoute, $route)) {
+          var ctorId = this.getCtorIdByNode(pageNode);
+          var lastCtorId = cacheVm._ctorId; // 页面实例组件构造函数改变则清理旧缓存，解决 webpack 热加载后组件缓存不更新
+
+          if (lastCtorId && lastCtorId !== ctorId) {
+            // 清理缓存组件
+            this.remove(key);
+          } else if (this.isAlikeRoute(cacheRoute, $route)) {
+            // 缓存组件的路由地址匹配则取缓存的组件
             pageNode.componentInstance = cacheVm;
           } else {
             // 缓存组件路由地址不匹配则销毁缓存并重载路由
-            cacheVm.$destroy();
-            cacheItem.vm = null;
+            this.remove(key);
             needReloadView = true;
-          }
+          } // 更新构造 id
+
+
+          cacheVm._ctorId = ctorId;
         } // 共用组件的路由切换需重载路由
 
 
@@ -2373,27 +2449,26 @@ var component = normalizeComponent(
 
       return cache[key] = item;
     },
+    // 获取缓存项
+    get: function get(key) {
+      return this.cache[key];
+    },
     // 删除缓存项
     remove: function remove(key) {
       var cache = this.cache;
-      var item = cache[key]; // 销毁组件实例
+      var item = this.get(key); // 销毁组件实例
 
       if (item) {
         item.vm && item.vm.$destroy();
-        item.vm = null;
         delete cache[key];
       }
-
-      this.$emit('remove', [key]);
     },
-    // 清理缓存
-    clear: function clear(key) {
-      var item = this.cache[key];
-      var vm = item && item.vm;
+    // 清理所有缓存
+    removeAll: function removeAll() {
+      var cache = this.cache;
 
-      if (vm) {
-        vm.$destroy();
-        item.vm = null;
+      for (var i in cache) {
+        this.remove(i);
       }
     }
   }
@@ -2426,27 +2501,27 @@ var component = normalizeComponent(
       immediate: true
     });
   },
-  // 解决webpack热加载后组件缓存不更新
-  activated: function activated() {
-    if (!this._isRouterPage) return false;
-    var ctorId = this.$vnode.componentOptions.Ctor.cid; // 热加载后Ctor.cid改变
-
-    if (this._ctorId && this._ctorId !== ctorId) {
-      this.$destroy();
-      this.$routerTab.refreshTab();
+  // 销毁后清理数据
+  destroyed: function destroyed() {
+    if (this._isRouterPage) {
+      this.$vnode.data.routerAlive = null;
     }
-
-    this._ctorId = ctorId;
   }
 });
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"317dd495-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/page/Iframe.vue?vue&type=template&id=0c8e4776&
-var Iframevue_type_template_id_0c8e4776_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab-iframe-fake"})}
-var Iframevue_type_template_id_0c8e4776_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"12aa0eb4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/page/Iframe.vue?vue&type=template&id=5e368814&
+var Iframevue_type_template_id_5e368814_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab-iframe-fake"})}
+var Iframevue_type_template_id_5e368814_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/page/Iframe.vue?vue&type=template&id=0c8e4776&
+// CONCATENATED MODULE: ./src/page/Iframe.vue?vue&type=template&id=5e368814&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/page/Iframe.vue?vue&type=script&lang=js&
+
+
+function Iframevue_type_script_lang_js_asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function Iframevue_type_script_lang_js_asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { Iframevue_type_script_lang_js_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { Iframevue_type_script_lang_js_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -2464,23 +2539,47 @@ var Iframevue_type_template_id_0c8e4776_staticRenderFns = []
       routeTab: null
     };
   },
-  mounted: function mounted() {
-    var src = this.src,
-        title = this.title,
-        icon = this.icon,
-        $tab = this.$routerTab;
-    var iframes = $tab.iframes;
-    this.routeTab = {
-      title: title,
-      icon: icon
-    };
+  mounted: function () {
+    var _mounted = Iframevue_type_script_lang_js_asyncToGenerator(
+    /*#__PURE__*/
+    regenerator_default.a.mark(function _callee() {
+      var src, title, icon, $tab, iframes;
+      return regenerator_default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              src = this.src, title = this.title, icon = this.icon, $tab = this.$routerTab;
+              iframes = $tab.iframes;
+              this.routeTab = {
+                title: title,
+                icon: icon
+              };
 
-    if (!iframes.includes(src)) {
-      iframes.push(src);
+              if (!iframes.includes(src)) {
+                iframes.push(src);
+              }
+
+              $tab.currentIframe = src;
+              _context.next = 7;
+              return this.$nextTick();
+
+            case 7:
+              this.$routerTab.iframeMounted(src);
+
+            case 8:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, this);
+    }));
+
+    function mounted() {
+      return _mounted.apply(this, arguments);
     }
 
-    $tab.currentIframe = src;
-  },
+    return mounted;
+  }(),
   activated: function activated() {
     this.$routerTab.currentIframe = this.src;
   },
@@ -2510,8 +2609,8 @@ var Iframevue_type_template_id_0c8e4776_staticRenderFns = []
 
 var Iframe_component = normalizeComponent(
   page_Iframevue_type_script_lang_js_,
-  Iframevue_type_template_id_0c8e4776_render,
-  Iframevue_type_template_id_0c8e4776_staticRenderFns,
+  Iframevue_type_template_id_5e368814_render,
+  Iframevue_type_template_id_5e368814_staticRenderFns,
   false,
   null,
   null,
@@ -2553,14 +2652,14 @@ if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(RouterTab);
 }
 
-/* harmony default export */ var src = (RouterTab); // 路由
+/* harmony default export */ var src_0 = (RouterTab); // 路由
 
 var RouterTabRoutes = routes;
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
 /* concated harmony reexport RouterTabRoutes */__webpack_require__.d(__webpack_exports__, "RouterTabRoutes", function() { return RouterTabRoutes; });
 
 
-/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (src);
+/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (src_0);
 
 
 
