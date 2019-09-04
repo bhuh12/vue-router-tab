@@ -68,6 +68,13 @@ export default {
     this.updateActivedTab()
   },
 
+  destroyed () {
+    // 取消原型挂载
+    if (Vue.prototype.$routerTab === this) {
+      Vue.prototype.$routerTab = null
+    }
+  },
+
   methods: {
     // 根据初始页签数据生成页签列表
     getTabItems () {
@@ -210,7 +217,7 @@ export default {
     async refreshTab (id = this.activedTab) {
       try {
         await this.pageLeavePromise(id, 'refresh')
-        this.$refs.routerAlive.clear(id)
+        this.$refs.routerAlive.remove(id)
         if (id === this.activedTab) this.reloadView()
       } catch (e) {}
     },
@@ -226,10 +233,10 @@ export default {
         if (!force) {
           try {
             await this.pageLeavePromise(id, 'refresh')
-            $alive.clear(id)
+            $alive.remove(id)
           } catch (e) {}
         } else {
-          $alive.clear(id)
+          $alive.remove(id)
         }
       }
       this.reloadView()

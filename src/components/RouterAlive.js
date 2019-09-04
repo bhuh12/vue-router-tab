@@ -14,13 +14,20 @@ export default {
     })
   },
 
+  // 销毁后清理缓存
+  destroyed () {
+    this.removeAll()
+    this.cache = null
+    this.lastRoute = null
+  },
+
   render () {
     const slot = this.$slots.default
     const vnode = getFirstComponentChild(slot)
     const vmOpts = vnode && vnode.componentOptions
 
     if (vmOpts) {
-      const { cache, $route, lastRoute } = this
+      const { $route, lastRoute } = this
 
       // 如果是transition组件，页面组件则为子元素
       const pageNode = vmOpts.tag === 'transition' ? vmOpts.children[0] : vnode
@@ -28,8 +35,8 @@ export default {
       if (pageNode && pageNode.componentOptions) {
         // 获取缓存
         const key = this.getAliveId()
-        const cacheItem = cache[key]
-        const { vm: cacheVm, route: cacheRoute } = cacheItem || emptyObj
+        let cacheItem = this.get(key)
+        let { vm: cacheVm, route: cacheRoute } = cacheItem || emptyObj
 
         // 是否需要重载路由强制刷新页面组件
         let needReloadView = false
@@ -37,9 +44,12 @@ export default {
         // 路由是否改变
         let isRouteChange = lastRoute !== $route
 
-        // 是否跟上次路由共用组件
+        // 是否与上次路由相似
+        let likeLastRoute = this.isAlikeRoute($route, lastRoute)
+
+        // 是否跟上次路由不同单共用组件
         let isShareComp = isRouteChange &&
-          !this.isAlikeRoute($route, lastRoute) &&
+          !likeLastRoute &&
           this.getPageComp($route) === this.getPageComp(lastRoute)
 
         if (isRouteChange) {
@@ -51,15 +61,24 @@ export default {
         }
 
         if (cacheVm) {
-          // 缓存组件的路由地址匹配则取缓存的组件
-          if (this.isAlikeRoute(cacheRoute, $route)) {
+          let ctorId = this.getCtorIdByNode(pageNode)
+          let lastCtorId = cacheVm._ctorId
+
+          // 页面实例组件构造函数改变则清理旧缓存，解决 webpack 热加载后组件缓存不更新
+          if (lastCtorId && lastCtorId !== ctorId) {
+            // 清理缓存组件
+            this.remove(key)
+          } else if (this.isAlikeRoute(cacheRoute, $route)) {
+            // 缓存组件的路由地址匹配则取缓存的组件
             pageNode.componentInstance = cacheVm
           } else {
             // 缓存组件路由地址不匹配则销毁缓存并重载路由
-            cacheVm.$destroy()
-            cacheItem.vm = null
+            this.remove(key)
             needReloadView = true
           }
+
+          // 更新构造 id
+          cacheVm._ctorId = ctorId
         }
 
         // 共用组件的路由切换需重载路由
@@ -93,28 +112,29 @@ export default {
       return (cache[key] = item)
     },
 
+    // 获取缓存项
+    get (key) {
+      return this.cache[key]
+    },
+
     // 删除缓存项
     remove (key) {
       const { cache } = this
-      const item = cache[key]
+      let item = this.get(key)
 
       // 销毁组件实例
       if (item) {
         item.vm && item.vm.$destroy()
-        item.vm = null
         delete cache[key]
       }
-
-      this.$emit('remove', [ key ])
     },
 
-    // 清理缓存
-    clear (key) {
-      const item = this.cache[key]
-      const vm = item && item.vm
-      if (vm) {
-        vm.$destroy()
-        item.vm = null
+    // 清理所有缓存
+    removeAll () {
+      const { cache } = this
+
+      for (let i in cache) {
+        this.remove(i)
       }
     }
   }

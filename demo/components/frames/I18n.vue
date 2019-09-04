@@ -50,6 +50,10 @@ export default {
     }
   },
 
+  destroyed () {
+    Vue.prototype.$lang = null
+  },
+
   methods: {
     i18n (key, params) {
       let lang = this.lang[key]

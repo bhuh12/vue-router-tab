@@ -28,18 +28,10 @@ export default {
     })
   },
 
-  // 解决webpack热加载后组件缓存不更新
-  activated () {
-    if (!this._isRouterPage) return false
-
-    let ctorId = this.$vnode.componentOptions.Ctor.cid
-
-    // 热加载后Ctor.cid改变
-    if (this._ctorId && this._ctorId !== ctorId) {
-      this.$destroy()
-      this.$routerTab.refreshTab()
+  // 销毁后清理数据
+  destroyed () {
+    if (this._isRouterPage) {
+      this.$vnode.data.routerAlive = null
     }
-
-    this._ctorId = ctorId
   }
 }
