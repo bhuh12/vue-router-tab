@@ -18,4 +18,3 @@ vue.config.js
 .github
 .editorconfig
 .travis.yml
-*.map

@@ -2412,7 +2412,11 @@ var component = normalizeComponent(
             this.remove(key);
           } else if (this.isAlikeRoute(cacheRoute, $route)) {
             // 缓存组件的路由地址匹配则取缓存的组件
-            pageNode.componentInstance = cacheVm;
+            pageNode.componentInstance = cacheVm; // 嵌套路由缓存导致页面不匹配时强制更新
+
+            if (!likeLastRoute && cacheRoute.fullPath !== $route.fullPath && this.isNestRoute($route)) {
+              cacheVm._nestCacheForceReload = true;
+            }
           } else {
             // 缓存组件路由地址不匹配则销毁缓存并重载路由
             this.remove(key);
@@ -2500,6 +2504,30 @@ var component = normalizeComponent(
       deep: true,
       immediate: true
     });
+  },
+  // 页面激活
+  activated: function activated() {
+    // 嵌套路由缓存导致页面不匹配时强制更新
+    if (this._nestCacheForceReload) {
+      delete this._nestCacheForceReload;
+      var _this$$route = this.$route,
+          name = _this$$route.name,
+          path = _this$$route.path,
+          params = _this$$route.params,
+          query = _this$$route.query,
+          hash = _this$$route.hash; // query 添加 _forceReload 以更新路由
+
+      query = Object.assign({}, query, {
+        _forceReload: +new Date()
+      });
+      this.$router.replace({
+        name: name,
+        path: path,
+        params: params,
+        query: query,
+        hash: hash
+      });
+    }
   },
   // 销毁后清理数据
   destroyed: function destroyed() {
