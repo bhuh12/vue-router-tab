@@ -28,6 +28,19 @@ export default {
     })
   },
 
+  // 页面激活
+  activated () {
+    // 嵌套路由缓存导致页面不匹配时强制更新
+    if (this._nestCacheForceReload) {
+      delete this._nestCacheForceReload
+
+      let { name, path, params, query, hash } = this.$route
+      // query 添加 _forceReload 以更新路由
+      query = Object.assign({}, query, { _forceReload: +new Date() })
+      this.$router.replace({ name, path, params, query, hash })
+    }
+  },
+
   // 销毁后清理数据
   destroyed () {
     if (this._isRouterPage) {

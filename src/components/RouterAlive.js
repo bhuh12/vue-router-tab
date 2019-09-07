@@ -71,6 +71,15 @@ export default {
           } else if (this.isAlikeRoute(cacheRoute, $route)) {
             // 缓存组件的路由地址匹配则取缓存的组件
             pageNode.componentInstance = cacheVm
+
+            // 嵌套路由缓存导致页面不匹配时强制更新
+            if (
+              !likeLastRoute &&
+              cacheRoute.fullPath !== $route.fullPath &&
+              this.isNestRoute($route)
+            ) {
+              cacheVm._nestCacheForceReload = true
+            }
           } else {
             // 缓存组件路由地址不匹配则销毁缓存并重载路由
             this.remove(key)
