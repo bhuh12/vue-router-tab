@@ -7,6 +7,7 @@ import langCustom from './lang-custom'
 import langEn from './lang-en'
 import slot from './slot'
 import transition from './transition'
+import closeLastTab from './close-last-tab'
 
 import extendRoutes from '../../utils/extendRoutes'
 
@@ -19,7 +20,8 @@ const routes = [
   langCustom,
   langEn,
   slot,
-  transition
+  transition,
+  closeLastTab
 ]
 
 routes.forEach(extendRoutes)

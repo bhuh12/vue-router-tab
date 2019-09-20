@@ -25,7 +25,7 @@
               <i v-if="icon" class="tab-icon" :class="icon" />
               <span class="tab-title">{{ i18nText(title) || lang.tab.untitled }}</span>
               <i
-                v-if="closable !== false && items.length > 1"
+                v-if="closable !== false && !(keepLastTab && items.length < 2)"
                 class="tab-close"
                 :title="lang.contextmenu.close"
                 @click.prevent="closeTab(id)"

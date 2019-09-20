@@ -11,7 +11,7 @@ export default {
     closeOthers: '关闭其他'
   },
   msg: {
-    keepOneTab: '至少应保留1个页签',
+    keepLastTab: '至少应保留1个页签',
     i18nProp: '请提供“i18n”方法以处理国际化内容'
   }
 }

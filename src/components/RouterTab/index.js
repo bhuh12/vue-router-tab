@@ -23,6 +23,15 @@ export default {
       default: () => []
     },
 
+    // 是否保留最后一个页签不被关闭
+    keepLastTab: {
+      type: Boolean,
+      default: true
+    },
+
+    // 默认页面
+    defaultPage: [ String, Object ],
+
     // router-view组件配置
     routerView: Object,
 
@@ -48,6 +57,13 @@ export default {
       items: [], // 页签项
       activedTab: null, // 当前激活的页签
       isViewAlive: true
+    }
+  },
+
+  computed: {
+    // 默认路径
+    defaultPath () {
+      return this.defaultPage || this.getBasePath()
     }
   },
 
@@ -153,48 +169,72 @@ export default {
     },
 
     // 移除 tab 项
-    async removeTab (id) {
+    async removeTab (id, force = false) {
       let { items } = this
       let $alive = this.$refs.routerAlive
       const idx = items.findIndex(item => item.id === id)
 
-      if (items.length === 1) {
-        throw new Error(this.lang.msg.keepOneTab)
+      // 最后一个页签不允许关闭
+      if (!force && this.keepLastTab && items.length === 1) {
+        throw new Error(this.lang.msg.keepLastTab)
       }
 
-      try {
-        await this.pageLeavePromise(id, 'close')
+      if (!force) await this.pageLeavePromise(id, 'close')
 
-        // 承诺关闭后移除页签和缓存
-        $alive.remove(id)
-        idx > -1 && items.splice(idx, 1)
-      } catch (e) {}
+      // 承诺关闭后移除页签和缓存
+      $alive.remove(id)
+      idx > -1 && items.splice(idx, 1)
     },
 
-    // 通过路由地址关闭页签
-    close (location, fullMatch = true) {
-      if (location) {
-        let id = this.getIdByLocation(location, fullMatch)
-        if (id) {
-          this.closeTab(id)
-        }
+    /**
+     * 通过路由地址关闭页签
+     * 调用
+     * @param {location} target 需要关闭的 location，falsy 则默认为当前页签
+     * @param {location} to 关闭后跳转的地址，为 null 则不跳转
+     * @param {boolean} [fullMatch = true] 是否匹配 target 完整路径
+     * @param {boolean} [force = false] 是否强制关闭
+     */
+    close (target, to, fullMatch = true, force = true) {
+      if (typeof to === 'boolean') {
+        force = fullMatch === undefined ? true : !!fullMatch
+        fullMatch = to
+        to = undefined
+      }
+
+      if (target) {
+        let id = this.getIdByLocation(target, fullMatch)
+        if (id) this.closeTab(id, to, force)
       } else {
-        this.closeTab()
+        this.closeTab(undefined, to, force)
       }
     },
 
     // 通过页签 id 关闭页签
-    async closeTab (id = this.activedTab) {
+    async closeTab (id = this.activedTab, to, force = false) {
       let { activedTab, items, $router } = this
       const idx = items.findIndex(item => item.id === id)
 
       try {
-        await this.removeTab(id)
+        await this.removeTab(id, force)
+
+        // 为 null 不跳转
+        if (to === null) return
 
         // 如果关闭当前页签，则打开后一个页签
-        if (activedTab === id) {
+        if (!to && activedTab === id) {
           let nextTab = items[idx] || items[idx - 1]
-          $router.replace(nextTab.to)
+          to = nextTab ? nextTab.to : this.defaultPath
+        }
+
+        if (to) {
+          let toRoute = $router.match(to)
+
+          // 目标地址与当前地址一致则强制刷新页面
+          if (toRoute.fullPath === this.$route.fullPath) {
+            this.refreshTab()
+          } else {
+            $router.replace(to)
+          }
         }
       } catch (e) {
         warn(false, e)
@@ -224,7 +264,7 @@ export default {
 
     /**
      * 刷新所有页签
-     * @param {boolean} [force=false] 是否强制刷新，如果强制则忽略页面 beforePageLeave
+     * @param {boolean} [force = false] 是否强制刷新，如果强制则忽略页面 beforePageLeave
      */
     async refreshAll (force = false) {
       const $alive = this.$refs.routerAlive
