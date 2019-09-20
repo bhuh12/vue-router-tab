@@ -19,7 +19,7 @@ export default {
         next()
       } else {
         const id = this.getAliveId(to)
-        const $alive = this.$refs.routerAlive
+        const { $alive } = this
         const { route: cacheRoute } = ($alive && $alive.cache[id]) || emptyObj
 
         // 如果不是相同路由则检查 beforePageLeave
@@ -36,9 +36,8 @@ export default {
     // 页面离开Promise
     pageLeavePromise (id, type) {
       return new Promise((resolve, reject) => {
-        let $alive = this.$refs.routerAlive
         let tab = this.items.find(item => item.id === id) // 当前页签
-        let { vm } = $alive.cache[id] || emptyObj // 缓存数据
+        let { vm } = this.$alive.cache[id] || emptyObj // 缓存数据
         let beforePageLeave = vm && vm.$vnode.componentOptions.Ctor.options.beforePageLeave
 
         if (typeof beforePageLeave === 'function') {

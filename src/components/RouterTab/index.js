@@ -56,7 +56,8 @@ export default {
       loading: false, // 路由页面 loading
       items: [], // 页签项
       activedTab: null, // 当前激活的页签
-      isViewAlive: true
+      isViewAlive: true,
+      isMounted: false // 是否挂载
     }
   },
 
@@ -64,6 +65,11 @@ export default {
     // 默认路径
     defaultPath () {
       return this.defaultPage || this.getBasePath()
+    },
+
+    // routerAlive
+    $alive () {
+      return this.isMounted ? this.$refs.routerAlive : null
     }
   },
 
@@ -80,8 +86,12 @@ export default {
     // 添加到原型链
     Vue.prototype.$routerTab = this
 
-    this.getTabItems()
+    this.initTabs()
     this.updateActivedTab()
+  },
+
+  mounted () {
+    this.isMounted = true
   },
 
   destroyed () {
@@ -92,8 +102,8 @@ export default {
   },
 
   methods: {
-    // 根据初始页签数据生成页签列表
-    getTabItems () {
+    // 初始页签数据
+    initTabs () {
       let { tabs, $router } = this
       let ids = {}
 
@@ -171,7 +181,6 @@ export default {
     // 移除 tab 项
     async removeTab (id, force = false) {
       let { items } = this
-      let $alive = this.$refs.routerAlive
       const idx = items.findIndex(item => item.id === id)
 
       // 最后一个页签不允许关闭
@@ -182,17 +191,16 @@ export default {
       if (!force) await this.pageLeavePromise(id, 'close')
 
       // 承诺关闭后移除页签和缓存
-      $alive.remove(id)
+      this.$alive.remove(id)
       idx > -1 && items.splice(idx, 1)
     },
 
     /**
      * 通过路由地址关闭页签
-     * 调用
      * @param {location} target 需要关闭的 location，falsy 则默认为当前页签
-     * @param {location} to 关闭后跳转的地址，为 null 则不跳转
+     * @param {location} to 关闭后跳转的地址，为 null 则不跳转，参数可忽略
      * @param {boolean} [fullMatch = true] 是否匹配 target 完整路径
-     * @param {boolean} [force = false] 是否强制关闭
+     * @param {boolean} [force = true] 是否强制关闭
      */
     close (target, to, fullMatch = true, force = true) {
       if (typeof to === 'boolean') {
@@ -241,25 +249,32 @@ export default {
       }
     },
 
-    // 通过路由地址刷新页签
-    refresh (location, fullMatch = true) {
-      if (location) {
-        let id = this.getIdByLocation(location, fullMatch)
+    /**
+     * 通过路由地址刷新页签
+     * @param {location} target
+     * @param {boolean} [fullMatch = true] 是否匹配 target 完整路径
+     * @param {boolean} [force = true] 是否强制刷新
+     */
+    refresh (target, fullMatch = true, force = true) {
+      if (target) {
+        let id = this.getIdByLocation(target, fullMatch)
         if (id) {
-          this.refreshTab(id)
+          this.refreshTab(id, force)
         }
       } else {
-        this.refreshTab()
+        this.refreshTab(undefined, force)
       }
     },
 
     // 刷新指定页签
-    async refreshTab (id = this.activedTab) {
+    async refreshTab (id = this.activedTab, force = false) {
       try {
-        await this.pageLeavePromise(id, 'refresh')
-        this.$refs.routerAlive.remove(id)
+        if (!force) await this.pageLeavePromise(id, 'refresh')
+        this.$alive.remove(id)
         if (id === this.activedTab) this.reloadView()
-      } catch (e) {}
+      } catch (e) {
+        warn(false, e)
+      }
     },
 
     /**
@@ -267,19 +282,35 @@ export default {
      * @param {boolean} [force = false] 是否强制刷新，如果强制则忽略页面 beforePageLeave
      */
     async refreshAll (force = false) {
-      const $alive = this.$refs.routerAlive
-      const { cache } = $alive
+      const { cache } = this.$alive
       for (const id in cache) {
-        if (!force) {
-          try {
-            await this.pageLeavePromise(id, 'refresh')
-            $alive.remove(id)
-          } catch (e) {}
-        } else {
-          $alive.remove(id)
-        }
+        try {
+          if (!force) await this.pageLeavePromise(id, 'refresh')
+          this.$alive.remove(id)
+        } catch (e) {}
       }
       this.reloadView()
+    },
+
+    /**
+     * 重置 RouterTab 到默认状态，关闭所有页签并清理缓存页签数据
+     * @param {location} [to = this.defaultPath] 重置后跳转页面
+     */
+    reset (to = this.defaultPath) {
+      // 遍历删除缓存
+      this.items.forEach(({ id }) => this.$alive.remove(id))
+
+      // 初始页签数据
+      this.initTabs()
+
+      let toRoute = this.$router.match(to)
+
+      // 目标地址与当前地址一致则强制刷新页面
+      if (toRoute.fullPath === this.$route.fullPath) {
+        this.refreshTab()
+      } else {
+        this.$router.replace(to)
+      }
     },
 
     // 重载路由视图
@@ -306,7 +337,7 @@ export default {
 
     // 修复：当快速频繁切换页签时，旧页面离开过渡效果尚未完成，新页面内容无法正常 mount，内容节点为 comment 类型
     fixCommentPage () {
-      if (this.$refs.routerAlive.$el.nodeType === 8) {
+      if (this.$alive.$el.nodeType === 8) {
         this.reloadView(true)
       }
     }
