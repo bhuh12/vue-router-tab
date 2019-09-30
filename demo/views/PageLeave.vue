@@ -16,12 +16,12 @@
     <p>
       <a
         class="demo-btn"
-        @click="$routerTab.refresh()"
+        @click="$routerTab.refresh(null, true, false)"
       >刷新</a>
 
       <a
         class="demo-btn"
-        @click="$routerTab.close()"
+        @click="$routerTab.close({ force: false })"
       >关闭</a>
 
       <router-link

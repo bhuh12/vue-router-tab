@@ -2,12 +2,12 @@ import Vue from 'vue'
 
 // 方法
 import { emptyObj } from '../../util'
-import { warn } from '../../util/warn'
 
 // 功能模块混入
 import contextmenu from './contextmenu'
 import i18n from './i18n'
 import iframe from './iframe'
+import operate from './operate'
 import pageLeave from './pageLeave'
 import rule from './rule'
 import scroll from './scroll'
@@ -15,7 +15,7 @@ import scroll from './scroll'
 // RouterTab 组件
 export default {
   name: 'RouterTab',
-  mixins: [ contextmenu, i18n, iframe, pageLeave, rule, scroll ],
+  mixins: [ contextmenu, i18n, iframe, operate, pageLeave, rule, scroll ],
   props: {
     // 初始页签数据
     tabs: {
@@ -31,6 +31,19 @@ export default {
 
     // 默认页面
     defaultPage: [ String, Object ],
+
+    /**
+     * 组件语言
+     * - 为字符串时，可以设置为内置的语言 'zh-CN' (默认) 和 'en'
+     * - 为对象时，可设置自定义的语言
+     */
+    language: {
+      type: [ String, Object ],
+      default: 'zh-CN'
+    },
+
+    // 页签国际化配置 i18n (key, [args])
+    i18n: Function,
 
     // router-view组件配置
     routerView: Object,
@@ -176,141 +189,6 @@ export default {
       let { title, icon, tips } = matchRoutes.pageRoute.meta
 
       return { id, to: route.fullPath, title, icon, tips }
-    },
-
-    // 移除 tab 项
-    async removeTab (id, force = false) {
-      let { items } = this
-      const idx = items.findIndex(item => item.id === id)
-
-      // 最后一个页签不允许关闭
-      if (!force && this.keepLastTab && items.length === 1) {
-        throw new Error(this.lang.msg.keepLastTab)
-      }
-
-      if (!force) await this.pageLeavePromise(id, 'close')
-
-      // 承诺关闭后移除页签和缓存
-      this.$alive.remove(id)
-      idx > -1 && items.splice(idx, 1)
-    },
-
-    /**
-     * 通过路由地址关闭页签
-     * @param {location} target 需要关闭的 location，falsy 则默认为当前页签
-     * @param {location} to 关闭后跳转的地址，为 null 则不跳转，参数可忽略
-     * @param {boolean} [fullMatch = true] 是否匹配 target 完整路径
-     * @param {boolean} [force = true] 是否强制关闭
-     */
-    close (target, to, fullMatch = true, force = true) {
-      if (typeof to === 'boolean') {
-        force = fullMatch === undefined ? true : !!fullMatch
-        fullMatch = to
-        to = undefined
-      }
-
-      if (target) {
-        let id = this.getIdByLocation(target, fullMatch)
-        if (id) this.closeTab(id, to, force)
-      } else {
-        this.closeTab(undefined, to, force)
-      }
-    },
-
-    // 通过页签 id 关闭页签
-    async closeTab (id = this.activedTab, to, force = false) {
-      let { activedTab, items, $router } = this
-      const idx = items.findIndex(item => item.id === id)
-
-      try {
-        await this.removeTab(id, force)
-
-        // 为 null 不跳转
-        if (to === null) return
-
-        // 如果关闭当前页签，则打开后一个页签
-        if (!to && activedTab === id) {
-          let nextTab = items[idx] || items[idx - 1]
-          to = nextTab ? nextTab.to : this.defaultPath
-        }
-
-        if (to) {
-          let toRoute = $router.match(to)
-
-          // 目标地址与当前地址一致则强制刷新页面
-          if (toRoute.fullPath === this.$route.fullPath) {
-            this.refreshTab()
-          } else {
-            $router.replace(to)
-          }
-        }
-      } catch (e) {
-        warn(false, e)
-      }
-    },
-
-    /**
-     * 通过路由地址刷新页签
-     * @param {location} target
-     * @param {boolean} [fullMatch = true] 是否匹配 target 完整路径
-     * @param {boolean} [force = true] 是否强制刷新
-     */
-    refresh (target, fullMatch = true, force = true) {
-      if (target) {
-        let id = this.getIdByLocation(target, fullMatch)
-        if (id) {
-          this.refreshTab(id, force)
-        }
-      } else {
-        this.refreshTab(undefined, force)
-      }
-    },
-
-    // 刷新指定页签
-    async refreshTab (id = this.activedTab, force = false) {
-      try {
-        if (!force) await this.pageLeavePromise(id, 'refresh')
-        this.$alive.remove(id)
-        if (id === this.activedTab) this.reloadView()
-      } catch (e) {
-        warn(false, e)
-      }
-    },
-
-    /**
-     * 刷新所有页签
-     * @param {boolean} [force = false] 是否强制刷新，如果强制则忽略页面 beforePageLeave
-     */
-    async refreshAll (force = false) {
-      const { cache } = this.$alive
-      for (const id in cache) {
-        try {
-          if (!force) await this.pageLeavePromise(id, 'refresh')
-          this.$alive.remove(id)
-        } catch (e) {}
-      }
-      this.reloadView()
-    },
-
-    /**
-     * 重置 RouterTab 到默认状态，关闭所有页签并清理缓存页签数据
-     * @param {location} [to = this.defaultPath] 重置后跳转页面
-     */
-    reset (to = this.defaultPath) {
-      // 遍历删除缓存
-      this.items.forEach(({ id }) => this.$alive.remove(id))
-
-      // 初始页签数据
-      this.initTabs()
-
-      let toRoute = this.$router.match(to)
-
-      // 目标地址与当前地址一致则强制刷新页面
-      if (toRoute.fullPath === this.$route.fullPath) {
-        this.refreshTab()
-      } else {
-        this.$router.replace(to)
-      }
     },
 
     // 重载路由视图

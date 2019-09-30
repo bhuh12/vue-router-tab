@@ -24,6 +24,26 @@ sidebar: auto
   根据 `route.path` 来缓存页面组件。
 
 
+### default-page
+
+默认页面，最后一个页签关闭或者页签重置后跳转的默认地址。
+
+程序会自动获取页签父路由地址为默认页面。
+
+- 类型: `String | Object` location 地址
+
+- 默认值: 页签组件父路由地址。
+
+
+### keep-last-tab
+
+是否保留最后一个页签不被关闭
+
+- 类型: `Boolean`
+
+- 默认值: `true`
+
+
 ### i18n
 
 页签国际化转换
@@ -126,13 +146,32 @@ sidebar: auto
 在 Vue 实例内部，您可以通过 `this.$routerTab` 来访问路由页签实例。例如: 调用 `this.$routerTab.close()` 来关闭当前页签。
 :::
 
-### routerTab.close
+### routerTab.open
 
-关闭指定 `location` 的页签
+打开指定地址的页签（默认为全新打开）
 
 - 参数: 
-  - `{String | Object} [location]` 路由地址 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
-  - `{Boolean} [fullMatch = true]` 是否全匹配（匹配fullPath去除hash部分）
+  - `{String | Object} [path]` 要打开的路由地址 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
+  - `{Boolean} [isReplace = false]` 是否 `$router.replace` 方式打开
+  - `{Boolean} [refresh = true]` 是否全新打开（会清理之前的页签页面缓存）
+
+
+### routerTab.close
+
+关闭指定页签
+
+支持以下方式调用：
+  1. `this.$routerTab.close({id, path, match, force, to, refresh})`
+  2. `this.$routerTab.close(path, match, force)`
+  3. `this.$routerTab.close((path, to, match, force))`
+
+- 参数: 
+  - `{String} id` 通过页签 id 关闭
+  - `{location} path` 通过路由路径关闭页签，如果未配置 id 和 path 则关闭
+  - `{boolean} [match = true]` path 方式关闭时，是否匹配 path 完整路径
+  - `{boolean} [force = true]` 是否强制关闭
+  - `{location} to` 关闭后跳转的地址，为 null 则不跳转
+  - `{boolean} [refresh = false]` 是否全新打开跳转地址
 
   
 ### routerTab.refresh
@@ -150,6 +189,14 @@ sidebar: auto
 
 - 参数: 
   - `{Boolean} [force = false]` 如果 `force` 为 `true`，则忽略页面组件的 `beforePageLeave` 配置，强制刷新所有页签
+
+
+### routerTab.reset
+
+重置页签到初始状态
+
+- 参数: 
+  - `{String | Object} [location]` 重置后跳转的地址，默认为 `default-page`
 
 
 ### routerTab.openIframe

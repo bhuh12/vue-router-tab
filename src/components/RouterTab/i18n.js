@@ -3,19 +3,6 @@ import { warn } from '../../util/warn'
 
 // 国际化
 export default {
-  props: {
-    // 组件语言
-    // - 为字符串时，可以设置为内置的语言 'zh-CN' (默认) 和 'en'
-    // - 为对象时，可设置自定义的语言
-    language: {
-      type: [ String, Object ],
-      default: 'zh-CN'
-    },
-
-    // 页签国际化配置 i18n (key, [args])
-    i18n: Function
-  },
-
   computed: {
     // 语言内容
     lang () {

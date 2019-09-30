@@ -15,6 +15,12 @@
     </p>
 
     <p>
+      <a class="demo-btn" @click="$routerTab.refreshAll()">刷新所有页面</a>
+
+      <a class="demo-btn" @click="$routerTab.reset()">重置页签</a>
+    </p>
+
+    <p>
       <router-link class="demo-btn" :to="'../page/'+ nextId">
         打开“页面{{ nextId }}”
       </router-link>
@@ -25,13 +31,12 @@
         打开“页面{{ prevId }}”
       </router-link>
 
-      <router-link
+      <a
         class="demo-btn"
-        :to="'../page/'+ prevId"
-        @click.native="$routerTab.refresh('../page/'+ prevId)"
+        @click="$routerTab.open('../page/'+ prevId, true)"
       >
         全新打开“页面{{ prevId }}”
-      </router-link>
+      </a>
     </p>
 
     <p>
