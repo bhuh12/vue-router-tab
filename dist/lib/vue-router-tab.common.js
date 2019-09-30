@@ -980,27 +980,6 @@ function debounce(fn) {
     }, delay);
   };
 }
-// CONCATENATED MODULE: ./src/util/warn.js
-var prefix = '[Vue Router Tab]'; // 错误
-
-function assert(condition, message) {
-  if (!condition) {
-    throw new Error("".concat(prefix, " ").concat(message));
-  }
-} // 警告
-
-function warn(condition, message) {
-  if (!condition) {
-    typeof console !== 'undefined' && console.warn("".concat(prefix, " ").concat(message));
-  }
-} // 常用消息
-
-var messages = {
-  renamed: function renamed(newName) {
-    var target = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '方法';
-    return "\u8BE5".concat(target, "\u5DF2\u66F4\u540D\u4E3A\u201C").concat(newName, "\u201D\uFF0C\u8BF7\u4FEE\u6539\u540E\u4F7F\u7528");
-  }
-};
 // CONCATENATED MODULE: ./src/components/RouterTab/contextmenu.js
 
 
@@ -1258,6 +1237,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   'zh-CN': zh_CN,
   en: en
 });
+// CONCATENATED MODULE: ./src/util/warn.js
+var prefix = '[Vue Router Tab]'; // 错误
+
+function assert(condition, message) {
+  if (!condition) {
+    throw new Error("".concat(prefix, " ").concat(message));
+  }
+} // 警告
+
+function warn(condition, message) {
+  if (!condition) {
+    typeof console !== 'undefined' && console.warn("".concat(prefix, " ").concat(message));
+  }
+} // 常用消息
+
+var messages = {
+  renamed: function renamed(newName) {
+    var target = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '方法';
+    return "\u8BE5".concat(target, "\u5DF2\u66F4\u540D\u4E3A\u201C").concat(newName, "\u201D\uFF0C\u8BF7\u4FEE\u6539\u540E\u4F7F\u7528");
+  }
+};
 // CONCATENATED MODULE: ./src/components/RouterTab/i18n.js
 function _toArray(arr) { return _arrayWithHoles(arr) || _iterableToArray(arr) || _nonIterableRest(); }
 
@@ -1272,17 +1272,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
  // 国际化
 
 /* harmony default export */ var i18n = ({
-  props: {
-    // 组件语言
-    // - 为字符串时，可以设置为内置的语言 'zh-CN' (默认) 和 'en'
-    // - 为对象时，可设置自定义的语言
-    language: {
-      type: [String, Object],
-      default: 'zh-CN'
-    },
-    // 页签国际化配置 i18n (key, [args])
-    i18n: Function
-  },
   computed: {
     // 语言内容
     lang: function lang() {
@@ -1416,6 +1405,450 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     iframeLoaded: function iframeLoaded(url) {
       var iframe = this.getIframeEl(url);
       this.$emit('iframe-loaded', url, iframe);
+    }
+  }
+});
+// CONCATENATED MODULE: ./src/components/RouterTab/operate.js
+
+
+function operate_asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function operate_asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { operate_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { operate_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _slicedToArray(arr, i) { return operate_arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || operate_nonIterableRest(); }
+
+function operate_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function operate_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+ // 获取关闭参数
+
+function getCloseArgs(args) {
+  var argsLen = args.length;
+  var arg = args[0]; // 首个选项
+
+  var arg2 = args[1]; // 第二个选项
+
+  if (!argsLen) {
+    // close()
+    return {};
+  } else if (argsLen === 1 && arg && _typeof(arg) === 'object' && !arg.name && !arg.fullPath && !arg.params && !arg.query && !arg.hash) {
+    // close({id, path, match, force, to, refresh})
+    return arg;
+  } else if (typeof arg2 === 'boolean') {
+    // close(path, match, force)
+    var _args = _slicedToArray(args, 3),
+        path = _args[0],
+        match = _args[1],
+        force = _args[2];
+
+    return {
+      path: path,
+      match: match,
+      force: force
+    };
+  } else {
+    // close(path, to, match, force)
+    var _args2 = _slicedToArray(args, 4),
+        _path = _args2[0],
+        to = _args2[1],
+        _match = _args2[2],
+        _force = _args2[3];
+
+    return {
+      path: _path,
+      to: to,
+      match: _match,
+      force: _force
+    };
+  }
+} // 页签操作
+
+
+/* harmony default export */ var operate = ({
+  methods: {
+    /**
+     * 打开页签（默认全新打开）
+     * @param {location} path 页签路径
+     * @param {boolean} [isReplace = false] 是否 replace 方式替换当前路由
+     * @param {boolean} [refresh = true] 是否全新打开
+     */
+    open: function open(path) {
+      var isReplace = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+      var refresh = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+      if (refresh) this.refresh(path);
+      this.$router[isReplace ? 'replace' : 'push'](path);
+    },
+    // 移除 tab 项
+    removeTab: function () {
+      var _removeTab = operate_asyncToGenerator(
+      /*#__PURE__*/
+      regenerator_default.a.mark(function _callee(id) {
+        var force,
+            items,
+            idx,
+            _args3 = arguments;
+        return regenerator_default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                force = _args3.length > 1 && _args3[1] !== undefined ? _args3[1] : false;
+                items = this.items;
+                idx = items.findIndex(function (item) {
+                  return item.id === id;
+                }); // 最后一个页签不允许关闭
+
+                if (!(!force && this.keepLastTab && items.length === 1)) {
+                  _context.next = 5;
+                  break;
+                }
+
+                throw new Error(this.lang.msg.keepLastTab);
+
+              case 5:
+                if (force) {
+                  _context.next = 8;
+                  break;
+                }
+
+                _context.next = 8;
+                return this.pageLeavePromise(id, 'close');
+
+              case 8:
+                // 承诺关闭后移除页签和缓存
+                this.$alive.remove(id);
+                idx > -1 && items.splice(idx, 1);
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function removeTab(_x) {
+        return _removeTab.apply(this, arguments);
+      }
+
+      return removeTab;
+    }(),
+
+    /**
+     * 关闭页签
+     * 支持以下方式调用：
+     *   1. this.$routerTab.close({id, path, match, force, to, refresh})
+     *   2. this.$routerTab.close(path, match, force)
+     *   3. this.$routerTab.close((path, to, match, force))
+     * @param {String} id 通过页签 id 关闭
+     * @param {location} path 通过路由路径关闭页签，如果未配置 id 和 path 则关闭当前页签
+     * @param {boolean} [match = true] path 方式关闭时，是否匹配 path 完整路径
+     * @param {boolean} [force = true] 是否强制关闭
+     * @param {location} to 关闭后跳转的地址，为 null 则不跳转
+     * @param {boolean} [refresh = false] 是否全新打开跳转地址
+     */
+    close: function () {
+      var _close = operate_asyncToGenerator(
+      /*#__PURE__*/
+      regenerator_default.a.mark(function _callee2() {
+        var _getCloseArgs,
+            id,
+            path,
+            _getCloseArgs$match,
+            match,
+            _getCloseArgs$force,
+            force,
+            to,
+            _getCloseArgs$refresh,
+            refresh,
+            activedTab,
+            items,
+            $router,
+            idx,
+            nextTab,
+            toRoute,
+            _args4 = arguments;
+
+        return regenerator_default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                // 解析参数
+                _getCloseArgs = getCloseArgs(_args4), id = _getCloseArgs.id, path = _getCloseArgs.path, _getCloseArgs$match = _getCloseArgs.match, match = _getCloseArgs$match === void 0 ? true : _getCloseArgs$match, _getCloseArgs$force = _getCloseArgs.force, force = _getCloseArgs$force === void 0 ? true : _getCloseArgs$force, to = _getCloseArgs.to, _getCloseArgs$refresh = _getCloseArgs.refresh, refresh = _getCloseArgs$refresh === void 0 ? false : _getCloseArgs$refresh;
+                activedTab = this.activedTab, items = this.items, $router = this.$router; // 根据 path 获取 id
+
+                if (!(!id && path)) {
+                  _context2.next = 6;
+                  break;
+                }
+
+                id = this.getIdByLocation(path, match);
+
+                if (id) {
+                  _context2.next = 6;
+                  break;
+                }
+
+                return _context2.abrupt("return");
+
+              case 6:
+                // 默认当前页签
+                if (!id) id = activedTab;
+                _context2.prev = 7;
+                _context2.next = 10;
+                return this.removeTab(id, force);
+
+              case 10:
+                if (!(to === null)) {
+                  _context2.next = 12;
+                  break;
+                }
+
+                return _context2.abrupt("return");
+
+              case 12:
+                // 如果关闭当前页签，则打开后一个页签
+                if (!to && activedTab === id) {
+                  idx = items.findIndex(function (item) {
+                    return item.id === id;
+                  });
+                  nextTab = items[idx] || items[idx - 1];
+                  to = nextTab ? nextTab.to : this.defaultPath;
+                }
+
+                if (to) {
+                  toRoute = $router.match(to); // 目标地址与当前地址一致则强制刷新页面
+
+                  if (toRoute.fullPath === this.$route.fullPath) {
+                    this.refreshTab();
+                  } else {
+                    this.open(to, true, refresh);
+                  }
+                }
+
+                _context2.next = 19;
+                break;
+
+              case 16:
+                _context2.prev = 16;
+                _context2.t0 = _context2["catch"](7);
+                warn(false, _context2.t0);
+
+              case 19:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this, [[7, 16]]);
+      }));
+
+      function close() {
+        return _close.apply(this, arguments);
+      }
+
+      return close;
+    }(),
+    // 通过页签 id 关闭页签
+    closeTab: function () {
+      var _closeTab = operate_asyncToGenerator(
+      /*#__PURE__*/
+      regenerator_default.a.mark(function _callee3() {
+        var id,
+            to,
+            force,
+            _args5 = arguments;
+        return regenerator_default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                id = _args5.length > 0 && _args5[0] !== undefined ? _args5[0] : this.activedTab;
+                to = _args5.length > 1 ? _args5[1] : undefined;
+                force = _args5.length > 2 && _args5[2] !== undefined ? _args5[2] : false;
+                this.close({
+                  id: id,
+                  to: to,
+                  force: force
+                });
+
+              case 4:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function closeTab() {
+        return _closeTab.apply(this, arguments);
+      }
+
+      return closeTab;
+    }(),
+
+    /**
+     * 通过路由地址刷新页签
+     * @param {location} path 需要刷新的地址
+     * @param {boolean} [fullMatch = true] 是否匹配 target 完整路径
+     * @param {boolean} [force = true] 是否强制刷新
+     */
+    refresh: function refresh(path) {
+      var fullMatch = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+      var force = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+
+      if (path) {
+        var id = this.getIdByLocation(path, fullMatch);
+
+        if (id) {
+          this.refreshTab(id, force);
+        }
+      } else {
+        this.refreshTab(undefined, force);
+      }
+    },
+    // 刷新指定页签
+    refreshTab: function () {
+      var _refreshTab = operate_asyncToGenerator(
+      /*#__PURE__*/
+      regenerator_default.a.mark(function _callee4() {
+        var id,
+            force,
+            _args6 = arguments;
+        return regenerator_default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                id = _args6.length > 0 && _args6[0] !== undefined ? _args6[0] : this.activedTab;
+                force = _args6.length > 1 && _args6[1] !== undefined ? _args6[1] : false;
+                _context4.prev = 2;
+
+                if (force) {
+                  _context4.next = 6;
+                  break;
+                }
+
+                _context4.next = 6;
+                return this.pageLeavePromise(id, 'refresh');
+
+              case 6:
+                this.$alive.remove(id);
+                if (id === this.activedTab) this.reloadView();
+                _context4.next = 13;
+                break;
+
+              case 10:
+                _context4.prev = 10;
+                _context4.t0 = _context4["catch"](2);
+                warn(false, _context4.t0);
+
+              case 13:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this, [[2, 10]]);
+      }));
+
+      function refreshTab() {
+        return _refreshTab.apply(this, arguments);
+      }
+
+      return refreshTab;
+    }(),
+
+    /**
+     * 刷新所有页签
+     * @param {boolean} [force = false] 是否强制刷新，如果强制则忽略页面 beforePageLeave
+     */
+    refreshAll: function () {
+      var _refreshAll = operate_asyncToGenerator(
+      /*#__PURE__*/
+      regenerator_default.a.mark(function _callee5() {
+        var force,
+            cache,
+            id,
+            _args7 = arguments;
+        return regenerator_default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                force = _args7.length > 0 && _args7[0] !== undefined ? _args7[0] : false;
+                cache = this.$alive.cache;
+                _context5.t0 = regenerator_default.a.keys(cache);
+
+              case 3:
+                if ((_context5.t1 = _context5.t0()).done) {
+                  _context5.next = 16;
+                  break;
+                }
+
+                id = _context5.t1.value;
+                _context5.prev = 5;
+
+                if (force) {
+                  _context5.next = 9;
+                  break;
+                }
+
+                _context5.next = 9;
+                return this.pageLeavePromise(id, 'refresh');
+
+              case 9:
+                this.$alive.remove(id);
+                _context5.next = 14;
+                break;
+
+              case 12:
+                _context5.prev = 12;
+                _context5.t2 = _context5["catch"](5);
+
+              case 14:
+                _context5.next = 3;
+                break;
+
+              case 16:
+                this.reloadView();
+
+              case 17:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this, [[5, 12]]);
+      }));
+
+      function refreshAll() {
+        return _refreshAll.apply(this, arguments);
+      }
+
+      return refreshAll;
+    }(),
+
+    /**
+     * 重置 RouterTab 到默认状态，关闭所有页签并清理缓存页签数据
+     * @param {location} [to = this.defaultPath] 重置后跳转页面
+     */
+    reset: function reset() {
+      var _this = this;
+
+      var to = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.defaultPath;
+      // 遍历删除缓存
+      this.items.forEach(function (_ref) {
+        var id = _ref.id;
+        return _this.$alive.remove(id);
+      }); // 初始页签数据
+
+      this.initTabs();
+      var toRoute = this.$router.match(to); // 目标地址与当前地址一致则强制刷新页面
+
+      if (toRoute.fullPath === this.$route.fullPath) {
+        this.refreshTab();
+      } else {
+        this.$router.replace(to);
+      }
     }
   }
 });
@@ -1746,8 +2179,8 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
 
  // 方法
 
-
  // 功能模块混入
+
 
 
 
@@ -1758,7 +2191,7 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
 
 /* harmony default export */ var RouterTab_vue_type_script_lang_js_ = ({
   name: 'RouterTab',
-  mixins: [RouterTab_contextmenu, i18n, iframe, pageLeave, rule, RouterTab_scroll],
+  mixins: [RouterTab_contextmenu, i18n, iframe, operate, pageLeave, rule, RouterTab_scroll],
   props: {
     // 初始页签数据
     tabs: {
@@ -1774,6 +2207,18 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
     },
     // 默认页面
     defaultPage: [String, Object],
+
+    /**
+     * 组件语言
+     * - 为字符串时，可以设置为内置的语言 'zh-CN' (默认) 和 'en'
+     * - 为对象时，可设置自定义的语言
+     */
+    language: {
+      type: [String, Object],
+      default: 'zh-CN'
+    },
+    // 页签国际化配置 i18n (key, [args])
+    i18n: Function,
     // router-view组件配置
     routerView: Object,
     // 页签过渡效果
@@ -1933,345 +2378,27 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
         tips: tips
       };
     },
-    // 移除 tab 项
-    removeTab: function () {
-      var _removeTab = RouterTab_vue_type_script_lang_js_asyncToGenerator(
+    // 重载路由视图
+    reloadView: function () {
+      var _reloadView = RouterTab_vue_type_script_lang_js_asyncToGenerator(
       /*#__PURE__*/
-      regenerator_default.a.mark(function _callee(id) {
-        var force,
-            items,
-            idx,
+      regenerator_default.a.mark(function _callee() {
+        var ignoreTransition,
             _args = arguments;
         return regenerator_default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                force = _args.length > 1 && _args[1] !== undefined ? _args[1] : false;
-                items = this.items;
-                idx = items.findIndex(function (item) {
-                  return item.id === id;
-                }); // 最后一个页签不允许关闭
-
-                if (!(!force && this.keepLastTab && items.length === 1)) {
-                  _context.next = 5;
-                  break;
-                }
-
-                throw new Error(this.lang.msg.keepLastTab);
-
-              case 5:
-                if (force) {
-                  _context.next = 8;
-                  break;
-                }
-
-                _context.next = 8;
-                return this.pageLeavePromise(id, 'close');
-
-              case 8:
-                // 承诺关闭后移除页签和缓存
-                this.$alive.remove(id);
-                idx > -1 && items.splice(idx, 1);
-
-              case 10:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function removeTab(_x) {
-        return _removeTab.apply(this, arguments);
-      }
-
-      return removeTab;
-    }(),
-
-    /**
-     * 通过路由地址关闭页签
-     * @param {location} target 需要关闭的 location，falsy 则默认为当前页签
-     * @param {location} to 关闭后跳转的地址，为 null 则不跳转，参数可忽略
-     * @param {boolean} [fullMatch = true] 是否匹配 target 完整路径
-     * @param {boolean} [force = true] 是否强制关闭
-     */
-    close: function close(target, to) {
-      var fullMatch = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-      var force = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
-
-      if (typeof to === 'boolean') {
-        force = fullMatch === undefined ? true : !!fullMatch;
-        fullMatch = to;
-        to = undefined;
-      }
-
-      if (target) {
-        var id = this.getIdByLocation(target, fullMatch);
-        if (id) this.closeTab(id, to, force);
-      } else {
-        this.closeTab(undefined, to, force);
-      }
-    },
-    // 通过页签 id 关闭页签
-    closeTab: function () {
-      var _closeTab = RouterTab_vue_type_script_lang_js_asyncToGenerator(
-      /*#__PURE__*/
-      regenerator_default.a.mark(function _callee2() {
-        var id,
-            to,
-            force,
-            activedTab,
-            items,
-            $router,
-            idx,
-            nextTab,
-            toRoute,
-            _args2 = arguments;
-        return regenerator_default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                id = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : this.activedTab;
-                to = _args2.length > 1 ? _args2[1] : undefined;
-                force = _args2.length > 2 && _args2[2] !== undefined ? _args2[2] : false;
-                activedTab = this.activedTab, items = this.items, $router = this.$router;
-                idx = items.findIndex(function (item) {
-                  return item.id === id;
-                });
-                _context2.prev = 5;
-                _context2.next = 8;
-                return this.removeTab(id, force);
-
-              case 8:
-                if (!(to === null)) {
-                  _context2.next = 10;
-                  break;
-                }
-
-                return _context2.abrupt("return");
-
-              case 10:
-                // 如果关闭当前页签，则打开后一个页签
-                if (!to && activedTab === id) {
-                  nextTab = items[idx] || items[idx - 1];
-                  to = nextTab ? nextTab.to : this.defaultPath;
-                }
-
-                if (to) {
-                  toRoute = $router.match(to); // 目标地址与当前地址一致则强制刷新页面
-
-                  if (toRoute.fullPath === this.$route.fullPath) {
-                    this.refreshTab();
-                  } else {
-                    $router.replace(to);
-                  }
-                }
-
-                _context2.next = 17;
-                break;
-
-              case 14:
-                _context2.prev = 14;
-                _context2.t0 = _context2["catch"](5);
-                warn(false, _context2.t0);
-
-              case 17:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this, [[5, 14]]);
-      }));
-
-      function closeTab() {
-        return _closeTab.apply(this, arguments);
-      }
-
-      return closeTab;
-    }(),
-
-    /**
-     * 通过路由地址刷新页签
-     * @param {location} target
-     * @param {boolean} [fullMatch = true] 是否匹配 target 完整路径
-     * @param {boolean} [force = true] 是否强制刷新
-     */
-    refresh: function refresh(target) {
-      var fullMatch = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-      var force = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-
-      if (target) {
-        var id = this.getIdByLocation(target, fullMatch);
-
-        if (id) {
-          this.refreshTab(id, force);
-        }
-      } else {
-        this.refreshTab(undefined, force);
-      }
-    },
-    // 刷新指定页签
-    refreshTab: function () {
-      var _refreshTab = RouterTab_vue_type_script_lang_js_asyncToGenerator(
-      /*#__PURE__*/
-      regenerator_default.a.mark(function _callee3() {
-        var id,
-            force,
-            _args3 = arguments;
-        return regenerator_default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                id = _args3.length > 0 && _args3[0] !== undefined ? _args3[0] : this.activedTab;
-                force = _args3.length > 1 && _args3[1] !== undefined ? _args3[1] : false;
-                _context3.prev = 2;
-
-                if (force) {
-                  _context3.next = 6;
-                  break;
-                }
-
-                _context3.next = 6;
-                return this.pageLeavePromise(id, 'refresh');
-
-              case 6:
-                this.$alive.remove(id);
-                if (id === this.activedTab) this.reloadView();
-                _context3.next = 13;
-                break;
-
-              case 10:
-                _context3.prev = 10;
-                _context3.t0 = _context3["catch"](2);
-                warn(false, _context3.t0);
-
-              case 13:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, this, [[2, 10]]);
-      }));
-
-      function refreshTab() {
-        return _refreshTab.apply(this, arguments);
-      }
-
-      return refreshTab;
-    }(),
-
-    /**
-     * 刷新所有页签
-     * @param {boolean} [force = false] 是否强制刷新，如果强制则忽略页面 beforePageLeave
-     */
-    refreshAll: function () {
-      var _refreshAll = RouterTab_vue_type_script_lang_js_asyncToGenerator(
-      /*#__PURE__*/
-      regenerator_default.a.mark(function _callee4() {
-        var force,
-            cache,
-            id,
-            _args4 = arguments;
-        return regenerator_default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                force = _args4.length > 0 && _args4[0] !== undefined ? _args4[0] : false;
-                cache = this.$alive.cache;
-                _context4.t0 = regenerator_default.a.keys(cache);
-
-              case 3:
-                if ((_context4.t1 = _context4.t0()).done) {
-                  _context4.next = 16;
-                  break;
-                }
-
-                id = _context4.t1.value;
-                _context4.prev = 5;
-
-                if (force) {
-                  _context4.next = 9;
-                  break;
-                }
-
-                _context4.next = 9;
-                return this.pageLeavePromise(id, 'refresh');
-
-              case 9:
-                this.$alive.remove(id);
-                _context4.next = 14;
-                break;
-
-              case 12:
-                _context4.prev = 12;
-                _context4.t2 = _context4["catch"](5);
-
-              case 14:
-                _context4.next = 3;
-                break;
-
-              case 16:
-                this.reloadView();
-
-              case 17:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4, this, [[5, 12]]);
-      }));
-
-      function refreshAll() {
-        return _refreshAll.apply(this, arguments);
-      }
-
-      return refreshAll;
-    }(),
-
-    /**
-     * 重置 RouterTab 到默认状态，关闭所有页签并清理缓存页签数据
-     * @param {location} [to = this.defaultPath] 重置后跳转页面
-     */
-    reset: function reset() {
-      var _this2 = this;
-
-      var to = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.defaultPath;
-      // 遍历删除缓存
-      this.items.forEach(function (_ref5) {
-        var id = _ref5.id;
-        return _this2.$alive.remove(id);
-      }); // 初始页签数据
-
-      this.initTabs();
-      var toRoute = this.$router.match(to); // 目标地址与当前地址一致则强制刷新页面
-
-      if (toRoute.fullPath === this.$route.fullPath) {
-        this.refreshTab();
-      } else {
-        this.$router.replace(to);
-      }
-    },
-    // 重载路由视图
-    reloadView: function () {
-      var _reloadView = RouterTab_vue_type_script_lang_js_asyncToGenerator(
-      /*#__PURE__*/
-      regenerator_default.a.mark(function _callee5() {
-        var ignoreTransition,
-            _args5 = arguments;
-        return regenerator_default.a.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                ignoreTransition = _args5.length > 0 && _args5[0] !== undefined ? _args5[0] : false;
+                ignoreTransition = _args.length > 0 && _args[0] !== undefined ? _args[0] : false;
                 this.isViewAlive = false; // 默认在页面过渡结束后会设置 isViewAlive 为 true
                 // 如果过渡事件失效，则需传入 ignoreTransition 为 true 手动更改
 
                 if (!ignoreTransition) {
-                  _context5.next = 6;
+                  _context.next = 6;
                   break;
                 }
 
-                _context5.next = 5;
+                _context.next = 5;
                 return this.$nextTick();
 
               case 5:
@@ -2279,10 +2406,10 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
 
               case 6:
               case "end":
-                return _context5.stop();
+                return _context.stop();
             }
           }
-        }, _callee5, this);
+        }, _callee, this);
       }));
 
       function reloadView() {
