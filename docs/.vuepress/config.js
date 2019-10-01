@@ -23,7 +23,7 @@ module.exports = {
       { text: '教程', link: '/guide/' },
       { text: 'API', link: '/api/' },
       { text: 'Demo', link: demoUrl },
-      { text: '更新日志', link: 'https://github.com/bhuh12/vue-router-tab/releases' },
+      { text: '更新日志', link: '/guide/changelog' },
       { text: '主页', link: 'https://bhuh.net' }
     ],
 

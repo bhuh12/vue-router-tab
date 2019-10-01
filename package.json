@@ -29,7 +29,7 @@
     "lint": "vue-cli-service lint",
     "lint:fix": "vue-cli-service lint --fix",
     "commit": "git-cz",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+    "changelog": "conventional-changelog -p angular -i docs/guide/changelog.md -s -r 0"
   },
   "dependencies": {
     "vue": "^2.5.22",
@@ -40,8 +40,8 @@
     "@vue/cli-plugin-eslint": "^3.4.0",
     "@vue/cli-service": "^3.4.0",
     "@vue/eslint-config-standard": "^4.0.0",
-    "@vuepress/plugin-back-to-top": "^1.0.0-alpha.42",
-    "@vuepress/plugin-pwa": "^1.0.0-alpha.43",
+    "@vuepress/plugin-back-to-top": "^1.1.0",
+    "@vuepress/plugin-pwa": "^1.1.0",
     "babel-eslint": "^10.0.1",
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^5.8.0",
@@ -50,7 +50,7 @@
     "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.22",
-    "vuepress": "^1.0.0-alpha.47",
+    "vuepress": "^1.1.0",
     "yorkie": "^2.0.0"
   },
   "eslintConfig": {
@@ -64,9 +64,12 @@
     ],
     "rules": {
       "vue/require-default-prop": false,
-      "vue/max-attributes-per-line": ["error", {
-        "singleline": 3
-      }]
+      "vue/max-attributes-per-line": [
+        "error",
+        {
+          "singleline": 3
+        }
+      ]
     },
     "parserOptions": {
       "parser": "babel-eslint"
