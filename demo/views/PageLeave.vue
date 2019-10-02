@@ -2,7 +2,7 @@
   <div>
     <h2>页面离开确认</h2>
 
-    <p>你在 <strong class="text-strong">{{ pageTime }}</strong> 秒前打开本页面</p>
+    <page-timer />
 
     <p>
       <strong class="text-strong">修改输入框的值</strong>后，页面在页签关闭/刷新/被替换时将会确认提示
@@ -35,11 +35,11 @@
 </template>
 
 <script>
-import pageTimer from '../mixins/pageTimer'
+import PageTimer from '../components/PageTimer'
 
 export default {
   name: 'PageLeave',
-  mixins: [pageTimer],
+  components: { PageTimer },
 
   data () {
     let value = '初始值'

@@ -160,27 +160,28 @@ sidebar: auto
 
 关闭指定页签
 
-支持以下方式调用：
+- 调用:
   1. `this.$routerTab.close({id, path, match, force, to, refresh})`
   2. `this.$routerTab.close(path, match, force)`
   3. `this.$routerTab.close((path, to, match, force))`
 
 - 参数: 
-  - `{String} id` 通过页签 id 关闭
-  - `{location} path` 通过路由路径关闭页签，如果未配置 id 和 path 则关闭
-  - `{boolean} [match = true]` path 方式关闭时，是否匹配 path 完整路径
-  - `{boolean} [force = true]` 是否强制关闭
+  - `{String} [id]` 通过页签 id 关闭
+  - `{location} [path]` 通过路由路径关闭页签，如果未配置 id 和 path 则关闭
+  - `{Boolean} [match = true]` path 方式关闭时，是否匹配 path 完整路径
+  - `{Boolean} [force = true]` 是否强制关闭
   - `{location} to` 关闭后跳转的地址，为 null 则不跳转
-  - `{boolean} [refresh = false]` 是否全新打开跳转地址
+  - `{Boolean} [refresh = false]` 是否全新打开跳转地址
 
   
 ### routerTab.refresh
 
-刷新指定 `location` 的页签
+刷新指定路由地址的页签
 
 - 参数: 
-  - `{String | Object} [location]` 路由地址 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
-  - `{Boolean} [fullMatch = true]` 是否全匹配（匹配fullPath去除hash部分）
+  - `{location} [path]` 路由地址 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
+  - `{Boolean} [match = true]` 是否全匹配（匹配fullPath去除hash部分）
+  - `{Boolean} [force = true]` 是否强制刷新
 
 
 ### routerTab.refreshAll
@@ -196,7 +197,7 @@ sidebar: auto
 重置页签到初始状态
 
 - 参数: 
-  - `{String | Object} [location]` 重置后跳转的地址，默认为 `default-page`
+  - `{location} [to]` 重置后跳转的地址，默认为 `default-page`
 
 
 ### routerTab.openIframe

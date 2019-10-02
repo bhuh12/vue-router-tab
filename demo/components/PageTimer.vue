@@ -1,5 +1,12 @@
+<template>
+  <p>你在 <strong class="text-strong">{{ pageTime }}</strong> 秒前打开本页面</p>
+</template>
+
+<script>
 // 页面计时器
 export default {
+  name: 'PageTimer',
+
   data () {
     return {
       openTime: new Date(),
@@ -38,3 +45,4 @@ export default {
     }
   }
 }
+</script>

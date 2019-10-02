@@ -2,7 +2,7 @@
   <div>
     <h2>{{ curRule.label }}页签规则</h2>
 
-    <p>你在 <strong class="text-strong">{{ pageTime }}</strong> 秒前打开本页面</p>
+    <page-timer />
 
     <table class="demo-table">
       <tr>
@@ -52,13 +52,12 @@
 </template>
 
 <script>
-import pageTimer from '../mixins/pageTimer'
+import PageTimer from '../components/PageTimer'
 import PageRouteInfo from '../components/PageRouteInfo'
 
 export default {
   name: 'Rule',
-  components: { PageRouteInfo },
-  mixins: [ pageTimer ],
+  components: { PageTimer, PageRouteInfo },
   data () {
     let route = this.$route
     let { catalog, type } = route.params

@@ -2,39 +2,45 @@
 
 ## 打开/切换页签
 
-RouterTab 通过响应路由变化来新增或切换页签，直接使用 `vue-router` 提供的方法即可。
+RouterTab 通过响应路由变化来新增或切换页签，您可以使用以下两种方式。
+
+### 1. Vue Router 原生方式（推荐）
+ 
+使用 Vue Router 内置的方式打开页签，如果您之前访问过该地址，您打开的将是缓存的页签页面。
 
 参考文档：[Vue Router 导航](https://router.vuejs.org/zh/guide/essentials/navigation.html)
 
+使用 `<router-link>` 组件
+
+``` html
+<router-link to="/page/1">页面1</router-link>
+```
+
+使用 `router.push`、`router.replace`、`router.go` 等方法
+
+``` javascript
+this.$router.push('/page/1')
+```
+
+### 2. RouterTab 内置方法
+
+`open (path, isReplace = false, refresh = true)`
+
+此方法默认会刷新已有页签，如果希望**全新打开页签**，您可以尝试此方法。
+
 <doc-links api="#routertab-open" demo="/default/"></doc-links>
 
-1. **`router-link` 组件方式**
+**全新打开页签**
 
-  打开和切换到页签
-  
-  ``` html
-  <router-link to="/page/1">页面1</router-link>
-  ```
-
-2. **通过 `router.push`、`router.replace`、`router.go`**
-
-  注意：在 Vue 实例内部，您可以通过 $router 访问路由实例。因此您可以调用 this.$router.push。
-
-  ``` javascript
-  this.$router.push('/page/1')
-  ```
-
-3. **全新打开页签 (会刷新已有页签)**
-   
-  我们推荐您使用上述 Vue Router 内置的方式打开页签，但是如果您之前访问过该页签，您打开的将是缓存的页面。如果希望全新打开，您可以尝试以下方法。
-
-  ``` html
-  <a @click="$routerTab.open('/page/2')">页面2”<a>
-  ```
+``` javascript
+this.$routerTab.open('/page/2')
+```
 
 ## 关闭页签
 
-您可以通过 RouterTab 的实例方法 [`routerTab.close(location, fullMatch?)`](../../api/README.md#routertab-close) 来关闭页签
+`close({id, path, match = true, force = true, to, refresh = false})`
+
+您可以通过 RouterTab 的实例方法 [`routerTab.close`](../../api/README.md#routertab-close) 来关闭指定页签
 
 <doc-links api="#routertab-close" demo="/default/"></doc-links>
 
@@ -70,7 +76,7 @@ this.$routerTab.close({
 })
 ```
 
-**关闭页签方法完整参数配置**
+**完整选项说明**
 
 ``` js
 this.$routerTab.close({
@@ -86,7 +92,9 @@ this.$routerTab.close({
 
 ## 刷新页签
 
-您可以通过 RouterTab 的实例方法 [`routerTab.refresh(location, fullMatch?)`](../../api/README.md#routertab-refresh) 来刷新页签
+`refresh (path, match = true, force = true)`
+
+您可以通过 RouterTab 的实例方法 [`routerTab.refresh`](../../api/README.md#routertab-refresh) 来刷新指定页签
 
 <doc-links api="#routertab-refresh" demo="/default/"></doc-links>
 
@@ -120,7 +128,9 @@ this.$routerTab.close('/page/1', false)
 
 ## 刷新所有页签
 
-您可以通过 RouterTab 的实例方法 [`routerTab.refreshAll(force?)`](../../api/README.md#routertab-refreshall) 来刷新所有页签
+`refreshAll (force = false)`
+
+您可以通过 RouterTab 的实例方法 [`routerTab.refreshAll`](../../api/README.md#routertab-refreshall) 来刷新所有页签
 
 **刷新所有页签**
 
@@ -137,7 +147,11 @@ this.$routerTab.refreshAll(true)
 
 ## 重置页签
 
-您可以通过 RouterTab 的实例方法 [`routerTab.reset(to = this.defaultPath)`](../../api/README.md#routertab-reset) 来重置页签到初始状态
+`reset (to = this.defaultPath)`
+
+通常，在用户重新登录或者切换角色的情况下，我们需要关闭用户所有页签并恢复页签初始状态，包括恢复初始页签、跳转到指定的默认页面等
+
+针对这些场景，您可以使用 [`routerTab.reset`](../../api/README.md#routertab-reset) 方法来重置页签到初始状态
 
 ``` js
 // 重置页签并跳转默认页面（程序会自动获取页签父路由地址为默认页面，您也可以通过 RouterTab 的 'default-page' 来指定）
