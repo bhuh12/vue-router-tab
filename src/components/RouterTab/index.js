@@ -165,13 +165,13 @@ export default {
     },
 
     // 从路由地址获取 aliveId
-    getIdByLocation (location, fullMatch = true) {
-      if (!location) return
+    getIdByPath (path, match = true) {
+      if (!path) return
 
-      let route = this.$router.match(location, this.$router.currentRoute)
+      let route = this.$router.match(path, this.$router.currentRoute)
 
       // 路由地址精确匹配页签
-      if (fullMatch) {
+      if (match) {
         let matchPath = this.getPathWithoutHash(route)
         let matchTab = this.items.find(({ to }) => to.split('#')[0] === matchPath)
 
@@ -189,6 +189,11 @@ export default {
       let { title, icon, tips } = matchRoutes.pageRoute.meta
 
       return { id, to: route.fullPath, title, icon, tips }
+    },
+
+    // 解析过渡配置
+    getTransOpt (trans) {
+      return typeof trans === 'string' ? { name: trans } : trans
     },
 
     // 重载路由视图

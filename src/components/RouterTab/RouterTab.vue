@@ -7,7 +7,7 @@
         <transition-group
           tag="ul"
           class="router-tab-nav"
-          v-bind="typeof tabTransition === 'string' ? { name: tabTransition } : tabTransition"
+          v-bind="getTransOpt(tabTransition)"
           @after-enter="onTabTransitionEnd"
           @after-leave="onTabTransitionEnd"
         >
@@ -45,7 +45,7 @@
       <!-- 路由页面 -->
       <router-alive ref="routerAlive" :alive-id="aliveId" @update="updateTab">
         <transition
-          v-bind="typeof pageTransition === 'string' ? { name: pageTransition } : pageTransition"
+          v-bind="getTransOpt(pageTransition)"
           appear
           @after-enter="onPageTransitionEnd"
           @after-leave="onPageTransitionEnd"
@@ -61,7 +61,7 @@
 
       <!-- iframe 页面 -->
       <transition-group
-        v-bind="typeof pageTransition === 'string' ? { name: pageTransition } : pageTransition"
+        v-bind="getTransOpt(pageTransition)"
         tag="div"
         class="router-tab-iframes"
       >

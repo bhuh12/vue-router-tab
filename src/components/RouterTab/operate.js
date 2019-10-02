@@ -33,8 +33,8 @@ export default {
     /**
      * 打开页签（默认全新打开）
      * @param {location} path 页签路径
-     * @param {boolean} [isReplace = false] 是否 replace 方式替换当前路由
-     * @param {boolean} [refresh = true] 是否全新打开
+     * @param {Boolean} [isReplace = false] 是否 replace 方式替换当前路由
+     * @param {Boolean} [refresh = true] 是否全新打开
      */
     open (path, isReplace = false, refresh = true) {
       if (refresh) this.refresh(path)
@@ -66,10 +66,10 @@ export default {
      *   3. this.$routerTab.close((path, to, match, force))
      * @param {String} id 通过页签 id 关闭
      * @param {location} path 通过路由路径关闭页签，如果未配置 id 和 path 则关闭当前页签
-     * @param {boolean} [match = true] path 方式关闭时，是否匹配 path 完整路径
-     * @param {boolean} [force = true] 是否强制关闭
+     * @param {Boolean} [match = true] path 方式关闭时，是否匹配 path 完整路径
+     * @param {Boolean} [force = true] 是否强制关闭
      * @param {location} to 关闭后跳转的地址，为 null 则不跳转
-     * @param {boolean} [refresh = false] 是否全新打开跳转地址
+     * @param {Boolean} [refresh = false] 是否全新打开跳转地址
      */
     async close () {
       // 解析参数
@@ -86,7 +86,7 @@ export default {
 
       // 根据 path 获取 id
       if (!id && path) {
-        id = this.getIdByLocation(path, match)
+        id = this.getIdByPath(path, match)
         if (!id) return
       }
 
@@ -130,12 +130,12 @@ export default {
     /**
      * 通过路由地址刷新页签
      * @param {location} path 需要刷新的地址
-     * @param {boolean} [fullMatch = true] 是否匹配 target 完整路径
-     * @param {boolean} [force = true] 是否强制刷新
+     * @param {Boolean} [match = true] 是否匹配 target 完整路径
+     * @param {Boolean} [force = true] 是否强制刷新
      */
-    refresh (path, fullMatch = true, force = true) {
+    refresh (path, match = true, force = true) {
       if (path) {
-        let id = this.getIdByLocation(path, fullMatch)
+        let id = this.getIdByPath(path, match)
         if (id) {
           this.refreshTab(id, force)
         }
@@ -157,7 +157,7 @@ export default {
 
     /**
      * 刷新所有页签
-     * @param {boolean} [force = false] 是否强制刷新，如果强制则忽略页面 beforePageLeave
+     * @param {Boolean} [force = false] 是否强制刷新，如果强制则忽略页面 beforePageLeave
      */
     async refreshAll (force = false) {
       const { cache } = this.$alive
