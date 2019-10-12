@@ -1,5 +1,15 @@
 # 更新日志
 
+
+## [0.2.5](https://github.com/bhuh12/vue-router-tab/compare/v0.2.4...v0.2.5) (2019-10-12)
+
+
+### Bug Fixes
+
+* **operate:** 解决关闭页签后跳转默认页 ([d30e302](https://github.com/bhuh12/vue-router-tab/commit/d30e302))
+
+
+
 ## [0.2.4](https://github.com/bhuh12/vue-router-tab/compare/v0.2.3...v0.2.4) (2019-09-30)
 
 
@@ -148,8 +158,8 @@
 
 ### Features
 
-* 新增 close 和 refresh 针对路由操作，closeTab 和 refreshTab 针对页签 id 操作 ([bb86e66](https://github.com/bhuh12/vue-router-tab/commit/bb86e66))
 * **i18n:** 国际化支持 ([416af48](https://github.com/bhuh12/vue-router-tab/commit/416af48))
+* 新增 close 和 refresh 针对路由操作，closeTab 和 refreshTab 针对页签 id 操作 ([bb86e66](https://github.com/bhuh12/vue-router-tab/commit/bb86e66))
 * 添加 Router Tab 组件 ([a2f444d](https://github.com/bhuh12/vue-router-tab/commit/a2f444d))
 
 
