@@ -94,6 +94,8 @@ export default {
       if (!id) id = activedTab
 
       try {
+        const idx = items.findIndex(item => item.id === id)
+
         // 移除页签
         await this.removeTab(id, force)
 
@@ -102,7 +104,6 @@ export default {
 
         // 如果关闭当前页签，则打开后一个页签
         if (!to && activedTab === id) {
-          const idx = items.findIndex(item => item.id === id)
           let nextTab = items[idx] || items[idx - 1]
           to = nextTab ? nextTab.to : this.defaultPath
         }
