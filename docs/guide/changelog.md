@@ -1,6 +1,15 @@
 # 更新日志
 
 
+## [0.2.6](https://github.com/bhuh12/vue-router-tab/compare/v0.2.5...v0.2.6) (2019-10-15)
+
+
+### Bug Fixes
+
+* **iframe:** 防止通过 iframe 页签 XSS 攻击 ([3745813](https://github.com/bhuh12/vue-router-tab/commit/3745813))
+
+
+
 ## [0.2.5](https://github.com/bhuh12/vue-router-tab/compare/v0.2.4...v0.2.5) (2019-10-12)
 
 

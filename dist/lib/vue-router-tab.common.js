@@ -2756,12 +2756,12 @@ var component = normalizeComponent(
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4692b5fb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/page/Iframe.vue?vue&type=template&id=5e368814&
-var Iframevue_type_template_id_5e368814_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab-iframe-fake"})}
-var Iframevue_type_template_id_5e368814_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4692b5fb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/page/Iframe.vue?vue&type=template&id=bdf06c80&
+var Iframevue_type_template_id_bdf06c80_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab-iframe-fake"})}
+var Iframevue_type_template_id_bdf06c80_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/page/Iframe.vue?vue&type=template&id=5e368814&
+// CONCATENATED MODULE: ./src/page/Iframe.vue?vue&type=template&id=bdf06c80&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/page/Iframe.vue?vue&type=script&lang=js&
 
@@ -2787,32 +2787,44 @@ function Iframevue_type_script_lang_js_asyncToGenerator(fn) { return function ()
       routeTab: null
     };
   },
+  computed: {
+    // 链接安全过滤，避免执行js
+    url: function url() {
+      var src = this.src; // XSS 攻击链接返回空白页
+
+      if (/^javascript:/.test(src)) {
+        return 'about:blank';
+      }
+
+      return src;
+    }
+  },
   mounted: function () {
     var _mounted = Iframevue_type_script_lang_js_asyncToGenerator(
     /*#__PURE__*/
     regenerator_default.a.mark(function _callee() {
-      var src, title, icon, $tab, iframes;
+      var url, title, icon, $tab, iframes;
       return regenerator_default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              src = this.src, title = this.title, icon = this.icon, $tab = this.$routerTab;
+              url = this.url, title = this.title, icon = this.icon, $tab = this.$routerTab;
               iframes = $tab.iframes;
               this.routeTab = {
                 title: title,
                 icon: icon
               };
 
-              if (!iframes.includes(src)) {
-                iframes.push(src);
+              if (!iframes.includes(url)) {
+                iframes.push(url);
               }
 
-              $tab.currentIframe = src;
+              $tab.currentIframe = url;
               _context.next = 7;
               return this.$nextTick();
 
             case 7:
-              this.$routerTab.iframeMounted(src);
+              this.$routerTab.iframeMounted(url);
 
             case 8:
             case "end":
@@ -2829,16 +2841,16 @@ function Iframevue_type_script_lang_js_asyncToGenerator(fn) { return function ()
     return mounted;
   }(),
   activated: function activated() {
-    this.$routerTab.currentIframe = this.src;
+    this.$routerTab.currentIframe = this.url;
   },
   deactivated: function deactivated() {
     this.$routerTab.currentIframe = null;
   },
   // 组件销毁后移除 iframe
   destroyed: function destroyed() {
-    var src = this.src;
+    var url = this.url;
     var iframes = this.$routerTab.iframes;
-    var index = iframes.indexOf(src);
+    var index = iframes.indexOf(url);
 
     if (index > -1) {
       iframes.splice(index, 1);
@@ -2857,8 +2869,8 @@ function Iframevue_type_script_lang_js_asyncToGenerator(fn) { return function ()
 
 var Iframe_component = normalizeComponent(
   page_Iframevue_type_script_lang_js_,
-  Iframevue_type_template_id_5e368814_render,
-  Iframevue_type_template_id_5e368814_staticRenderFns,
+  Iframevue_type_template_id_bdf06c80_render,
+  Iframevue_type_template_id_bdf06c80_staticRenderFns,
   false,
   null,
   null,
@@ -2900,14 +2912,14 @@ if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(RouterTab);
 }
 
-/* harmony default export */ var src_0 = (RouterTab); // 路由
+/* harmony default export */ var src = (RouterTab); // 路由
 
 var RouterTabRoutes = routes;
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
 /* concated harmony reexport RouterTabRoutes */__webpack_require__.d(__webpack_exports__, "RouterTabRoutes", function() { return RouterTabRoutes; });
 
 
-/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (src_0);
+/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (src);
 
 
 
