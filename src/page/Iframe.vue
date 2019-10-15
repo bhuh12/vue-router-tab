@@ -19,24 +19,38 @@ export default {
     }
   },
 
+  computed: {
+    // 链接安全过滤，避免执行js
+    url () {
+      let { src } = this
+
+      // XSS 攻击链接返回空白页
+      if (/^javascript:/.test(src)) {
+        return 'about:blank'
+      }
+
+      return src
+    }
+  },
+
   async mounted () {
-    let { src, title, icon, $routerTab: $tab } = this
+    let { url, title, icon, $routerTab: $tab } = this
     let { iframes } = $tab
 
     this.routeTab = { title, icon }
 
-    if (!iframes.includes(src)) {
-      iframes.push(src)
+    if (!iframes.includes(url)) {
+      iframes.push(url)
     }
 
-    $tab.currentIframe = src
+    $tab.currentIframe = url
 
     await this.$nextTick()
-    this.$routerTab.iframeMounted(src)
+    this.$routerTab.iframeMounted(url)
   },
 
   activated () {
-    this.$routerTab.currentIframe = this.src
+    this.$routerTab.currentIframe = this.url
   },
 
   deactivated () {
@@ -45,9 +59,9 @@ export default {
 
   // 组件销毁后移除 iframe
   destroyed () {
-    let { src } = this
+    let { url } = this
     let { iframes } = this.$routerTab
-    let index = iframes.indexOf(src)
+    let index = iframes.indexOf(url)
 
     if (index > -1) {
       iframes.splice(index, 1)

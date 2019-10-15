@@ -19,6 +19,14 @@
       >关闭“百度”</a>
     </p>
 
+    <p>
+      <a
+        class="demo-btn"
+        title="XSS 跨站链接的 iframe 将展示空白页面"
+        @click="$routerTab.openIframe('javascript:alert(window.parent.document.body.innerHTML)', 'XSS 跨站', 'rt-icon-web')"
+      >XSS 跨站</a>
+    </p>
+
     <h3>打开 iframe 页签</h3>
 
     <div class="custom-iframe">
