@@ -3,6 +3,7 @@ import globalRule from './global-rule'
 import i18n from './i18n'
 import iframe from './iframe'
 import initialTabs from './initial-tabs'
+import restore from './restore'
 import langCustom from './lang-custom'
 import langEn from './lang-en'
 import slot from './slot'
@@ -17,6 +18,7 @@ const routes = [
   i18n,
   iframe,
   initialTabs,
+  restore,
   langCustom,
   langEn,
   slot,

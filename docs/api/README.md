@@ -91,6 +91,19 @@ sidebar: auto
 - 默认值: `[]`
 
 
+### restore
+
+**是否在浏览器刷新后恢复页签**
+
+开启后，浏览器刷新后将会还原刷新前的页签
+
+- 类型: `Array <Boolean | String>`
+  
+  - 类型为 `String` 且不为空字符串时，RouterTab 会拼接该值作为 sessionStorage 的 key 来本地存储页签信息
+
+- 默认值: `false`
+
+
 ### router-view
 
 内置 `router-view` 组件的配置

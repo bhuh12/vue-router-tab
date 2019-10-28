@@ -53,6 +53,7 @@ module.exports = {
             'advanced/transition',
             'advanced/slot',
             'advanced/initial-tabs',
+            'advanced/restore',
             'advanced/dynamic-tab-info',
             'advanced/page-leave'
           ]

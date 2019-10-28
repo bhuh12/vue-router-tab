@@ -18,7 +18,7 @@
 
 ## 全局页签规则
 
-通过配置 `router-tab` 组件的 `alive-id` 属性，您可以定义全局的页签规则
+通过配置 RouterTab 组件的 `alive-id` 属性，您可以定义全局的页签规则
 
 <doc-links api="#alive-id" demo="/global-rule/rule/a/1"></doc-links>
 

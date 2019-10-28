@@ -122,7 +122,7 @@ this.$routerTab.refresh({
 ``` js
 // 刷新与给定地址共用页签的地址，即使地址不完全匹配
 // 默认 `alive-id` 规则下，类似 '/page/1?query=2' 这样的页签也能被匹配刷新
-this.$routerTab.close('/page/1', false)
+this.$routerTab.refresh('/page/1', false)
 ```
 
 

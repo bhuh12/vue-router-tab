@@ -4,6 +4,7 @@ export default [{
     { text: '默认配置', to: '/default/' },
     { text: '过渡效果', to: '/transition/' },
     { text: '初始展示页签', to: '/initial-tabs/' },
+    { text: '刷新还原页签', to: '/restore/' },
     { text: '自定义页签模板', to: '/slot/' },
     { text: 'iframe 页签', to: '/iframe/' },
     { text: '关闭最后的页签', to: '/close-last-tab/' }

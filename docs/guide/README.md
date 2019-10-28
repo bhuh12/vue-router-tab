@@ -16,6 +16,10 @@ Vue Router Tab 是基于 Vue.js 和 Vue Router 的路由页签组件，用来实
 
 ✅ [初始页签数据](advanced/initial-tabs.md)，进入页面时默认显示的页签
 
+✅ [页签刷新还原](advanced/restore.md)，在浏览器刷新后恢复页签
+
+✅ [页签重置](essentials/operate.md#重置页签)，重置页签到初始状态
+
 ✅ [动态更新页签信息](advanced/dynamic-tab-info.md) (标题/图标/提示)
 
 ✅ [iframe 页签嵌入外部网站](essentials/iframe.md)

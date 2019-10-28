@@ -63,6 +63,10 @@ Vue Router Tab 是基于 Vue Router 的路由页签组件，用来实现多页�
 
 ✅ [初始页签数据](https://bhuh12.github.io/vue-router-tab/guide/advanced/initial-tabs.html)，进入页面时默认显示的页签
 
+✅ [页签刷新还原](https://bhuh12.github.io/vue-router-tab/guide/advanced/restore.html)，在浏览器刷新后恢复页签
+
+✅ [页签重置](https://bhuh12.github.io/vue-router-tab/guide/essentials/operate.html#%E9%87%8D%E7%BD%AE%E9%A1%B5%E7%AD%BE)，重置页签到初始状态
+
 ✅ [动态更新页签信息](https://bhuh12.github.io/vue-router-tab/guide/advanced/dynamic-tab-info.html) (标题/图标/提示)
 
 ✅ [iframe 页签嵌入外部网站](https://bhuh12.github.io/vue-router-tab/guide/essentials/iframe.html)
