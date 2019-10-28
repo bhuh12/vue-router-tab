@@ -11,16 +11,23 @@ import operate from './operate'
 import pageLeave from './pageLeave'
 import rule from './rule'
 import scroll from './scroll'
+import restore from './restore'
 
 // RouterTab 组件
 export default {
   name: 'RouterTab',
-  mixins: [ contextmenu, i18n, iframe, operate, pageLeave, rule, scroll ],
+  mixins: [ contextmenu, i18n, iframe, operate, pageLeave, rule, scroll, restore ],
   props: {
     // 初始页签数据
     tabs: {
       type: Array,
       default: () => []
+    },
+
+    // 页面刷新后是否恢复页签
+    restore: {
+      type: [ Boolean, String ],
+      default: false
     },
 
     // 是否保留最后一个页签不被关闭
@@ -119,6 +126,8 @@ export default {
     initTabs () {
       let { tabs, $router } = this
       let ids = {}
+
+      if (this.restoreTabs()) return
 
       this.items = tabs.map((item, index) => {
         let { to, closable, title, tips } = typeof item === 'string'

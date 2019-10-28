@@ -1,7 +1,7 @@
 <template>
   <div class="router-tab">
     <!-- 页签头部 -->
-    <header class="router-tab-header">
+    <header :class="[ 'router-tab-header', hasScroller && 'is-scroll' ]">
       <div class="router-tab-scroll">
         <!-- 页签列表 -->
         <transition-group

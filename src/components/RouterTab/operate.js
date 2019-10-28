@@ -179,6 +179,9 @@ export default {
       // 遍历删除缓存
       this.items.forEach(({ id }) => this.$alive.remove(id))
 
+      // 清除缓存页签
+      this.clearTabsStore()
+
       // 初始页签数据
       this.initTabs()
 

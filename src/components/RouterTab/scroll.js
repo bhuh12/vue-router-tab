@@ -3,6 +3,12 @@ import { scrollTo } from '../../util/dom'
 
 // 页签滚动
 export default {
+  data () {
+    return {
+      hasScroller: false
+    }
+  },
+
   watch: {
     async activedTab () {
       if (!this.$el) return
@@ -54,11 +60,9 @@ export default {
       let $scr = $tab.querySelector('.router-tab-scroll')
       let $nav = $scr.querySelector('.router-tab-nav')
       let $cur = $nav.querySelector('.actived')
-      let isScroll = $nav.clientWidth > $scr.clientWidth // 判断是否需要滚动
+      let hasScroller = this.hasScroller = $nav.clientWidth > $scr.clientWidth // 判断是否需要滚动
 
-      $tab.classList[isScroll ? 'add' : 'remove']('is-scroll')
-
-      if ($cur && isScroll) {
+      if ($cur && hasScroller) {
         scrollTo($scr, $cur.offsetLeft + ($cur.clientWidth - $scr.clientWidth) / 2)
       }
     }
