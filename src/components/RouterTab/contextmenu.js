@@ -17,7 +17,7 @@ export default {
   computed: {
     // 右键菜单是否当前页签
     isContextTabActived () {
-      return this.contextmenu.id === this.activedTab
+      return this.contextmenu.id === this.activeTabId
     },
 
     // 右键页签是否允许关闭
@@ -93,7 +93,7 @@ export default {
       }
 
       // 当前页签如已关闭，则打开右键选中页签
-      if (items.findIndex(({ id }) => id === this.activedTab) === -1) {
+      if (items.findIndex(({ id }) => id === this.activeTabId) === -1) {
         $router.replace(nextTab.to)
       }
     }

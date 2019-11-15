@@ -84,7 +84,7 @@ export default {
         refresh = false
       } = getCloseArgs(arguments)
 
-      let { activedTab, items, $router } = this
+      let { activeTabId, items, $router } = this
 
       // 根据 path 获取 id
       if (!id && path) {
@@ -93,7 +93,7 @@ export default {
       }
 
       // 默认当前页签
-      if (!id) id = activedTab
+      if (!id) id = activeTabId
 
       try {
         const idx = items.findIndex(item => item.id === id)
@@ -105,7 +105,7 @@ export default {
         if (to === null) return
 
         // 如果关闭当前页签，则打开后一个页签
-        if (!to && activedTab === id) {
+        if (!to && activeTabId === id) {
           let nextTab = items[idx] || items[idx - 1]
           to = nextTab ? nextTab.to : this.defaultPath
         }
@@ -126,7 +126,7 @@ export default {
     },
 
     // 通过页签 id 关闭页签
-    async closeTab (id = this.activedTab, to, force = false) {
+    async closeTab (id = this.activeTabId, to, force = false) {
       this.close({ id, to, force })
     },
 
@@ -148,11 +148,11 @@ export default {
     },
 
     // 刷新指定页签
-    async refreshTab (id = this.activedTab, force = false) {
+    async refreshTab (id = this.activeTabId, force = false) {
       try {
         if (!force) await this.pageLeavePromise(id, 'refresh')
         this.$alive.remove(id)
-        if (id === this.activedTab) this.reloadView()
+        if (id === this.activeTabId) this.reloadView()
       } catch (e) {
         warn(false, e)
       }

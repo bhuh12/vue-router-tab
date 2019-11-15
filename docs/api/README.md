@@ -147,7 +147,7 @@ sidebar: auto
 
 在组件内部可通过 `this.$routerTab.[prop]` 访问
 
-### routerTab.activedTab
+### routerTab.activeTabId
 
 当前激活的页签 id
 

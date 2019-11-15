@@ -10,7 +10,7 @@ export default {
   },
 
   watch: {
-    async activedTab () {
+    async activeTabId () {
       if (!this.$el) return
 
       // 激活页签时，如果当前页签不在可视区域，则滚动显示页签

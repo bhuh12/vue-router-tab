@@ -16,7 +16,7 @@
             :key="id || to"
             class="router-tab-item"
             tag="li"
-            :class="{ actived: activedTab === id, contextmenu: contextmenu.id === id }"
+            :class="{ actived: activeTabId === id, contextmenu: contextmenu.id === id }"
             :title="i18nText(tips || title) || lang.tab.untitled"
             :to="to"
             @contextmenu.native.prevent="e => showContextmenu(id, index, e)"

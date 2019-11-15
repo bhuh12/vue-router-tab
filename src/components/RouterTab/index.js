@@ -75,7 +75,7 @@ export default {
     return {
       loading: false, // 路由页面 loading
       items: [], // 页签项
-      activedTab: null, // 当前激活的页签
+      activeTabId: null, // 当前激活的页签 id
       isViewAlive: true,
       isMounted: false // 是否挂载
     }
@@ -90,6 +90,11 @@ export default {
     // routerAlive
     $alive () {
       return this.isMounted ? this.$refs.routerAlive : null
+    },
+
+    // 当前激活的页签
+    activeTab () {
+      return this.items.find(item => item.id === this.activeTabId)
     }
   },
 
@@ -97,7 +102,7 @@ export default {
     // 路由切换更新激活的页签
     $route ($route) {
       this.loading = false
-      this.updateActivedTab()
+      this.updateActiveTab()
       this.fixCommentPage()
     }
   },
@@ -107,7 +112,7 @@ export default {
     Vue.prototype.$routerTab = this
 
     this.initTabs()
-    this.updateActivedTab()
+    this.updateActiveTab()
   },
 
   mounted () {
@@ -158,8 +163,8 @@ export default {
     },
 
     // 更新激活的页签
-    updateActivedTab () {
-      this.activedTab = this.getAliveId()
+    updateActiveTab () {
+      this.activeTabId = this.getAliveId()
     },
 
     // 更新 tab 数据
