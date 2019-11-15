@@ -30,6 +30,12 @@ export default {
       default: false
     },
 
+    // 是否监听 restoreKey 变化自动还原页签
+    restoreWatch: {
+      type: Boolean,
+      default: false
+    },
+
     // 是否保留最后一个页签不被关闭
     keepLastTab: {
       type: Boolean,

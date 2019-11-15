@@ -97,9 +97,20 @@ sidebar: auto
 
 开启后，浏览器刷新后将会还原刷新前的页签
 
-- 类型: `Array <Boolean | String>`
+- 类型: `Boolean | String`
   
   - 类型为 `String` 且不为空字符串时，RouterTab 会拼接该值作为 sessionStorage 的 key 来本地存储页签信息
+
+- 默认值: `false`
+
+
+### restore-watch
+
+**是否监听 restore 参数自动恢复页签**
+
+开启后，RouterTab 会监听传入的 restore 值，改变后自动恢复对应配置的页签
+
+- 类型: `Boolean`
 
 - 默认值: `false`
 

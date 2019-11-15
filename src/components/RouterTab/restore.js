@@ -25,6 +25,20 @@ export default {
     window.removeEventListener('beforeunload', this.saveTabs)
   },
 
+  watch: {
+    // 监听 restoreKey 变化自动还原页签
+    restoreKey () {
+      if (this.restoreWatch) {
+        const { activeTab } = this
+        this.initTabs()
+
+        if (!this.activeTab) {
+          this.items.push(activeTab)
+        }
+      }
+    }
+  },
+
   methods: {
     // 保存页签数据
     saveTabs () {
