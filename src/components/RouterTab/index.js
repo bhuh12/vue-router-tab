@@ -124,10 +124,15 @@ export default {
   methods: {
     // 初始页签数据
     initTabs () {
+      if (this.restoreTabs()) return
+
+      this.presetTabs()
+    },
+
+    // 预设页签
+    presetTabs () {
       let { tabs, $router } = this
       let ids = {}
-
-      if (this.restoreTabs()) return
 
       this.items = tabs.map((item, index) => {
         let { to, closable, title, tips } = typeof item === 'string'

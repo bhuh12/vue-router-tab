@@ -18,17 +18,17 @@ export default {
 
   mounted () {
     // 页面重载前保存页签数据
-    this.restoreKey && window.addEventListener('beforeunload', this.saveTabs)
+    window.addEventListener('beforeunload', this.saveTabs)
   },
 
   destroyed () {
-    this.restoreKey && window.removeEventListener('beforeunload', this.saveTabs)
+    window.removeEventListener('beforeunload', this.saveTabs)
   },
 
   methods: {
     // 保存页签数据
     saveTabs () {
-      sessionStorage.setItem(this.restoreKey, JSON.stringify(this.items))
+      this.restoreKey && sessionStorage.setItem(this.restoreKey, JSON.stringify(this.items))
     },
 
     // 清除页签缓存数据
