@@ -937,19 +937,19 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4692b5fb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/RouterTab/RouterTab.vue?vue&type=template&id=7f091212&
-var RouterTabvue_type_template_id_7f091212_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab"},[_c('header',{class:[ 'router-tab-header', _vm.hasScroller && 'is-scroll' ]},[_c('div',{staticClass:"router-tab-scroll"},[_c('transition-group',_vm._b({staticClass:"router-tab-nav",attrs:{"tag":"ul"},on:{"after-enter":_vm.onTabTransitionEnd,"after-leave":_vm.onTabTransitionEnd}},'transition-group',_vm.getTransOpt(_vm.tabTransition),false),_vm._l((_vm.items),function(ref,index){
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4692b5fb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/RouterTab/RouterTab.vue?vue&type=template&id=3126fee0&
+var RouterTabvue_type_template_id_3126fee0_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab"},[_c('header',{class:[ 'router-tab-header', _vm.hasScroller && 'is-scroll' ]},[_c('div',{staticClass:"router-tab-scroll"},[_c('transition-group',_vm._b({staticClass:"router-tab-nav",attrs:{"tag":"ul"},on:{"after-enter":_vm.onTabTransitionEnd,"after-leave":_vm.onTabTransitionEnd}},'transition-group',_vm.getTransOpt(_vm.tabTransition),false),_vm._l((_vm.items),function(ref,index){
 var id = ref.id;
 var to = ref.to;
 var title = ref.title;
 var icon = ref.icon;
 var tips = ref.tips;
 var closable = ref.closable;
-return _c('router-link',{key:id || to,staticClass:"router-tab-item",class:{ actived: _vm.activedTab === id, contextmenu: _vm.contextmenu.id === id },attrs:{"tag":"li","title":_vm.i18nText(tips || title) || _vm.lang.tab.untitled,"to":to},nativeOn:{"contextmenu":function($event){$event.preventDefault();return (function (e) { return _vm.showContextmenu(id, index, e); })($event)}}},[_vm._t("default",[(icon)?_c('i',{staticClass:"tab-icon",class:icon}):_vm._e(),_c('span',{staticClass:"tab-title"},[_vm._v(_vm._s(_vm.i18nText(title) || _vm.lang.tab.untitled))]),(closable !== false && !(_vm.keepLastTab && _vm.items.length < 2))?_c('i',{staticClass:"tab-close",attrs:{"title":_vm.lang.contextmenu.close},on:{"click":function($event){$event.preventDefault();return _vm.closeTab(id)}}}):_vm._e()],null,{ tab: _vm.items[index], tabs: _vm.items, index: index })],2)}),1)],1),_c('a',{staticClass:"nav-prev",on:{"click":function($event){return _vm.tabScroll('left')}}}),_c('a',{staticClass:"nav-next",on:{"click":function($event){return _vm.tabScroll('right')}}})]),_c('div',{staticClass:"router-tab-container",class:{ loading: _vm.loading }},[_c('router-alive',{ref:"routerAlive",attrs:{"alive-id":_vm.aliveId},on:{"update":_vm.updateTab}},[_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onPageTransitionEnd,"after-leave":_vm.onPageTransitionEnd}},'transition',_vm.getTransOpt(_vm.pageTransition),false),[(_vm.isViewAlive)?_c('router-view',_vm._b({ref:"routerView",staticClass:"router-tab-page"},'router-view',_vm.routerView,false)):_vm._e()],1)],1),_c('transition-group',_vm._b({staticClass:"router-tab-iframes",attrs:{"tag":"div"}},'transition-group',_vm.getTransOpt(_vm.pageTransition),false),_vm._l((_vm.iframes),function(url){return _c('iframe',{directives:[{name:"show",rawName:"v-show",value:(url === _vm.currentIframe),expression:"url === currentIframe"}],key:url,staticClass:"router-tab-iframe",attrs:{"src":url,"name":_vm.iframeNamePrefix + url,"frameborder":"0"},on:{"load":function($event){return _vm.iframeLoaded(url)}}})}),0)],1),_c('transition',{attrs:{"name":"router-tab-zoom"}},[(_vm.contextmenu.id)?_c('div',{staticClass:"router-tab-contextmenu",style:(("left: " + (_vm.contextmenu.left) + "px; top: " + (_vm.contextmenu.top) + "px;"))},[_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabActived},on:{"click":function($event){_vm.isContextTabActived && _vm.refreshTab(_vm.contextmenu.id)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.refresh)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":_vm.items.length < 2},on:{"click":function($event){_vm.items.length > 1 && _vm.refreshAll()}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.refreshAll)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabCanBeClosed},on:{"click":function($event){_vm.isContextTabCanBeClosed && _vm.closeTab(_vm.contextmenu.id)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.close)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsLeft.length},on:{"click":function($event){_vm.tabsLeft.length && _vm.closeMulti(_vm.tabsLeft)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeLefts)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsRight.length},on:{"click":function($event){_vm.tabsRight.length && _vm.closeMulti(_vm.tabsRight)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeRights)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsOther.length},on:{"click":function($event){_vm.tabsOther.length && _vm.closeMulti(_vm.tabsOther)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeOthers)+"\n      ")])]):_vm._e()])],1)}
+return _c('router-link',{key:id || to,staticClass:"router-tab-item",class:{ actived: _vm.activeTabId === id, contextmenu: _vm.contextmenu.id === id },attrs:{"tag":"li","title":_vm.i18nText(tips || title) || _vm.lang.tab.untitled,"to":to},nativeOn:{"contextmenu":function($event){$event.preventDefault();return (function (e) { return _vm.showContextmenu(id, index, e); })($event)}}},[_vm._t("default",[(icon)?_c('i',{staticClass:"tab-icon",class:icon}):_vm._e(),_c('span',{staticClass:"tab-title"},[_vm._v(_vm._s(_vm.i18nText(title) || _vm.lang.tab.untitled))]),(closable !== false && !(_vm.keepLastTab && _vm.items.length < 2))?_c('i',{staticClass:"tab-close",attrs:{"title":_vm.lang.contextmenu.close},on:{"click":function($event){$event.preventDefault();return _vm.closeTab(id)}}}):_vm._e()],null,{ tab: _vm.items[index], tabs: _vm.items, index: index })],2)}),1)],1),_c('a',{staticClass:"nav-prev",on:{"click":function($event){return _vm.tabScroll('left')}}}),_c('a',{staticClass:"nav-next",on:{"click":function($event){return _vm.tabScroll('right')}}})]),_c('div',{staticClass:"router-tab-container",class:{ loading: _vm.loading }},[_c('router-alive',{ref:"routerAlive",attrs:{"alive-id":_vm.aliveId},on:{"update":_vm.updateTab}},[_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onPageTransitionEnd,"after-leave":_vm.onPageTransitionEnd}},'transition',_vm.getTransOpt(_vm.pageTransition),false),[(_vm.isViewAlive)?_c('router-view',_vm._b({ref:"routerView",staticClass:"router-tab-page"},'router-view',_vm.routerView,false)):_vm._e()],1)],1),_c('transition-group',_vm._b({staticClass:"router-tab-iframes",attrs:{"tag":"div"}},'transition-group',_vm.getTransOpt(_vm.pageTransition),false),_vm._l((_vm.iframes),function(url){return _c('iframe',{directives:[{name:"show",rawName:"v-show",value:(url === _vm.currentIframe),expression:"url === currentIframe"}],key:url,staticClass:"router-tab-iframe",attrs:{"src":url,"name":_vm.iframeNamePrefix + url,"frameborder":"0"},on:{"load":function($event){return _vm.iframeLoaded(url)}}})}),0)],1),_c('transition',{attrs:{"name":"router-tab-zoom"}},[(_vm.contextmenu.id)?_c('div',{staticClass:"router-tab-contextmenu",style:(("left: " + (_vm.contextmenu.left) + "px; top: " + (_vm.contextmenu.top) + "px;"))},[_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabActived},on:{"click":function($event){_vm.isContextTabActived && _vm.refreshTab(_vm.contextmenu.id)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.refresh)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":_vm.items.length < 2},on:{"click":function($event){_vm.items.length > 1 && _vm.refreshAll()}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.refreshAll)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabCanBeClosed},on:{"click":function($event){_vm.isContextTabCanBeClosed && _vm.closeTab(_vm.contextmenu.id)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.close)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsLeft.length},on:{"click":function($event){_vm.tabsLeft.length && _vm.closeMulti(_vm.tabsLeft)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeLefts)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsRight.length},on:{"click":function($event){_vm.tabsRight.length && _vm.closeMulti(_vm.tabsRight)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeRights)+"\n      ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsOther.length},on:{"click":function($event){_vm.tabsOther.length && _vm.closeMulti(_vm.tabsOther)}}},[_vm._v("\n        "+_vm._s(_vm.lang.contextmenu.closeOthers)+"\n      ")])]):_vm._e()])],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/RouterTab/RouterTab.vue?vue&type=template&id=7f091212&
+// CONCATENATED MODULE: ./src/components/RouterTab/RouterTab.vue?vue&type=template&id=3126fee0&
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/regenerator/index.js
 var regenerator = __webpack_require__("a34a");
@@ -1004,7 +1004,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: {
     // 右键菜单是否当前页签
     isContextTabActived: function isContextTabActived() {
-      return this.contextmenu.id === this.activedTab;
+      return this.contextmenu.id === this.activeTabId;
     },
     // 右键页签是否允许关闭
     isContextTabCanBeClosed: function isContextTabCanBeClosed() {
@@ -1173,7 +1173,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 // 当前页签如已关闭，则打开右键选中页签
                 if (items.findIndex(function (_ref6) {
                   var id = _ref6.id;
-                  return id === _this2.activedTab;
+                  return id === _this2.activeTabId;
                 }) === -1) {
                   $router.replace(nextTab.to);
                 }
@@ -1428,6 +1428,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
  // 获取关闭参数
 
 function getCloseArgs(args) {
+  args = Array.from(args);
   var argsLen = args.length;
   var arg = args[0]; // 首个选项
 
@@ -1441,10 +1442,11 @@ function getCloseArgs(args) {
     return arg;
   } else if (typeof arg2 === 'boolean') {
     // close(path, match, force)
-    var _args = _slicedToArray(args, 3),
-        path = _args[0],
-        match = _args[1],
-        force = _args[2];
+    var _args = args,
+        _args2 = _slicedToArray(_args, 3),
+        path = _args2[0],
+        match = _args2[1],
+        force = _args2[2];
 
     return {
       path: path,
@@ -1453,11 +1455,12 @@ function getCloseArgs(args) {
     };
   } else {
     // close(path, to, match, force)
-    var _args2 = _slicedToArray(args, 4),
-        _path = _args2[0],
-        to = _args2[1],
-        _match = _args2[2],
-        _force = _args2[3];
+    var _args3 = args,
+        _args4 = _slicedToArray(_args3, 4),
+        _path = _args4[0],
+        to = _args4[1],
+        _match = _args4[2],
+        _force = _args4[3];
 
     return {
       path: _path,
@@ -1491,12 +1494,12 @@ function getCloseArgs(args) {
         var force,
             items,
             idx,
-            _args3 = arguments;
+            _args5 = arguments;
         return regenerator_default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                force = _args3.length > 1 && _args3[1] !== undefined ? _args3[1] : false;
+                force = _args5.length > 1 && _args5[1] !== undefined ? _args5[1] : false;
                 items = this.items;
                 idx = items.findIndex(function (item) {
                   return item.id === id;
@@ -1565,21 +1568,21 @@ function getCloseArgs(args) {
             to,
             _getCloseArgs$refresh,
             refresh,
-            activedTab,
+            activeTabId,
             items,
             $router,
             idx,
             nextTab,
             toRoute,
-            _args4 = arguments;
+            _args6 = arguments;
 
         return regenerator_default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 // 解析参数
-                _getCloseArgs = getCloseArgs(_args4), id = _getCloseArgs.id, path = _getCloseArgs.path, _getCloseArgs$match = _getCloseArgs.match, match = _getCloseArgs$match === void 0 ? true : _getCloseArgs$match, _getCloseArgs$force = _getCloseArgs.force, force = _getCloseArgs$force === void 0 ? true : _getCloseArgs$force, to = _getCloseArgs.to, _getCloseArgs$refresh = _getCloseArgs.refresh, refresh = _getCloseArgs$refresh === void 0 ? false : _getCloseArgs$refresh;
-                activedTab = this.activedTab, items = this.items, $router = this.$router; // 根据 path 获取 id
+                _getCloseArgs = getCloseArgs(_args6), id = _getCloseArgs.id, path = _getCloseArgs.path, _getCloseArgs$match = _getCloseArgs.match, match = _getCloseArgs$match === void 0 ? true : _getCloseArgs$match, _getCloseArgs$force = _getCloseArgs.force, force = _getCloseArgs$force === void 0 ? true : _getCloseArgs$force, to = _getCloseArgs.to, _getCloseArgs$refresh = _getCloseArgs.refresh, refresh = _getCloseArgs$refresh === void 0 ? false : _getCloseArgs$refresh;
+                activeTabId = this.activeTabId, items = this.items, $router = this.$router; // 根据 path 获取 id
 
                 if (!(!id && path)) {
                   _context2.next = 6;
@@ -1597,7 +1600,7 @@ function getCloseArgs(args) {
 
               case 6:
                 // 默认当前页签
-                if (!id) id = activedTab;
+                if (!id) id = activeTabId;
                 _context2.prev = 7;
                 idx = items.findIndex(function (item) {
                   return item.id === id;
@@ -1616,7 +1619,7 @@ function getCloseArgs(args) {
 
               case 13:
                 // 如果关闭当前页签，则打开后一个页签
-                if (!to && activedTab === id) {
+                if (!to && activeTabId === id) {
                   nextTab = items[idx] || items[idx - 1];
                   to = nextTab ? nextTab.to : this.defaultPath;
                 }
@@ -1661,14 +1664,14 @@ function getCloseArgs(args) {
         var id,
             to,
             force,
-            _args5 = arguments;
+            _args7 = arguments;
         return regenerator_default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                id = _args5.length > 0 && _args5[0] !== undefined ? _args5[0] : this.activedTab;
-                to = _args5.length > 1 ? _args5[1] : undefined;
-                force = _args5.length > 2 && _args5[2] !== undefined ? _args5[2] : false;
+                id = _args7.length > 0 && _args7[0] !== undefined ? _args7[0] : this.activeTabId;
+                to = _args7.length > 1 ? _args7[1] : undefined;
+                force = _args7.length > 2 && _args7[2] !== undefined ? _args7[2] : false;
                 this.close({
                   id: id,
                   to: to,
@@ -1717,13 +1720,13 @@ function getCloseArgs(args) {
       regenerator_default.a.mark(function _callee4() {
         var id,
             force,
-            _args6 = arguments;
+            _args8 = arguments;
         return regenerator_default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                id = _args6.length > 0 && _args6[0] !== undefined ? _args6[0] : this.activedTab;
-                force = _args6.length > 1 && _args6[1] !== undefined ? _args6[1] : false;
+                id = _args8.length > 0 && _args8[0] !== undefined ? _args8[0] : this.activeTabId;
+                force = _args8.length > 1 && _args8[1] !== undefined ? _args8[1] : false;
                 _context4.prev = 2;
 
                 if (force) {
@@ -1736,7 +1739,7 @@ function getCloseArgs(args) {
 
               case 6:
                 this.$alive.remove(id);
-                if (id === this.activedTab) this.reloadView();
+                if (id === this.activeTabId) this.reloadView();
                 _context4.next = 13;
                 break;
 
@@ -1771,12 +1774,12 @@ function getCloseArgs(args) {
         var force,
             cache,
             id,
-            _args7 = arguments;
+            _args9 = arguments;
         return regenerator_default.a.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                force = _args7.length > 0 && _args7[0] !== undefined ? _args7[0] : false;
+                force = _args9.length > 0 && _args9[0] !== undefined ? _args9[0] : false;
                 cache = this.$alive.cache;
                 _context5.t0 = regenerator_default.a.keys(cache);
 
@@ -2094,8 +2097,8 @@ function scroll_asyncToGenerator(fn) { return function () { var self = this, arg
     };
   },
   watch: {
-    activedTab: function () {
-      var _activedTab = scroll_asyncToGenerator(
+    activeTabId: function () {
+      var _activeTabId = scroll_asyncToGenerator(
       /*#__PURE__*/
       regenerator_default.a.mark(function _callee() {
         var $cur, $scr, cLeft, sLeft;
@@ -2135,11 +2138,11 @@ function scroll_asyncToGenerator(fn) { return function () { var self = this, arg
         }, _callee, this);
       }));
 
-      function activedTab() {
-        return _activedTab.apply(this, arguments);
+      function activeTabId() {
+        return _activeTabId.apply(this, arguments);
       }
 
-      return activedTab;
+      return activeTabId;
     }()
   },
   created: function created() {
@@ -2192,15 +2195,28 @@ function scroll_asyncToGenerator(fn) { return function () { var self = this, arg
   },
   mounted: function mounted() {
     // 页面重载前保存页签数据
-    this.restoreKey && window.addEventListener('beforeunload', this.saveTabs);
+    window.addEventListener('beforeunload', this.saveTabs);
   },
   destroyed: function destroyed() {
-    this.restoreKey && window.removeEventListener('beforeunload', this.saveTabs);
+    window.removeEventListener('beforeunload', this.saveTabs);
+  },
+  watch: {
+    // 监听 restoreKey 变化自动还原页签
+    restoreKey: function restoreKey() {
+      if (this.restoreWatch) {
+        var activeTab = this.activeTab;
+        this.initTabs();
+
+        if (!this.activeTab) {
+          this.items.push(activeTab);
+        }
+      }
+    }
   },
   methods: {
     // 保存页签数据
     saveTabs: function saveTabs() {
-      sessionStorage.setItem(this.restoreKey, JSON.stringify(this.items));
+      this.restoreKey && sessionStorage.setItem(this.restoreKey, JSON.stringify(this.items));
     },
     // 清除页签缓存数据
     clearTabsStore: function clearTabsStore() {
@@ -2261,6 +2277,11 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
       type: [Boolean, String],
       default: false
     },
+    // 是否监听 restoreKey 变化自动还原页签
+    restoreWatch: {
+      type: Boolean,
+      default: false
+    },
     // 是否保留最后一个页签不被关闭
     keepLastTab: {
       type: Boolean,
@@ -2304,8 +2325,8 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
       // 路由页面 loading
       items: [],
       // 页签项
-      activedTab: null,
-      // 当前激活的页签
+      activeTabId: null,
+      // 当前激活的页签 id
       isViewAlive: true,
       isMounted: false // 是否挂载
 
@@ -2319,13 +2340,21 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
     // routerAlive
     $alive: function $alive() {
       return this.isMounted ? this.$refs.routerAlive : null;
+    },
+    // 当前激活的页签
+    activeTab: function activeTab() {
+      var _this = this;
+
+      return this.items.find(function (item) {
+        return item.id === _this.activeTabId;
+      });
     }
   },
   watch: {
     // 路由切换更新激活的页签
     $route: function $route(_$route) {
       this.loading = false;
-      this.updateActivedTab();
+      this.updateActiveTab();
       this.fixCommentPage();
     }
   },
@@ -2333,7 +2362,7 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
     // 添加到原型链
     external_commonjs_vue_commonjs2_vue_root_Vue_default.a.prototype.$routerTab = this;
     this.initTabs();
-    this.updateActivedTab();
+    this.updateActiveTab();
   },
   mounted: function mounted() {
     this.isMounted = true;
@@ -2347,12 +2376,16 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
   methods: {
     // 初始页签数据
     initTabs: function initTabs() {
-      var _this = this;
+      if (this.restoreTabs()) return;
+      this.presetTabs();
+    },
+    // 预设页签
+    presetTabs: function presetTabs() {
+      var _this2 = this;
 
       var tabs = this.tabs,
           $router = this.$router;
       var ids = {};
-      if (this.restoreTabs()) return;
       this.items = tabs.map(function (item, index) {
         var _ref = typeof item === 'string' ? {
           to: item
@@ -2365,7 +2398,7 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
         var route = to && $router.match(to);
 
         if (route) {
-          var tab = _this.getRouteTab(route);
+          var tab = _this2.getRouteTab(route);
 
           var id = tab.id; // 根据 id 去重
 
@@ -2382,8 +2415,8 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
       });
     },
     // 更新激活的页签
-    updateActivedTab: function updateActivedTab() {
-      this.activedTab = this.getAliveId();
+    updateActiveTab: function updateActiveTab() {
+      this.activeTabId = this.getAliveId();
     },
     // 更新 tab 数据
     updateTab: function updateTab(key, _ref2) {
@@ -2617,7 +2650,7 @@ function normalizeComponent (
 
 var component = normalizeComponent(
   components_RouterTab_vue_type_script_lang_js_,
-  RouterTabvue_type_template_id_7f091212_render,
+  RouterTabvue_type_template_id_3126fee0_render,
   staticRenderFns,
   false,
   null,

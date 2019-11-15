@@ -1,5 +1,28 @@
 # 更新日志
 
+## [0.2.8](https://github.com/bhuh12/vue-router-tab/compare/v0.2.7...v0.2.8) (2019-11-15)
+
+
+### Bug Fixes
+
+* **operate:** 解决 IE11 下无法直接解构 arguments 导致的 close(path, to, match, force) 方式关闭页签出错 ([acb7e7a](https://github.com/bhuh12/vue-router-tab/commit/acb7e7a29bd2855b26e193d92b0b82e483a20402))
+
+
+### Code Refactoring
+
+* 实例属性 activedTab 更名为 activeTabId，添加计算属性 activeTab: 当前激活的页签 ([4aea0b1](https://github.com/bhuh12/vue-router-tab/commit/4aea0b1a26d6666272a4676b8d4b113d6461d734))
+
+
+### Features
+
+* **restore:** 添加 restore-watch 参数，监听 restore 改变后自动还原页签 ([d040b23](https://github.com/bhuh12/vue-router-tab/commit/d040b23e3f899dd0791f5185d7580b14acf5f01c))
+
+
+### BREAKING CHANGES
+
+* 实例属性 activedTab 更名为 activeTabId
+
+
 
 ## [0.2.7](https://github.com/bhuh12/vue-router-tab/compare/v0.2.6...v0.2.7) (2019-10-28)
 
