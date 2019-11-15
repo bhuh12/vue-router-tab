@@ -44,6 +44,8 @@
       <a class="demo-btn" @click="$routerTab.refresh()">刷新当前页面</a>
 
       <a class="demo-btn" @click="$routerTab.close()">关闭当前页面</a>
+
+      <a class="demo-btn" @click="$routerTab.close(null, '../tab-dynamic')">关闭当前并跳转</a>
     </p>
 
     <p>

@@ -2,6 +2,8 @@ import { warn } from '../../util/warn'
 
 // 获取关闭参数
 function getCloseArgs (args) {
+  args = Array.from(args)
+
   let argsLen = args.length
   let arg = args[0] // 首个选项
   let arg2 = args[1] // 第二个选项
