@@ -1,5 +1,15 @@
 # 更新日志
 
+
+## [0.2.9](https://github.com/bhuh12/vue-router-tab/compare/v0.2.8...v0.2.9) (2019-11-20)
+
+
+### Bug Fixes
+
+* **operate:** 全新打开页签刷新旧页签时使用模糊匹配，避免路径不一致的旧页签无法强制刷新 ([150f112](https://github.com/bhuh12/vue-router-tab/commit/150f11220d38b63e1cae82a7996614f652570c06))
+
+
+
 ## [0.2.8](https://github.com/bhuh12/vue-router-tab/compare/v0.2.7...v0.2.8) (2019-11-15)
 
 

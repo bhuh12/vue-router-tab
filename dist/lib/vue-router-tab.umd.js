@@ -1492,7 +1492,7 @@ function getCloseArgs(args) {
     open: function open(path) {
       var isReplace = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
       var refresh = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-      if (refresh) this.refresh(path);
+      if (refresh) this.refresh(path, false);
       this.$router[isReplace ? 'replace' : 'push'](path);
     },
     // 移除 tab 项
