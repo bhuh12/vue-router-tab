@@ -39,7 +39,7 @@ export default {
      * @param {Boolean} [refresh = true] 是否全新打开
      */
     open (path, isReplace = false, refresh = true) {
-      if (refresh) this.refresh(path)
+      if (refresh) this.refresh(path, false)
       this.$router[isReplace ? 'replace' : 'push'](path)
     },
 
