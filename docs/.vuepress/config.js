@@ -1,9 +1,8 @@
-const demoUrl = 'https://bhuh12.github.io/vue-router-tab/demo/'
+// 引入多语言配置
+const { default: localeZh, theme: localeZhTheme } = require('./locales/zh')
+const { default: localeEn, theme: localeEnTheme } = require('./locales/en')
 
 module.exports = {
-  title: 'Vue Router Tab',
-  description: '基于 Vue Router 的路由页签组件',
-
   head: [
     ['link', { rel: 'icon', href: 'https://bhuh12.github.io/vue-router-tab/demo/img/logo.png' }]
   ],
@@ -16,64 +15,28 @@ module.exports = {
 
   host: 'localhost',
 
+  // 多语言
+  locales: {
+    '/': localeZh,
+    '/en/': localeEn
+  },
+
   // 主题配置
   themeConfig: {
-    // 页头导航
-    nav: [
-      { text: '教程', link: '/guide/' },
-      { text: 'API', link: '/api/' },
-      { text: 'Demo', link: demoUrl },
-      { text: '更新日志', link: '/guide/changelog' },
-      { text: '主页', link: 'https://bhuh.net' }
-    ],
-
-    // 侧边栏显示所有子集菜单 (默认显示活动)
-    // displayAllHeaders: true,
-
-    // 侧边栏
-    sidebar: {
-      '/guide/': [
-        '',
-        'installation',
-        {
-          title: '基础',
-          collapsable: false,
-          children: [
-            'essentials/',
-            'essentials/operate',
-            'essentials/iframe',
-            'essentials/rule',
-            'essentials/i18n'
-          ]
-        },
-        {
-          title: '进阶',
-          collapsable: false,
-          children: [
-            'advanced/transition',
-            'advanced/slot',
-            'advanced/initial-tabs',
-            'advanced/restore',
-            'advanced/dynamic-tab-info',
-            'advanced/page-leave'
-          ]
-        },
-        'program'
-      ]
+    locales: {
+      '/': localeZhTheme,
+      '/en/': localeEnTheme
     },
-
+    
     // Demo路径
-    demoUrl: demoUrl,
+    demoUrl: 'https://bhuh12.github.io/vue-router-tab/demo/',
 
     // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
     repo: 'bhuh12/vue-router-tab',
 
     repoLabel: 'GitHub',
 
-    // 假如文档放在一个特定的分支下：
     docsBranch: 'dev',
-    
-    lastUpdated: '上次更新',
 
     // Algolia 搜索
     algolia: {
@@ -90,10 +53,7 @@ module.exports = {
   plugins: {
     '@vuepress/pwa': {
       serviceWorker: true,
-      updatePopup: {
-        message: '发现新内容可用',
-        buttonText: '刷新'
-      }
+      updatePopup: true
     },
     '@vuepress/back-to-top': true
   }

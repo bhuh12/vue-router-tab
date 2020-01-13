@@ -1,7 +1,7 @@
 <template>
   <div class="doc-links">
-    <router-link v-if="api" :to="'/api/'+ api">查看 API</router-link>
-    <demo-link v-if="demo" :href="demo">Demo 演示</demo-link>
+    <router-link v-if="api" :to="`${$localePath}api/${api}`">API</router-link>
+    <demo-link v-if="demo" :href="demo">Demo</demo-link>
   </div>
 </template>
 

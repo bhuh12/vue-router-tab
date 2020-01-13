@@ -5,7 +5,11 @@ import RouterTab from '../src'
 import App from './App.vue'
 import router from './router'
 
-Vue.config.productionTip = false
+Object.assign(Vue.config, {
+  productionTip: false,
+  devtools: true
+})
+
 Vue.use(RouterTab)
 
 new Vue({
