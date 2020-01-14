@@ -48,34 +48,34 @@
 
 <h2 align="center">Vue Router Tab</h2>
 
-Vue Router Tab 是基于 Vue Router 的路由页签组件，用来实现多页签页面的管理。
+A tab router component based on Vue Router.
 
 
 ## 📌 Features
 
-✅ 响应路由变化来打开或切换页签
+✅ Open or switch to tabs responding to route change
 
-✅ 页签右键菜单操作
+✅ Support context menu on tabs
 
-✅ [页签规则](https://bhuh12.github.io/vue-router-tab/en/guide/essentials/rule.html)配置
+✅ [Route Matching](https://bhuh12.github.io/vue-router-tab/en/guide/essentials/rule.html)
 
-✅ 内置页签和页面[过渡效果](https://bhuh12.github.io/vue-router-tab/en/guide/advanced/transition.html)，支持自定义配置
+✅ Built-in [Transition](https://bhuh12.github.io/vue-router-tab/en/guide/advanced/transition.html): support custom configuration
 
-✅ [自定义页签模板](https://bhuh12.github.io/vue-router-tab/en/guide/advanced/slot.html)
+✅ [Custom Tab Template](https://bhuh12.github.io/vue-router-tab/en/guide/advanced/slot.html)
 
-✅ [初始页签数据](https://bhuh12.github.io/vue-router-tab/en/guide/advanced/initial-tabs.html)，进入页面时默认显示的页签
+✅ [Initial Tabs](https://bhuh12.github.io/vue-router-tab/en/guide/advanced/initial-tabs.html): initially opened tabs when entering page
 
-✅ [页签刷新还原](https://bhuh12.github.io/vue-router-tab/en/guide/advanced/restore.html)，在浏览器刷新后恢复页签
+✅ [Tabs Caching](https://bhuh12.github.io/vue-router-tab/en/guide/advanced/restore.html): reopen tabs on page reload
 
-✅ [页签重置](https://bhuh12.github.io/vue-router-tab/en/guide/essentials/operate.html#%E9%87%8D%E7%BD%AE%E9%A1%B5%E7%AD%BE)，重置页签到初始状态
+✅ [Reset Tabs](https://bhuh12.github.io/vue-router-tab/en/guide/essentials/operate.html#%E9%87%8D%E7%BD%AE%E9%A1%B5%E7%AD%BE): reset tabs to initial state
 
-✅ [动态更新页签信息](https://bhuh12.github.io/vue-router-tab/en/guide/advanced/dynamic-tab-info.html) (标题/图标/提示)
+✅ [Dynamic Tab Info](https://bhuh12.github.io/vue-router-tab/en/guide/advanced/dynamic-tab-info.html) (title/icon/tooltip)
 
-✅ [iframe 页签嵌入外部网站](https://bhuh12.github.io/vue-router-tab/en/guide/essentials/iframe.html)
+✅ [iframe](https://bhuh12.github.io/vue-router-tab/en/guide/essentials/iframe.html): for external website
 
-✅ [页签页面离开 (页签关闭/刷新/替换) 前确认](https://bhuh12.github.io/vue-router-tab/en/guide/advanced/page-leave.html)
+✅ [Leave Prompt](https://bhuh12.github.io/vue-router-tab/en/guide/advanced/page-leave.html)
 
-✅ [多语言支持](https://bhuh12.github.io/vue-router-tab/en/guide/essentials/i18n.html)
+✅ [i18n](https://bhuh12.github.io/vue-router-tab/en/guide/essentials/i18n.html)
 
 
 ## 🛠 Installation
