@@ -13,7 +13,7 @@ const i18n = {
 exports.default = {
   lang: 'en-US', // 将会被设置为 <html> 的 lang 属性
   title: 'Vue Router Tab',
-  description: 'Vue.js tab components, based on Vue Router.'
+  description: 'Vue.js tab component, based on Vue Router.'
 }
 
 // 主题配置
