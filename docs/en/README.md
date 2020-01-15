@@ -6,11 +6,11 @@ tagline: Vue.js tab components, based on Vue Router.
 actionText: Get Started →
 actionLink: ./guide/
 features:
-- title: Simplicity First
-  details: 配置简单，引入组件后通过路由的 "meta" 元信息配置页签信息即可运行。
-- title: 规则定制
-  details: 方便定制页签规则。除了默认的规则，您还可以全局和精准控制每个路由的页签打开方式。
-- title: Vue Router Powered
-  details: 页签响应 "Vue Router" 路由，您可以使用 "Vue Router" 提供的强大功能。
+- title: Easy to use
+  details: Import, set meta, and good to go.
+- title: Customizable
+  details: Completely customizable on every single route.
+- title: Powered by Vue Router
+  details: Take good advantage of Vue Router.
 footer: MIT Licensed | Copyright (c) 2019-present, 碧海幽虹
 ---
