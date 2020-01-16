@@ -42,7 +42,7 @@ There is [an existing solution](https://panjiachen.github.io/vue-element-admin-s
 4. Unable to customize tab display behavior.
 
 
-There is yet another solution which handles router and cache control by itself instead of Vue Router. It offers a bunch of APIs to operate tabs (e.g., opening and switching), which in practice, will lead to a deep reconstruction in existing Vue Router project.
+There is yet another solution which handles router and cache control by itself instead of Vue Router. It offers a bunch of APIs to operate tabs (e.g., opening and switching), which in practice, will lead to a deep refactoring in existing Vue Router project.
 
 ---
 
