@@ -1,33 +1,33 @@
-# Program
+# Solutions
 
-Vue Router Tab 实现过程中遇到的**问题及解决方案**，也欢迎提出更好的点子。
+Problems that we came across and solutions to them. If you have any better ideas, please feel free to propose a PR or issue.
 
 
-1. `keep-alive` 仅支持根据组件 `name` 控制缓存，无法针对路由精确控制：
+1. `<keep-alive>` only support cache by component's `name`, so that it couldn't provide accurate control responding to route.
 
-    参考 `keep-alive` 实现 `router-alive` 组件，基于 Vue Router 路由规则的缓存控制
+    Developed `<router-alive>`, a router version of `<keep-alive>`, to handle cache control via route.
 
-2. 页面组件强制刷新：
+2. How to force reload tab content:
 
-   1. 销毁页面组件实例
-   2. `router-view` 组件通过 `v-if` 隐藏，在 `nextTick` 后再显示
+   1. Destroy content instance
+   2. Hide `<router-view>` by `v-if` and show it after `nextTick`
 
-3. 由于缓存，Webpack 热加载后的页面不刷新：
+3. Components wouldn't re-render with Webpack HMR in reason of caching:
    
-    在路由页面组件全局混入的 `activated` 钩子里，记录 `vm.$vnode.componentOptions.Ctor.cid`。如果与上一次的值不一致，则销毁页面，组件重新渲染
+    Record `vm.$vnode.componentOptions.Ctor.cid` in render method. If it differs from the last recorded value, tab content instance will be destroyed and re-rendered.
 
-4. 当快速频繁切换页签时，页面显示空白：
+4. Tab content displays in blank while rapidly switching among tabs:
 
-    根因：旧页面离开的过渡效果尚未完成，新页面内容来不及 mount 又被后面的路由替换
+    Cause: Before the transition of old pages get completed, new pages pop up and step ahead the mount method.
 
-    方案：路由切换结束后，如果路由页面节点 `nodeType` 为 8 (comment 类型)，强制刷新页面组件
+    Solution: After route change, force reload tab content if current `nodeType` equals 8 (which is COMMENT_NODE).
 
-5. iframe 页面页签切换后会重新加载：
+5. iframe tab gets reloaded on switching：
 
-   1. 将  `<iframe>` 节点放在页面所在 `<router-view>` 的外层，通过 `v-show` 控制显示隐藏。
+   1. Extract `<iframe>` to outer layer of `<router-view>`, and show/hide it via `v-show`.
 
-   2. 建立 iframe 路由页面组件，通过生命周期钩子来添加、显示、隐藏、移除 `<iframe>` dom 节点
+   2. Create a separate iframe route component, and manage `<iframe>` dom element in lifecycle hook methods, i.e., add, show, hide and remove.
 
-6. 打包后的 js 文件太庞大：
+6. js bundle size gets too big：
 
-    构建库时，配置 `babel.config.js` 中 `useBuiltIns` 为 `false`，打包时不包含 Polyfill
+    When building as lib, set `useBuiltIns` to `false` in `babel.config.js`, which means not including Polyfill in final bundle.
