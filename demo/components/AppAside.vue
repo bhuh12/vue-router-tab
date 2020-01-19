@@ -33,7 +33,7 @@ export default {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  background-color: #fff;
+  background-color: rgba(#fff, .95);
   border-right: 1px solid #eaecef;
 
   &-menu {

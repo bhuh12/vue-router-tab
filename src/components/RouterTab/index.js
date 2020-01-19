@@ -216,6 +216,12 @@ export default {
       return { id, to: route.fullPath, title, icon, tips }
     },
 
+    // 页签是否可关闭
+    isTabClosable (tab) {
+      return tab.closable !== false && // 页签未配置为不可关闭
+        !(this.keepLastTab && this.items.length < 2) // 保留最后一个页签时当前是最后一个页签，不允许关闭
+    },
+
     // 解析过渡配置
     getTransOpt (trans) {
       return typeof trans === 'string' ? { name: trans } : trans

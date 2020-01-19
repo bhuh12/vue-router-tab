@@ -2,6 +2,9 @@
   <div class="router-tab">
     <!-- 页签头部 -->
     <header :class="[ 'router-tab-header', hasScroller && 'is-scroll' ]">
+      <!-- 页签向前滚动 -->
+      <a class="nav-prev" @click="tabScroll('left')" />
+
       <div class="router-tab-scroll">
         <!-- 页签列表 -->
         <transition-group
@@ -12,31 +15,35 @@
           @after-leave="onTabTransitionEnd"
         >
           <router-link
-            v-for="({ id, to, title, icon, tips, closable }, index) in items"
-            :key="id || to"
+            v-for="(item, index) in items"
+            :key="item.id || item.to"
             class="router-tab-item"
             tag="li"
-            :class="{ actived: activeTabId === id, contextmenu: contextmenu.id === id }"
-            :title="i18nText(tips || title) || lang.tab.untitled"
-            :to="to"
-            @contextmenu.native.prevent="e => showContextmenu(id, index, e)"
+            :class="{
+              actived: activeTabId === item.id,
+              'is-contextmenu': contextmenu.id === item.id,
+              'is-closable': isTabClosable(item),
+              [item.tabClass || '']: true
+            }"
+            :title="i18nText(item.tips || item.title) || lang.tab.untitled"
+            :to="item.to"
+            @contextmenu.native.prevent="e => showContextmenu(item.id, index, e)"
           >
-            <slot v-bind="{ tab: items[index], tabs: items, index }">
-              <i v-if="icon" class="tab-icon" :class="icon" />
-              <span class="tab-title">{{ i18nText(title) || lang.tab.untitled }}</span>
+            <slot v-bind="{ tab: item, tabs: items, index }">
+              <i v-if="item.icon" class="tab-icon" :class="item.icon" />
+              <span class="tab-title">{{ i18nText(item.title) || lang.tab.untitled }}</span>
               <i
-                v-if="closable !== false && !(keepLastTab && items.length < 2)"
+                v-if="isTabClosable(item)"
                 class="tab-close"
                 :title="lang.contextmenu.close"
-                @click.prevent="closeTab(id)"
+                @click.prevent="closeTab(item.id)"
               />
             </slot>
           </router-link>
         </transition-group>
       </div>
 
-      <!-- 页签滚动 -->
-      <a class="nav-prev" @click="tabScroll('left')" />
+      <!-- 页签向后滚动 -->
       <a class="nav-next" @click="tabScroll('right')" />
     </header>
 
