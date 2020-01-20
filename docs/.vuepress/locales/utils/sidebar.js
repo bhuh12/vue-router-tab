@@ -25,6 +25,6 @@ exports.default = (i18n) => ({
         'advanced/page-leave'
       ]
     },
-    'program'
+    'solutions'
   ]
 })
