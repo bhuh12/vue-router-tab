@@ -14,7 +14,7 @@ Problems that we came across and solutions to them. If you have any better ideas
 
 3. Components wouldn't re-render with Webpack HMR in reason of caching:
    
-    Record `vm.$vnode.componentOptions.Ctor.cid` in render method. If it differs from the last recorded value, tab content instance will be destroyed and re-rendered.
+    Record `vnode.componentOptions.Ctor.cid` in render method. If it differs from the last recorded value, tab content instance will be destroyed and re-rendered.
 
 4. Tab content displays in blank while rapidly switching among tabs:
 
