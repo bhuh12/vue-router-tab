@@ -48,7 +48,7 @@ Vue Router Tab 是基于 Vue.js 和 Vue Router 的路由页签组件，用来实
 
 ### Vue Router Tab 的优势
 
-针对现存方案的各种问题，Vue Router Tab 定制开发了 `<router-alive>` 缓存组件来控制路由页面缓存（感兴趣的朋友可以看看：[问题与解决方案](program.md)）。
+针对现存方案的各种问题，Vue Router Tab 定制开发了 `<router-alive>` 缓存组件来控制路由页面缓存（感兴趣的朋友可以看看：[问题与解决方案](solutions.md)）。
 
 除了解决了其他方案的不足，Vue Router Tab 还拥有以下优势：
 

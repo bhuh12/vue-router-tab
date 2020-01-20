@@ -48,7 +48,7 @@ There is yet another solution which handles router and cache control by itself i
 
 ### Pros to Vue Router Tab
 
-To solve the problems above, we developed `<router-alive>` to handle tab caching. See [Problems and Solutions](program.md)
+To solve the problems above, we developed `<router-alive>` to handle tab caching. See [Problems and Solutions](solutions.md)
 
 Even more:
 
