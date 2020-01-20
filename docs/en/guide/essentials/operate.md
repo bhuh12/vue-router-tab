@@ -1,61 +1,61 @@
-# 页签操作
+# Tab Operations
 
-## 打开/切换页签
+## Open/Switch
 
-RouterTab 通过响应路由变化来新增或切换页签，您可以使用以下两种方式。
+RouterTab responds to route change, thus, there are two ways to open/switch tabs.
 
-### 1. Vue Router 原生方式（推荐）
- 
-使用 Vue Router 内置的方式打开页签，如果您之前访问过该地址，您打开的将是缓存的页签页面。
+### 1. Native Vue Router way (recommended)
 
-参考文档：[Vue Router 导航](https://router.vuejs.org/zh/guide/essentials/navigation.html)
+Open tabs in a native Vue Router way. If the link is visited earlier, the exsiting cached tab will be brought to front.
 
-使用 `<router-link>` 组件
+See [Vue Router Navigation](https://router.vuejs.org/guide/essentials/navigation.html)
+
+Via `<router-link>`
 
 ``` html
-<router-link to="/page/1">页面1</router-link>
+<router-link to="/page/1">Page 1</router-link>
 ```
 
-使用 `router.push`、`router.replace`、`router.go` 等方法
+Via `router.push`, `router.replace`, `router.go`, etc.
 
 ``` javascript
 this.$router.push('/page/1')
 ```
 
-### 2. RouterTab 内置方法
+### 2. RouterTab built-in method
 
 `open (path, isReplace = false, refresh = true)`
 
-此方法默认会刷新已有页签，如果希望**全新打开页签**，您可以尝试此方法。
+This method will reload the existing cached tab by default, which might be usefule if you intend to **force-new-open** a tab.
 
 <doc-links api="#routertab-open" demo="/default/"></doc-links>
 
-**全新打开页签**
+**Force-new-open**
 
 ``` javascript
 this.$routerTab.open('/page/2')
 ```
 
-## 关闭页签
+## Close
 
 `close({id, path, match = true, force = true, to, refresh = false})`
 
-您可以通过 RouterTab 的实例方法 [`routerTab.close`](../../api/README.md#routertab-close) 来关闭指定页签
+You can close a tab with [`routerTab.close`](../../api/README.md#routertab-close)
 
 <doc-links api="#routertab-close" demo="/default/"></doc-links>
 
-**关闭当前页签**
+**Current tab**
 
 ``` js
 this.$routerTab.close()
 ```
 
-**关闭指定页签**
+**Designated tab**
 ``` js
-// 关闭指定 fullPath 的页签
+// fullPath
 this.$routerTab.close('/page/1')
 
-// 关闭指定 location 的页签
+// location
 this.$routerTab.close({
   name: 'page',
   params: {
@@ -64,52 +64,52 @@ this.$routerTab.close({
 })
 ```
 
-**关闭页签后跳转地址**
+**Jump after closed**
 
 ``` js
-// 关闭 '/page/1' 跳转到 '/page/2'
+// close '/page/1', then jump to '/page/2'
 this.$routerTab.close('/page/1', '/page/2')
 
-// 关闭当前页签跳转到 '/page/2'
+// close current, then jump to '/page/2'
 this.$routerTab.close({
   to: '/page/2'
 })
 ```
 
-**完整选项说明**
+**Options**
 
 ``` js
 this.$routerTab.close({
-  id: '', // 通过页签 id （即 aliveId 返回值）关闭页签, 与 path 二选一即可
-  path: '/page/2', // 通过路由路径关闭页签，可 location 对象方式传入。如果未配置 id 和 path 则关闭当前页签
-  match: false, // path 方式关闭时，是否匹配 path 完整路径，默认 true
-  force: false, // 是否强制关闭，默认 true
-  to: '/page/1', // 关闭后跳转的地址，可 location 对象方式传入。(未设置则跳转上一个页签，最后一个页签默认关闭后跳转默认页)
-  refresh: true // 是否全新打开跳转地址 默认 false
+  id: '', // close by tab id, i.e., aliveId. equivalent to path
+  path: '/page/2', // close by route path, accepts location object. Will close current tab if neither id nor path is provided.
+  match: false, // should match full path or not in path mode, defaults to true
+  force: false, // should force close or not, defaults to true
+  to: '/page/1', // url to jump to after closed, accepts location object.
+  refresh: true // should refresh the `to` url or not, defaults to false
 })
 ```
 
 
-## 刷新页签
+## Refresh
 
 `refresh (path, match = true, force = true)`
 
-您可以通过 RouterTab 的实例方法 [`routerTab.refresh`](../../api/README.md#routertab-refresh) 来刷新指定页签
+You can refresh a tab with [`routerTab.refresh`](../../api/README.md#routertab-refresh)
 
 <doc-links api="#routertab-refresh" demo="/default/"></doc-links>
 
-**刷新当前页签**
+**Current tab**
 
 ``` js
 this.$routerTab.refresh()
 ```
 
-**刷新指定页签**
+**Designated tab**
 ``` js
-// 刷新指定 fullPath 的页签
+// fullPath
 this.$routerTab.refresh('/page/1')
 
-// 刷新指定 location 的页签
+// location
 this.$routerTab.refresh({
   name: 'page',
   params: {
@@ -118,45 +118,47 @@ this.$routerTab.refresh({
 })
 ```
 
-**模糊刷新页签**
+**Fuzzy matching**
 ``` js
-// 刷新与给定地址共用页签的地址，即使地址不完全匹配
-// 默认 `alive-id` 规则下，类似 '/page/1?query=2' 这样的页签也能被匹配刷新
+// refresh tabs in fuzzy mode
+// e.g., '/page/1?query=2' will get refreshed by this rule
 this.$routerTab.refresh('/page/1', false)
 ```
 
 
-## 刷新所有页签
+## Refresh all
 
 `refreshAll (force = false)`
 
-您可以通过 RouterTab 的实例方法 [`routerTab.refreshAll`](../../api/README.md#routertab-refreshall) 来刷新所有页签
+You can refresh all tabs with [`routerTab.refreshAll`](../../api/README.md#routertab-refreshall)
 
-**刷新所有页签**
+**Refresh all**
 
 ``` js
 this.$routerTab.refreshAll()
 ```
 
-**强制刷新所有页签**，忽略页面组件的 `beforePageLeave` 配置
+**Force-refresh all**, ignoring `beforePageLeave` in tab components
 
 ``` js
 this.$routerTab.refreshAll(true)
 ```
 
 
-## 重置页签
+## Reset
 
 `reset (to = this.defaultPath)`
 
-通常，在用户重新登录或者切换角色的情况下，我们需要关闭用户所有页签并恢复页签初始状态，包括恢复初始页签、跳转到指定的默认页面等
+Generally, when user logged out, we need to reset all tabs to initial state, e.g., close all tabs and restore welcome page.
 
-针对这些场景，您可以使用 [`routerTab.reset`](../../api/README.md#routertab-reset) 方法来重置页签到初始状态
+You can do that with [`routerTab.reset`](../../api/README.md#routertab-reset)
 
 ``` js
-// 重置页签并跳转默认页面（程序会自动获取页签父路由地址为默认页面，您也可以通过 RouterTab 的 'default-page' 来指定）
+// reset tabs and jump to default page
+// (RouterTab will use parent route as default page, 
+//   or you can configure this with `default-page`.)
 this.$routerTab.reset()
 
-// 重置页签并跳转 /page/2
+// reset tabs and jump to /page/2
 this.$routerTab.reset('/page/2')
 ```
