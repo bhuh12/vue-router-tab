@@ -45,4 +45,4 @@ RouterTab 支持以下的 iframe 页签事件：
 
 **示例：**
 
-<<< @/demo/components/frames/Iframe.vue
+<<< @/src/components/frames/Iframe.vue

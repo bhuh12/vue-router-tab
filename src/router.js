@@ -7,9 +7,10 @@ import route404 from './routes/404'
 Vue.use(Router)
 
 // 全局 404 路由
-const globalRoute404 = Object.assign({}, route404, {
+const globalRoute404 = {
+  ...route404,
   path: '/404'
-})
+}
 
 // Vue Router 实例
 const $router = new Router({

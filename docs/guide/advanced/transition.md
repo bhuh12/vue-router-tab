@@ -12,7 +12,7 @@
 
 **示例：**
 
-<<< @/demo/components/frames/Transition.vue{2,6,8,21}
+<<< @/src/components/frames/Transition.vue{2,6,8,21}
 
 ## 详细配置
 

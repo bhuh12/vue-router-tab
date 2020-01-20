@@ -11,4 +11,4 @@
 
 **示例：**
 
-<<< @/demo/components/frames/Slot.vue{3,6}
+<<< @/src/components/frames/Slot.vue{3,6}

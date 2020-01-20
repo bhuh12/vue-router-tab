@@ -16,7 +16,7 @@ module.exports = {
     loaderOptions: {
       sass: {
         // scss公共变量
-        data: isBuildLib ? undefined : `@import "demo/assets/scss/variables.scss";`
+        prependData: isBuildLib ? undefined : `@import "src/assets/scss/variables.scss";`
       }
     }
   }

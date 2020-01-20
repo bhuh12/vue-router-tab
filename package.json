@@ -19,12 +19,12 @@
   },
   "main": "dist/lib/vue-router-tab.umd.min.js",
   "scripts": {
-    "demo:dev": "vue-cli-service serve --open demo/main.js",
-    "demo:build": "vue-cli-service build demo/main.js",
+    "demo:dev": "vue-cli-service serve --open",
+    "demo:build": "vue-cli-service build",
     "docs:dev": "vuepress dev docs --open",
     "docs:build": "vuepress build docs",
-    "lib:build": "vue-cli-service build --target lib src/index.js",
-    "lib:build:report": "vue-cli-service build --report --target lib src/index.js",
+    "lib:build": "vue-cli-service build --target lib lib/index.js",
+    "lib:build:report": "vue-cli-service build --report --target lib lib/index.js",
     "lib:publish": "npm run lib:build && npm publish",
     "lint": "vue-cli-service lint",
     "lint:fix": "vue-cli-service lint --fix",
@@ -32,26 +32,27 @@
     "changelog": "conventional-changelog -p angular -i docs/guide/changelog.md -s -r 0"
   },
   "dependencies": {
-    "vue": "^2.5.22",
-    "vue-router": "^3.0.1"
+    "core-js": "^3.4.4",
+    "vue": "^2.6.10",
+    "vue-router": "^3.1.3"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.4.0",
-    "@vue/cli-plugin-eslint": "^3.4.0",
-    "@vue/cli-service": "^3.4.0",
+    "@vue/cli-plugin-babel": "^4.1.0",
+    "@vue/cli-plugin-eslint": "^4.1.0",
+    "@vue/cli-plugin-router": "^4.1.0",
+    "@vue/cli-service": "^4.1.0",
     "@vue/eslint-config-standard": "^4.0.0",
-    "@vuepress/plugin-back-to-top": "^1.1.0",
-    "@vuepress/plugin-pwa": "^1.1.0",
-    "babel-eslint": "^10.0.1",
-    "cz-conventional-changelog": "^2.1.0",
-    "eslint": "^5.8.0",
+    "@vuepress/plugin-back-to-top": "^1.2.0",
+    "@vuepress/plugin-pwa": "^1.2.0",
+    "babel-eslint": "^10.0.3",
+    "cz-conventional-changelog": "^3.0.2",
+    "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
-    "lint-staged": "^8.1.0",
-    "node-sass": "^4.9.0",
-    "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.5.22",
-    "vuepress": "^1.1.0",
-    "yorkie": "^2.0.0"
+    "lint-staged": "^9.5.0",
+    "node-sass": "^4.13.1",
+    "sass-loader": "^8.0.0",
+    "vue-template-compiler": "^2.6.10",
+    "vuepress": "^1.2.0"
   },
   "eslintConfig": {
     "root": true,
@@ -78,26 +79,16 @@
   "eslintIgnore": [
     "dist"
   ],
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
   "browserslist": [
     "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
+    "last 2 versions"
   ],
   "gitHooks": {
     "pre-commit": "lint-staged",
     "commit-msg": "node scripts/verify-commit-msg.js"
   },
   "lint-staged": {
-    "*.js": [
-      "vue-cli-service lint",
-      "git add"
-    ],
-    "*.vue": [
+    "*.{js,vue}": [
       "vue-cli-service lint",
       "git add"
     ]

@@ -1,6 +1,5 @@
-import '@babel/polyfill'
 import Vue from 'vue'
-import RouterTab from '../src'
+import RouterTab from '../lib'
 
 import App from './App.vue'
 import router from './router'
