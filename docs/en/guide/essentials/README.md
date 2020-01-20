@@ -53,7 +53,7 @@ new Vue({
 ## Extend your router config
 
 1. Integrate RouterTabRoutes into your router config to support [iframe Tab](iframe.md)
-2. Set **title**, **icon**, **tooltip** and **match pattern** in `meta`.
+2. Set **title**, **icon**, **tooltip** and **cache rule** in `meta`.
 
 > Details at [Route.meta](../../api/README.md#route-meta-路由元信息)
 
@@ -95,7 +95,7 @@ export default new Router({
           title: 'Page', // tab title
           icon: 'icon-user', // tab icon, optional
           tips: 'This is a tab', // tab tooltip, optional. defaults to `meta.title`
-          aliveId: 'fullPath', // route match pattern, optional
+          aliveId: 'fullPath', // tab cache rule, optional
         }
       }, {
         path: '/404',
