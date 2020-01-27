@@ -1,5 +1,4 @@
 # 忽略目录/文件
-demo
 dist/docs
 dist/lib/**.html
 docs

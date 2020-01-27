@@ -1,5 +1,23 @@
 # 更新日志
 
+## [1.0.0-alpha.1](https://github.com/bhuh12/vue-router-tab/compare/v0.2.9...v1.0.0-alpha.1) (2020-01-27)
+
+
+### Code Refactoring
+
+* **iframe:** 移除 openIframeTab, closeIframeTab, refreshIframeTab 方法 ([87d0d77](https://github.com/bhuh12/vue-router-tab/commit/87d0d770a0b85a9e146023d74ca3f3d737b686c6))
+
+
+### Features
+
+* **style:** 使用新的样式，css 模拟图标按钮 ([c305603](https://github.com/bhuh12/vue-router-tab/commit/c3056036559ac41075bf573e531efa4c144c15e9))
+
+
+### BREAKING CHANGES
+
+* **iframe:** 弃用 openIframeTab, closeIframeTab, refreshIframeTab 方法
+
+
 
 ## [0.2.9](https://github.com/bhuh12/vue-router-tab/compare/v0.2.8...v0.2.9) (2019-11-20)
 
@@ -117,8 +135,8 @@
 
 ### Bug Fixes
 
-* **style:** router-tab 添加最小高度 300px ([f4971ed](https://github.com/bhuh12/vue-router-tab/commit/f4971eda65986bdd7fe6c14035f001c4986f86ba)), closes [#9](https://github.com/bhuh12/vue-router-tab/issues/9)
 * **style:** 去除 tab 滚动控制按钮的 element-ui 图标 class ([1404a7f](https://github.com/bhuh12/vue-router-tab/commit/1404a7fc92ebfc18d594fe5b0c7d64437cdd5f8b)), closes [#12](https://github.com/bhuh12/vue-router-tab/issues/12)
+* **style:** router-tab 添加最小高度 300px ([f4971ed](https://github.com/bhuh12/vue-router-tab/commit/f4971eda65986bdd7fe6c14035f001c4986f86ba)), closes [#9](https://github.com/bhuh12/vue-router-tab/issues/9)
 
 
 
