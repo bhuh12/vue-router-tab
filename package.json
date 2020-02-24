@@ -1,6 +1,6 @@
 {
   "name": "vue-router-tab",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Vue.js tab components, based on Vue Router",
   "keywords": [
     "vue",
@@ -32,7 +32,6 @@
     "changelog": "conventional-changelog -p angular -i docs/guide/changelog.md -s -r 0"
   },
   "dependencies": {
-    "core-js": "^3.4.4",
     "vue": "^2.6.10",
     "vue-router": "^3.1.3"
   },
@@ -45,6 +44,7 @@
     "@vuepress/plugin-back-to-top": "^1.2.0",
     "@vuepress/plugin-pwa": "^1.2.0",
     "babel-eslint": "^10.0.3",
+    "core-js": "^3.4.4",
     "cz-conventional-changelog": "^3.0.2",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
@@ -64,6 +64,7 @@
       "@vue/standard"
     ],
     "rules": {
+      "no-debugger": "off",
       "vue/require-default-prop": false,
       "vue/max-attributes-per-line": [
         "error",

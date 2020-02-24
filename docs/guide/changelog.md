@@ -1,5 +1,14 @@
 # 更新日志
 
+## [1.0.0-alpha.2](https://github.com/bhuh12/vue-router-tab/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2020-02-24)
+
+
+### Bug Fixes
+
+* 解决某些场景无法访问 this.$routerTab ([f458763](https://github.com/bhuh12/vue-router-tab/commit/f458763095f982370c674d076293c274abff8bd7))
+
+
+
 ## [1.0.0-alpha.1](https://github.com/bhuh12/vue-router-tab/compare/v0.2.9...v1.0.0-alpha.1) (2020-01-27)
 
 
