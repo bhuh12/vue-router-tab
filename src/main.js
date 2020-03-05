@@ -4,10 +4,10 @@ import RouterTab from '../lib'
 import App from './App.vue'
 import router from './router'
 
-Vue.config.productionTip = false
-
-// Demo 演示开启开发工具
-Vue.config.devtools = true
+Object.assign(Vue.config, {
+  productionTip: false,
+  devtools: true
+})
 
 Vue.use(RouterTab)
 

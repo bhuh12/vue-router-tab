@@ -14,7 +14,7 @@ Vue Router Tab 实现过程中遇到的**问题及解决方案**，也欢迎提�
 
 3. 由于缓存，Webpack 热加载后的页面不刷新：
    
-    在路由页面组件全局混入的 `activated` 钩子里，记录 `vm.$vnode.componentOptions.Ctor.cid`。如果与上一次的值不一致，则销毁页面，组件重新渲染
+    在 `router-alive` 的 `render` 函数内，记录 `vnode.componentOptions.Ctor.cid`。如果与上一次页面缓存实例的记录值不一致，则销毁页面组件，重新渲染
 
 4. 当快速频繁切换页签时，页面显示空白：
 
