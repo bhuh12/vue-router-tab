@@ -59,7 +59,7 @@ RouterTab 仅支持单例模式，请勿在同一个页面中引入多个 Router
 
 **示例：**
 
-``` javascript {6,9,22,25,28,33,34,35,36}
+``` javascript {6,9,22,25,28,33,34,35,36,37,38}
 // @/router.js 路由
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -94,8 +94,10 @@ export default new Router({
         meta: {
           title: '页面', // 页签标题
           icon: 'icon-user', // 页签图标，可选
-          tips: '这是一个页面', // 页签提示，可选，如未设置则跟title一致
+          tabClass: 'custom-tab', // 自定义页签 class，可选
+          tips: '这是一个页面', // 页签提示，可选，如未设置则跟 title 一致
           aliveId: 'fullPath', // 路由打开页签规则，可选
+          closable: false // 页签是否允许关闭，默认 `true`
         }
       }, {
         path: '/404',

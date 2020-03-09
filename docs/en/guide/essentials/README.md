@@ -59,7 +59,7 @@ new Vue({
 
 **Example:**
 
-``` javascript {6,9,22,25,28,33,34,35,36}
+``` javascript {6,9,22,25,28,33,34,35,36,37,38}
 // @/router.js
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -94,8 +94,10 @@ export default new Router({
         meta: {
           title: 'Page', // tab title
           icon: 'icon-user', // tab icon, optional
+          tabClass: 'custom-tab', // custom class, optional
           tips: 'This is a tab', // tab tooltip, optional. defaults to `meta.title`
           aliveId: 'fullPath', // tab cache rule, optional
+          closable: false // is tab closable, defaults to `true`
         }
       }, {
         path: '/404',

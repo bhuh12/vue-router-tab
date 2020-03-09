@@ -11,7 +11,7 @@ export default {
         // 只需设置 fullpath，程序将自动从 router 配置中获取页签的标题/图标等信息
         '/initial-tabs/page-leave',
 
-        // closable 页签是否可关闭，这个只能在初始页签中配置，其他地方配置没有意义
+        // closable 页签是否可关闭
         { to: '/initial-tabs/tab-dynamic', closable: false },
 
         // 具有动态页签标题的页签，需要设置初始页签标题

@@ -273,40 +273,17 @@ iframe 内容加载成功
 
 ## Route.meta 路由元信息
 
-通过路由的 `meta`，我们可以配置路由页签的标题、图标、提示和缓存规则
+通过路由的 `meta` 信息，我们可以配置路由页签的标题、图标、提示和缓存规则
 
-### meta.title
+| 属性 | 说明 | 类型 | 默认值 | 备注 |
+| --- | --- | --- | --- | --- |
+| aliveId | 缓存规则 | `String | Function` | - | 生成页面组件缓存的 ID。<br>配置参考: [RouterTab Props > alive-id](#alive-id) |
+| title | 页签标题 | `String | Array` | `'无标题'` | 支持国际化，参考: [教程 - 多语言支持](../guide/essentials/i18n.md) |
+| tips | 鼠标悬浮提示 | `String | Array` | 和标题一致 | 支持国际化，参考: [教程 - 多语言支持](../guide/essentials/i18n.md) |
+| icon | 图标 | `String` | - | - |
+| tabClass | 页签 class | `String` | - | - |
+| closable | 是否可关闭 | `Boolean` | `true` | - | - |
 
-页签标题
-
-- 类型: `String | Array`
-- 默认值: `'新页签'`
-
-该字段支持国际化配置，参考: [教程 - 多语言支持](../guide/essentials/i18n.md)
-
-
-### meta.icon
-
-页签图标
-
-- 类型: `String`
-
-
-### meta.tips
-
-页签提示
-
-- 类型: `String | Array`
-- 默认值: 默认和页签标题 `meta.title` 保持一致
-
-该字段支持国际化配置，参考: [教程 - 多语言支持](../guide/essentials/i18n.md)
-
-
-### meta.aliveId
-
-页面组件缓存的 id，用以设置路由独立的页签缓存规则。
-
-> 配置参考: [RouterTab Props > alive-id](#alive-id)
 
 
 ## 扩展
