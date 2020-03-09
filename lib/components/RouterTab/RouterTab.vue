@@ -14,32 +14,17 @@
           @after-enter="onTabTransitionEnd"
           @after-leave="onTabTransitionEnd"
         >
-          <router-link
+          <tab-item
             v-for="(item, index) in items"
             :key="item.id || item.to"
-            class="router-tab-item"
-            tag="li"
-            :class="{
-              actived: activeTabId === item.id,
-              'is-contextmenu': contextmenu.id === item.id,
-              'is-closable': isTabClosable(item),
-              [item.tabClass || '']: true
-            }"
-            :title="i18nText(item.tips || item.title) || lang.tab.untitled"
-            :to="item.to"
+            :data="item"
+            :index="index"
             @contextmenu.native.prevent="e => showContextmenu(item.id, index, e)"
           >
-            <slot v-bind="{ tab: item, tabs: items, index }">
-              <i v-if="item.icon" class="tab-icon" :class="item.icon" />
-              <span class="tab-title">{{ i18nText(item.title) || lang.tab.untitled }}</span>
-              <i
-                v-if="isTabClosable(item)"
-                class="tab-close"
-                :title="lang.contextmenu.close"
-                @click.prevent="closeTab(item.id)"
-              />
-            </slot>
-          </router-link>
+            <template v-if="$scopedSlots.default" v-slot:default="scope">
+              <slot v-bind="scope" />
+            </template>
+          </tab-item>
         </transition-group>
       </div>
 

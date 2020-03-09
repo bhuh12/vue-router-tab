@@ -1,14 +1,10 @@
 <template>
   <router-tab>
-    <template v-slot="{ tab: { id, title, icon, closable }, tabs, index}">
-      <i v-if="icon" class="tab-icon" :class="icon" />
-      <span class="tab-title">{{ $routerTab.i18nText(title) || '未命名页签' }}</span>
-      <span class="tab-badge">{{ index }}</span>
-      <i
-        v-if="closable !== false && tabs.length > 1"
-        class="tab-close"
-        @click.prevent="$routerTab.closeTab(id)"
-      />
+    <template v-slot="tab">
+      <i v-if="tab.icon" class="tab-icon" :class="tab.icon" />
+      <span class="tab-title" :title="tab.tips">{{ tab.title }}</span>
+      <span class="tab-badge">{{ tab.index }}</span>
+      <i v-if="tab.closable" class="tab-close" @click.prevent="tab.close" />
     </template>
   </router-tab>
 </template>
