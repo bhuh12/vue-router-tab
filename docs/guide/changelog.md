@@ -1,5 +1,24 @@
 # 更新日志
 
+## [1.0.0-alpha.3](https://github.com/bhuh12/vue-router-tab/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2020-03-19)
+
+
+### Bug Fixes
+
+* 解决默认页面路径为 '/' 时页签重置失败 ([f50d3e8](https://github.com/bhuh12/vue-router-tab/commit/f50d3e838c5017dacc6d555248a60d48876f9270))
+
+
+### Features
+
+* **tab:** 路由元 meta 支持 closable 和 tabClass 配置 ([b6c92fb](https://github.com/bhuh12/vue-router-tab/commit/b6c92fbb11939c7df84b8c1d77faa48bf17589d8))
+
+
+### BREAKING CHANGES
+
+* **tab:** 页签插槽作用域变量更改
+
+
+
 ## [1.0.0-alpha.2](https://github.com/bhuh12/vue-router-tab/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2020-02-24)
 
 

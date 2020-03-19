@@ -271,7 +271,7 @@ var runtime = function (exports) {
     };
   };
 
-  function AsyncIterator(generator) {
+  function AsyncIterator(generator, PromiseImpl) {
     function invoke(method, arg, resolve, reject) {
       var record = tryCatch(generator[method], generator, arg);
 
@@ -282,14 +282,14 @@ var runtime = function (exports) {
         var value = result.value;
 
         if (value && _typeof(value) === "object" && hasOwn.call(value, "__await")) {
-          return Promise.resolve(value.__await).then(function (value) {
+          return PromiseImpl.resolve(value.__await).then(function (value) {
             invoke("next", value, resolve, reject);
           }, function (err) {
             invoke("throw", err, resolve, reject);
           });
         }
 
-        return Promise.resolve(value).then(function (unwrapped) {
+        return PromiseImpl.resolve(value).then(function (unwrapped) {
           // When a yielded Promise is resolved, its final value becomes
           // the .value of the Promise<{value,done}> result for the
           // current iteration.
@@ -307,7 +307,7 @@ var runtime = function (exports) {
 
     function enqueue(method, arg) {
       function callInvokeWithMethodAndArg() {
-        return new Promise(function (resolve, reject) {
+        return new PromiseImpl(function (resolve, reject) {
           invoke(method, arg, resolve, reject);
         });
       }
@@ -344,8 +344,9 @@ var runtime = function (exports) {
   // AsyncIterator objects; they just return a Promise for the value of
   // the final result produced by the iterator.
 
-  exports.async = function (innerFn, outerFn, self, tryLocsList) {
-    var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList));
+  exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) {
+    if (PromiseImpl === void 0) PromiseImpl = Promise;
+    var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl);
     return exports.isGeneratorFunction(outerFn) ? iter // If outerFn is a generator, return the full iterator.
     : iter.next().then(function (result) {
       return result.done ? result.value : iter.next();
@@ -929,7 +930,11 @@ module.exports = __webpack_require__("98b8");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "RouterTabRoutes", function() { return /* reexport */ RouterTabRoutes; });
 
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
 // This file is imported into lib/wc client bundles.
@@ -948,18 +953,12 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"fb84a1ea-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/RouterTab/RouterTab.vue?vue&type=template&id=39886bcf&
-var RouterTabvue_type_template_id_39886bcf_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab"},[_c('header',{class:[ 'router-tab-header', _vm.hasScroller && 'is-scroll' ]},[_c('a',{staticClass:"nav-prev",on:{"click":function($event){return _vm.tabScroll('left')}}}),_c('div',{staticClass:"router-tab-scroll"},[_c('transition-group',_vm._b({staticClass:"router-tab-nav",attrs:{"tag":"ul"},on:{"after-enter":_vm.onTabTransitionEnd,"after-leave":_vm.onTabTransitionEnd}},'transition-group',_vm.getTransOpt(_vm.tabTransition),false),_vm._l((_vm.items),function(item,index){
-var _obj;
-return _c('router-link',{key:item.id || item.to,staticClass:"router-tab-item",class:( _obj = {
-            actived: _vm.activeTabId === item.id,
-            'is-contextmenu': _vm.contextmenu.id === item.id,
-            'is-closable': _vm.isTabClosable(item)
-          }, _obj[item.tabClass || ''] = true, _obj ),attrs:{"tag":"li","title":_vm.i18nText(item.tips || item.title) || _vm.lang.tab.untitled,"to":item.to},nativeOn:{"contextmenu":function($event){$event.preventDefault();return (function (e) { return _vm.showContextmenu(item.id, index, e); })($event)}}},[_vm._t("default",[(item.icon)?_c('i',{staticClass:"tab-icon",class:item.icon}):_vm._e(),_c('span',{staticClass:"tab-title"},[_vm._v(_vm._s(_vm.i18nText(item.title) || _vm.lang.tab.untitled))]),(_vm.isTabClosable(item))?_c('i',{staticClass:"tab-close",attrs:{"title":_vm.lang.contextmenu.close},on:{"click":function($event){$event.preventDefault();return _vm.closeTab(item.id)}}}):_vm._e()],null,{ tab: item, tabs: _vm.items, index: index })],2)}),1)],1),_c('a',{staticClass:"nav-next",on:{"click":function($event){return _vm.tabScroll('right')}}})]),_c('div',{staticClass:"router-tab-container",class:{ loading: _vm.loading }},[_c('router-alive',{ref:"routerAlive",attrs:{"alive-id":_vm.aliveId},on:{"update":_vm.updateTab}},[_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onPageTransitionEnd,"after-leave":_vm.onPageTransitionEnd}},'transition',_vm.getTransOpt(_vm.pageTransition),false),[(_vm.isViewAlive)?_c('router-view',_vm._b({ref:"routerView",staticClass:"router-tab-page"},'router-view',_vm.routerView,false)):_vm._e()],1)],1),_c('transition-group',_vm._b({staticClass:"router-tab-iframes",attrs:{"tag":"div"}},'transition-group',_vm.getTransOpt(_vm.pageTransition),false),_vm._l((_vm.iframes),function(url){return _c('iframe',{directives:[{name:"show",rawName:"v-show",value:(url === _vm.currentIframe),expression:"url === currentIframe"}],key:url,staticClass:"router-tab-iframe",attrs:{"src":url,"name":_vm.iframeNamePrefix + url,"frameborder":"0"},on:{"load":function($event){return _vm.iframeLoaded(url)}}})}),0)],1),_c('transition',{attrs:{"name":"router-tab-zoom"}},[(_vm.contextmenu.id)?_c('div',{staticClass:"router-tab-contextmenu",style:(("left: " + (_vm.contextmenu.left) + "px; top: " + (_vm.contextmenu.top) + "px;"))},[_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabActived},on:{"click":function($event){_vm.isContextTabActived && _vm.refreshTab(_vm.contextmenu.id)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.refresh)+" ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":_vm.items.length < 2},on:{"click":function($event){_vm.items.length > 1 && _vm.refreshAll()}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.refreshAll)+" ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabCanBeClosed},on:{"click":function($event){_vm.isContextTabCanBeClosed && _vm.closeTab(_vm.contextmenu.id)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.close)+" ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsLeft.length},on:{"click":function($event){_vm.tabsLeft.length && _vm.closeMulti(_vm.tabsLeft)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.closeLefts)+" ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsRight.length},on:{"click":function($event){_vm.tabsRight.length && _vm.closeMulti(_vm.tabsRight)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.closeRights)+" ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsOther.length},on:{"click":function($event){_vm.tabsOther.length && _vm.closeMulti(_vm.tabsOther)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.closeOthers)+" ")])]):_vm._e()])],1)}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"d60a6292-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/RouterTab/RouterTab.vue?vue&type=template&id=88bfb73e&
+var RouterTabvue_type_template_id_88bfb73e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab"},[_c('header',{class:[ 'router-tab-header', _vm.hasScroller && 'is-scroll' ]},[_c('a',{staticClass:"nav-prev",on:{"click":function($event){return _vm.tabScroll('left')}}}),_c('div',{staticClass:"router-tab-scroll"},[_c('transition-group',_vm._b({staticClass:"router-tab-nav",attrs:{"tag":"ul"},on:{"after-enter":_vm.onTabTransitionEnd,"after-leave":_vm.onTabTransitionEnd}},'transition-group',_vm.getTransOpt(_vm.tabTransition),false),_vm._l((_vm.items),function(item,index){return _c('tab-item',{key:item.id || item.to,attrs:{"data":item,"index":index},nativeOn:{"contextmenu":function($event){$event.preventDefault();return (function (e) { return _vm.showContextmenu(item.id, index, e); })($event)}},scopedSlots:_vm._u([(_vm.$scopedSlots.default)?{key:"default",fn:function(scope){return [_vm._t("default",null,null,scope)]}}:null],null,true)})}),1)],1),_c('a',{staticClass:"nav-next",on:{"click":function($event){return _vm.tabScroll('right')}}})]),_c('div',{staticClass:"router-tab-container",class:{ loading: _vm.loading }},[_c('router-alive',{ref:"routerAlive",attrs:{"alive-id":_vm.aliveId},on:{"update":_vm.updateTab}},[_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onPageTransitionEnd,"after-leave":_vm.onPageTransitionEnd}},'transition',_vm.getTransOpt(_vm.pageTransition),false),[(_vm.isViewAlive)?_c('router-view',_vm._b({ref:"routerView",staticClass:"router-tab-page"},'router-view',_vm.routerView,false)):_vm._e()],1)],1),_c('transition-group',_vm._b({staticClass:"router-tab-iframes",attrs:{"tag":"div"}},'transition-group',_vm.getTransOpt(_vm.pageTransition),false),_vm._l((_vm.iframes),function(url){return _c('iframe',{directives:[{name:"show",rawName:"v-show",value:(url === _vm.currentIframe),expression:"url === currentIframe"}],key:url,staticClass:"router-tab-iframe",attrs:{"src":url,"name":_vm.iframeNamePrefix + url,"frameborder":"0"},on:{"load":function($event){return _vm.iframeLoaded(url)}}})}),0)],1),_c('transition',{attrs:{"name":"router-tab-zoom"}},[(_vm.contextmenu.id)?_c('div',{staticClass:"router-tab-contextmenu",style:(("left: " + (_vm.contextmenu.left) + "px; top: " + (_vm.contextmenu.top) + "px;"))},[_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabActived},on:{"click":function($event){_vm.isContextTabActived && _vm.refreshTab(_vm.contextmenu.id)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.refresh)+" ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":_vm.items.length < 2},on:{"click":function($event){_vm.items.length > 1 && _vm.refreshAll()}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.refreshAll)+" ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabCanBeClosed},on:{"click":function($event){_vm.isContextTabCanBeClosed && _vm.closeTab(_vm.contextmenu.id)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.close)+" ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsLeft.length},on:{"click":function($event){_vm.tabsLeft.length && _vm.closeMulti(_vm.tabsLeft)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.closeLefts)+" ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsRight.length},on:{"click":function($event){_vm.tabsRight.length && _vm.closeMulti(_vm.tabsRight)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.closeRights)+" ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsOther.length},on:{"click":function($event){_vm.tabsOther.length && _vm.closeMulti(_vm.tabsOther)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.closeOthers)+" ")])]):_vm._e()])],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./lib/components/RouterTab/RouterTab.vue?vue&type=template&id=39886bcf&
+// CONCATENATED MODULE: ./lib/components/RouterTab/RouterTab.vue?vue&type=template&id=88bfb73e&
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/regenerator/index.js
 var regenerator = __webpack_require__("a34a");
@@ -1097,9 +1096,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     closeMulti: function closeMulti(tabs) {
       var _this2 = this;
 
-      return _asyncToGenerator(
-      /*#__PURE__*/
-      regenerator_default.a.mark(function _callee() {
+      return _asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
         var items, $router, contextmenu, nextTab, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, id;
 
         return regenerator_default.a.wrap(function _callee$(_context) {
@@ -1272,6 +1269,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
  // 国际化
 
 /* harmony default export */ var i18n = ({
+  // 注入子组件
+  provide: function provide() {
+    var i18nText = this.i18nText;
+    return {
+      i18nText: i18nText
+    };
+  },
   computed: {
     // 语言内容
     lang: function lang() {
@@ -1453,6 +1457,12 @@ function getCloseArgs(args) {
       force: _force
     };
   }
+} // 路径是否一致
+
+
+function equalPath(path1, path2) {
+  var reg = /\/$/;
+  return path1.replace(reg, '') === path2.replace(reg, '');
 } // 页签操作
 
 
@@ -1475,9 +1485,7 @@ function getCloseArgs(args) {
       var _this = this;
 
       var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-      return operate_asyncToGenerator(
-      /*#__PURE__*/
-      regenerator_default.a.mark(function _callee() {
+      return operate_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
         var items, idx;
         return regenerator_default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -1536,9 +1544,7 @@ function getCloseArgs(args) {
       var _arguments = arguments,
           _this2 = this;
 
-      return operate_asyncToGenerator(
-      /*#__PURE__*/
-      regenerator_default.a.mark(function _callee2() {
+      return operate_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee2() {
         var _getCloseArgs, id, path, _getCloseArgs$match, match, _getCloseArgs$force, force, to, _getCloseArgs$refresh, refresh, activeTabId, items, $router, idx, nextTab, toRoute;
 
         return regenerator_default.a.wrap(function _callee2$(_context2) {
@@ -1592,7 +1598,7 @@ function getCloseArgs(args) {
                 if (to) {
                   toRoute = $router.match(to); // 目标地址与当前地址一致则强制刷新页面
 
-                  if (toRoute.fullPath === _this2.$route.fullPath) {
+                  if (equalPath(toRoute.fullPath, _this2.$route.fullPath)) {
                     _this2.refreshTab();
                   } else {
                     _this2.open(to, true, refresh);
@@ -1622,9 +1628,7 @@ function getCloseArgs(args) {
       var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.activeTabId;
       var to = arguments.length > 1 ? arguments[1] : undefined;
       var force = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-      return operate_asyncToGenerator(
-      /*#__PURE__*/
-      regenerator_default.a.mark(function _callee3() {
+      return operate_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee3() {
         return regenerator_default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
@@ -1670,9 +1674,7 @@ function getCloseArgs(args) {
 
       var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.activeTabId;
       var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-      return operate_asyncToGenerator(
-      /*#__PURE__*/
-      regenerator_default.a.mark(function _callee4() {
+      return operate_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee4() {
         return regenerator_default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
@@ -1716,9 +1718,7 @@ function getCloseArgs(args) {
       var _this5 = this;
 
       var force = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-      return operate_asyncToGenerator(
-      /*#__PURE__*/
-      regenerator_default.a.mark(function _callee5() {
+      return operate_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee5() {
         var cache, id;
         return regenerator_default.a.wrap(function _callee5$(_context5) {
           while (1) {
@@ -1789,7 +1789,7 @@ function getCloseArgs(args) {
       this.initTabs();
       var toRoute = this.$router.match(to); // 目标地址与当前地址一致则强制刷新页面
 
-      if (toRoute.fullPath === this.$route.fullPath) {
+      if (equalPath(toRoute.fullPath, this.$route.fullPath)) {
         this.refreshTab();
       } else {
         this.$router.replace(to);
@@ -1904,7 +1904,7 @@ function getCloseArgs(args) {
     getBasePath: function getBasePath() {
       var path = this.matchRoutes().baseRoute.path;
       var params = this.$route.params;
-      return this.parsePath(path, params);
+      return path && this.parsePath(path, params);
     },
     // 获取嵌套路由的页面路径
     getPagePath: function getPagePath() {
@@ -2039,9 +2039,7 @@ function scroll_asyncToGenerator(fn) { return function () { var self = this, arg
     activeTabId: function activeTabId() {
       var _this = this;
 
-      return scroll_asyncToGenerator(
-      /*#__PURE__*/
-      regenerator_default.a.mark(function _callee() {
+      return scroll_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
         var $cur, $scr, cLeft, sLeft;
         return regenerator_default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -2176,307 +2174,108 @@ function scroll_asyncToGenerator(fn) { return function () { var self = this, arg
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/eslint-loader??ref--13-0!./lib/components/RouterTab?vue&type=script&lang=js&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"d60a6292-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/RouterTab/TabItem.vue?vue&type=template&id=2414f71a&
+var TabItemvue_type_template_id_2414f71a_render = function () {
+var _obj;
+var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('router-link',{class:( _obj = {
+    'router-tab-item': true
+  }, _obj[_vm.tabClass || ''] = true, _obj.actived = _vm.base.activeTabId === _vm.id, _obj['is-closable'] =  _vm.closable, _obj['is-contextmenu'] =  _vm.base.contextmenu.id === _vm.id, _obj ),attrs:{"tag":"li","to":_vm.to}},[_vm._t("default",[(_vm.icon)?_c('i',{staticClass:"tab-icon",class:_vm.icon}):_vm._e(),_c('span',{staticClass:"tab-title",attrs:{"title":_vm.tips}},[_vm._v(_vm._s(_vm.title))]),(_vm.closable)?_c('i',{staticClass:"tab-close",on:{"click":function($event){$event.preventDefault();return _vm.close($event)}}}):_vm._e()],null,this)],2)}
+var TabItemvue_type_template_id_2414f71a_staticRenderFns = []
 
 
-function RouterTab_vue_type_script_lang_js_asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+// CONCATENATED MODULE: ./lib/components/RouterTab/TabItem.vue?vue&type=template&id=2414f71a&
 
-function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { RouterTab_vue_type_script_lang_js_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { RouterTab_vue_type_script_lang_js_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/RouterTab/TabItem.vue?vue&type=script&lang=js&
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-// 方法
- // 功能模块混入
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// 从 data 的字段直接生成 computed
+var mapDataComputed = function mapDataComputed() {
+  var map = {};
 
+  for (var _len = arguments.length, keys = new Array(_len), _key = 0; _key < _len; _key++) {
+    keys[_key] = arguments[_key];
+  }
 
-
-
-
-
- // RouterTab 组件
-
-var RouterTab = {
-  name: 'RouterTab',
-  mixins: [RouterTab_contextmenu, i18n, iframe, operate, pageLeave, rule, RouterTab_scroll, restore],
-  props: {
-    // 初始页签数据
-    tabs: {
-      type: Array,
-      default: function _default() {
-        return [];
-      }
-    },
-    // 页面刷新后是否恢复页签
-    restore: {
-      type: [Boolean, String],
-      default: false
-    },
-    // 是否监听 restoreKey 变化自动还原页签
-    restoreWatch: {
-      type: Boolean,
-      default: false
-    },
-    // 是否保留最后一个页签不被关闭
-    keepLastTab: {
-      type: Boolean,
-      default: true
-    },
-    // 默认页面
-    defaultPage: [String, Object],
-
-    /**
-     * 组件语言
-     * - 为字符串时，可以设置为内置的语言 'zh-CN' (默认) 和 'en'
-     * - 为对象时，可设置自定义的语言
-     */
-    language: {
-      type: [String, Object],
-      default: 'zh-CN'
-    },
-    // 页签国际化配置 i18n (key, [args])
-    i18n: Function,
-    // router-view组件配置
-    routerView: Object,
-    // 页签过渡效果
-    tabTransition: {
-      type: [String, Object],
-      default: 'router-tab-zoom'
-    },
-    // 页面过渡效果
-    pageTransition: {
-      type: [String, Object],
-      default: function _default() {
-        return {
-          name: 'router-tab-swap',
-          mode: 'out-in'
-        };
-      }
-    }
-  },
-  data: function data() {
-    return {
-      loading: false,
-      // 路由页面 loading
-      items: [],
-      // 页签项
-      activeTabId: null,
-      // 当前激活的页签 id
-      isViewAlive: true,
-      isMounted: false // 是否挂载
-
+  keys.forEach(function (key) {
+    map[key] = function () {
+      return this.data[key];
     };
-  },
-  computed: {
-    // 默认路径
-    defaultPath: function defaultPath() {
-      return this.defaultPage || this.getBasePath();
-    },
-    // routerAlive
-    $alive: function $alive() {
-      return this.isMounted ? this.$refs.routerAlive : null;
-    },
-    // 当前激活的页签
-    activeTab: function activeTab() {
-      var _this = this;
+  });
+  return map;
+}; // 页签项
 
-      return this.items.find(function (item) {
-        return item.id === _this.activeTabId;
-      });
+
+/* harmony default export */ var TabItemvue_type_script_lang_js_ = ({
+  name: 'TabItem',
+  inject: ['i18nText'],
+  props: {
+    // 页签原始数据，方便 slot 插槽自定义数据
+    data: {
+      type: Object,
+      required: true
+    },
+    // 页签项索引
+    index: Number
+  },
+  computed: _objectSpread({
+    // RouterTab 根组件
+    base: function base() {
+      return this.$parent.$parent;
     }
-  },
-  watch: {
-    // 路由切换更新激活的页签
-    $route: function $route(_$route) {
-      this.loading = false;
-      this.updateActiveTab();
-      this.fixCommentPage();
+  }, mapDataComputed('id', 'to', 'icon', 'tabClass', 'target', 'href'), {
+    // 未命名页签
+    untitled: function untitled() {
+      return this.base.lang.tab.untitled;
+    },
+    // 页签标题
+    title: function title() {
+      return this.i18nText(this.data.title) || this.untitled;
+    },
+    // 页签提示
+    tips: function tips() {
+      return this.i18nText(this.data.tips || this.data.title) || this.untitled;
+    },
+    // 是否可关闭
+    closable: function closable() {
+      var _this$base = this.base,
+          keepLastTab = _this$base.keepLastTab,
+          items = _this$base.items;
+      return this.data.closable && !(keepLastTab && items.length < 2);
     }
-  },
-  created: function created() {
-    // 添加到原型链
-    RouterTab.Vue.prototype.$routerTab = this;
-    this.initTabs();
-    this.updateActiveTab();
-  },
-  mounted: function mounted() {
-    this.isMounted = true;
-  },
-  destroyed: function destroyed() {
-    // 取消原型挂载
-    if (RouterTab.Vue.prototype.$routerTab === this) {
-      RouterTab.Vue.prototype.$routerTab = null;
-    }
-  },
+  }),
   methods: {
-    // 初始页签数据
-    initTabs: function initTabs() {
-      if (this.restoreTabs()) return;
-      this.presetTabs();
-    },
-    // 预设页签
-    presetTabs: function presetTabs() {
-      var _this2 = this;
-
-      var tabs = this.tabs,
-          $router = this.$router;
-      var ids = {};
-      this.items = tabs.map(function (item, index) {
-        var _ref = typeof item === 'string' ? {
-          to: item
-        } : item || emptyObj,
-            to = _ref.to,
-            closable = _ref.closable,
-            title = _ref.title,
-            tips = _ref.tips;
-
-        var route = to && $router.match(to);
-
-        if (route) {
-          var tab = _this2.getRouteTab(route);
-
-          var id = tab.id; // 根据 id 去重
-
-          if (!ids[id]) {
-            // 初始 tab 数据
-            if (title) tab.title = title;
-            if (tips) tab.tips = tips;
-            tab.closable = closable !== false;
-            return ids[id] = tab;
-          }
-        }
-      }).filter(function (item) {
-        return !!item;
-      });
-    },
-    // 更新激活的页签
-    updateActiveTab: function updateActiveTab() {
-      this.activeTabId = this.getAliveId();
-    },
-    // 更新 tab 数据
-    updateTab: function updateTab(key, _ref2) {
-      var route = _ref2.route,
-          tab = _ref2.tab;
-      var items = this.items;
-      var matchIdx = items.findIndex(function (_ref3) {
-        var id = _ref3.id;
-        return id === key;
-      });
-      var item = Object.assign(this.getRouteTab(route), tab);
-
-      if (matchIdx > -1) {
-        var matchTab = items[matchIdx];
-        item.closable = matchTab.closable !== false;
-        this.$set(items, matchIdx, item);
-      } else {
-        items.push(item);
-      }
-    },
-    // 从路由地址获取 aliveId
-    getIdByPath: function getIdByPath(path) {
-      var match = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-      if (!path) return;
-      var route = this.$router.match(path, this.$router.currentRoute); // 路由地址精确匹配页签
-
-      if (match) {
-        var matchPath = this.getPathWithoutHash(route);
-        var matchTab = this.items.find(function (_ref4) {
-          var to = _ref4.to;
-          return to.split('#')[0] === matchPath;
-        });
-
-        if (matchTab) {
-          return matchTab.id;
-        }
-      } else {
-        return this.getAliveId(route);
-      }
-    },
-    // 从 route 中获取 tab 数据
-    getRouteTab: function getRouteTab(route) {
-      var matchRoutes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.matchRoutes(route);
-      var id = this.getAliveId(route);
-      var _matchRoutes$pageRout = matchRoutes.pageRoute.meta,
-          title = _matchRoutes$pageRout.title,
-          icon = _matchRoutes$pageRout.icon,
-          tips = _matchRoutes$pageRout.tips;
-      return {
-        id: id,
-        to: route.fullPath,
-        title: title,
-        icon: icon,
-        tips: tips
-      };
-    },
-    // 页签是否可关闭
-    isTabClosable: function isTabClosable(tab) {
-      return tab.closable !== false && // 页签未配置为不可关闭
-      !(this.keepLastTab && this.items.length < 2); // 保留最后一个页签时当前是最后一个页签，不允许关闭
-    },
-    // 解析过渡配置
-    getTransOpt: function getTransOpt(trans) {
-      return typeof trans === 'string' ? {
-        name: trans
-      } : trans;
-    },
-    // 重载路由视图
-    reloadView: function reloadView() {
-      var _this3 = this;
-
-      var ignoreTransition = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-      return RouterTab_vue_type_script_lang_js_asyncToGenerator(
-      /*#__PURE__*/
-      regenerator_default.a.mark(function _callee() {
-        return regenerator_default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _this3.isViewAlive = false; // 默认在页面过渡结束后会设置 isViewAlive 为 true
-                // 如果过渡事件失效，则需传入 ignoreTransition 为 true 手动更改
-
-                if (!ignoreTransition) {
-                  _context.next = 5;
-                  break;
-                }
-
-                _context.next = 4;
-                return _this3.$nextTick();
-
-              case 4:
-                _this3.isViewAlive = true;
-
-              case 5:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    // 页签过渡结束
-    onTabTransitionEnd: function onTabTransitionEnd() {
-      this.adjust();
-    },
-    // 页面过渡结束
-    onPageTransitionEnd: function onPageTransitionEnd() {
-      if (!this.isViewAlive) this.isViewAlive = true;
-    },
-    // 修复：当快速频繁切换页签时，旧页面离开过渡效果尚未完成，新页面内容无法正常 mount，内容节点为 comment 类型
-    fixCommentPage: function fixCommentPage() {
-      if (this.$alive.$el.nodeType === 8) {
-        this.reloadView(true);
-      }
+    // 关闭当前页签
+    close: function close() {
+      this.$routerTab.closeTab(this.id);
     }
   }
-};
-/* harmony default export */ var RouterTab_vue_type_script_lang_js_ = (RouterTab);
-// CONCATENATED MODULE: ./lib/components/RouterTab?vue&type=script&lang=js&
- /* harmony default export */ var components_RouterTab_vue_type_script_lang_js_ = (RouterTab_vue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./lib/scss/routerTab.scss?vue&type=style&index=0&lang=scss&
-var routerTabvue_type_style_index_0_lang_scss_ = __webpack_require__("cec0");
-
-// EXTERNAL MODULE: ./lib/scss/transition.scss?vue&type=style&index=1&lang=scss&
-var transitionvue_type_style_index_1_lang_scss_ = __webpack_require__("ea7e");
-
+});
+// CONCATENATED MODULE: ./lib/components/RouterTab/TabItem.vue?vue&type=script&lang=js&
+ /* harmony default export */ var RouterTab_TabItemvue_type_script_lang_js_ = (TabItemvue_type_script_lang_js_); 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
 /* globals __VUE_SSR_CONTEXT__ */
 
@@ -2572,6 +2371,314 @@ function normalizeComponent (
   }
 }
 
+// CONCATENATED MODULE: ./lib/components/RouterTab/TabItem.vue
+
+
+
+
+
+/* normalize component */
+
+var component = normalizeComponent(
+  RouterTab_TabItemvue_type_script_lang_js_,
+  TabItemvue_type_template_id_2414f71a_render,
+  TabItemvue_type_template_id_2414f71a_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var TabItem = (component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/eslint-loader??ref--13-0!./lib/components/RouterTab?vue&type=script&lang=js&
+
+
+function RouterTab_vue_type_script_lang_js_asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { RouterTab_vue_type_script_lang_js_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { RouterTab_vue_type_script_lang_js_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+// 方法
+ // 功能模块混入
+
+
+
+
+
+
+
+
+ // 子组件
+
+ // RouterTab 组件
+
+var RouterTab = {
+  name: 'RouterTab',
+  mixins: [RouterTab_contextmenu, i18n, iframe, operate, pageLeave, rule, RouterTab_scroll, restore],
+  components: {
+    TabItem: TabItem
+  },
+  props: {
+    // 初始页签数据
+    tabs: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
+    },
+    // 页面刷新后是否恢复页签
+    restore: {
+      type: [Boolean, String],
+      default: false
+    },
+    // 是否监听 restoreKey 变化自动还原页签
+    restoreWatch: {
+      type: Boolean,
+      default: false
+    },
+    // 是否保留最后一个页签不被关闭
+    keepLastTab: {
+      type: Boolean,
+      default: true
+    },
+    // 默认页面
+    defaultPage: [String, Object],
+
+    /**
+     * 组件语言
+     * - 为字符串时，可以设置为内置的语言 'zh-CN' (默认) 和 'en'
+     * - 为对象时，可设置自定义的语言
+     */
+    language: {
+      type: [String, Object],
+      default: 'zh-CN'
+    },
+    // 页签国际化配置 i18n (key, [args])
+    i18n: Function,
+    // router-view组件配置
+    routerView: Object,
+    // 页签过渡效果
+    tabTransition: {
+      type: [String, Object],
+      default: 'router-tab-zoom'
+    },
+    // 页面过渡效果
+    pageTransition: {
+      type: [String, Object],
+      default: function _default() {
+        return {
+          name: 'router-tab-swap',
+          mode: 'out-in'
+        };
+      }
+    }
+  },
+  data: function data() {
+    return {
+      loading: false,
+      // 路由页面 loading
+      items: [],
+      // 页签项
+      activeTabId: null,
+      // 当前激活的页签 id
+      isViewAlive: true,
+      isMounted: false // 是否挂载
+
+    };
+  },
+  computed: {
+    // 默认路径
+    defaultPath: function defaultPath() {
+      return this.defaultPage || this.getBasePath() || '/';
+    },
+    // routerAlive
+    $alive: function $alive() {
+      return this.isMounted ? this.$refs.routerAlive : null;
+    },
+    // 当前激活的页签
+    activeTab: function activeTab() {
+      var _this = this;
+
+      return this.items.find(function (item) {
+        return item.id === _this.activeTabId;
+      });
+    }
+  },
+  watch: {
+    // 路由切换更新激活的页签
+    $route: function $route(_$route) {
+      this.loading = false;
+      this.updateActiveTab();
+      this.fixCommentPage();
+    }
+  },
+  created: function created() {
+    // 添加到原型链
+    RouterTab.Vue.prototype.$routerTab = this;
+    this.initTabs();
+    this.updateActiveTab();
+  },
+  mounted: function mounted() {
+    this.isMounted = true;
+  },
+  destroyed: function destroyed() {
+    var proto = RouterTab.Vue.prototype; // 取消原型挂载
+
+    if (proto.$routerTab === this) {
+      proto.$routerTab = null;
+    }
+  },
+  methods: {
+    // 初始页签数据
+    initTabs: function initTabs() {
+      if (this.restoreTabs()) return;
+      this.presetTabs();
+    },
+    // 预设页签
+    presetTabs: function presetTabs() {
+      var _this2 = this;
+
+      var tabs = this.tabs,
+          $router = this.$router;
+      var ids = {};
+      this.items = tabs.map(function (item, index) {
+        var _item = typeof item === 'string' ? {
+          to: item
+        } : item || emptyObj;
+
+        var route = _item.to && $router.match(_item.to);
+
+        if (route) {
+          var tab = _this2.getRouteTab(route);
+
+          var id = tab.id; // 根据 id 去重
+
+          if (!ids[id]) {
+            // id 不允许更改
+            delete _item.id; // 初始 tab 数据
+
+            return ids[id] = Object.assign(tab, _item);
+          }
+        }
+      }).filter(function (item) {
+        return !!item;
+      });
+    },
+    // 更新激活的页签
+    updateActiveTab: function updateActiveTab() {
+      this.activeTabId = this.getAliveId();
+    },
+    // 更新 tab 数据
+    updateTab: function updateTab(key, _ref) {
+      var route = _ref.route,
+          tab = _ref.tab;
+      var items = this.items;
+      var matchIdx = items.findIndex(function (_ref2) {
+        var id = _ref2.id;
+        return id === key;
+      });
+      var item = Object.assign(this.getRouteTab(route), tab);
+
+      if (matchIdx > -1) {
+        var matchTab = items[matchIdx];
+        item.closable = matchTab.closable !== false;
+        this.$set(items, matchIdx, item);
+      } else {
+        items.push(item);
+      }
+    },
+    // 从路由地址获取 aliveId
+    getIdByPath: function getIdByPath(path) {
+      var match = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+      if (!path) return;
+      var route = this.$router.match(path, this.$router.currentRoute); // 路由地址精确匹配页签
+
+      if (match) {
+        var matchPath = this.getPathWithoutHash(route);
+        var matchTab = this.items.find(function (_ref3) {
+          var to = _ref3.to;
+          return to.split('#')[0] === matchPath;
+        });
+
+        if (matchTab) {
+          return matchTab.id;
+        }
+      } else {
+        return this.getAliveId(route);
+      }
+    },
+    // 从 route 中获取 tab 配置
+    getRouteTab: function getRouteTab(route) {
+      var matchRoutes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.matchRoutes(route);
+      var tab = Object.create(matchRoutes.pageRoute.meta);
+      return Object.assign(tab, {
+        id: this.getAliveId(route),
+        to: route.fullPath
+      });
+    },
+    // 解析过渡配置
+    getTransOpt: function getTransOpt(trans) {
+      return typeof trans === 'string' ? {
+        name: trans
+      } : trans;
+    },
+    // 重载路由视图
+    reloadView: function reloadView() {
+      var _this3 = this;
+
+      var ignoreTransition = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      return RouterTab_vue_type_script_lang_js_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
+        return regenerator_default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _this3.isViewAlive = false; // 默认在页面过渡结束后会设置 isViewAlive 为 true
+                // 如果过渡事件失效，则需传入 ignoreTransition 为 true 手动更改
+
+                if (!ignoreTransition) {
+                  _context.next = 5;
+                  break;
+                }
+
+                _context.next = 4;
+                return _this3.$nextTick();
+
+              case 4:
+                _this3.isViewAlive = true;
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    // 页签过渡结束
+    onTabTransitionEnd: function onTabTransitionEnd() {
+      this.adjust();
+    },
+    // 页面过渡结束
+    onPageTransitionEnd: function onPageTransitionEnd() {
+      if (!this.isViewAlive) this.isViewAlive = true;
+    },
+    // 修复：当快速频繁切换页签时，旧页面离开过渡效果尚未完成，新页面内容无法正常 mount，内容节点为 comment 类型
+    fixCommentPage: function fixCommentPage() {
+      if (this.$alive.$el.nodeType === 8) {
+        this.reloadView(true);
+      }
+    }
+  }
+};
+/* harmony default export */ var RouterTab_vue_type_script_lang_js_ = (RouterTab);
+// CONCATENATED MODULE: ./lib/components/RouterTab?vue&type=script&lang=js&
+ /* harmony default export */ var components_RouterTab_vue_type_script_lang_js_ = (RouterTab_vue_type_script_lang_js_); 
+// EXTERNAL MODULE: ./lib/scss/routerTab.scss?vue&type=style&index=0&lang=scss&
+var routerTabvue_type_style_index_0_lang_scss_ = __webpack_require__("cec0");
+
+// EXTERNAL MODULE: ./lib/scss/transition.scss?vue&type=style&index=1&lang=scss&
+var transitionvue_type_style_index_1_lang_scss_ = __webpack_require__("ea7e");
+
 // CONCATENATED MODULE: ./lib/components/RouterTab/RouterTab.vue
 
 
@@ -2582,9 +2689,9 @@ function normalizeComponent (
 
 /* normalize component */
 
-var component = normalizeComponent(
+var RouterTab_component = normalizeComponent(
   components_RouterTab_vue_type_script_lang_js_,
-  RouterTabvue_type_template_id_39886bcf_render,
+  RouterTabvue_type_template_id_88bfb73e_render,
   staticRenderFns,
   false,
   null,
@@ -2593,7 +2700,7 @@ var component = normalizeComponent(
   
 )
 
-/* harmony default export */ var RouterTab_RouterTab = (component.exports);
+/* harmony default export */ var RouterTab_RouterTab = (RouterTab_component.exports);
 // CONCATENATED MODULE: ./lib/components/RouterAlive.js
 
 
@@ -2726,11 +2833,11 @@ var component = normalizeComponent(
   }
 });
 // CONCATENATED MODULE: ./lib/mixins/routerPage.js
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function routerPage_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function routerPage_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { routerPage_ownKeys(Object(source), true).forEach(function (key) { routerPage_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { routerPage_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function routerPage_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 // 路由页面混入
 /* harmony default export */ var routerPage = ({
@@ -2771,7 +2878,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           query = _this$$route.query,
           hash = _this$$route.hash; // query 添加 _forceReload 以更新路由
 
-      query = _objectSpread({}, query, {
+      query = routerPage_objectSpread({}, query, {
         _forceReload: +new Date()
       });
       this.$router.replace({
@@ -2790,7 +2897,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"fb84a1ea-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/page/Iframe.vue?vue&type=template&id=cd1f1e3e&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"d60a6292-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/page/Iframe.vue?vue&type=template&id=cd1f1e3e&
 var Iframevue_type_template_id_cd1f1e3e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab-iframe-fake"})}
 var Iframevue_type_template_id_cd1f1e3e_staticRenderFns = []
 
@@ -2836,9 +2943,7 @@ function Iframevue_type_script_lang_js_asyncToGenerator(fn) { return function ()
   mounted: function mounted() {
     var _this = this;
 
-    return Iframevue_type_script_lang_js_asyncToGenerator(
-    /*#__PURE__*/
-    regenerator_default.a.mark(function _callee() {
+    return Iframevue_type_script_lang_js_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
       var url, title, icon, $tab, iframes;
       return regenerator_default.a.wrap(function _callee$(_context) {
         while (1) {
@@ -2947,7 +3052,6 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 var RouterTabRoutes = routes;
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
-/* concated harmony reexport RouterTabRoutes */__webpack_require__.d(__webpack_exports__, "RouterTabRoutes", function() { return RouterTabRoutes; });
 
 
 /* harmony default export */ var entry_lib = __webpack_exports__["default"] = (lib);
