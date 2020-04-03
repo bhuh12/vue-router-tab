@@ -1,6 +1,11 @@
 
 # 入门
 
+
+## 👨‍💻 示例项目
+
+[https://github.com/bhuh12/vue-router-tab-sample](https://github.com/bhuh12/vue-router-tab-sample)
+
 ## 引入组件
 
 **示例：**

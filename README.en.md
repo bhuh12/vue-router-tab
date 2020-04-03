@@ -99,6 +99,10 @@ A tab router component based on Vue Router.
 
 [https://bhuh12.github.io/vue-router-tab/demo/](https://bhuh12.github.io/vue-router-tab/demo/)
 
+## 👨‍💻 Sample Project
+
+[https://github.com/bhuh12/vue-router-tab-sample](https://github.com/bhuh12/vue-router-tab-sample)
+
 ## 📃 Changelog
 
 [https://bhuh12.github.io/vue-router-tab/en/guide/changelog.html](https://bhuh12.github.io/vue-router-tab/en/guide/changelog.html)

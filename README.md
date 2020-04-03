@@ -99,6 +99,10 @@ Vue Router Tab 是基于 Vue Router 的路由页签组件，用来实现多页�
 
 [https://bhuh12.github.io/vue-router-tab/demo/](https://bhuh12.github.io/vue-router-tab/demo/)
 
+## 👨‍💻 示例项目
+
+[https://github.com/bhuh12/vue-router-tab-sample](https://github.com/bhuh12/vue-router-tab-sample)
+
 ## 📃 更新日志
 
 [https://bhuh12.github.io/vue-router-tab/guide/changelog.html](https://bhuh12.github.io/vue-router-tab/guide/changelog.html)

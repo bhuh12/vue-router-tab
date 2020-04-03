@@ -1,6 +1,10 @@
 
 # Getting Started
 
+## 👨‍💻 Sample Project
+
+[https://github.com/bhuh12/vue-router-tab-sample](https://github.com/bhuh12/vue-router-tab-sample)
+
 ## Integrating into your app
 
 **Example:**
