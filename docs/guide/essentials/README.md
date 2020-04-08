@@ -62,9 +62,15 @@ RouterTab 仅支持单例模式，请勿在同一个页面中引入多个 Router
 
 > 配置参考: [Route.meta 路由元信息](../../api/README.md#route-meta-路由元信息)
 
+::: warning
+RouterTab 所在父路由必须提供能访问的默认路由，您可以通过两种方式实现：
+1. 配置 `redirect` 重定向到子路由
+2. 默认访问路由与父路由路径保持一致。(示例采用当前方案)
+:::
+
 **示例：**
 
-``` javascript {6,9,22,25,28,33,34,35,36,37,38}
+``` javascript {6,9,18,20,22,24,26,36,37,38,39,40,41}
 // @/router.js 路由
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -83,17 +89,20 @@ Vue.use(Router)
 export default new Router({
   routes: [{
     path: '/',
-    redirect: '/page1',
-
     // 父路由组件内必须包含 <router-tab>
     component: Frame,
-
     // 子路由里配置需要通过页签打开的页面路由
-    children: [
-      
+    children: [      
       // 引入 RouterTab 内置路由以支持 iframe 页签
       ...RouterTabRoutes,
       {
+        path: '/', // 默认页和父级路由一致
+        name: 'Home',
+        component: importPage('Home'),
+        meta: {
+          title: '首页' // 页签标题
+        }
+      }, {
         path: '/page/:id',
         component: importPage('Page'),
         meta: {

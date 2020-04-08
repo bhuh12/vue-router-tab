@@ -61,9 +61,15 @@ new Vue({
 
 > Details at [Route.meta](../../api/README.md#route-meta-路由元信息)
 
+::: warning
+RouterTab need a default route, we can do this in two ways：
+1. `redirect`: redirect to the default route
+2. the path of default route must keep the same with parent route。
+:::
+
 **Example:**
 
-``` javascript {6,9,22,25,28,33,34,35,36,37,38}
+``` javascript {6,9,18,20,22,24,26,36,37,38,39,40,41}
 // @/router.js
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -82,17 +88,20 @@ Vue.use(Router)
 export default new Router({
   routes: [{
     path: '/',
-    redirect: '/page1',
-
     // parent component must contain <router-tab>
     component: Frame,
-
     // routes that serve as tab contents
     children: [
-      
       // integrate RouterTabRoutes to support iframe tabs
       ...RouterTabRoutes,
       {
+        path: '/', // the same with parent route
+        name: 'Home',
+        component: importPage('Home'),
+        meta: {
+          title: 'Home'
+        }
+      }, {
         path: '/page/:id',
         component: importPage('Page'),
         meta: {
