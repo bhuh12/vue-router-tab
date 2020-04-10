@@ -123,6 +123,84 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "8875":
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// addapted from the document.currentScript polyfill by Adam Miller
+// MIT license
+// source: https://github.com/amiller-gh/currentScript-polyfill
+
+// added support for Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=1620505
+
+(function (root, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else {}
+}(typeof self !== 'undefined' ? self : this, function () {
+  function getCurrentScript () {
+    if (document.currentScript) {
+      return document.currentScript
+    }
+  
+    // IE 8-10 support script readyState
+    // IE 11+ & Firefox support stack trace
+    try {
+      throw new Error();
+    }
+    catch (err) {
+      // Find the second match for the "at" string to get file src url from stack.
+      var ieStackRegExp = /.*at [^(]*\((.*):(.+):(.+)\)$/ig,
+        ffStackRegExp = /@([^@]*):(\d+):(\d+)\s*$/ig,
+        stackDetails = ieStackRegExp.exec(err.stack) || ffStackRegExp.exec(err.stack),
+        scriptLocation = (stackDetails && stackDetails[1]) || false,
+        line = (stackDetails && stackDetails[2]) || false,
+        currentLocation = document.location.href.replace(document.location.hash, ''),
+        pageSource,
+        inlineScriptSourceRegExp,
+        inlineScriptSource,
+        scripts = document.getElementsByTagName('script'); // Live NodeList collection
+  
+      if (scriptLocation === currentLocation) {
+        pageSource = document.documentElement.outerHTML;
+        inlineScriptSourceRegExp = new RegExp('(?:[^\\n]+?\\n){0,' + (line - 2) + '}[^<]*<script>([\\d\\D]*?)<\\/script>[\\d\\D]*', 'i');
+        inlineScriptSource = pageSource.replace(inlineScriptSourceRegExp, '$1').trim();
+      }
+  
+      for (var i = 0; i < scripts.length; i++) {
+        // If ready state is interactive, return the script tag
+        if (scripts[i].readyState === 'interactive') {
+          return scripts[i];
+        }
+  
+        // If src matches, return the script tag
+        if (scripts[i].src === scriptLocation) {
+          return scripts[i];
+        }
+  
+        // If inline source matches, return the script tag
+        if (
+          scriptLocation === currentLocation &&
+          scripts[i].innerHTML &&
+          scripts[i].innerHTML.trim() === inlineScriptSource
+        ) {
+          return scripts[i];
+        }
+      }
+  
+      // If no match, return null
+      return null;
+    }
+  };
+
+  return getCurrentScript
+}));
+
+
+/***/ }),
+
 /***/ "98b8":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -874,49 +952,6 @@ module.exports = __webpack_require__("98b8");
 
 /***/ }),
 
-/***/ "f6fd":
-/***/ (function(module, exports) {
-
-// document.currentScript polyfill by Adam Miller
-
-// MIT license
-
-(function(document){
-  var currentScript = "currentScript",
-      scripts = document.getElementsByTagName('script'); // Live NodeList collection
-
-  // If browser needs currentScript polyfill, add get currentScript() to the document object
-  if (!(currentScript in document)) {
-    Object.defineProperty(document, currentScript, {
-      get: function(){
-
-        // IE 6-10 supports script readyState
-        // IE 10+ support stack trace
-        try { throw new Error(); }
-        catch (err) {
-
-          // Find the second match for the "at" string to get file src url from stack.
-          // Specifically works with the format of stack traces in IE.
-          var i, res = ((/.*at [^\(]*\((.*):.+:.+\)$/ig).exec(err.stack) || [false])[1];
-
-          // For all scripts on the page, if src matches or if ready state is interactive, return the script tag
-          for(i in scripts){
-            if(scripts[i].src == res || scripts[i].readyState == "interactive"){
-              return scripts[i];
-            }
-          }
-
-          // If no match, return null
-          return null;
-        }
-      }
-    });
-  }
-})(document);
-
-
-/***/ }),
-
 /***/ "fb15":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -931,20 +966,27 @@ __webpack_require__.d(__webpack_exports__, "RouterTabRoutes", function() { retur
 // This file is imported into lib/wc client bundles.
 
 if (typeof window !== 'undefined') {
+  var currentScript = window.document.currentScript
   if (true) {
-    __webpack_require__("f6fd")
+    var getCurrentScript = __webpack_require__("8875")
+    currentScript = getCurrentScript()
+
+    // for backward compatibility, because previously we directly included the polyfill
+    if (!('currentScript' in document)) {
+      Object.defineProperty(document, 'currentScript', { get: getCurrentScript })
+    }
   }
 
-  var setPublicPath_i
-  if ((setPublicPath_i = window.document.currentScript) && (setPublicPath_i = setPublicPath_i.src.match(/(.+\/)[^/]+\.js(\?.*)?$/))) {
-    __webpack_require__.p = setPublicPath_i[1] // eslint-disable-line
+  var src = currentScript && currentScript.src.match(/(.+\/)[^/]+\.js(\?.*)?$/)
+  if (src) {
+    __webpack_require__.p = src[1] // eslint-disable-line
   }
 }
 
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"d60a6292-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/RouterTab/RouterTab.vue?vue&type=template&id=88bfb73e&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"75025f78-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/RouterTab/RouterTab.vue?vue&type=template&id=88bfb73e&
 var RouterTabvue_type_template_id_88bfb73e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab"},[_c('header',{class:[ 'router-tab-header', _vm.hasScroller && 'is-scroll' ]},[_c('a',{staticClass:"nav-prev",on:{"click":function($event){return _vm.tabScroll('left')}}}),_c('div',{staticClass:"router-tab-scroll"},[_c('transition-group',_vm._b({staticClass:"router-tab-nav",attrs:{"tag":"ul"},on:{"after-enter":_vm.onTabTransitionEnd,"after-leave":_vm.onTabTransitionEnd}},'transition-group',_vm.getTransOpt(_vm.tabTransition),false),_vm._l((_vm.items),function(item,index){return _c('tab-item',{key:item.id || item.to,attrs:{"data":item,"index":index},nativeOn:{"contextmenu":function($event){$event.preventDefault();return (function (e) { return _vm.showContextmenu(item.id, index, e); })($event)}},scopedSlots:_vm._u([(_vm.$scopedSlots.default)?{key:"default",fn:function(scope){return [_vm._t("default",null,null,scope)]}}:null],null,true)})}),1)],1),_c('a',{staticClass:"nav-next",on:{"click":function($event){return _vm.tabScroll('right')}}})]),_c('div',{staticClass:"router-tab-container",class:{ loading: _vm.loading }},[_c('router-alive',{ref:"routerAlive",attrs:{"alive-id":_vm.aliveId},on:{"update":_vm.updateTab}},[_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onPageTransitionEnd,"after-leave":_vm.onPageTransitionEnd}},'transition',_vm.getTransOpt(_vm.pageTransition),false),[(_vm.isViewAlive)?_c('router-view',_vm._b({ref:"routerView",staticClass:"router-tab-page"},'router-view',_vm.routerView,false)):_vm._e()],1)],1),_c('transition-group',_vm._b({staticClass:"router-tab-iframes",attrs:{"tag":"div"}},'transition-group',_vm.getTransOpt(_vm.pageTransition),false),_vm._l((_vm.iframes),function(url){return _c('iframe',{directives:[{name:"show",rawName:"v-show",value:(url === _vm.currentIframe),expression:"url === currentIframe"}],key:url,staticClass:"router-tab-iframe",attrs:{"src":url,"name":_vm.iframeNamePrefix + url,"frameborder":"0"},on:{"load":function($event){return _vm.iframeLoaded(url)}}})}),0)],1),_c('transition',{attrs:{"name":"router-tab-zoom"}},[(_vm.contextmenu.id)?_c('div',{staticClass:"router-tab-contextmenu",style:(("left: " + (_vm.contextmenu.left) + "px; top: " + (_vm.contextmenu.top) + "px;"))},[_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabActived},on:{"click":function($event){_vm.isContextTabActived && _vm.refreshTab(_vm.contextmenu.id)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.refresh)+" ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":_vm.items.length < 2},on:{"click":function($event){_vm.items.length > 1 && _vm.refreshAll()}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.refreshAll)+" ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabCanBeClosed},on:{"click":function($event){_vm.isContextTabCanBeClosed && _vm.closeTab(_vm.contextmenu.id)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.close)+" ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsLeft.length},on:{"click":function($event){_vm.tabsLeft.length && _vm.closeMulti(_vm.tabsLeft)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.closeLefts)+" ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsRight.length},on:{"click":function($event){_vm.tabsRight.length && _vm.closeMulti(_vm.tabsRight)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.closeRights)+" ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsOther.length},on:{"click":function($event){_vm.tabsOther.length && _vm.closeMulti(_vm.tabsOther)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.closeOthers)+" ")])]):_vm._e()])],1)}
 var staticRenderFns = []
 
@@ -978,6 +1020,12 @@ function debounce(fn) {
 }
 // CONCATENATED MODULE: ./lib/components/RouterTab/contextmenu.js
 
+
+function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -1088,7 +1136,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
-        var items, $router, contextmenu, nextTab, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, id;
+        var items, $router, contextmenu, nextTab, _iterator, _step, id;
 
         return regenerator_default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -1099,71 +1147,52 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   var id = _ref5.id;
                   return id === contextmenu.id;
                 });
-                _iteratorNormalCompletion = true;
-                _didIteratorError = false;
-                _iteratorError = undefined;
-                _context.prev = 5;
-                _iterator = tabs[Symbol.iterator]();
+                _iterator = _createForOfIteratorHelper(tabs);
+                _context.prev = 3;
 
-              case 7:
-                if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
-                  _context.next = 19;
+                _iterator.s();
+
+              case 5:
+                if ((_step = _iterator.n()).done) {
+                  _context.next = 16;
                   break;
                 }
 
                 id = _step.value.id;
-                _context.prev = 9;
-                _context.next = 12;
+                _context.prev = 7;
+                _context.next = 10;
                 return _this2.removeTab(id);
 
-              case 12:
-                _context.next = 16;
+              case 10:
+                _context.next = 14;
                 break;
+
+              case 12:
+                _context.prev = 12;
+                _context.t0 = _context["catch"](7);
 
               case 14:
-                _context.prev = 14;
-                _context.t0 = _context["catch"](9);
+                _context.next = 5;
+                break;
 
               case 16:
-                _iteratorNormalCompletion = true;
-                _context.next = 7;
+                _context.next = 21;
                 break;
 
-              case 19:
-                _context.next = 25;
-                break;
+              case 18:
+                _context.prev = 18;
+                _context.t1 = _context["catch"](3);
+
+                _iterator.e(_context.t1);
 
               case 21:
                 _context.prev = 21;
-                _context.t1 = _context["catch"](5);
-                _didIteratorError = true;
-                _iteratorError = _context.t1;
 
-              case 25:
-                _context.prev = 25;
-                _context.prev = 26;
+                _iterator.f();
 
-                if (!_iteratorNormalCompletion && _iterator.return != null) {
-                  _iterator.return();
-                }
+                return _context.finish(21);
 
-              case 28:
-                _context.prev = 28;
-
-                if (!_didIteratorError) {
-                  _context.next = 31;
-                  break;
-                }
-
-                throw _iteratorError;
-
-              case 31:
-                return _context.finish(28);
-
-              case 32:
-                return _context.finish(25);
-
-              case 33:
+              case 24:
                 // 当前页签如已关闭，则打开右键选中页签
                 if (items.findIndex(function (_ref6) {
                   var id = _ref6.id;
@@ -1172,12 +1201,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   $router.replace(nextTab.to);
                 }
 
-              case 34:
+              case 25:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[5, 21, 25, 33], [9, 14], [26,, 28, 32]]);
+        }, _callee, null, [[3, 18, 21, 24], [7, 12]]);
       }))();
     }
   }
@@ -1247,11 +1276,15 @@ var messages = {
   }
 };
 // CONCATENATED MODULE: ./lib/components/RouterTab/i18n.js
-function _toArray(arr) { return _arrayWithHoles(arr) || _iterableToArray(arr) || _nonIterableRest(); }
+function _toArray(arr) { return _arrayWithHoles(arr) || _iterableToArray(arr) || i18n_unsupportedIterableToArray(arr) || _nonIterableRest(); }
 
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+function i18n_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return i18n_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return i18n_arrayLikeToArray(o, minLen); }
+
+function i18n_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
@@ -1260,13 +1293,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
  // 国际化
 
 /* harmony default export */ var i18n = ({
-  // 注入子组件
-  provide: function provide() {
-    var i18nText = this.i18nText;
-    return {
-      i18nText: i18nText
-    };
-  },
   computed: {
     // 语言内容
     lang: function lang() {
@@ -1394,11 +1420,15 @@ function operate_asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, ar
 
 function operate_asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { operate_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { operate_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-function _slicedToArray(arr, i) { return operate_arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || operate_nonIterableRest(); }
+function _slicedToArray(arr, i) { return operate_arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || operate_unsupportedIterableToArray(arr, i) || operate_nonIterableRest(); }
 
-function operate_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+function operate_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function operate_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return operate_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return operate_arrayLikeToArray(o, minLen); }
+
+function operate_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function operate_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
@@ -1463,58 +1493,96 @@ function equalPath(path1, path2) {
      * 打开页签（默认全新打开）
      * @param {location} path 页签路径
      * @param {Boolean} [isReplace = false] 是否 replace 方式替换当前路由
-     * @param {Boolean} [refresh = true] 是否全新打开
+     * @param {Boolean | String} [refresh = true] 是否全新打开，如果为 `sameTab` 则仅同一个页签才全新打开
      */
     open: function open(path) {
-      var isReplace = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-      var refresh = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-      if (refresh) this.refresh(path, false);
-      this.$router[isReplace ? 'replace' : 'push'](path);
-    },
-    // 移除 tab 项
-    removeTab: function removeTab(id) {
-      var _this = this;
+      var _arguments = arguments,
+          _this = this;
 
-      var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
       return operate_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
-        var items, idx;
+        var isReplace, refresh, curId, tarId, isSameTab;
         return regenerator_default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                items = _this.items;
-                idx = items.findIndex(function (item) {
-                  return item.id === id;
-                }); // 最后一个页签不允许关闭
+                isReplace = _arguments.length > 1 && _arguments[1] !== undefined ? _arguments[1] : false;
+                refresh = _arguments.length > 2 && _arguments[2] !== undefined ? _arguments[2] : true;
+                curId = _this.getAliveId(_this.$route);
+                tarId = _this.getAliveId(path);
+                isSameTab = equalPath(curId, tarId); // 打开路由与当前路由相同页签才刷新
 
-                if (!(!force && _this.keepLastTab && items.length === 1)) {
-                  _context.next = 4;
-                  break;
-                }
+                refresh === 'sameTab' && (refresh = isSameTab);
+                refresh && _this.refresh(path, false);
+                _context.prev = 7;
+                _context.next = 10;
+                return _this.$router[isReplace ? 'replace' : 'push'](path);
 
-                throw new Error(_this.lang.msg.keepLastTab);
+              case 10:
+                _context.next = 14;
+                break;
 
-              case 4:
-                if (force) {
-                  _context.next = 7;
-                  break;
-                }
+              case 12:
+                _context.prev = 12;
+                _context.t0 = _context["catch"](7);
 
-                _context.next = 7;
-                return _this.pageLeavePromise(id, 'close');
+              case 14:
+                _context.prev = 14;
+                isSameTab && _this.reloadView();
+                return _context.finish(14);
 
-              case 7:
-                // 承诺关闭后移除页签和缓存
-                _this.$alive.remove(id);
-
-                idx > -1 && items.splice(idx, 1);
-
-              case 9:
+              case 17:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
+        }, _callee, null, [[7, 12, 14, 17]]);
+      }))();
+    },
+    // 移除 tab 项
+    removeTab: function removeTab(id) {
+      var _arguments2 = arguments,
+          _this2 = this;
+
+      return operate_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee2() {
+        var force, items, idx;
+        return regenerator_default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                force = _arguments2.length > 1 && _arguments2[1] !== undefined ? _arguments2[1] : false;
+                items = _this2.items;
+                idx = items.findIndex(function (item) {
+                  return item.id === id;
+                }); // 最后一个页签不允许关闭
+
+                if (!(!force && _this2.keepLastTab && items.length === 1)) {
+                  _context2.next = 5;
+                  break;
+                }
+
+                throw new Error(_this2.lang.msg.keepLastTab);
+
+              case 5:
+                if (force) {
+                  _context2.next = 8;
+                  break;
+                }
+
+                _context2.next = 8;
+                return _this2.pageLeavePromise(id, 'close');
+
+              case 8:
+                // 承诺关闭后移除页签和缓存
+                _this2.$alive.remove(id);
+
+                idx > -1 && items.splice(idx, 1);
+
+              case 10:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
       }))();
     },
 
@@ -1532,110 +1600,107 @@ function equalPath(path1, path2) {
      * @param {Boolean} [refresh = false] 是否全新打开跳转地址
      */
     close: function close() {
-      var _arguments = arguments,
-          _this2 = this;
+      var _arguments3 = arguments,
+          _this3 = this;
 
-      return operate_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee2() {
-        var _getCloseArgs, id, path, _getCloseArgs$match, match, _getCloseArgs$force, force, to, _getCloseArgs$refresh, refresh, activeTabId, items, $router, idx, nextTab, toRoute;
+      return operate_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee3() {
+        var _getCloseArgs, id, path, _getCloseArgs$match, match, _getCloseArgs$force, force, to, _getCloseArgs$refresh, refresh, activeTabId, items, idx, nextTab;
 
-        return regenerator_default.a.wrap(function _callee2$(_context2) {
+        return regenerator_default.a.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 // 解析参数
-                _getCloseArgs = getCloseArgs(_arguments), id = _getCloseArgs.id, path = _getCloseArgs.path, _getCloseArgs$match = _getCloseArgs.match, match = _getCloseArgs$match === void 0 ? true : _getCloseArgs$match, _getCloseArgs$force = _getCloseArgs.force, force = _getCloseArgs$force === void 0 ? true : _getCloseArgs$force, to = _getCloseArgs.to, _getCloseArgs$refresh = _getCloseArgs.refresh, refresh = _getCloseArgs$refresh === void 0 ? false : _getCloseArgs$refresh;
-                activeTabId = _this2.activeTabId, items = _this2.items, $router = _this2.$router; // 根据 path 获取 id
+                _getCloseArgs = getCloseArgs(_arguments3), id = _getCloseArgs.id, path = _getCloseArgs.path, _getCloseArgs$match = _getCloseArgs.match, match = _getCloseArgs$match === void 0 ? true : _getCloseArgs$match, _getCloseArgs$force = _getCloseArgs.force, force = _getCloseArgs$force === void 0 ? true : _getCloseArgs$force, to = _getCloseArgs.to, _getCloseArgs$refresh = _getCloseArgs.refresh, refresh = _getCloseArgs$refresh === void 0 ? false : _getCloseArgs$refresh;
+                activeTabId = _this3.activeTabId, items = _this3.items; // 根据 path 获取 id
 
                 if (!(!id && path)) {
-                  _context2.next = 6;
+                  _context3.next = 6;
                   break;
                 }
 
-                id = _this2.getIdByPath(path, match);
+                id = _this3.getIdByPath(path, match);
 
                 if (id) {
-                  _context2.next = 6;
+                  _context3.next = 6;
                   break;
                 }
 
-                return _context2.abrupt("return");
+                return _context3.abrupt("return");
 
               case 6:
                 // 默认当前页签
                 if (!id) id = activeTabId;
-                _context2.prev = 7;
+                _context3.prev = 7;
                 idx = items.findIndex(function (item) {
                   return item.id === id;
                 }); // 移除页签
 
-                _context2.next = 11;
-                return _this2.removeTab(id, force);
+                _context3.next = 11;
+                return _this3.removeTab(id, force);
 
               case 11:
                 if (!(to === null)) {
-                  _context2.next = 13;
+                  _context3.next = 13;
                   break;
                 }
 
-                return _context2.abrupt("return");
+                return _context3.abrupt("return");
 
               case 13:
                 // 如果关闭当前页签，则打开后一个页签
                 if (!to && activeTabId === id) {
                   nextTab = items[idx] || items[idx - 1];
-                  to = nextTab ? nextTab.to : _this2.defaultPath;
+                  to = nextTab ? nextTab.to : _this3.defaultPath;
                 }
 
                 if (to) {
-                  toRoute = $router.match(to); // 目标地址与当前地址一致则强制刷新页面
-
-                  if (equalPath(toRoute.fullPath, _this2.$route.fullPath)) {
-                    _this2.refreshTab();
-                  } else {
-                    _this2.open(to, true, refresh);
-                  }
+                  _this3.open(to, true, refresh === false ? 'sameTab' : true);
                 }
 
-                _context2.next = 20;
+                _context3.next = 20;
                 break;
 
               case 17:
-                _context2.prev = 17;
-                _context2.t0 = _context2["catch"](7);
-                warn(false, _context2.t0);
+                _context3.prev = 17;
+                _context3.t0 = _context3["catch"](7);
+                warn(false, _context3.t0);
 
               case 20:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2, null, [[7, 17]]);
+        }, _callee3, null, [[7, 17]]);
       }))();
     },
     // 通过页签 id 关闭页签
     closeTab: function closeTab() {
-      var _this3 = this;
+      var _arguments4 = arguments,
+          _this4 = this;
 
-      var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.activeTabId;
-      var to = arguments.length > 1 ? arguments[1] : undefined;
-      var force = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-      return operate_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee3() {
-        return regenerator_default.a.wrap(function _callee3$(_context3) {
+      return operate_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee4() {
+        var id, to, force;
+        return regenerator_default.a.wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
-                _this3.close({
+                id = _arguments4.length > 0 && _arguments4[0] !== undefined ? _arguments4[0] : _this4.activeTabId;
+                to = _arguments4.length > 1 ? _arguments4[1] : undefined;
+                force = _arguments4.length > 2 && _arguments4[2] !== undefined ? _arguments4[2] : false;
+
+                _this4.close({
                   id: id,
                   to: to,
                   force: force
                 });
 
-              case 1:
+              case 4:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3);
+        }, _callee4);
       }))();
     },
 
@@ -1648,56 +1713,50 @@ function equalPath(path1, path2) {
     refresh: function refresh(path) {
       var match = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
       var force = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-
-      if (path) {
-        var id = this.getIdByPath(path, match);
-
-        if (id) {
-          this.refreshTab(id, force);
-        }
-      } else {
-        this.refreshTab(undefined, force);
-      }
+      var id = path && this.getIdByPath(path, match) || undefined;
+      this.refreshTab(id, force);
     },
     // 刷新指定页签
     refreshTab: function refreshTab() {
-      var _this4 = this;
+      var _arguments5 = arguments,
+          _this5 = this;
 
-      var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.activeTabId;
-      var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-      return operate_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee4() {
-        return regenerator_default.a.wrap(function _callee4$(_context4) {
+      return operate_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee5() {
+        var id, force;
+        return regenerator_default.a.wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context4.prev = _context4.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
-                _context4.prev = 0;
+                id = _arguments5.length > 0 && _arguments5[0] !== undefined ? _arguments5[0] : _this5.activeTabId;
+                force = _arguments5.length > 1 && _arguments5[1] !== undefined ? _arguments5[1] : false;
+                _context5.prev = 2;
 
                 if (force) {
-                  _context4.next = 4;
+                  _context5.next = 6;
                   break;
                 }
 
-                _context4.next = 4;
-                return _this4.pageLeavePromise(id, 'refresh');
+                _context5.next = 6;
+                return _this5.pageLeavePromise(id, 'refresh');
 
-              case 4:
-                _this4.$alive.remove(id);
+              case 6:
+                _this5.$alive.remove(id);
 
-                if (id === _this4.activeTabId) _this4.reloadView();
-                _context4.next = 11;
+                if (id === _this5.activeTabId) _this5.reloadView();
+                _context5.next = 13;
                 break;
 
-              case 8:
-                _context4.prev = 8;
-                _context4.t0 = _context4["catch"](0);
-                warn(false, _context4.t0);
+              case 10:
+                _context5.prev = 10;
+                _context5.t0 = _context5["catch"](2);
+                warn(false, _context5.t0);
 
-              case 11:
+              case 13:
               case "end":
-                return _context4.stop();
+                return _context5.stop();
             }
           }
-        }, _callee4, null, [[0, 8]]);
+        }, _callee5, null, [[2, 10]]);
       }))();
     },
 
@@ -1706,58 +1765,59 @@ function equalPath(path1, path2) {
      * @param {Boolean} [force = false] 是否强制刷新，如果强制则忽略页面 beforePageLeave
      */
     refreshAll: function refreshAll() {
-      var _this5 = this;
+      var _arguments6 = arguments,
+          _this6 = this;
 
-      var force = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-      return operate_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee5() {
-        var cache, id;
-        return regenerator_default.a.wrap(function _callee5$(_context5) {
+      return operate_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee6() {
+        var force, cache, id;
+        return regenerator_default.a.wrap(function _callee6$(_context6) {
           while (1) {
-            switch (_context5.prev = _context5.next) {
+            switch (_context6.prev = _context6.next) {
               case 0:
-                cache = _this5.$alive.cache;
-                _context5.t0 = regenerator_default.a.keys(cache);
+                force = _arguments6.length > 0 && _arguments6[0] !== undefined ? _arguments6[0] : false;
+                cache = _this6.$alive.cache;
+                _context6.t0 = regenerator_default.a.keys(cache);
 
-              case 2:
-                if ((_context5.t1 = _context5.t0()).done) {
-                  _context5.next = 15;
+              case 3:
+                if ((_context6.t1 = _context6.t0()).done) {
+                  _context6.next = 16;
                   break;
                 }
 
-                id = _context5.t1.value;
-                _context5.prev = 4;
+                id = _context6.t1.value;
+                _context6.prev = 5;
 
                 if (force) {
-                  _context5.next = 8;
+                  _context6.next = 9;
                   break;
                 }
 
-                _context5.next = 8;
-                return _this5.pageLeavePromise(id, 'refresh');
+                _context6.next = 9;
+                return _this6.pageLeavePromise(id, 'refresh');
 
-              case 8:
-                _this5.$alive.remove(id);
+              case 9:
+                _this6.$alive.remove(id);
 
-                _context5.next = 13;
+                _context6.next = 14;
                 break;
 
-              case 11:
-                _context5.prev = 11;
-                _context5.t2 = _context5["catch"](4);
+              case 12:
+                _context6.prev = 12;
+                _context6.t2 = _context6["catch"](5);
 
-              case 13:
-                _context5.next = 2;
+              case 14:
+                _context6.next = 3;
                 break;
-
-              case 15:
-                _this5.reloadView();
 
               case 16:
+                _this6.reloadView();
+
+              case 17:
               case "end":
-                return _context5.stop();
+                return _context6.stop();
             }
           }
-        }, _callee5, null, [[4, 11]]);
+        }, _callee6, null, [[5, 12]]);
       }))();
     },
 
@@ -1766,25 +1826,19 @@ function equalPath(path1, path2) {
      * @param {location} [to = this.defaultPath] 重置后跳转页面
      */
     reset: function reset() {
-      var _this6 = this;
+      var _this7 = this;
 
       var to = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.defaultPath;
       // 遍历删除缓存
       this.items.forEach(function (_ref) {
         var id = _ref.id;
-        return _this6.$alive.remove(id);
+        return _this7.$alive.remove(id);
       }); // 清除缓存页签
 
       this.clearTabsStore(); // 初始页签数据
 
       this.initTabs();
-      var toRoute = this.$router.match(to); // 目标地址与当前地址一致则强制刷新页面
-
-      if (equalPath(toRoute.fullPath, this.$route.fullPath)) {
-        this.refreshTab();
-      } else {
-        this.$router.replace(to);
-      }
+      this.open(to, true, true);
     }
   }
 });
@@ -1961,7 +2015,12 @@ var rules = {
     // 获取缓存 id
     getAliveId: function getAliveId() {
       var route = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.$route;
-      var matchRoutes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.matchRoutes(route);
+
+      if (!route.matched) {
+        // location 获取 route
+        route = this.$router.match(route, this.$router.currentRoute);
+      }
+
       var rule = route.meta && route.meta.aliveId || this.aliveId;
 
       if (typeof rule === 'string') {
@@ -1972,6 +2031,7 @@ var rules = {
         rule = rules.path;
       }
 
+      var matchRoutes = this.matchRoutes(route);
       return rule.bind(this)(route, this.getPagePath(route, matchRoutes));
     }
   }
@@ -2157,7 +2217,7 @@ function scroll_asyncToGenerator(fn) { return function () { var self = this, arg
 
         if (Array.isArray(tabs) && tabs.length) {
           hasStore = true;
-          this.items = tabs;
+          this.presetTabs(tabs);
         }
       } finally {}
 
@@ -2165,16 +2225,16 @@ function scroll_asyncToGenerator(fn) { return function () { var self = this, arg
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"d60a6292-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/RouterTab/TabItem.vue?vue&type=template&id=2414f71a&
-var TabItemvue_type_template_id_2414f71a_render = function () {
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"75025f78-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/RouterTab/TabItem.vue?vue&type=template&id=15d9756e&
+var TabItemvue_type_template_id_15d9756e_render = function () {
 var _obj;
 var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('router-link',{class:( _obj = {
     'router-tab-item': true
-  }, _obj[_vm.tabClass || ''] = true, _obj.actived = _vm.base.activeTabId === _vm.id, _obj['is-closable'] =  _vm.closable, _obj['is-contextmenu'] =  _vm.base.contextmenu.id === _vm.id, _obj ),attrs:{"tag":"li","to":_vm.to}},[_vm._t("default",[(_vm.icon)?_c('i',{staticClass:"tab-icon",class:_vm.icon}):_vm._e(),_c('span',{staticClass:"tab-title",attrs:{"title":_vm.tips}},[_vm._v(_vm._s(_vm.title))]),(_vm.closable)?_c('i',{staticClass:"tab-close",on:{"click":function($event){$event.preventDefault();return _vm.close($event)}}}):_vm._e()],null,this)],2)}
-var TabItemvue_type_template_id_2414f71a_staticRenderFns = []
+  }, _obj[_vm.tabClass || ''] = true, _obj.actived = _vm.Tab.activeTabId === _vm.id, _obj['is-closable'] =  _vm.closable, _obj['is-contextmenu'] =  _vm.Tab.contextmenu.id === _vm.id, _obj ),attrs:{"tag":"li","to":_vm.to}},[_vm._t("default",[(_vm.icon)?_c('i',{staticClass:"tab-icon",class:_vm.icon}):_vm._e(),_c('span',{staticClass:"tab-title",attrs:{"title":_vm.tips}},[_vm._v(_vm._s(_vm.title))]),(_vm.closable)?_c('i',{staticClass:"tab-close",on:{"click":function($event){$event.preventDefault();return _vm.close($event)}}}):_vm._e()],null,this)],2)}
+var TabItemvue_type_template_id_15d9756e_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./lib/components/RouterTab/TabItem.vue?vue&type=template&id=2414f71a&
+// CONCATENATED MODULE: ./lib/components/RouterTab/TabItem.vue?vue&type=template&id=15d9756e&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/RouterTab/TabItem.vue?vue&type=script&lang=js&
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -2222,7 +2282,7 @@ var mapDataComputed = function mapDataComputed() {
 
 /* harmony default export */ var TabItemvue_type_script_lang_js_ = ({
   name: 'TabItem',
-  inject: ['i18nText'],
+  inject: ['Tab'],
   props: {
     // 页签原始数据，方便 slot 插槽自定义数据
     data: {
@@ -2232,15 +2292,14 @@ var mapDataComputed = function mapDataComputed() {
     // 页签项索引
     index: Number
   },
-  computed: _objectSpread({
-    // RouterTab 根组件
-    base: function base() {
-      return this.$parent.$parent;
-    }
-  }, mapDataComputed('id', 'to', 'icon', 'tabClass', 'target', 'href'), {
+  computed: _objectSpread({}, mapDataComputed('id', 'to', 'icon', 'tabClass', 'target', 'href'), {
+    // 国际化
+    i18nText: function i18nText() {
+      return this.Tab.i18nText;
+    },
     // 未命名页签
     untitled: function untitled() {
-      return this.base.lang.tab.untitled;
+      return this.Tab.lang.tab.untitled;
     },
     // 页签标题
     title: function title() {
@@ -2252,16 +2311,16 @@ var mapDataComputed = function mapDataComputed() {
     },
     // 是否可关闭
     closable: function closable() {
-      var _this$base = this.base,
-          keepLastTab = _this$base.keepLastTab,
-          items = _this$base.items;
+      var _this$Tab = this.Tab,
+          keepLastTab = _this$Tab.keepLastTab,
+          items = _this$Tab.items;
       return this.data.closable && !(keepLastTab && items.length < 2);
     }
   }),
   methods: {
     // 关闭当前页签
     close: function close() {
-      this.$routerTab.closeTab(this.id);
+      this.Tab.closeTab(this.id);
     }
   }
 });
@@ -2372,8 +2431,8 @@ function normalizeComponent (
 
 var component = normalizeComponent(
   RouterTab_TabItemvue_type_script_lang_js_,
-  TabItemvue_type_template_id_2414f71a_render,
-  TabItemvue_type_template_id_2414f71a_staticRenderFns,
+  TabItemvue_type_template_id_15d9756e_render,
+  TabItemvue_type_template_id_15d9756e_staticRenderFns,
   false,
   null,
   null,
@@ -2408,6 +2467,12 @@ var RouterTab = {
   mixins: [RouterTab_contextmenu, i18n, iframe, operate, pageLeave, rule, RouterTab_scroll, restore],
   components: {
     TabItem: TabItem
+  },
+  // 注入子组件
+  provide: function provide() {
+    return {
+      Tab: this
+    };
   },
   props: {
     // 初始页签数据
@@ -2529,15 +2594,14 @@ var RouterTab = {
     presetTabs: function presetTabs() {
       var _this2 = this;
 
-      var tabs = this.tabs,
-          $router = this.$router;
+      var tabs = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.tabs;
       var ids = {};
       this.items = tabs.map(function (item, index) {
-        var _item = typeof item === 'string' ? {
+        item = typeof item === 'string' ? {
           to: item
         } : item || emptyObj;
 
-        var route = _item.to && $router.match(_item.to);
+        var route = item.to && _this2.$router.match(item.to);
 
         if (route) {
           var tab = _this2.getRouteTab(route);
@@ -2546,9 +2610,9 @@ var RouterTab = {
 
           if (!ids[id]) {
             // id 不允许更改
-            delete _item.id; // 初始 tab 数据
+            delete item.id; // 初始 tab 数据
 
-            return ids[id] = Object.assign(tab, _item);
+            return ids[id] = Object.assign(tab, item);
           }
         }
       }).filter(function (item) {
@@ -2581,10 +2645,10 @@ var RouterTab = {
     // 从路由地址获取 aliveId
     getIdByPath: function getIdByPath(path) {
       var match = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-      if (!path) return;
-      var route = this.$router.match(path, this.$router.currentRoute); // 路由地址精确匹配页签
+      if (!path) return; // 路由地址精确匹配页签
 
       if (match) {
+        var route = this.$router.match(path, this.$router.currentRoute);
         var matchPath = this.getPathWithoutHash(route);
         var matchTab = this.items.find(function (_ref3) {
           var to = _ref3.to;
@@ -2595,7 +2659,7 @@ var RouterTab = {
           return matchTab.id;
         }
       } else {
-        return this.getAliveId(route);
+        return this.getAliveId(path);
       }
     },
     // 从 route 中获取 tab 配置
@@ -2615,29 +2679,31 @@ var RouterTab = {
     },
     // 重载路由视图
     reloadView: function reloadView() {
-      var _this3 = this;
+      var _arguments = arguments,
+          _this3 = this;
 
-      var ignoreTransition = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
       return RouterTab_vue_type_script_lang_js_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
+        var ignoreTransition;
         return regenerator_default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                ignoreTransition = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : false;
                 _this3.isViewAlive = false; // 默认在页面过渡结束后会设置 isViewAlive 为 true
                 // 如果过渡事件失效，则需传入 ignoreTransition 为 true 手动更改
 
                 if (!ignoreTransition) {
-                  _context.next = 5;
+                  _context.next = 6;
                   break;
                 }
 
-                _context.next = 4;
+                _context.next = 5;
                 return _this3.$nextTick();
 
-              case 4:
+              case 5:
                 _this3.isViewAlive = true;
 
-              case 5:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -2888,7 +2954,7 @@ function routerPage_defineProperty(obj, key, value) { if (key in obj) { Object.d
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"d60a6292-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/page/Iframe.vue?vue&type=template&id=cd1f1e3e&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"75025f78-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/page/Iframe.vue?vue&type=template&id=cd1f1e3e&
 var Iframevue_type_template_id_cd1f1e3e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab-iframe-fake"})}
 var Iframevue_type_template_id_cd1f1e3e_staticRenderFns = []
 

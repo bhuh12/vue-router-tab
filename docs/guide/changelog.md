@@ -1,5 +1,15 @@
 # 更新日志
 
+## [1.0.0-alpha.4](https://github.com/bhuh12/vue-router-tab/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2020-04-10)
+
+
+### Bug Fixes
+
+* **operate:** 解决在嵌套路由下关闭或重置页签后重定向到当前页签失效 ([6e27eaa](https://github.com/bhuh12/vue-router-tab/commit/6e27eaa17b6991b010cd0f97174de6bb80d630a4))
+* **restore:** 解决刷新还原页签后标题丢失 ([717c03f](https://github.com/bhuh12/vue-router-tab/commit/717c03fe4f1163567e0baa90d88e77e20bb74694))
+
+
+
 ## [1.0.0-alpha.3](https://github.com/bhuh12/vue-router-tab/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2020-03-19)
 
 
