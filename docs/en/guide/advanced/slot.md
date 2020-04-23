@@ -1,24 +1,22 @@
-# 自定义页签模板
+# Custom tab
 
-通过 RouterTab 组件的默认作用域插槽，我们可以自定义页签显示的内容
+You can customize your tabs using the available slot `tab`. Inside the slot you will have access to following properties/attributes
 
-插槽的作用域提供页签项信息 `tab` 供模板使用，包括以下属性或方法
-
-| 属性 | 类型 | 说明 |
+| Properties | Type | Description |
 | --- | --- | --- |
-| base | Component | RouterTab 实例 |
-| data | Object | 页签数据 |
-| id | String | 页签 ID |
-| title | String | 标题 |
-| tips | String | 提示 |
-| icon | String | 图标 |
-| tabClass | String | 页签 class |
-| closable | Boolean | 是否可关闭 |
-| index | Number | 页签索引 |
-| close | Function | 页签关闭方法 |
+| base | Component | RouterTab instance |
+| data | Object | tab data |
+| id | String | tab ID |
+| title | String | title |
+| tips | String | prompt |
+| icon | String | icon |
+| tabClass | String | tab class |
+| closable | Boolean | if the user will be able to close the tab or not |
+| index | Number | tab index |
+| close | Function | tab closing method |
 
 <doc-links demo="/slot/"></doc-links>
 
-**示例：**
+**Example:**
 
 <<< @/src/components/frames/Slot.vue{3,4,5,6,7,8}
