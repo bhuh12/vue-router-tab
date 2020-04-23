@@ -1,51 +1,50 @@
-# 页签规则
+# Tab rules
 
-不同的页签维护着各自的页面缓存，而**页签规则**定义了不同的路由**打开页签的方式**。
+Different tabs maintain their own page caches, and **page tab rules** define different routes **ways to open tabs by routing**.
 
 
-## 内置规则
+## Built-in rules
 
-- `path` (默认规则)
-  - 规则：`(route, pagePath) => pagePath || route.path` 
-  - 说明：相同 route.params 的路由共用页签，嵌套路由页签根据 pagePath
+- `path` (default rule)
+  - Rule：`(route, pagePath) => pagePath || route.path` 
+  - Note: Routes with the same route.params share tabs, nested route tabs are based on pagePath
   - <demo-link href="/default/rule/a/1"/>
 
 - `fullPath`
-  - 规则：`(route, pagePath) => pagePath || route.fullPath.replace(route.hash, '')` 
-  - 说明：相同 route.params 和 route.query 的路由共用页签，嵌套路由页签根据 pagePath
+  - Rule：`(route, pagePath) => pagePath || route.fullPath.replace(route.hash, '')` 
+  - Note: Routes with the same route.params and route.query share tabs. Nested route tabs are based on pagePath
   - <demo-link href="/global-rule/rule/a/1"/>
 
 
-## 全局页签规则
+## Global rules
 
-通过配置 RouterTab 组件的 `alive-id` 属性，您可以定义全局的页签规则
+By configuring RouterTab component `alive-id` attributes, you can define global rules tab
 
 <doc-links api="#alive-id" demo="/global-rule/rule/a/1"></doc-links>
 
-**示例：**
+**Examples：**
 
 ``` html
 <router-tab :alive-id="(route, pagePath) => pagePath || route.fullPath.replace(route.hash, '')"/>
 ```
+Example, if `alive-id` is set to `fullPath` tabs will be created for each unique route except `hash`.
 
-例子中，配置 `alive-id` 为 `fullPath` 去除 `hash` 部分。
+Routes like `page/1` and `page/1?query=2` and `page/2` and `page/2?query=2` are treated as **four seperate tabs** because they are four **unique** addresses. But routes with `hashes` like `page/1` and `page/1#hash1` will be treated as the **same** tab.
 
-根据该规则，`page/1` 和 `page/1?query=2`、`page/2`、`page/2?query=2` 这四个地址都是打开**不同**的页签。而 `page/1` 和 `page/1#hash1` 是同一个页签，因为它们忽略 `hash` 后的路径一致。
-
-该规则已经内置在 RouterTab 中了，因此，您也可以直接这样使用：
+This rule are set as `default`, but you can also use it directly like this:
 
 ``` html
 <router-tab alive-id="fullPath"/>
 ```
 
 
-## 路由页签规则
+## Routing rules
 
-通过配置**路由**的 `meta.aliveId` 属性，您可以针对特定路由定制页签规则
+By configuring the routing of `meta.aliveId` properties, you can customize the tab for a particular route.
 
 <doc-links api="#meta-aliveid" demo="/default/route-rule/a/1"></doc-links>
 
-**示例：**
+**Example：**
 
 ``` javascript {8,9,10}
 const route = {
@@ -54,12 +53,11 @@ const route = {
     template: '<div>定制规则：{{$route.params.catalog}}/{{$route.params.type}}</div>'
   },
   meta: {
-    title: '定制规则',
+    title: 'Custom',
     aliveId (route, pagePath) {
       return `/my-page/${route.params.catalog}`
     }
   }
 }
 ```
-
-根据示例中的页签规则，`/my-page/a/1` 和 `/my-page/a/2` 打开的是**同一个**页签。而 `/my-page/b/1` 和 `/my-page/b/2` 则打开另外一个页签
+According to the example, `/my-page/a/1` and `/my-page/a/2` will be the in the same tab. While `/my-page/b/1` and `/my-page/b/2` will open a sperate tab.
