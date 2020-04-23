@@ -1,30 +1,30 @@
-# 刷新后还原页签
+# Restore tabs
 
-给 RouterTab 组件设置 `restore` 属性，可以设置在浏览器刷新后还原页签。
+You can `restore` tabs after refreshing the page or logging in from another computer by using the `restore` property.
 
-RouterTab 通过 sessionStorage 来存储页签缓存信息
+RouterTab uses sessionStorage to store the cache information of the tabs
 
 <doc-links api="#restore" demo="/restore/"></doc-links>
 
-**默认方式**
+**Default mode**
 
 ``` html
 <router-tab restore />
 ```
 
-**自定义缓存**
+**Custom cache**
 
-RouterTab 支持自定义本地存储的 key，根据给定的 key 来获取对应的缓存
+RouterTab supports customizing the locally stored key, and obtains the corresponding cache according to the given key
 
-在实际应用中，我们希望根据当前用户来存储浏览器页签信息。
+In practical applications, we want to store browser tab information based on the current user.
 
 ``` html
 <router-tab :restore="userInfo.userId" />
 ```
 
-**监听 restore 参数**
+**Listen to restore parameters**
 
-通常，我们的数据会从服务端异步获取，如果我们希望在用户数据获取到后再根据用户还原页签，可以配置 `restore-watch` 来监听 restore 参数，改变后自动还原对应用户的页签
+Usually, our data will be obtained asynchronously from the server. If we want to restore the user's tabs after the user data is obtained, we can configure `restore-watch` to monitor the restore parameters and automatically restore the corresponding user's tabs after changes.
 
 ``` html
 <router-tab :restore="userInfo.userId" restore-watch />
