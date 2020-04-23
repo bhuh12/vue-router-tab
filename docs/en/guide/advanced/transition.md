@@ -1,24 +1,60 @@
-# 过渡效果
+# Transition effects
 
-您可以通过配置 RouterTab 组件的 `tab-transition` 和 `page-transition` 属性，分别替换默认的**页签**和**页面**过渡效果
+You can change the default page and tab transitions by adding the `tab-transition` and `page-transition` attributes to your `router-tab`
 
 ::: warning
-- 如果是组件作用域内的 CSS(配置了 `scoped`)，需要在选择器前添加 `/deep/`才能生效
+- If the scope of the CSS component (configured `scoped`), you need to add `/deep/` before the selectors
 
-- 页签项 `.router-tab-item` 默认设置了 `transition` 和 `transform-origin` 的样式，您可能需要覆盖它已避免影响到自定义的过渡效果
+- The .router-tab-item sets the `transition` and `transform-origin` styles by default, you may need to override it to avoid affecting the custom transition effect
 :::
 
 <doc-links api="#tab-transition" demo="/transition/"></doc-links>
 
-**示例：**
+**Example:**
 
-<<< @/src/components/frames/Transition.vue{2,6,8,21}
+``` html {2,6,8,21}
+<template>
+  <router-tab page-transition="page-fade" tab-transition="tab-scale" />
+</template>
 
-## 详细配置
+<style lang="scss" scoped>
+/deep/ {
+  // Page fade transition
+  .page-fade {
+    &-enter-active,
+    &-leave-active {
+      transition: opacity .5s;
+    }
 
-您还可以使用对象的方式设置 `tab-transition` 和 `page-transition` 的值，以实现详细的过渡效果配置
+    &-enter,
+    &-leave-to {
+      opacity: 0;
+    }
+  }
 
-> 配置参考: [Vue - transition](https://cn.vuejs.org/v2/api/#transition)
+  // Tab scale transition
+  .tab-scale {
+    &-enter-active,
+    &-leave-active {
+      transition: opacity .5s, transform .5s;
+    }
+
+    &-enter,
+    &-leave-to {
+      opacity: 0;
+      transform: scale(1.5);
+    }
+  }
+}
+</style>
+
+```
+
+## Detailed configuration
+
+You can also use the provided object `tab-transition` and `page-transition` value, in order to achieve a detailed configuration of transition effects
+
+> Configuration reference: [Vue - transition](https://vuejs.org/v2/api/#transition)
 
 ``` html
 <router-tab :tab-transition="{
