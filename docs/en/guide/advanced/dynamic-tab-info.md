@@ -1,38 +1,40 @@
-# 动态更新页签
+# Dynamic update
 
-RouterTab 会监听组件 `this.routeTab` 来动态更新页签信息。您可以通过设置 `this.routeTab` 来更改页签的标题、图标、提示。
+RouterTab will monitor the component `this.routeTab` to dynamically update the tab information. You can change the title, icon, and prompt of the tab by setting `this.routeTab`
+
+
 
 <doc-links demo="/default/tab-dynamic"></doc-links>
 
-**示例：**
+**Example**
 
 ``` javascript {7,15,18,27}
 export default {
   name: 'goods',
   data () {
     return {
-      goodsName: '商品名',
-      goodsDesc: '商品简介',
-      routeTab: null // routeTab 存放在 data 中以支持响应
+      goodsName: 'Product name',
+      goodsDesc: 'Product description',
+      routeTab: null // routeTab store data for response
     }
   },
   mounted () {
     setTimeout(() => {
       let { id } = this.$route.params
 
-      // 只更新页签标题
-      this.routeTab = `页面${id}动态标题`
+      //Only update tab title
+      this.routeTab = `Page ${id} dynamic title`
 
-      // 更新多个页签信息
+      // Update tab object
       this.routeTab = {
-        title: `商品-${this.goodsName}`,
+        title: `Product-${this.goodsName}`,
         icon: 'el-icon-goods',
         tips: this.goodsDesc
       }
 
-      // 国际化页签标题
+      // International tab title
       this.routeTab = {
-        // 以数组方式定义带参数列表的国际化，格式：['i18nKey', ...params]
+        // Define the internationalization with parameter list as an array, the format: ['i18nKey', ...params]
         title: ['routerTab.goods', this.goodsName]
       }
       
