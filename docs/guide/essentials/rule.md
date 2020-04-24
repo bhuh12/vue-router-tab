@@ -50,7 +50,7 @@ By configuring the routing of `meta.aliveId` properties, you can customize the t
 const route = {
   path: '/my-page/:catalog/:type',
   component: {
-    template: '<div>定制规则：{{$route.params.catalog}}/{{$route.params.type}}</div>'
+    template: '<div>Custom：{{$route.params.catalog}}/{{$route.params.type}}</div>'
   },
   meta: {
     title: 'Custom',

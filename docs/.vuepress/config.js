@@ -18,14 +18,14 @@ module.exports = {
   // 多语言
   locales: {
     '/zh/': localeZh,
-    '/en/': localeEn
+    '/': localeEn
   },
 
   // 主题配置
   themeConfig: {
     locales: {
       '/zh/': localeZhTheme,
-      '/en/': localeEnTheme
+      '/': localeEnTheme
     },
     
     // Demo路径
@@ -36,7 +36,7 @@ module.exports = {
 
     repoLabel: 'GitHub',
 
-    docsBranch: 'dev',
+    docsBranch: 'master',
 
     // Algolia 搜索
     algolia: {

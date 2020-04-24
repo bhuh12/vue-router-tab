@@ -2,7 +2,7 @@ const nav = require('./utils/nav').default
 const sidebar = require('./utils/sidebar').default
 
 const i18n = {
-  path: '/en/',
+  path: '/',
   guide: 'Guide',
   changelog: 'Changelog',
   essentials: 'Essentials',

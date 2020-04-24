@@ -54,7 +54,7 @@ yarn lib:build
 
 ### Polyfill
 
-Vue Router Tab uses [**Vue CLI 3**](https://cli.vuejs.org) to build as library, so there's no polyfills.
+Vue Router Tab uses [**Vue CLI**](https://cli.vuejs.org) to build as library, so there's no polyfills.
 
 If your project has to support browsers at lower versions, you need to polyfill yourself:
 

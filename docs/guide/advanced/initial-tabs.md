@@ -31,7 +31,7 @@ export default {
             path: '/initial-tabs/page/2',
             query: { t: 2 }
           },
-          title: '页面2'
+          title: 'Page 2'
         },
 
         // Overrides the default aliveId configuration, this tab is consistent with the aliveId of the '/ initial-tabs / page / 2' tab, and only the first tab that appears will be retained

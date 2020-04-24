@@ -1,4 +1,4 @@
-简体中文 | [English](README.en.md)
+[English](README.md) | 简体中文
 
 <p align="center">
   <a href="https://bhuh12.github.io/vue-router-tab/" target="_blank" rel="noopener noreferrer">
@@ -8,7 +8,7 @@
 
 <p align="center">
   <a target="_blank" href="https://www.travis-ci.org/bhuh12/vue-router-tab">
-    <img src="https://www.travis-ci.org/bhuh12/vue-router-tab.svg?branch=dev" alt="Build">
+    <img src="https://www.travis-ci.org/bhuh12/vue-router-tab.svg" alt="Build">
   </a>
 
   <a href="https://github.com/vuejs/vue">
@@ -41,7 +41,7 @@
     <img alt="gzip size: css" src="http://img.badgesize.io/https://unpkg.com/vue-router-tab/dist/lib/vue-router-tab.css?compression=gzip&label=gzip:CSS">
   </a>
   
-  <a target="_blank" href="https://github.com/bhuh12/vue-router-tab/blob/dev/LICENSE">
+  <a target="_blank" href="https://github.com/bhuh12/vue-router-tab/blob/master/LICENSE">
     <img src="https://img.shields.io/npm/l/vue-router-tab.svg" alt="License">
   </a>
 </p>

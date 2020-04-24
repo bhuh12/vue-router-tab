@@ -14,7 +14,7 @@
 
 **Example:**
 
-``` javascript {3,15,21,23,28}
+``` javascript {3,15,21,23,28,29}
 export default {
   // confirm before leaving
   beforePageLeave (resolve, reject, tab, type) {
@@ -37,12 +37,13 @@ export default {
     if (confirm(msg)) {
       resolve()
     } else {
-      reject('拒绝了页面离开')
+      reject('Refuse to leave the page')
     }
 
     /*
     // The confirm component of Element is used here
-    // You need to configure closeOnHashChange to false to avoid the route switching causing the confirmation box to close
+    // You need to configure closeOnHashChange to false
+    // to avoid the route switching causing the confirmation box to close
     this.$confirm(msg, 'prompt', { closeOnHashChange: false })
       .then(resolve)
       .catch(reject)

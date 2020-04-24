@@ -54,7 +54,7 @@ yarn lib:build
 
 ### Polyfill
 
-Vue Router Tab 使用 [**Vue CLI 3**](https://cli.vuejs.org) 来构建库，没有内置 Polyfills。
+Vue Router Tab 使用 [**Vue CLI**](https://cli.vuejs.org) 来构建库，没有内置 Polyfills。
 
 如果您的项目有兼容旧版本浏览器的需求，可以参考以下链接，自行 Polyfill: 
 
