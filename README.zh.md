@@ -57,43 +57,43 @@ Vue Router Tab 是基于 Vue Router 的路由页签组件，用来实现多页�
 
 ✅ 页签右键菜单操作
 
-✅ [页签规则](https://bhuh12.github.io/vue-router-tab/guide/essentials/rule.html)配置
+✅ [页签规则](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/rule.html)配置
 
-✅ 内置页签和页面[过渡效果](https://bhuh12.github.io/vue-router-tab/guide/advanced/transition.html)，支持自定义配置
+✅ 内置页签和页面[过渡效果](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/transition.html)，支持自定义配置
 
-✅ [自定义页签模板](https://bhuh12.github.io/vue-router-tab/guide/advanced/slot.html)
+✅ [自定义页签模板](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/slot.html)
 
-✅ [初始页签数据](https://bhuh12.github.io/vue-router-tab/guide/advanced/initial-tabs.html)，进入页面时默认显示的页签
+✅ [初始页签数据](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/initial-tabs.html)，进入页面时默认显示的页签
 
-✅ [页签刷新还原](https://bhuh12.github.io/vue-router-tab/guide/advanced/restore.html)，在浏览器刷新后恢复页签
+✅ [页签刷新还原](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/restore.html)，在浏览器刷新后恢复页签
 
-✅ [页签重置](https://bhuh12.github.io/vue-router-tab/guide/essentials/operate.html#%E9%87%8D%E7%BD%AE%E9%A1%B5%E7%AD%BE)，重置页签到初始状态
+✅ [页签重置](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/operate.html#%E9%87%8D%E7%BD%AE%E9%A1%B5%E7%AD%BE)，重置页签到初始状态
 
-✅ [动态更新页签信息](https://bhuh12.github.io/vue-router-tab/guide/advanced/dynamic-tab-info.html) (标题/图标/提示)
+✅ [动态更新页签信息](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/dynamic-tab-info.html) (标题/图标/提示)
 
-✅ [iframe 页签嵌入外部网站](https://bhuh12.github.io/vue-router-tab/guide/essentials/iframe.html)
+✅ [iframe 页签嵌入外部网站](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/iframe.html)
 
-✅ [页签页面离开 (页签关闭/刷新/替换) 前确认](https://bhuh12.github.io/vue-router-tab/guide/advanced/page-leave.html)
+✅ [页签页面离开 (页签关闭/刷新/替换) 前确认](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/page-leave.html)
 
-✅ [多语言支持](https://bhuh12.github.io/vue-router-tab/guide/essentials/i18n.html)
+✅ [多语言支持](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/i18n.html)
 
 
 ## 🛠 安装
 
-[https://bhuh12.github.io/vue-router-tab/guide/installation.html](https://bhuh12.github.io/vue-router-tab/guide/installation.html)
+[https://bhuh12.github.io/vue-router-tab/zh/guide/installation.html](https://bhuh12.github.io/vue-router-tab/zh/guide/installation.html)
 
 ## 📝 文档
 
-[https://bhuh12.github.io/vue-router-tab/](https://bhuh12.github.io/vue-router-tab/)
+[https://bhuh12.github.io/vue-router-tab/zh/](https://bhuh12.github.io/vue-router-tab/zh/)
 
   - 介绍：
-  [https://bhuh12.github.io/vue-router-tab/guide/](https://bhuh12.github.io/vue-router-tab/guide/)
+  [https://bhuh12.github.io/vue-router-tab/zh/guide/](https://bhuh12.github.io/vue-router-tab/zh/guide/)
 
   - 入门：
-  [https://bhuh12.github.io/vue-router-tab/guide/essentials/](https://bhuh12.github.io/vue-router-tab/guide/essentials/)
+  [https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/)
 
   - API：
-  [https://bhuh12.github.io/vue-router-tab/api/](https://bhuh12.github.io/vue-router-tab/api/)
+  [https://bhuh12.github.io/vue-router-tab/zh/api/](https://bhuh12.github.io/vue-router-tab/zh/api/)
 
 ## 📺 演示
 
@@ -105,7 +105,7 @@ Vue Router Tab 是基于 Vue Router 的路由页签组件，用来实现多页�
 
 ## 📃 更新日志
 
-[https://bhuh12.github.io/vue-router-tab/guide/changelog.html](https://bhuh12.github.io/vue-router-tab/guide/changelog.html)
+[https://bhuh12.github.io/vue-router-tab/zh/guide/changelog.html](https://bhuh12.github.io/vue-router-tab/zh/guide/changelog.html)
 
 ---
 

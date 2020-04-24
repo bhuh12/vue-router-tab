@@ -17,14 +17,14 @@ module.exports = {
 
   // 多语言
   locales: {
-    '/': localeZh,
+    '/zh/': localeZh,
     '/en/': localeEn
   },
 
   // 主题配置
   themeConfig: {
     locales: {
-      '/': localeZhTheme,
+      '/zh/': localeZhTheme,
       '/en/': localeEnTheme
     },
     

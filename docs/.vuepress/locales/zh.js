@@ -2,7 +2,7 @@ const nav = require('./utils/nav').default
 const sidebar = require('./utils/sidebar').default
 
 const i18n = {
-  path: '/',
+  path: '/zh/',
   guide: '教程',
   changelog: '更新日志',
   essentials: '基础',
