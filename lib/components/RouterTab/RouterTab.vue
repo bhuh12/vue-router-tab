@@ -2,6 +2,10 @@
   <div class="router-tab">
     <!-- 页签头部 -->
     <header :class="['router-tab-header', hasScroller && 'is-scroll']">
+      <div class="router-tab_start">
+        <slot name="start" />
+      </div>
+
       <!-- 页签向前滚动 -->
       <a class="nav-prev" @click="tabScroll('left')" />
 
@@ -23,7 +27,7 @@
               e => showContextmenu(item.id, index, e)
             "
           >
-            <template v-if="$scopedSlots.default" v-slot:default="scope">
+            <template v-if="$scopedSlots.default" #default="scope">
               <slot v-bind="scope" />
             </template>
           </tab-item>
@@ -32,6 +36,10 @@
 
       <!-- 页签向后滚动 -->
       <a class="nav-next" @click="tabScroll('right')" />
+
+      <div class="router-tab_end">
+        <slot name="end" />
+      </div>
     </header>
 
     <!-- 页面容器 -->

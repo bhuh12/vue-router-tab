@@ -1,6 +1,16 @@
-# Custom tab
+# Slot
 
-You can customize your tabs using the available slot `tab`. Inside the slot you will have access to following properties/attributes
+RouterTab supports these slots:
+
+| Name      | Scope | Description |
+| --------- | ----- | ----------- |
+| `default` | `tab` | tab item    |
+| `start`   | -     | tab start   |
+| `end`     | -     | tab end     |
+
+### Custom tab
+
+You can customize your tabs using the available slot `default`. Inside the slot you will have access to following properties/attributes
 
 | Properties | Type      | Description                                      |
 | ---------- | --------- | ------------------------------------------------ |
@@ -19,4 +29,4 @@ You can customize your tabs using the available slot `tab`. Inside the slot you 
 
 **Example:**
 
-<<< @/src/components/frames/Slot.vue{3,4,5,6,7,8}
+<<< @/src/components/frames/Slot.vue{4,13,22}

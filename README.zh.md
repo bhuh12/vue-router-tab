@@ -60,7 +60,7 @@ Vue Router Tab 是基于 Vue Router 的路由页签组件，用来实现多页�
 
 ✅ 内置页签和页面[过渡效果](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/transition.html)，支持自定义配置
 
-✅ [自定义页签模板](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/slot.html)
+✅ [自定义插槽](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/slot.html)
 
 ✅ [初始页签数据](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/initial-tabs.html)，进入页面时默认显示的页签
 

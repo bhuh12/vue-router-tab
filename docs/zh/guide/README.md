@@ -12,7 +12,7 @@ Vue Router Tab 是基于 Vue.js 和 Vue Router 的路由页签组件，用来实
 
 ✅ 内置页签和页面[过渡效果](advanced/transition.md)，支持自定义配置
 
-✅ [自定义页签模板](advanced/slot.md)
+✅ [自定义插槽](advanced/slot.md)
 
 ✅ [初始页签数据](advanced/initial-tabs.md)，进入页面时默认显示的页签
 
