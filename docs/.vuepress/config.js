@@ -4,7 +4,13 @@ const { default: localeEn, theme: localeEnTheme } = require('./locales/en')
 
 module.exports = {
   head: [
-    ['link', { rel: 'icon', href: 'https://bhuh12.github.io/vue-router-tab/demo/img/logo.png' }]
+    [
+      'link',
+      {
+        rel: 'icon',
+        href: 'https://bhuh12.github.io/vue-router-tab/demo/img/logo.png'
+      }
+    ]
   ],
 
   // 基础路径
@@ -27,7 +33,7 @@ module.exports = {
       '/zh/': localeZhTheme,
       '/': localeEnTheme
     },
-    
+
     // Demo路径
     demoUrl: 'https://bhuh12.github.io/vue-router-tab/demo/',
 
@@ -47,7 +53,7 @@ module.exports = {
 
   // markdow 配置
   markdown: {
-    lineNumbers: true,
+    lineNumbers: true
   },
 
   plugins: {

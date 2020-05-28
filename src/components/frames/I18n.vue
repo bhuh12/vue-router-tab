@@ -7,7 +7,7 @@ import Vue from 'vue'
 
 export default {
   name: 'LangCustom',
-  data () {
+  data() {
     return {
       currentLang: 'en',
 
@@ -32,12 +32,12 @@ export default {
   },
 
   computed: {
-    lang () {
+    lang() {
       return this.langs[this.currentLang] || this.langs.en
     }
   },
 
-  beforeCreate () {
+  beforeCreate() {
     // 全局语言方法
     Vue.prototype.$lang = {
       set: lang => {
@@ -50,12 +50,12 @@ export default {
     }
   },
 
-  destroyed () {
+  destroyed() {
     Vue.prototype.$lang = null
   },
 
   methods: {
-    i18n (key, params) {
+    i18n(key, params) {
       let lang = this.lang[key]
       return lang
         ? lang.replace(/(\{(\d+)\})/g, (match, $0, $1) => params[$1] || '') // 替换国际化中的列表参数

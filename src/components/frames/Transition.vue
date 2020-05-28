@@ -8,7 +8,7 @@
   .page-fade {
     &-enter-active,
     &-leave-active {
-      transition: opacity .5s;
+      transition: opacity 0.5s;
     }
 
     &-enter,
@@ -21,7 +21,7 @@
   .tab-scale {
     &-enter-active,
     &-leave-active {
-      transition: opacity .5s, transform .5s;
+      transition: opacity 0.5s, transform 0.5s;
     }
 
     &-enter,

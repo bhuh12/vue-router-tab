@@ -1,4 +1,4 @@
-exports.default = (i18n) => ({
+exports.default = i18n => ({
   [`${i18n.path}guide/`]: [
     '',
     'installation',

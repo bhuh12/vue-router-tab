@@ -21,7 +21,7 @@ import AppAside from './components/AppAside.vue'
 export default {
   name: 'App',
   components: { AppHeader, AppAside },
-  data () {
+  data() {
     return {
       sidebarOpen: false
     }
@@ -29,7 +29,7 @@ export default {
 
   watch: {
     // 路由切换
-    $route ($route) {
+    $route($route) {
       // 关闭侧边栏
       this.sidebarOpen = false
     }
@@ -39,7 +39,7 @@ export default {
 
 <style lang="scss" scoped>
 $side-width: 200px;
-$just-trans: all .2s ease-in-out;
+$just-trans: all 0.2s ease-in-out;
 
 /* 布局 */
 .app-ct {

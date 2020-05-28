@@ -8,29 +8,28 @@ Please make sure your Node.js version >= 8.6. There might be errors with lower v
 
 yarn (recommended):
 
-``` bash
+```bash
 yarn add vue-router-tab
 ```
 
 npm：
 
-``` bash
+```bash
 npm i vue-router-tab -S
 ```
-
 
 ### dev build
 
 If you like to start with the dev version, clone it from GitHub, and build your own `vue-router-tab`.
 
-``` bash
+```bash
 git clone https://github.com/bhuh12/vue-router-tab.git node_modules/vue-router-tab
 cd node_modules/vue-router-tab
 yarn
 yarn lib:build
 ```
 
-<!-- 
+<!--
 ### 直接下载 / CDN
 
 [https://unpkg.com/vue-router-tab/dist/lib/vue-router-tab.umd.min.js](https://unpkg.com/vue-router-tab/dist/lib/vue-router-tab.umd.min.js)
@@ -49,8 +48,6 @@ yarn lib:build
 <script src="/path/to/vue-router-tab.js"></script>
 ```
 -->
-
- 
 
 ### Polyfill
 

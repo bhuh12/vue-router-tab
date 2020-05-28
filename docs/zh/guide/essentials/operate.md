@@ -5,20 +5,20 @@
 RouterTab 通过响应路由变化来新增或切换页签，您可以使用以下两种方式。
 
 ### 1. Vue Router 原生方式（推荐）
- 
+
 使用 Vue Router 内置的方式打开页签，如果您之前访问过该地址，您打开的将是缓存的页签页面。
 
 参考文档：[Vue Router 导航](https://router.vuejs.org/zh/guide/essentials/navigation.html)
 
 使用 `<router-link>` 组件
 
-``` html
+```html
 <router-link to="/page/1">页面1</router-link>
 ```
 
 使用 `router.push`、`router.replace`、`router.go` 等方法
 
-``` javascript
+```javascript
 this.$router.push('/page/1')
 ```
 
@@ -32,7 +32,7 @@ this.$router.push('/page/1')
 
 **全新打开页签**
 
-``` javascript
+```javascript
 this.$routerTab.open('/page/2')
 ```
 
@@ -46,12 +46,13 @@ this.$routerTab.open('/page/2')
 
 **关闭当前页签**
 
-``` js
+```js
 this.$routerTab.close()
 ```
 
 **关闭指定页签**
-``` js
+
+```js
 // 关闭指定 fullPath 的页签
 this.$routerTab.close('/page/1')
 
@@ -66,7 +67,7 @@ this.$routerTab.close({
 
 **关闭页签后跳转地址**
 
-``` js
+```js
 // 关闭 '/page/1' 跳转到 '/page/2'
 this.$routerTab.close('/page/1', '/page/2')
 
@@ -78,7 +79,7 @@ this.$routerTab.close({
 
 **完整选项说明**
 
-``` js
+```js
 this.$routerTab.close({
   id: '', // 通过页签 id （即 aliveId 返回值）关闭页签, 与 path 二选一即可
   path: '/page/2', // 通过路由路径关闭页签，可 location 对象方式传入。如果未配置 id 和 path 则关闭当前页签
@@ -88,7 +89,6 @@ this.$routerTab.close({
   refresh: true // 是否全新打开跳转地址 默认 false
 })
 ```
-
 
 ## 刷新页签
 
@@ -100,12 +100,13 @@ this.$routerTab.close({
 
 **刷新当前页签**
 
-``` js
+```js
 this.$routerTab.refresh()
 ```
 
 **刷新指定页签**
-``` js
+
+```js
 // 刷新指定 fullPath 的页签
 this.$routerTab.refresh('/page/1')
 
@@ -119,12 +120,12 @@ this.$routerTab.refresh({
 ```
 
 **模糊刷新页签**
-``` js
+
+```js
 // 刷新与给定地址共用页签的地址，即使地址不完全匹配
 // 默认 `alive-id` 规则下，类似 '/page/1?query=2' 这样的页签也能被匹配刷新
 this.$routerTab.refresh('/page/1', false)
 ```
-
 
 ## 刷新所有页签
 
@@ -134,16 +135,15 @@ this.$routerTab.refresh('/page/1', false)
 
 **刷新所有页签**
 
-``` js
+```js
 this.$routerTab.refreshAll()
 ```
 
 **强制刷新所有页签**，忽略页面组件的 `beforePageLeave` 配置
 
-``` js
+```js
 this.$routerTab.refreshAll(true)
 ```
-
 
 ## 重置页签
 
@@ -153,7 +153,7 @@ this.$routerTab.refreshAll(true)
 
 针对这些场景，您可以使用 [`routerTab.reset`](../../api/README.md#routertab-reset) 方法来重置页签到初始状态
 
-``` js
+```js
 // 重置页签并跳转默认页面（程序会自动获取页签父路由地址为默认页面，您也可以通过 RouterTab 的 'default-page' 来指定）
 this.$routerTab.reset()
 

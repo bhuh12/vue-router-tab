@@ -14,8 +14,8 @@
   $s: 1.2em;
   display: inline-block;
   margin-left: 3px;
-  width:  $s;
-  height:  $s;
+  width: $s;
+  height: $s;
   font-size: 12px;
   line-height: $s;
   vertical-align: super;

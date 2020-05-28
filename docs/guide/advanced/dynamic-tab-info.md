@@ -2,23 +2,21 @@
 
 RouterTab will monitor the component `this.routeTab` to dynamically update the tab information. You can change the title, icon, and prompt of the tab by setting `this.routeTab`
 
-
-
 <doc-links demo="/default/tab-dynamic"></doc-links>
 
 **Example**
 
-``` javascript {7,15,18,27}
+```javascript {7,15,18,27}
 export default {
   name: 'goods',
-  data () {
+  data() {
     return {
       goodsName: 'Product name',
       goodsDesc: 'Product description',
       routeTab: null // routeTab store data for response
     }
   },
-  mounted () {
+  mounted() {
     setTimeout(() => {
       let { id } = this.$route.params
 
@@ -37,7 +35,6 @@ export default {
         // Define the internationalization with parameter list as an array, the format: ['i18nKey', ...params]
         title: ['routerTab.goods', this.goodsName]
       }
-      
     }, 300)
   }
 }

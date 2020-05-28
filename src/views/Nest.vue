@@ -2,7 +2,7 @@
   <div>
     <header class="header">
       嵌套路由{{ $route.params.nestId }}
-      <input type="text">
+      <input type="text" />
     </header>
 
     <div class="content">
@@ -50,7 +50,7 @@ $border: 1px solid #ddd;
 
     a {
       display: block;
-      padding: .8em 1em;
+      padding: 0.8em 1em;
       color: #2c3e50;
       text-decoration: none;
       border-bottom: $border;

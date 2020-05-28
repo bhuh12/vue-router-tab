@@ -4,20 +4,20 @@
 
 ::: warning
 
-- `beforePageLeave` is at the outermost level of the component, not in` methods`
+- `beforePageLeave` is at the outermost level of the component, not in`methods`
 
 - If you also need to block before the browser page closes or refreshes, please use
-[`onbeforeunload`](https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload)
-:::
+  [`onbeforeunload`](https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload)
+  :::
 
 <doc-links demo="/initial-tabs/page-leave"></doc-links>
 
 **Example:**
 
-``` javascript {3,15,21,23,28,29}
+```javascript {3,15,21,23,28,29}
 export default {
   // confirm before leaving
-  beforePageLeave (resolve, reject, tab, type) {
+  beforePageLeave(resolve, reject, tab, type) {
     // types
     const action = {
       close: 'shut down',

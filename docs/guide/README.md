@@ -18,7 +18,7 @@ A tab router component based on Vue Router.
 
 ✅ [Tabs Caching](advanced/restore.md): reopen tabs on page reload
 
-✅ [Reset Tabs](essentials/operate.md#重置页签): reset tabs to initial 
+✅ [Reset Tabs](essentials/operate.md#重置页签): reset tabs to initial
 
 ✅ [Dynamic Tab Info](advanced/dynamic-tab-info.md) (title/icon/tooltip)
 
@@ -27,7 +27,6 @@ A tab router component based on Vue Router.
 ✅ [Leave Prompt](advanced/page-leave.md)
 
 ✅ [i18n](essentials/i18n.md)
-
 
 ### Cons to existing solutions
 
@@ -40,7 +39,6 @@ There is [an existing solution](https://panjiachen.github.io/vue-element-admin-s
 3. Releasing tab cache could be complicated. Hooks are required to update tab data.
 
 4. Unable to customize tab display behavior.
-
 
 There is yet another solution which handles router and cache control by itself instead of Vue Router. It offers a bunch of APIs to operate tabs (e.g., opening and switching), which in practice, will lead to a deep refactoring in existing Vue Router project.
 
@@ -66,9 +64,8 @@ Even more:
 
 ---
 
-
 ### Browser compatibility
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>iOS Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera |
-| --------- | --------- | --------- | --------- | --------- | --------- |
-| IE10, IE11, Edge| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| IE10, IE11, Edge                                                                                                                                                                                                | last 2 versions                                                                                                                                                                                                   | last 2 versions                                                                                                                                                                                               | last 2 versions                                                                                                                                                                                               | last 2 versions                                                                                                                                                                                                               | last 2 versions                                                                                                                                                                                           |

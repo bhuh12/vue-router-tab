@@ -6,17 +6,17 @@ RouterTab 会监听组件 `this.routeTab` 来动态更新页签信息。您可�
 
 **示例：**
 
-``` javascript {7,15,18,27}
+```javascript {7,15,18,27}
 export default {
   name: 'goods',
-  data () {
+  data() {
     return {
       goodsName: '商品名',
       goodsDesc: '商品简介',
       routeTab: null // routeTab 存放在 data 中以支持响应
     }
   },
-  mounted () {
+  mounted() {
     setTimeout(() => {
       let { id } = this.$route.params
 
@@ -35,7 +35,6 @@ export default {
         // 以数组方式定义带参数列表的国际化，格式：['i18nKey', ...params]
         title: ['routerTab.goods', this.goodsName]
       }
-      
     }, 300)
   }
 }

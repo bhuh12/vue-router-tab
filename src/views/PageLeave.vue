@@ -5,24 +5,18 @@
     <page-timer />
 
     <p>
-      <strong class="text-strong">修改输入框的值</strong>后，页面在页签关闭/刷新/被替换时将会确认提示
+      <strong class="text-strong">修改输入框的值</strong>
+      后，页面在页签关闭/刷新/被替换时将会确认提示
     </p>
 
-    <input
-      v-model="editValue"
-      type="text"
-    >
+    <input v-model="editValue" type="text" />
 
     <p>
-      <a
-        class="demo-btn"
-        @click="$routerTab.refresh(null, true, false)"
-      >刷新</a>
+      <a class="demo-btn" @click="$routerTab.refresh(null, true, false)">
+        刷新
+      </a>
 
-      <a
-        class="demo-btn"
-        @click="$routerTab.close({ force: false })"
-      >关闭</a>
+      <a class="demo-btn" @click="$routerTab.close({ force: false })">关闭</a>
 
       <router-link
         class="demo-btn"
@@ -41,7 +35,7 @@ export default {
   name: 'PageLeave',
   components: { PageTimer },
 
-  data () {
+  data() {
     let value = '初始值'
     return {
       value,
@@ -50,7 +44,7 @@ export default {
   },
 
   // 页面离开前确认
-  beforePageLeave (resolve, reject, tab, type) {
+  beforePageLeave(resolve, reject, tab, type) {
     // 离开类型
     const action = {
       close: '关闭',

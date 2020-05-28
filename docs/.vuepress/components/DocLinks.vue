@@ -36,4 +36,3 @@ export default {
     &:last-child
       margin-right 0
 </style>
-

@@ -1,7 +1,7 @@
 <template>
   <div class="router-tab">
     <!-- 页签头部 -->
-    <header :class="[ 'router-tab-header', hasScroller && 'is-scroll' ]">
+    <header :class="['router-tab-header', hasScroller && 'is-scroll']">
       <!-- 页签向前滚动 -->
       <a class="nav-prev" @click="tabScroll('left')" />
 
@@ -19,7 +19,9 @@
             :key="item.id || item.to"
             :data="item"
             :index="index"
-            @contextmenu.native.prevent="e => showContextmenu(item.id, index, e)"
+            @contextmenu.native.prevent="
+              e => showContextmenu(item.id, index, e)
+            "
           >
             <template v-if="$scopedSlots.default" v-slot:default="scope">
               <slot v-bind="scope" />

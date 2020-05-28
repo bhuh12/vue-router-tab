@@ -6,18 +6,18 @@
 
 - `beforePageLeave` 在组件的最外层，不是放在 `methods` 里
 
-- 如果还需要在浏览器页面关闭或刷新前阻止，请使用 
-[`onbeforeunload`](https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload)
-:::
+- 如果还需要在浏览器页面关闭或刷新前阻止，请使用
+  [`onbeforeunload`](https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload)
+  :::
 
 <doc-links demo="/initial-tabs/page-leave"></doc-links>
 
 **示例：**
 
-``` javascript {3,15,21,23,28}
+```javascript {3,15,21,23,28}
 export default {
   // 页面离开前确认
-  beforePageLeave (resolve, reject, tab, type) {
+  beforePageLeave(resolve, reject, tab, type) {
     // 离开类型
     const action = {
       close: '关闭',

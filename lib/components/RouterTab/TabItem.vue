@@ -50,27 +50,27 @@ export default {
     ...mapDataComputed('id', 'to', 'icon', 'tabClass', 'target', 'href'),
 
     // 国际化
-    i18nText () {
+    i18nText() {
       return this.Tab.i18nText
     },
 
     // 未命名页签
-    untitled () {
+    untitled() {
       return this.Tab.lang.tab.untitled
     },
 
     // 页签标题
-    title () {
+    title() {
       return this.i18nText(this.data.title) || this.untitled
     },
 
     // 页签提示
-    tips () {
+    tips() {
       return this.i18nText(this.data.tips || this.data.title) || this.untitled
     },
 
     // 是否可关闭
-    closable () {
+    closable() {
       const { keepLastTab, items } = this.Tab
       return this.data.closable && !(keepLastTab && items.length < 2)
     }
@@ -78,7 +78,7 @@ export default {
 
   methods: {
     // 关闭当前页签
-    close () {
+    close() {
       this.Tab.closeTab(this.id)
     }
   }

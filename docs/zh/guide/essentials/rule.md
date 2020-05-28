@@ -2,19 +2,18 @@
 
 不同的页签维护着各自的页面缓存，而**页签规则**定义了不同的路由**打开页签的方式**。
 
-
 ## 内置规则
 
 - `path` (默认规则)
-  - 规则：`(route, pagePath) => pagePath || route.path` 
+
+  - 规则：`(route, pagePath) => pagePath || route.path`
   - 说明：相同 route.params 的路由共用页签，嵌套路由页签根据 pagePath
   - <demo-link href="/default/rule/a/1"/>
 
 - `fullPath`
-  - 规则：`(route, pagePath) => pagePath || route.fullPath.replace(route.hash, '')` 
+  - 规则：`(route, pagePath) => pagePath || route.fullPath.replace(route.hash, '')`
   - 说明：相同 route.params 和 route.query 的路由共用页签，嵌套路由页签根据 pagePath
   - <demo-link href="/global-rule/rule/a/1"/>
-
 
 ## 全局页签规则
 
@@ -24,8 +23,10 @@
 
 **示例：**
 
-``` html
-<router-tab :alive-id="(route, pagePath) => pagePath || route.fullPath.replace(route.hash, '')"/>
+```html
+<router-tab
+  :alive-id="(route, pagePath) => pagePath || route.fullPath.replace(route.hash, '')"
+/>
 ```
 
 例子中，配置 `alive-id` 为 `fullPath` 去除 `hash` 部分。
@@ -34,10 +35,9 @@
 
 该规则已经内置在 RouterTab 中了，因此，您也可以直接这样使用：
 
-``` html
-<router-tab alive-id="fullPath"/>
+```html
+<router-tab alive-id="fullPath" />
 ```
-
 
 ## 路由页签规则
 
@@ -47,15 +47,16 @@
 
 **示例：**
 
-``` javascript {8,9,10}
+```javascript {9,10,11}
 const route = {
   path: '/my-page/:catalog/:type',
   component: {
-    template: '<div>定制规则：{{$route.params.catalog}}/{{$route.params.type}}</div>'
+    template:
+      '<div>定制规则：{{$route.params.catalog}}/{{$route.params.type}}</div>'
   },
   meta: {
     title: '定制规则',
-    aliveId (route, pagePath) {
+    aliveId(route, pagePath) {
       return `/my-page/${route.params.catalog}`
     }
   }

@@ -8,7 +8,7 @@ RouterTab uses sessionStorage to store the cache information of the tabs
 
 **Default mode**
 
-``` html
+```html
 <router-tab restore />
 ```
 
@@ -18,7 +18,7 @@ RouterTab supports customizing the locally stored key, and obtains the correspon
 
 In practical applications, we want to store browser tab information based on the current user.
 
-``` html
+```html
 <router-tab :restore="userInfo.userId" />
 ```
 
@@ -26,6 +26,6 @@ In practical applications, we want to store browser tab information based on the
 
 Usually, our data will be obtained asynchronously from the server. If we want to restore the user's tabs after the user data is obtained, we can configure `restore-watch` to monitor the restore parameters and automatically restore the corresponding user's tabs after changes.
 
-``` html
+```html
 <router-tab :restore="userInfo.userId" restore-watch />
 ```

@@ -5,7 +5,7 @@
 <script>
 export default {
   name: 'InitialTabs',
-  data () {
+  data() {
     return {
       tabs: [
         // 只需设置 fullpath，程序将自动从 router 配置中获取页签的标题/图标等信息
@@ -31,7 +31,9 @@ export default {
 
         // iframe 页签
         {
-          to: `/initial-tabs/iframe/${encodeURIComponent('https://m.hao123.com/')}/Hao123/rt-icon-web`,
+          to: `/initial-tabs/iframe/${encodeURIComponent(
+            'https://m.hao123.com/'
+          )}/Hao123/rt-icon-web`,
           title: 'Hao123',
           icon: 'rt-icon-web'
         }

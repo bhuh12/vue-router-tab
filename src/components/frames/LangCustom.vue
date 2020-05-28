@@ -5,7 +5,7 @@
 <script>
 export default {
   name: 'LangCustom',
-  data () {
+  data() {
     return {
       customLanguage: {
         tab: {

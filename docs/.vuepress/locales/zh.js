@@ -26,7 +26,7 @@ exports.theme = {
 
   // 编辑链接文字
   editLinkText: '在 GitHub 上编辑此页',
-  
+
   lastUpdated: '上次更新',
 
   // 页头导航

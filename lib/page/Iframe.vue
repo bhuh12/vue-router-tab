@@ -13,7 +13,7 @@ export default {
     icon: String
   },
 
-  data () {
+  data() {
     return {
       routeTab: null
     }
@@ -21,7 +21,7 @@ export default {
 
   computed: {
     // 链接安全过滤，避免执行js
-    url () {
+    url() {
       let { src } = this
 
       // XSS 攻击链接返回空白页
@@ -33,7 +33,7 @@ export default {
     }
   },
 
-  async mounted () {
+  async mounted() {
     let { url, title, icon, $routerTab: $tab } = this
     let { iframes } = $tab
 
@@ -49,16 +49,16 @@ export default {
     this.$routerTab.iframeMounted(url)
   },
 
-  activated () {
+  activated() {
     this.$routerTab.currentIframe = this.url
   },
 
-  deactivated () {
+  deactivated() {
     this.$routerTab.currentIframe = null
   },
 
   // 组件销毁后移除 iframe
-  destroyed () {
+  destroyed() {
     let { url } = this
     let { iframes } = this.$routerTab
     let index = iframes.indexOf(url)
@@ -68,4 +68,4 @@ export default {
     }
   }
 }
-</script>>
+</script>

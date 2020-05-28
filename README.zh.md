@@ -50,7 +50,6 @@
 
 Vue Router Tab 是基于 Vue Router 的路由页签组件，用来实现多页签页面的管理。
 
-
 ## 📌 功能
 
 ✅ 响应路由变化来打开或切换页签
@@ -77,7 +76,6 @@ Vue Router Tab 是基于 Vue Router 的路由页签组件，用来实现多页�
 
 ✅ [多语言支持](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/i18n.html)
 
-
 ## 🛠 安装
 
 [https://bhuh12.github.io/vue-router-tab/zh/guide/installation.html](https://bhuh12.github.io/vue-router-tab/zh/guide/installation.html)
@@ -86,13 +84,13 @@ Vue Router Tab 是基于 Vue Router 的路由页签组件，用来实现多页�
 
 [https://bhuh12.github.io/vue-router-tab/zh/](https://bhuh12.github.io/vue-router-tab/zh/)
 
-  - 介绍：
+- 介绍：
   [https://bhuh12.github.io/vue-router-tab/zh/guide/](https://bhuh12.github.io/vue-router-tab/zh/guide/)
 
-  - 入门：
+- 入门：
   [https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/)
 
-  - API：
+- API：
   [https://bhuh12.github.io/vue-router-tab/zh/api/](https://bhuh12.github.io/vue-router-tab/zh/api/)
 
 ## 📺 演示
@@ -109,22 +107,20 @@ Vue Router Tab 是基于 Vue Router 的路由页签组件，用来实现多页�
 
 ---
 
-
 ## 🏷 NPM 任务
 
-| 任务 | 命令 | 备注 |
-| ---- | ---- | ---- |
-| 插件构建 | `npm run lib:build` |
+| 任务               | 命令                       | 备注                                                  |
+| ------------------ | -------------------------- | ----------------------------------------------------- |
+| 插件构建           | `npm run lib:build`        |
 | 插件构建并生成报告 | `npm run lib:build:report` |
-| 插件发布 | `npm run lib:publish` | 操作前更改 `package.json` 中的 `version` 为新的版本号 |
-| Demo 开发 | `npm run demo:dev` |
-| Demo 构建 | `npm run demo:build` |
-| 文档开发 | `npm run docs:dev` |
-| 文档构建 | `npm run docs:build` |
-| 代码风格检查 | `npm run lint` |
-| 代码风格检查并修复 | `npm run lint:fix` |
-| 代码提交 | `npm run commit` |
-
+| 插件发布           | `npm run lib:publish`      | 操作前更改 `package.json` 中的 `version` 为新的版本号 |
+| Demo 开发          | `npm run demo:dev`         |
+| Demo 构建          | `npm run demo:build`       |
+| 文档开发           | `npm run docs:dev`         |
+| 文档构建           | `npm run docs:build`       |
+| 代码风格检查       | `npm run lint`             |
+| 代码风格检查并修复 | `npm run lint:fix`         |
+| 代码提交           | `npm run commit`           |
 
 ## License
 

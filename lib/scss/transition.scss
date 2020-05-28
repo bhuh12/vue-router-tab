@@ -3,7 +3,7 @@
   &-zoom {
     &-enter-active,
     &-leave-active {
-      transition: all .4s;
+      transition: all 0.4s;
     }
 
     &-enter,
@@ -19,7 +19,7 @@
 
     &-enter-active,
     &-leave-active {
-      transition: all .5s;
+      transition: all 0.5s;
     }
 
     &-enter,

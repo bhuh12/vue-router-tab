@@ -5,20 +5,14 @@
     <div class="form-item">
       <label>
         <p>修改页签标题</p>
-        <input
-          v-model="routeTab.title"
-          type="text"
-        >
+        <input v-model="routeTab.title" type="text" />
       </label>
     </div>
 
     <div class="form-item">
       <label>
         <p>修改页签提示</p>
-        <input
-          v-model="routeTab.tips"
-          type="text"
-        >
+        <input v-model="routeTab.tips" type="text" />
       </label>
     </div>
 
@@ -38,7 +32,7 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       routeTab: {
         title: '动态更新页签',
@@ -57,7 +51,7 @@ export default {
   margin-bottom: 1rem;
 
   p {
-    margin: .5em 0;
+    margin: 0.5em 0;
   }
 }
 

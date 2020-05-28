@@ -1,5 +1,7 @@
 <template>
-  <p>你在 <strong class="text-strong">{{ pageTime }}</strong> 秒前打开本页面</p>
+  <p>
+    你在 <strong class="text-strong">{{ pageTime }}</strong> 秒前打开本页面
+  </p>
 </template>
 
 <script>
@@ -7,31 +9,31 @@
 export default {
   name: 'PageTimer',
 
-  data () {
+  data() {
     return {
       openTime: new Date(),
       pageTime: 0
     }
   },
 
-  activated () {
+  activated() {
     this.updatePageTime()
   },
 
-  deactivated () {
+  deactivated() {
     this.clearPageTimer()
   },
 
-  beforeDestroy () {
+  beforeDestroy() {
     this.clearPageTimer()
   },
 
   methods: {
-    calcPageTime () {
+    calcPageTime() {
       this.pageTime = Math.floor((new Date() - this.openTime) / 1000)
     },
 
-    updatePageTime () {
+    updatePageTime() {
       this.calcPageTime()
 
       this.clearPageTimer()
@@ -40,7 +42,7 @@ export default {
       this.pageTimer = setInterval(this.calcPageTime, 1000)
     },
 
-    clearPageTimer () {
+    clearPageTimer() {
       clearInterval(this.pageTimer)
     }
   }

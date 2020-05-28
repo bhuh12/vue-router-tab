@@ -50,7 +50,6 @@ English | [简体中文](README.zh.md)
 
 A tab router component based on Vue Router.
 
-
 ## 📌 Features
 
 ✅ Open or switch to tabs responding to route change
@@ -77,7 +76,6 @@ A tab router component based on Vue Router.
 
 ✅ [i18n](https://bhuh12.github.io/vue-router-tab/guide/essentials/i18n.html)
 
-
 ## 🛠 Installation
 
 [https://bhuh12.github.io/vue-router-tab/guide/installation.html](https://bhuh12.github.io/vue-router-tab/guide/installation.html)
@@ -86,13 +84,13 @@ A tab router component based on Vue Router.
 
 [https://bhuh12.github.io/vue-router-tab/](https://bhuh12.github.io/vue-router-tab/)
 
-  - Introduction：
+- Introduction：
   [https://bhuh12.github.io/vue-router-tab/guide/](https://bhuh12.github.io/vue-router-tab/guide/)
 
-  - Getting Started：
+- Getting Started：
   [https://bhuh12.github.io/vue-router-tab/guide/essentials/](https://bhuh12.github.io/vue-router-tab/guide/essentials/)
 
-  - API：
+- API：
   [https://bhuh12.github.io/vue-router-tab/api/](https://bhuh12.github.io/vue-router-tab/api/)
 
 ## 📺 Online Demo
@@ -109,22 +107,20 @@ A tab router component based on Vue Router.
 
 ---
 
-
 ## 🏷 NPM Task
 
-| Task | Command | Description |
-| ---- | ---- | ---- |
-| Lib build | `npm run lib:build` |
-| Lib build and generate report | `npm run lib:build:report` |
-| Lib publish | `npm run lib:publish` | change `version` in `package.json` |
-| Demo develop | `npm run demo:dev` |
-| Demo build | `npm run demo:build` |
-| Document develop | `npm run docs:dev` |
-| Document build | `npm run docs:build` |
-| Code format check | `npm run lint` |
-| Code format check and auto fix | `npm run lint:fix` |
-| Commit code | `npm run commit` |
-
+| Task                           | Command                    | Description                        |
+| ------------------------------ | -------------------------- | ---------------------------------- |
+| Lib build                      | `npm run lib:build`        |
+| Lib build and generate report  | `npm run lib:build:report` |
+| Lib publish                    | `npm run lib:publish`      | change `version` in `package.json` |
+| Demo develop                   | `npm run demo:dev`         |
+| Demo build                     | `npm run demo:build`       |
+| Document develop               | `npm run docs:dev`         |
+| Document build                 | `npm run docs:build`       |
+| Code format check              | `npm run lint`             |
+| Code format check and auto fix | `npm run lint:fix`         |
+| Commit code                    | `npm run commit`           |
 
 ## License
 

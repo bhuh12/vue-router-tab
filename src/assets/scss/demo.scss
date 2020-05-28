@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -6,13 +7,13 @@ html, body {
 
 body {
   margin: 0;
-  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
   color: $text;
 }
-
 
 /*滚动条*/
 ::-webkit-scrollbar {
@@ -20,22 +21,22 @@ body {
   $mw: 3px;
   width: $w;
   height: $w;
-  
+
   @include screen-mob {
     width: $mw;
     height: $mw;
   }
 
   &-thumb {
-    background: rgba(0, 0, 0, .1);
+    background: rgba(0, 0, 0, 0.1);
     border-radius: 20px;
 
     &:hover {
-      background: rgba($color, .5);
+      background: rgba($color, 0.5);
     }
 
     &:active {
-      background: rgba($color, .8);
+      background: rgba($color, 0.8);
     }
   }
 
@@ -45,9 +46,9 @@ body {
 }
 
 // 图标
-[class^="rt-icon-"],
-[class*=" rt-icon-"] {
-  font-family: "rtfont" !important;
+[class^='rt-icon-'],
+[class*=' rt-icon-'] {
+  font-family: 'rtfont' !important;
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
@@ -55,7 +56,7 @@ body {
 }
 
 a:link {
-  transition: color .3s ease-in-out;
+  transition: color 0.3s ease-in-out;
 }
 
 // 强提示
@@ -70,7 +71,7 @@ a:link {
   $activeColor: mix(#000, $color, 20%);
 
   display: inline-block;
-  margin: 0 1em .5em 0;
+  margin: 0 1em 0.5em 0;
   padding: 3px 8px;
   font-size: 14px;
   color: #333;
@@ -78,7 +79,7 @@ a:link {
   cursor: pointer;
   border-radius: 3px;
   border: 1px solid #ccc;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 
   &:hover {
     color: $color;
@@ -89,17 +90,17 @@ a:link {
     color: $activeColor;
     border-color: $activeColor;
   }
-  
+
   &.link {
     &:hover {
       color: $color-primary;
       border-color: $color-primary;
     }
-  
+
     &.router-link-exact-active {
       color: #fff;
       background-color: $color-primary;
-      border-color: rgba(0,0,0,.05);
+      border-color: rgba(0, 0, 0, 0.05);
     }
   }
 
@@ -123,7 +124,8 @@ a:link {
   min-width: 300px;
   border-collapse: collapse;
 
-  th, td {
+  th,
+  td {
     padding: 5px 8px;
     border: 1px solid #ddd;
   }

@@ -5,26 +5,42 @@
     <p>
       <a
         class="demo-btn"
-        @click="$routerTab.openIframe('https://www.baidu.com', '百度', 'rt-icon-web')"
-      >打开“百度”</a>
+        @click="
+          $routerTab.openIframe('https://www.baidu.com', '百度', 'rt-icon-web')
+        "
+      >
+        打开“百度”
+      </a>
 
       <a
         class="demo-btn"
         @click="$routerTab.refreshIframe('https://www.baidu.com')"
-      >刷新“百度”</a>
+      >
+        刷新“百度”
+      </a>
 
       <a
         class="demo-btn"
         @click="$routerTab.closeIframe('https://www.baidu.com')"
-      >关闭“百度”</a>
+      >
+        关闭“百度”
+      </a>
     </p>
 
     <p>
       <a
         class="demo-btn"
         title="XSS 跨站链接的 iframe 将展示空白页面"
-        @click="$routerTab.openIframe('javascript:alert(window.parent.document.body.innerHTML)', 'XSS 跨站', 'rt-icon-web')"
-      >XSS 跨站</a>
+        @click="
+          $routerTab.openIframe(
+            'javascript:alert(window.parent.document.body.innerHTML)',
+            'XSS 跨站',
+            'rt-icon-web'
+          )
+        "
+      >
+        XSS 跨站
+      </a>
     </p>
 
     <h3>打开 iframe 页签</h3>
@@ -32,18 +48,23 @@
     <div class="custom-iframe">
       <label>
         名称：
-        <input v-model="iframe.title" name="title" placeholder="页签标题">
+        <input v-model="iframe.title" name="title" placeholder="页签标题" />
       </label>
 
       <label>
         网址：
-        <input v-model="iframe.src" name="src" placeholder="请输入完整的网址">
+        <input v-model="iframe.src" name="src" placeholder="请输入完整的网址" />
       </label>
 
       <a
         class="demo-btn primary"
-        @click="iframe.src && $routerTab.openIframe(iframe.src, iframe.title, 'rt-icon-web')"
-      >打开页签</a>
+        @click="
+          iframe.src &&
+            $routerTab.openIframe(iframe.src, iframe.title, 'rt-icon-web')
+        "
+      >
+        打开页签
+      </a>
     </div>
 
     <template v-if="/^\/iframe\//.test($route.path)">
@@ -52,7 +73,11 @@
       </h3>
 
       <p>
-        开启浏览器开发者工具的 console 页签，打开 iframe 页签并查看 <code>iframe-mounted</code> 和 <code>iframe-loaded</code> 事件的参数打印
+        开启浏览器开发者工具的 console 页签，打开 iframe 页签并查看
+        <code>iframe-mounted</code>
+        和
+        <code>iframe-loaded</code>
+        事件的参数打印
       </p>
     </template>
   </div>
@@ -61,7 +86,7 @@
 <script>
 export default {
   name: 'IframeOperate',
-  data () {
+  data() {
     return {
       iframe: {
         src: 'https://www.hao123.com/',
@@ -76,11 +101,11 @@ export default {
 .custom-iframe {
   label {
     display: block;
-    margin-bottom: .8em;
+    margin-bottom: 0.8em;
   }
 
   input {
-    padding: .4em .8em;
+    padding: 0.4em 0.8em;
   }
 }
 </style>

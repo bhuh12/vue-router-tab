@@ -24,10 +24,7 @@
     <h4>点击下面的链接，并观察页签的变化</h4>
 
     <ul class="btn-list">
-      <li
-        v-for="cat in catalogs"
-        :key="cat"
-      >
+      <li v-for="cat in catalogs" :key="cat">
         <router-link
           v-for="t in types"
           :key="t"
@@ -36,9 +33,11 @@
         >
           {{ cat }}/{{ t }}
         </router-link>
+
         <router-link class="demo-btn link" :to="`../${cat}/1?q=abc`">
           {{ cat }}/1?q=abc
         </router-link>
+
         <router-link class="demo-btn link" :to="`../${cat}/1?q=def`">
           {{ cat }}/1?q=def
         </router-link>
@@ -58,7 +57,7 @@ import PageRouteInfo from '../components/PageRouteInfo'
 export default {
   name: 'Rule',
   components: { PageTimer, PageRouteInfo },
-  data () {
+  data() {
     let route = this.$route
     let { catalog, type } = route.params
 
@@ -80,13 +79,15 @@ export default {
       global: {
         label: '全局',
         type: '内置规则："fullPath"',
-        fn: '(route, pagePath) => pagePath || route.fullPath.replace(route.hash, \'\')',
-        desc: '相同 route.params 和 route.query 的路由共用页签，嵌套路由页签根据 pagePath'
+        fn:
+          "(route, pagePath) => pagePath || route.fullPath.replace(route.hash, '')",
+        desc:
+          '相同 route.params 和 route.query 的路由共用页签，嵌套路由页签根据 pagePath'
       },
       route: {
         label: '路由',
         type: '自定义规则',
-        fn: 'route => \'route-rule/\' + route.params.catalog',
+        fn: "route => 'route-rule/' + route.params.catalog",
         desc: '相同 catalog 参数的路由共用页签'
       }
     }
@@ -98,7 +99,7 @@ export default {
       catalog,
       type,
       catalogs: ['a', 'b', 'c'],
-      types: [ 1, 2 ],
+      types: [1, 2],
       link: { catalog, type },
       routeTab: `${curRule.label}规则${catalog}/${type}`
     }
@@ -120,7 +121,7 @@ export default {
     list-style: none;
 
     .demo-btn {
-      margin-right: .5em;
+      margin-right: 0.5em;
     }
   }
 }

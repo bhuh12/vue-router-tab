@@ -12,13 +12,13 @@ See [Vue Router Navigation](https://router.vuejs.org/guide/essentials/navigation
 
 Via `<router-link>`
 
-``` html
+```html
 <router-link to="/page/1">Page 1</router-link>
 ```
 
 Via `router.push`, `router.replace`, `router.go`, etc.
 
-``` javascript
+```javascript
 this.$router.push('/page/1')
 ```
 
@@ -32,7 +32,7 @@ This method will reload the existing cached tab by default, which might be usefu
 
 **Force-new-open**
 
-``` javascript
+```javascript
 this.$routerTab.open('/page/2')
 ```
 
@@ -46,12 +46,13 @@ You can close a tab with [`routerTab.close`](../../api/README.md#routertab-close
 
 **Current tab**
 
-``` js
+```js
 this.$routerTab.close()
 ```
 
 **Designated tab**
-``` js
+
+```js
 // fullPath
 this.$routerTab.close('/page/1')
 
@@ -66,7 +67,7 @@ this.$routerTab.close({
 
 **Jump after closed**
 
-``` js
+```js
 // close '/page/1', then jump to '/page/2'
 this.$routerTab.close('/page/1', '/page/2')
 
@@ -78,7 +79,7 @@ this.$routerTab.close({
 
 **Options**
 
-``` js
+```js
 this.$routerTab.close({
   id: '', // close by tab id, i.e., aliveId. equivalent to path
   path: '/page/2', // close by route path, accepts location object. Will close current tab if neither id nor path is provided.
@@ -88,7 +89,6 @@ this.$routerTab.close({
   refresh: true // should refresh the `to` url or not, defaults to false
 })
 ```
-
 
 ## Refresh
 
@@ -100,12 +100,13 @@ You can refresh a tab with [`routerTab.refresh`](../../api/README.md#routertab-r
 
 **Current tab**
 
-``` js
+```js
 this.$routerTab.refresh()
 ```
 
 **Designated tab**
-``` js
+
+```js
 // fullPath
 this.$routerTab.refresh('/page/1')
 
@@ -119,12 +120,12 @@ this.$routerTab.refresh({
 ```
 
 **Fuzzy matching**
-``` js
+
+```js
 // refresh tabs in fuzzy mode
 // e.g., '/page/1?query=2' will get refreshed by this rule
 this.$routerTab.refresh('/page/1', false)
 ```
-
 
 ## Refresh all
 
@@ -134,16 +135,15 @@ You can refresh all tabs with [`routerTab.refreshAll`](../../api/README.md#route
 
 **Refresh all**
 
-``` js
+```js
 this.$routerTab.refreshAll()
 ```
 
 **Force-refresh all**, ignoring `beforePageLeave` in tab components
 
-``` js
+```js
 this.$routerTab.refreshAll(true)
 ```
-
 
 ## Reset
 
@@ -153,9 +153,9 @@ Generally, when user logged out, we need to reset all tabs to initial state, e.g
 
 You can do that with [`routerTab.reset`](../../api/README.md#routertab-reset)
 
-``` js
+```js
 // reset tabs and jump to default page
-// (RouterTab will use parent route as default page, 
+// (RouterTab will use parent route as default page,
 //   or you can configure this with `default-page`.)
 this.$routerTab.reset()
 

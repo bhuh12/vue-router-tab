@@ -7,10 +7,12 @@
       <a
         v-for="lang in $lang.list()"
         :key="lang"
-        :class="{primary: lang === $lang.get()}"
+        :class="{ primary: lang === $lang.get() }"
         class="demo-btn"
         @click="$lang.set(lang)"
-      >{{ lang }}</a>
+      >
+        {{ lang }}
+      </a>
     </section>
   </div>
 </template>

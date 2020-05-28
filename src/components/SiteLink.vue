@@ -1,7 +1,7 @@
 <template>
   <div class="site-link">
     <a
-      v-for="({label, icon, url}, index) in links"
+      v-for="({ label, icon, url }, index) in links"
       :key="index"
       :href="url"
       :target="url.indexOf('http') === 0 ? '_blank' : '_self'"
@@ -14,25 +14,30 @@
 <script>
 export default {
   name: 'SiteLink',
-  data () {
+  data() {
     return {
-      links: [{
-        label: 'GitHub',
-        icon: 'github',
-        url: 'https://github.com/bhuh12/vue-router-tab'
-      }, {
-        label: '文档和API',
-        icon: 'api',
-        url: 'https://bhuh12.github.io/vue-router-tab/'
-      }, {
-        label: 'Issues',
-        icon: 'feedback',
-        url: 'https://github.com/bhuh12/vue-router-tab/issues'
-      }, {
-        label: '作者主页',
-        icon: 'home',
-        url: 'https://bhuh.net'
-      }]
+      links: [
+        {
+          label: 'GitHub',
+          icon: 'github',
+          url: 'https://github.com/bhuh12/vue-router-tab'
+        },
+        {
+          label: '文档和API',
+          icon: 'api',
+          url: 'https://bhuh12.github.io/vue-router-tab/'
+        },
+        {
+          label: 'Issues',
+          icon: 'feedback',
+          url: 'https://github.com/bhuh12/vue-router-tab/issues'
+        },
+        {
+          label: '作者主页',
+          icon: 'home',
+          url: 'https://bhuh.net'
+        }
+      ]
     }
   }
 }
@@ -42,14 +47,14 @@ export default {
 .site-link {
   display: flex;
   justify-content: space-around;
-  padding: .8em 0;
+  padding: 0.8em 0;
   text-align: center;
 
   a {
     font-size: 1.5rem;
     color: #888;
     text-decoration: none;
-    transition: all .1s ease;
+    transition: all 0.1s ease;
 
     &:hover,
     &:active {

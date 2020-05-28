@@ -1,11 +1,7 @@
 <template>
   <aside class="app-sd">
     <div class="app-sd-menu">
-      <menu-group
-        v-for="(item, index) in menu"
-        :key="index"
-        :data="item"
-      />
+      <menu-group v-for="(item, index) in menu" :key="index" :data="item" />
     </div>
     <footer class="app-sd-ft">
       <site-link />
@@ -22,7 +18,7 @@ import menu from '../config/menu'
 export default {
   name: 'AppAside',
   components: { MenuGroup, SiteLink },
-  data () {
+  data() {
     return { menu }
   }
 }
@@ -33,7 +29,7 @@ export default {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  background-color: rgba(#fff, .95);
+  background-color: rgba(#fff, 0.95);
   border-right: 1px solid #eaecef;
 
   &-menu {

@@ -10,10 +10,7 @@
     </div>
   </div>
 
-  <menu-item
-    v-else
-    :data="data"
-  />
+  <menu-item v-else :data="data" />
 </template>
 
 <script>
@@ -29,10 +26,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$fs: .875rem;
+$fs: 0.875rem;
 .menu-item {
   display: block;
-  padding: .35rem 1rem .35rem 1.25rem;
+  padding: 0.35rem 1rem 0.35rem 1.25rem;
   font-size: $fs;
   color: #2c3e50;
   text-decoration: none;
@@ -50,7 +47,7 @@ $fs: .875rem;
 
 .menu-title {
   padding: 0 1.25rem;
-  margin: .5rem 0;
+  margin: 0.5rem 0;
   font-size: 1.1em;
   font-weight: 600;
 }
@@ -65,7 +62,7 @@ $fs: .875rem;
   }
 
   .menu-group .menu-title {
-    margin: .3rem 0;
+    margin: 0.3rem 0;
     font-size: $fs;
   }
 }
