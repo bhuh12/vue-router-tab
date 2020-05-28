@@ -1,5 +1,5 @@
 // 构建目标是否为库
-const isBuildLib = process.env.npm_lifecycle_script.indexOf('--target lib') > 0
+const isBuildLib = (process.env.npm_lifecycle_script || '').indexOf('--target lib') > 0
 
 module.exports = {
   publicPath: '', // 相对路径
