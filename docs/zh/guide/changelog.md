@@ -1,5 +1,12 @@
 # 更新日志
 
+## [1.0.0-alpha.5](https://github.com/bhuh12/vue-router-tab/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2020-05-29)
+
+### Features
+
+- **scroll:** 鼠标滚轮滚动页签，移动端原生触摸滚动页签 ([dd29942](https://github.com/bhuh12/vue-router-tab/commit/dd29942f89d16dd6caafa4ac51966e979170a000))
+- **slot:** 新增 start：页签开始、end：页签结束 插槽 ([34d8542](https://github.com/bhuh12/vue-router-tab/commit/34d85421815f71364c1f8df157d1dbb95798c3e3))
+
 ## [1.0.0-alpha.4](https://github.com/bhuh12/vue-router-tab/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2020-04-10)
 
 ### Bug Fixes

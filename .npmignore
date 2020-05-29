@@ -14,6 +14,11 @@ tsconfig.json
 tslint.json
 vue.config.js
 
+.eslintrc.js
+.eslintignore
+.prettierrc.js
+
 .github
+.vscode
 .editorconfig
 .travis.yml
