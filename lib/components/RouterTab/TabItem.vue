@@ -23,7 +23,7 @@
 const mapDataComputed = (...keys) => {
   const map = {}
   keys.forEach(key => {
-    map[key] = function () {
+    map[key] = function() {
       return this.data[key]
     }
   })
