@@ -1,7 +1,10 @@
 <template>
-  <div class="router-tab">
+  <div class="router-tab" :class="{ 'is-mobile': isMobile }">
     <!-- 页签头部 -->
-    <header :class="['router-tab-header', hasScroller && 'is-scroll']">
+    <header
+      ref="header"
+      :class="['router-tab-header', hasScroller && 'is-scroll']"
+    >
       <div class="router-tab_start">
         <slot name="start" />
       </div>
@@ -9,9 +12,10 @@
       <!-- 页签向前滚动 -->
       <a class="nav-prev" @click="tabScroll('left')" />
 
-      <div class="router-tab-scroll">
+      <div ref="scroller" class="router-tab-scroll" @wheel.prevent="tabWheel">
         <!-- 页签列表 -->
         <transition-group
+          ref="nav"
           tag="ul"
           class="router-tab-nav"
           v-bind="getTransOpt(tabTransition)"

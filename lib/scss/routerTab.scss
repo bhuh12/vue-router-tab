@@ -291,4 +291,19 @@ $close-icon-size: 14px;
       }
     }
   }
+
+  // 移动设备
+  &.is-mobile {
+    // 滚动
+    .router-tab-scroll {
+      overflow-y: hidden;
+      overflow-x: auto;
+    }
+
+    // 隐藏左右滚动按钮
+    .nav-prev,
+    .nav-next {
+      display: none;
+    }
+  }
 }
