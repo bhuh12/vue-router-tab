@@ -13,12 +13,6 @@ export default {
     icon: String
   },
 
-  data() {
-    return {
-      routeTab: null
-    }
-  },
-
   computed: {
     // 链接安全过滤，避免执行js
     url() {
@@ -34,10 +28,8 @@ export default {
   },
 
   async mounted() {
-    let { url, title, icon, $routerTab: $tab } = this
+    let { url, $routerTab: $tab } = this
     let { iframes } = $tab
-
-    this.routeTab = { title, icon }
 
     if (!iframes.includes(url)) {
       iframes.push(url)

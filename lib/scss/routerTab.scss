@@ -245,6 +245,10 @@ $close-icon-size: 14px;
     overflow-y: auto;
     background: #fff;
     transition: all 0.4s ease-in-out;
+
+    > .router-alive {
+      height: 100%;
+    }
   }
 
   // iframe 页面

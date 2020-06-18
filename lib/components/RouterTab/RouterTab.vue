@@ -18,7 +18,7 @@
           ref="nav"
           tag="ul"
           class="router-tab-nav"
-          v-bind="getTransOpt(tabTransition)"
+          v-bind="tabTrans"
           @after-enter="onTabTransitionEnd"
           @after-leave="onTabTransitionEnd"
         >
@@ -48,29 +48,18 @@
 
     <!-- 页面容器 -->
     <div class="router-tab-container" :class="{ loading }">
-      <!-- 路由页面 -->
-      <router-alive ref="routerAlive" :alive-id="aliveId" @update="updateTab">
-        <transition
-          v-bind="getTransOpt(pageTransition)"
-          appear
-          @after-enter="onPageTransitionEnd"
-          @after-leave="onPageTransitionEnd"
-        >
-          <router-view
-            v-if="isViewAlive"
-            ref="routerView"
-            v-bind="routerView"
-            class="router-tab-page"
-          />
-        </transition>
-      </router-alive>
+      <router-alive
+        page-class="router-tab-page"
+        :keep-alive="keepAlive"
+        :reuse="reuse"
+        :max="maxAlive"
+        :transition="pageTrans"
+        @ready="onAliveReady"
+        @change="onAliveChange"
+      />
 
       <!-- iframe 页面 -->
-      <transition-group
-        v-bind="getTransOpt(pageTransition)"
-        tag="div"
-        class="router-tab-iframes"
-      >
+      <transition-group v-bind="pageTrans" tag="div" class="router-tab-iframes">
         <iframe
           v-for="url in iframes"
           v-show="url === currentIframe"
@@ -91,11 +80,7 @@
         class="router-tab-contextmenu"
         :style="`left: ${contextmenu.left}px; top: ${contextmenu.top}px;`"
       >
-        <a
-          class="contextmenu-item"
-          :disabled="!isContextTabActived"
-          @click="isContextTabActived && refreshTab(contextmenu.id)"
-        >
+        <a class="contextmenu-item" @click="refreshTab(contextmenu.id)">
           {{ lang.contextmenu.refresh }}
         </a>
 

@@ -13,22 +13,13 @@
     <slot v-bind="this">
       <i v-if="icon" class="tab-icon" :class="icon" />
       <span class="tab-title" :title="tips">{{ title }}</span>
-      <i v-if="closable" class="tab-close" @click.prevent="close" />
+      <i v-if="closable" class="tab-close" @click.prevent.stop="close" />
     </slot>
   </router-link>
 </template>
 
 <script>
-// 从 data 的字段直接生成 computed
-const mapDataComputed = (...keys) => {
-  const map = {}
-  keys.forEach(key => {
-    map[key] = function() {
-      return this.data[key]
-    }
-  })
-  return map
-}
+import { mapGetters } from '../../util'
 
 // 页签项
 export default {
@@ -46,8 +37,8 @@ export default {
   },
 
   computed: {
-    // 直接从 data 中获取值
-    ...mapDataComputed('id', 'to', 'icon', 'tabClass', 'target', 'href'),
+    // 从 this.data 提取计算属性
+    ...mapGetters('data', ['id', 'to', 'icon', 'tabClass', 'target', 'href']),
 
     // 国际化
     i18nText() {
@@ -72,7 +63,7 @@ export default {
     // 是否可关闭
     closable() {
       const { keepLastTab, items } = this.Tab
-      return this.data.closable && !(keepLastTab && items.length < 2)
+      return this.data.closable !== false && !(keepLastTab && items.length < 2)
     }
   },
 
