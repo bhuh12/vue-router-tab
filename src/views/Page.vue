@@ -74,10 +74,7 @@ export default {
     return {
       pageId: id,
       nextId: +id + 1,
-      prevId: +id - 1,
-      routeTab: {
-        title: isI18nPage ? ['page', id] : '页面' + id
-      }
+      prevId: +id - 1
     }
   },
 

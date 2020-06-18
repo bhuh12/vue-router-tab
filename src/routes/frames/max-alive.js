@@ -2,8 +2,8 @@ import { importFrame } from '../../utils'
 import getPageRoutes from '../page'
 
 export default {
-  path: '/global-rule/',
-  component: importFrame('GlobalRule'),
-  redirect: '/global-rule/rule/a/1',
+  path: '/max-alive/',
+  component: importFrame('MaxAlive'),
+  redirect: '/max-alive/page/1',
   children: getPageRoutes()
 }

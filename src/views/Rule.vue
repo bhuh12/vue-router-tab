@@ -1,24 +1,33 @@
 <template>
   <div>
-    <h2>{{ curRule.label }}页签规则</h2>
+    <h2>页签规则</h2>
+
+    <p>通过配置路由元信息 <code>meta.key</code> 来设置页签规则</p>
 
     <page-timer />
 
     <table class="demo-table">
-      <tr>
-        <th>规则类型</th>
-        <td>{{ curRule.type }}</td>
-      </tr>
-      <tr>
-        <th>实现方法</th>
-        <td class="rule-fn">
-          {{ curRule.fn }}
-        </td>
-      </tr>
-      <tr>
-        <th>规则说明</th>
-        <td>{{ curRule.desc }}</td>
-      </tr>
+      <thead>
+        <tr>
+          <th>规则</th>
+          <th>配置</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr
+          v-for="item in rules"
+          :key="item.id"
+          :class="{ on: curRole === item.id }"
+        >
+          <td>{{ item.label }}</td>
+          <td>
+            <code v-if="item.value">{{ item.value }}</code>
+          </td>
+          <td>{{ item.desc }}</td>
+        </tr>
+      </tbody>
     </table>
 
     <h4>点击下面的链接，并观察页签的变化</h4>
@@ -61,47 +70,39 @@ export default {
     let route = this.$route
     let { catalog, type } = route.params
 
-    let ruleType = 'default'
-
-    if (route.meta.aliveId) {
-      ruleType = 'route'
-    } else if (route.fullPath.indexOf('/global-rule/') > -1) {
-      ruleType = 'global'
-    }
-
-    let rules = {
-      default: {
-        label: '默认',
-        type: '内置规则："path"',
-        fn: '(route, pagePath) => pagePath || route.path',
-        desc: '相同 route.params 的路由共用页签，嵌套路由页签根据 pagePath'
-      },
-      global: {
-        label: '全局',
-        type: '内置规则："fullPath"',
-        fn:
-          "(route, pagePath) => pagePath || route.fullPath.replace(route.hash, '')",
-        desc:
-          '相同 route.params 和 route.query 的路由共用页签，嵌套路由页签根据 pagePath'
-      },
-      route: {
-        label: '路由',
-        type: '自定义规则',
-        fn: "route => 'route-rule/' + route.params.catalog",
-        desc: '相同 catalog 参数的路由共用页签'
-      }
-    }
-
-    let curRule = rules[ruleType]
-
     return {
-      curRule,
+      rules: [
+        {
+          id: 'default',
+          label: '默认',
+          value: '',
+          desc: '同一路由共用同一个页签'
+        },
+        {
+          id: 'path',
+          label: 'path',
+          value: 'path',
+          desc: '相同 route.params 的路由共用页签'
+        },
+        {
+          id: 'fullPath',
+          label: 'fullPath',
+          value: 'fullPath',
+          desc: '相同 route.params 和 route.query 的路由共用页签'
+        },
+        {
+          id: 'custom',
+          label: '自定义',
+          value: "route => 'route-rule/' + route.params.catalog",
+          desc: '相同 catalog 参数的路由共用页签'
+        }
+      ],
+      curRole: /\/rule\/([^/]+)\//.exec(route.path)[1],
       catalog,
       type,
       catalogs: ['a', 'b', 'c'],
       types: [1, 2],
-      link: { catalog, type },
-      routeTab: `${curRule.label}规则${catalog}/${type}`
+      link: { catalog, type }
     }
   }
 }

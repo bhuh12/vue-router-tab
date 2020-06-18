@@ -1,29 +1,32 @@
 import defaults from './default'
-import globalRule from './global-rule'
-import i18n from './i18n'
-import iframe from './iframe'
+import reuse from './reuse'
+import maxAlive from './max-alive'
+import transition from './transition'
 import initialTabs from './initial-tabs'
 import restore from './restore'
-import langCustom from './lang-custom'
-import langEn from './lang-en'
 import slot from './slot'
-import transition from './transition'
+import iframe from './iframe'
 import closeLastTab from './close-last-tab'
+
+import i18n from './i18n'
+import langEn from './lang-en'
+import langCustom from './lang-custom'
 
 import extendRoutes from '../../utils/extendRoutes'
 
 const routes = [
   defaults,
-  globalRule,
-  i18n,
-  iframe,
+  reuse,
+  maxAlive,
+  transition,
   initialTabs,
   restore,
-  langCustom,
-  langEn,
   slot,
-  transition,
-  closeLastTab
+  iframe,
+  closeLastTab,
+  i18n,
+  langEn,
+  langCustom
 ]
 
 routes.forEach(extendRoutes)

@@ -26,5 +26,9 @@
       <th>fullPath</th>
       <td>{{ $route.fullPath }}</td>
     </tr>
+    <tr>
+      <th><b>meta</b></th>
+      <td>{{ $route.meta }}</td>
+    </tr>
   </table>
 </template>

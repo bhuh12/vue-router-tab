@@ -16,6 +16,10 @@ export default {
     }
   },
 
+  mounted() {
+    this.updatePageTime()
+  },
+
   activated() {
     this.updatePageTime()
   },

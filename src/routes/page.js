@@ -6,34 +6,73 @@ export default () => [
     path: 'page/:id',
     component: importPage('Page'),
     meta: {
-      title: '页面',
-      icon: 'rt-icon-doc'
+      title: route => `页面${route.params.id}`,
+      icon: 'rt-icon-doc',
+      key: 'path'
     }
   },
   {
-    path: 'rule/:catalog/:type',
+    path: 'rule',
+    redirect: 'rule/default/a/1'
+  },
+  {
+    path: 'rule/default',
+    redirect: 'rule/default/a/1'
+  },
+  {
+    path: 'rule/default/:catalog/:type',
     component: importPage('Rule'),
     meta: {
-      title: '默认规则',
+      title: route => `规则:默认-${route.params.catalog}/${route.params.type}`,
       icon: 'rt-icon-log'
     }
   },
   {
-    path: 'route-rule/:catalog/:type',
+    path: 'rule/path',
+    redirect: 'rule/path/a/1'
+  },
+  {
+    path: 'rule/path/:catalog/:type',
     component: importPage('Rule'),
     meta: {
-      title: '路由规则',
+      title: route => `规则:path-${route.params.catalog}/${route.params.type}`,
       icon: 'rt-icon-log',
-      aliveId(route, pagePath) {
-        return `route-rule/${route.params.catalog}`
-      }
+      key: 'path'
+    }
+  },
+  {
+    path: 'rule/fullPath',
+    redirect: 'rule/fullPath/a/1'
+  },
+  {
+    path: 'rule/fullPath/:catalog/:type',
+    component: importPage('Rule'),
+    meta: {
+      title: route =>
+        `规则:fullPath-${route.params.catalog}/${route.params.type}`,
+      icon: 'rt-icon-log',
+      key: 'fullPath'
+    }
+  },
+  {
+    path: 'rule/custom',
+    redirect: 'rule/custom/a/1'
+  },
+  {
+    path: 'rule/custom/:catalog/:type',
+    component: importPage('Rule'),
+    meta: {
+      title: route =>
+        `规则:自定义-${route.params.catalog}/${route.params.type}`,
+      icon: 'rt-icon-log',
+      key: route => '/rule/custom/' + route.params.catalog
     }
   },
   {
     path: 'tab-dynamic',
     component: importPage('TabDynamic'),
     meta: {
-      title: '动态更新页签',
+      title: '动态页签',
       icon: 'rt-icon-log'
     }
   },

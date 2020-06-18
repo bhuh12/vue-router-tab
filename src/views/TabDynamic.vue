@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>动态更新页签</h2>
+    <h2>动态页签</h2>
 
     <div class="form-item">
       <label>
@@ -35,7 +35,7 @@ export default {
   data() {
     return {
       routeTab: {
-        title: '动态更新页签',
+        title: '动态页签',
         icon: 'rt-icon-log',
         tips: ''
       },
