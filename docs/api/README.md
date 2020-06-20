@@ -2,26 +2,27 @@
 sidebar: auto
 ---
 
-# API
+# API 参考
 
 ## RouterTab 配置参数
 
-### alive-id
+### tabs
 
-页面组件缓存的 id
+**初始页签数据**，进入页面时默认显示的页签。相同 `key` 的页签只保留第一个
 
-- 类型: `String | Function`
+- 类型: `Array <String | Object>`
 
-  - 如果类型为 `String` ，则可使用内置的缓存规则，`path` (默认) 和 `fullPath`
+  - tabs 子元素类型为 `String` 时，应配置为要打开页面的 `fullPath` ，页签的标题、图标、提示等信息会从对应页面的 `router` 配置中获取
 
-  - 如果类型为 `Function` ，则取 `aliveId(route, pagePath)` 返回的字符串。
-    - `route` 为页面路由对象。
-    - `pagePath` 当页面存在嵌套路由时生效，为匹配页面所在路由链的路径
-    - 该函数传入相同的 `route` 应返回固定的字符串，以免页签无法与缓存的页面对应
+  - tabs 子元素类型为 `Object` 时:
 
-- 默认值: `'path'`
+    - to: 页签路由地址，跟 `router.push` 的 `location` 参数一致，可以为 `fullPath`，也可以为 `location` 对象 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
 
-  根据 `route.path` 来缓存页面组件。
+    - title: 页签标题，如果页面有设置 `routerTab.title` 动态标题，可在此设置最终的动态标题值，以免与默认从 `router` 获取的标题不一致
+
+    - closable: 页签是否允许关闭，默认为 `true`
+
+- 默认值: `[]`
 
 ### default-page
 
@@ -32,6 +33,74 @@ sidebar: auto
 - 类型: `String | Object` location 地址
 
 - 默认值: 页签组件父路由地址。
+
+### tab-transition
+
+**页签过渡效果**，新增和关闭页签时的过渡
+
+- 类型: `String | Object`
+
+  - 类型为 `String` 时，应配置为 `transition.name`
+
+  - 类型为 `Object` 时，配置参考: [Vue - transition](https://cn.vuejs.org/v2/api/#transition)
+
+- 默认值: `'router-tab-zoom'`
+
+### page-transition
+
+页面过渡效果
+
+- 类型: `String | Object`
+
+  同 [`tab-transition`](#tab-transition)
+
+- 默认值: `{ name: 'router-tab-swap', mode: 'out-in' }`
+
+### restore
+
+**是否在浏览器刷新后恢复页签**
+
+开启后，浏览器刷新后将会还原刷新前的页签
+
+- 类型: `Boolean | String`
+
+  - 类型为 `String` 且不为空字符串时，RouterTab 会拼接该值作为 sessionStorage 的 key 来本地存储页签信息
+
+- 默认值: `false`
+
+### restore-watch
+
+**是否监听 restore 参数自动恢复页签**
+
+开启后，RouterTab 会监听传入的 restore 值，改变后自动恢复对应配置的页签
+
+- 类型: `Boolean`
+
+- 默认值: `false`
+
+### keep-alive
+
+默认是否缓存页签，可通过路由 meta.keepAlive 重置
+
+- 类型: `Boolean`
+
+- 默认值: `true`
+
+### max-alive
+
+最大缓存数，0 则不限制
+
+- 类型: `Number`
+
+- 默认值: `0`
+
+### reuse
+
+是否复用路由组件，可通过路由 meta.reuse 重置
+
+- 类型: `Boolean`
+
+- 默认值: `false`
 
 ### keep-last-tab
 
@@ -67,78 +136,6 @@ sidebar: auto
 
 - 默认值: `'zh-CN'`
 
-### tabs
-
-**初始页签数据**，进入页面时默认显示的页签。相同 `aliveId` 的页签只保留第一个
-
-- 类型: `Array <String | Object>`
-
-  - tabs 子元素类型为 `String` 时，应配置为要打开页面的 `fullPath` ，页签的标题、图标、提示等信息会从对应页面的 `router` 配置中获取
-
-  - tabs 子元素类型为 `Object` 时:
-
-    - to: 页签路由地址，跟 `router.push` 的 `location` 参数一致，可以为 `fullPath`，也可以为 `location` 对象 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
-
-    - title: 页签标题，如果页面有设置 `routerTab.title` 动态标题，可在此设置最终的动态标题值，以免与默认从 `router` 获取的标题不一致
-
-    - closable: 页签是否允许关闭，默认为 `true`
-
-- 默认值: `[]`
-
-### restore
-
-**是否在浏览器刷新后恢复页签**
-
-开启后，浏览器刷新后将会还原刷新前的页签
-
-- 类型: `Boolean | String`
-
-  - 类型为 `String` 且不为空字符串时，RouterTab 会拼接该值作为 sessionStorage 的 key 来本地存储页签信息
-
-- 默认值: `false`
-
-### restore-watch
-
-**是否监听 restore 参数自动恢复页签**
-
-开启后，RouterTab 会监听传入的 restore 值，改变后自动恢复对应配置的页签
-
-- 类型: `Boolean`
-
-- 默认值: `false`
-
-### router-view
-
-内置 `router-view` 组件的配置
-
-- 类型: `Object`
-
-  > 配置参考: [Vue Router - \<router-view\> Props](https://router.vuejs.org/zh/api/#router-view-props)
-
-- 默认值: `{}`
-
-### tab-transition
-
-**页签过渡效果**，新增和关闭页签时的过渡
-
-- 类型: `String | Object`
-
-  - 类型为 `String` 时，应配置为 `transition.name`
-
-  - 类型为 `Object` 时，配置参考: [Vue - transition](https://cn.vuejs.org/v2/api/#transition)
-
-- 默认值: `'router-tab-zoom'`
-
-### page-transition
-
-页面过渡效果
-
-- 类型: `String | Object`
-
-  同 [`tab-transition`](#tab-transition)
-
-- 默认值: `{ name: 'router-tab-swap', mode: 'out-in' }`
-
 ## RouterTab 实例属性
 
 在组件内部可通过 `this.$routerTab.[prop]` 访问
@@ -169,8 +166,7 @@ sidebar: auto
 - 调用:
 
   1. `this.$routerTab.close({id, path, match, force, to, refresh})`
-  2. `this.$routerTab.close(path, match, force)`
-  3. `this.$routerTab.close((path, to, match, force))`
+  2. `this.$routerTab.close(path, to)`
 
 - 参数:
 
@@ -245,18 +241,110 @@ iframe 内容加载成功
   - `{String} [url]` iframe 的链接地址
   - `{HTMLIFrameElement} [iframe]` iframe 节点
 
+## RouterTab 插槽
+
+RouterTab 支持通过以下插槽个性化页签组件：
+
+| 插槽名称  | 作用域 | 说明     |
+| --------- | ------ | -------- |
+| `default` | `tab`  | 页签项   |
+| `start`   | -      | 页签开始 |
+| `end`     | -      | 页签结束 |
+
+## RouterAlive 配置参数
+
+### keep-alive
+
+默认是否开启缓存
+
+- 类型: `Boolean`
+
+- 默认值: `false`
+
+### max
+
+最大缓存数，0 则不限制
+
+- 类型: `Number`
+
+- 默认值: `0`
+
+### reuse
+
+是否复用路由组件
+
+- 类型: `Boolean`
+
+- 默认值: `false`
+
+### page-class
+
+页面 class
+
+- 类型: `Array | Object | String`
+
+- 默认值: `router-alive-page`
+
+### transition
+
+路由组件过渡效果
+
+- 类型: `String | Object`
+
+  同 [`tab-transition`](#tab-transition)
+
+## RouterAlive 实例方法
+
+::: tip
+在 RouterAlive 子组件，您可以通过 `inject: ['RouterAlive']` 来访问 RouterAlive 实例。
+然后调用 `this.RouterAlive.refresh()` 来刷新组件。
+:::
+
+### routerAlive.remove
+
+移除组件缓存
+
+- 参数:
+  - `{String} [key]` 需要移除的组件缓存 key，默认为当前组件
+
+### routerAlive.refresh
+
+刷新组件缓存
+
+- 参数:
+  - `{String} [key]` 需要刷新的组件缓存 key，默认为当前组件
+
+## RouterAlive 事件
+
+### ready
+
+RouterAlive 组件就绪
+
+- 参数:
+  - `{VueInstance} [alive]` RouterAlive 实例
+
+### change
+
+路由缓存更改
+
+- 参数:
+  - `{String} [type]` 类型：`create` 或者 `update`
+  - `{RouteMatch} [routeMatch]` 路由匹配信息
+
 ## Route.meta 路由元信息
 
 通过路由的 `meta` 信息，我们可以配置路由页签的标题、图标、提示和缓存规则
 
-| 属性     | 说明         | 类型                | 默认值     | 备注                                                                         |
-| -------- | ------------ | ------------------- | ---------- | ---------------------------------------------------------------------------- |
-| aliveId  | 缓存规则     | `String | Function` | -          | 生成页面组件缓存的 ID。<br>配置参考: [RouterTab Props > alive-id](#alive-id) |
-| title    | 页签标题     | `String | Array`    | `'无标题'` | 支持国际化，参考: [教程 - 多语言支持](../guide/essentials/i18n.md)           |
-| tips     | 鼠标悬浮提示 | `String | Array`    | 和标题一致 | 支持国际化，参考: [教程 - 多语言支持](../guide/essentials/i18n.md)           |
-| icon     | 图标         | `String`            | -          | -                                                                            |
-| tabClass | 页签 class   | `String`            | -          | -                                                                            |
-| closable | 是否可关闭   | `Boolean`           | `true`     | -                                                                            | - |
+| 属性      | 说明         | 类型                | 默认值     | 备注                                                                      |
+| --------- | ------------ | ------------------- | ---------- | ------------------------------------------------------------------------- |
+| key       | 路由 key     | `String | Function` | -          | 用于页签 id 和组件缓存 key<br>内置 `path` `fullPath` 两种规则             |
+| keepAlive | 是否缓存     | `Boolean`           | `true`     | 如果不缓存，每次进入页面将重新创建实例                                    |
+| reuse     | 是否复用组件 | `Boolean`           | `false`    | 相同页签规则下，同一个路由的 `params` 或 `query` 更改后是否复用之前的组件 |
+| title     | 页签标题     | `String | Array`    | `'无标题'` | 支持国际化<br>参考: [教程 - 多语言支持](../guide/essentials/i18n.md)      |
+| tips      | 鼠标悬浮提示 | `String | Array`    | 和标题一致 | 支持国际化<br>参考: [教程 - 多语言支持](../guide/essentials/i18n.md)      |
+| icon      | 图标         | `String`            | -          | -                                                                         |
+| tabClass  | 页签 class   | `String`            | -          | -                                                                         |
+| closable  | 是否可关闭   | `Boolean`           | `true`     | -                                                                         | - |
 
 ## 扩展
 
@@ -289,13 +377,3 @@ RouterTab 实例
 路由页签配置
 
 RouterTab 通过监听页面组件的 `this.routeTab` 来更新页面对应页签的标题、图标、提示
-
-### pageVm.\_isRouterPage
-
-是否是路由页面
-
-在通过 RouterTab 加载的页面组件内部，访问 `this._isRouterPage` 会返回 `true`
-
-::: tip
-应用: 在需要给路由页面添加全局混入 `mixin` 时，可在生命周期钩子（ `created` 之后）里判断 `this._isRouterPage`
-:::

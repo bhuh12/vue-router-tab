@@ -50,7 +50,7 @@ You can change the default page and tab transitions by adding the `tab-transitio
 </style>
 ```
 
-## Detailed configuration
+### Detailed configuration
 
 You can also use the provided object `tab-transition` and `page-transition` value, in order to achieve a detailed configuration of transition effects
 

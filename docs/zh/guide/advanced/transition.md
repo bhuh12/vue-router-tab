@@ -15,7 +15,7 @@
 
 <<< @/src/components/frames/Transition.vue{2,6,8,21}
 
-## 详细配置
+### 详细配置
 
 您还可以使用对象的方式设置 `tab-transition` 和 `page-transition` 的值，以实现详细的过渡效果配置
 

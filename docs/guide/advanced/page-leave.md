@@ -1,4 +1,4 @@
-# Close confirmation
+# Leave Confirm
 
 `BeforePageLeave` is triggered when the tab is **closed**, **refreshed**, or **replaced**, the Promise resolve and reject are used to allow or prevent the tab page from leaving.
 

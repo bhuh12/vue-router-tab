@@ -81,7 +81,7 @@ this.$routerTab.close({
 
 ```js
 this.$routerTab.close({
-  id: '', // close by tab id, i.e., aliveId. equivalent to path
+  id: '', // close by tab id, i.e., key. equivalent to path
   path: '/page/2', // close by route path, accepts location object. Will close current tab if neither id nor path is provided.
   match: false, // should match full path or not in path mode, defaults to true
   force: false, // should force close or not, defaults to true

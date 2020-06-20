@@ -2,31 +2,44 @@
 
 Problems that we came across and solutions to them. If you have any better ideas, please feel free to propose a PR or issue.
 
-1. `<keep-alive>` only support cache by component's `name`, so that it couldn't provide accurate control responding to route.
+1. A route can create different caches with different `route.params` or `route.query`:
 
-   Developed `<router-alive>`, a router version of `<keep-alive>`, to handle cache control via route.
+   set a `key` prop to `<router-view>`.
 
-2. How to force reload tab content:
+2. Caches control with `<keep-alive>`:
 
-   1. Destroy content instance
-   2. Hide `<router-view>` by `v-if` and show it after `nextTick`
+   1. Get instance of `<keep-alive>`:
 
-3. Components wouldn't re-render with Webpack HMR in reason of caching:
+      `this._vnode.children[0].child._vnode.componentInstance`
 
-   Record `vnode.componentOptions.Ctor.cid` in render method. If it differs from the last recorded value, tab content instance will be destroyed and re-rendered.
+   2. Match and remove cache.
 
-4. Tab content displays in blank while rapidly switching among tabs:
+      1. Match: `$alive.cache[i].data.key === key`
 
-   Cause: Before the transition of old pages get completed, new pages pop up and step ahead the mount method.
+      2. Destroy: `$alive.cache[key].componentInstance.$destroy()`
 
-   Solution: After route change, force reload tab content if current `nodeType` equals 8 (which is COMMENT_NODE).
+      3. Remove `key` from `$alive.keys`.
 
-5. iframe tab gets reloaded on switching：
+3. Refresh page component.
+
+   1. Remove cache of page.
+
+   2. Hide `<router-view>` by `v-if` and show it after transition ends or `nextTick`.
+
+4. Nested Routes share same tabs:
+
+   Get `path` of current matched route from `$route.matched`.
+
+5. Visit page **a** from a nested route, and go to a page of another route, then visit page **b** from the same nested route. The displayed page is still **a**:
+
+   After matching to the current scenario, manually replace the `$el` of the correct routing component.
+
+6. Iframe tab gets reloaded on switching:
 
    1. Extract `<iframe>` to outer layer of `<router-view>`, and show/hide it via `v-show`.
 
    2. Create a separate iframe route component, and manage `<iframe>` dom element in lifecycle hook methods, i.e., add, show, hide and remove.
 
-6. js bundle size gets too big：
+7. Js bundle size gets too big:
 
    When building as lib, set `useBuiltIns` to `false` in `babel.config.js`, which means not including Polyfill in final bundle.

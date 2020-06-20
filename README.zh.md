@@ -56,7 +56,9 @@ Vue Router Tab 是基于 Vue Router 的路由页签组件，用来实现多页�
 
 ✅ 页签右键菜单操作
 
-✅ [页签规则](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/rule.html)配置
+✅ 页签过多鼠标滚轮滚动
+
+✅ [缓存控制](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/cache.html)：页签规则、页签是否缓存、最大缓存数、是否复用组件等配置
 
 ✅ 内置页签和页面[过渡效果](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/transition.html)，支持自定义配置
 
@@ -68,7 +70,7 @@ Vue Router Tab 是基于 Vue Router 的路由页签组件，用来实现多页�
 
 ✅ [页签重置](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/operate.html#%E9%87%8D%E7%BD%AE%E9%A1%B5%E7%AD%BE)，重置页签到初始状态
 
-✅ [动态更新页签信息](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/dynamic-tab-info.html) (标题/图标/提示)
+✅ [动态页签信息](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/dynamic-tab-info.html) (标题/图标/提示)
 
 ✅ [iframe 页签嵌入外部网站](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/iframe.html)
 

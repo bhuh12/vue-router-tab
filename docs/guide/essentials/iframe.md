@@ -1,4 +1,4 @@
-# iframe Tab
+# Iframe Tab
 
 You can open external websites with iframe tabs.
 
@@ -6,7 +6,7 @@ You can open external websites with iframe tabs.
 This feature requires RouterTabRoutes from RouterTab. See [Essentials - Route Config](README.md#路由配置)
 :::
 
-## iframe Tab Operation
+## Iframe Tab Operation
 
 <doc-links api="#routertab-openiframetab" demo="/default/"></doc-links>
 
@@ -29,7 +29,7 @@ this.$routerTab.closeIframe('https://www.baidu.com')
 this.$routerTab.refreshIframe('https://www.baidu.com')
 ```
 
-## iframe Tab Events
+## Iframe Tab Events
 
 Supported iframe tab events are listed below:
 

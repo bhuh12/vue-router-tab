@@ -107,7 +107,7 @@ export default new Router({
             icon: 'icon-user', // tab icon, optional
             tabClass: 'custom-tab', // custom class, optional
             tips: 'This is a tab', // tab tooltip, optional. defaults to `meta.title`
-            aliveId: 'fullPath', // tab cache rule, optional
+            key: 'path', // tab cache rule, optional
             closable: false // is tab closable, defaults to `true`
           }
         },

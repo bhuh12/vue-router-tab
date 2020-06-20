@@ -7,9 +7,9 @@ exports.default = i18n => ({
       collapsable: false,
       children: [
         'essentials/',
+        'essentials/cache',
         'essentials/operate',
         'essentials/iframe',
-        'essentials/rule',
         'essentials/i18n'
       ]
     },
@@ -17,11 +17,11 @@ exports.default = i18n => ({
       title: i18n.advanced,
       collapsable: false,
       children: [
+        'advanced/dynamic-tab-info',
         'advanced/transition',
         'advanced/slot',
         'advanced/initial-tabs',
         'advanced/restore',
-        'advanced/dynamic-tab-info',
         'advanced/page-leave'
       ]
     },

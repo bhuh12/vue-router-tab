@@ -35,7 +35,7 @@ You can configure your RouterTab to open default tabs. You do this by using the 
             title: 'Page 2'
           },
 
-          // Overrides the default aliveId configuration, this tab is consistent with the aliveId of the '/ initial-tabs / page / 2' tab, and only the first tab that appears will be retained
+          // Overrides the default key configuration, this tab is consistent with the key of the '/initial-tabs/page/2' tab, and only the first tab that appears will be retained
           { to: '/initial-tabs/page/2?t=1', title: 'Page 2-1' },
 
           // iframe bookmark

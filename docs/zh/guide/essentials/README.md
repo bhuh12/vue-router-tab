@@ -108,7 +108,7 @@ export default new Router({
             icon: 'icon-user', // 页签图标，可选
             tabClass: 'custom-tab', // 自定义页签 class，可选
             tips: '这是一个页面', // 页签提示，可选，如未设置则跟 title 一致
-            aliveId: 'fullPath', // 路由打开页签规则，可选
+            key: 'path', // 路由打开页签规则，可选
             closable: false // 页签是否允许关闭，默认 `true`
           }
         },

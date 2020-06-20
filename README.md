@@ -56,23 +56,25 @@ A tab router component based on Vue Router.
 
 ✅ Support context menu on tabs
 
-✅ [Route Matching](https://bhuh12.github.io/vue-router-tab/guide/essentials/rule.html)
+✅ Tabs mouse wheel scrolling
+
+✅ [Cache control](https://bhuh12.github.io/vue-router-tab/guide/essentials/cache.html): tab rules, cacheable, maximum keep alive, reusable
 
 ✅ Built-in [Transition](https://bhuh12.github.io/vue-router-tab/guide/advanced/transition.html): support custom configuration
 
-✅ [Custom Tab Template](https://bhuh12.github.io/vue-router-tab/guide/advanced/slot.html)
+✅ [Custom slot](https://bhuh12.github.io/vue-router-tab/guide/advanced/slot.html)
 
 ✅ [Initial Tabs](https://bhuh12.github.io/vue-router-tab/guide/advanced/initial-tabs.html): initially opened tabs when entering page
 
-✅ [Tabs Caching](https://bhuh12.github.io/vue-router-tab/guide/advanced/restore.html): reopen tabs on page reload
+✅ [Restore Tabs](https://bhuh12.github.io/vue-router-tab/guide/advanced/restore.html): reopen tabs after browser refresh
 
 ✅ [Reset Tabs](https://bhuh12.github.io/vue-router-tab/guide/essentials/operate.html#%E9%87%8D%E7%BD%AE%E9%A1%B5%E7%AD%BE): reset tabs to initial state
 
-✅ [Dynamic Tab Info](https://bhuh12.github.io/vue-router-tab/guide/advanced/dynamic-tab-info.html) (title/icon/tooltip)
+✅ [Dynamic Tab Info](https://bhuh12.github.io/vue-router-tab/guide/advanced/dynamic-tab-info.html) (title / icon / tooltip)
 
 ✅ [iframe](https://bhuh12.github.io/vue-router-tab/guide/essentials/iframe.html): for external website
 
-✅ [Leave Prompt](https://bhuh12.github.io/vue-router-tab/guide/advanced/page-leave.html)
+✅ [Leave Prompt](https://bhuh12.github.io/vue-router-tab/guide/advanced/page-leave.html) before tab close / refresh / replace
 
 ✅ [i18n](https://bhuh12.github.io/vue-router-tab/guide/essentials/i18n.html)
 

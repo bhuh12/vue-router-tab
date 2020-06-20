@@ -1,41 +1,86 @@
 # Dynamic update
 
-RouterTab will monitor the component `this.routeTab` to dynamically update the tab information. You can change the title, icon, and prompt of the tab by setting `this.routeTab`
+RouterTab will listen to the component `this.routeTab` to dynamically update the tab info. You can change the title, icon, and tips of the tab by setting `this.routeTab`.
 
 <doc-links demo="/default/tab-dynamic"></doc-links>
 
+### Computed (recommend)
+
 **Example**
 
-```javascript {7,15,18,27}
+```javascript  {13,14,17,24}
 export default {
-  name: 'goods',
+  name: 'GoodsDetail',
   data() {
     return {
-      goodsName: 'Product name',
-      goodsDesc: 'Product description',
+      goods: {
+        goodsName: 'Goods name',
+        goodsDesc: 'Goods description'
+      }
+    }
+  },
+  computed: {
+    // update tab info by computed property
+    routeTab() {
+      // 1. Only update tab title
+      return `Goods-${this.goods.goodsName}`
+
+      // 2. Update tab info
+      return {
+        title: `Goods-${this.goods.goodsName}`,
+        icon: 'el-icon-goods',
+        tips: this.goods.goodsDesc
+      }
+
+      // 3. International tab title
+      return {
+        // Define the internationalization with parameter list as an array, the format: ['i18nKey', ...params]
+        title: ['routerTab.goods', this.goods.goodsName]
+      }
+    }
+  }
+}
+```
+
+### Data
+
+**Example**
+
+```javascript {9,15}
+export default {
+  name: 'GoodsDetail',
+  data() {
+    return {
+      goods: {
+        goodsName: 'Goods name',
+        goodsDesc: 'Goods description'
+      },
       routeTab: null // routeTab store data for response
     }
   },
   mounted() {
     setTimeout(() => {
-      let { id } = this.$route.params
-
-      //Only update tab title
-      this.routeTab = `Page ${id} dynamic title`
-
-      // Update tab object
+      // Update tab info
       this.routeTab = {
-        title: `Product-${this.goodsName}`,
+        title: `Goods-${this.goodsName}`,
         icon: 'el-icon-goods',
-        tips: this.goodsDesc
-      }
-
-      // International tab title
-      this.routeTab = {
-        // Define the internationalization with parameter list as an array, the format: ['i18nKey', ...params]
-        title: ['routerTab.goods', this.goodsName]
+        tips: this.goods.goodsDesc
       }
     }, 300)
+  }
+}
+```
+
+### Route.meta
+
+**Example**
+
+```javascript {5}
+const route = {
+  path: '/my-page/:id',
+  component: MyPage,
+  meta: {
+    title: route => `Page ${route.params.id}`
   }
 }
 ```
