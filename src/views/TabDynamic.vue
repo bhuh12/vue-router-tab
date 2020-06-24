@@ -22,7 +22,7 @@
         v-for="icon in icons"
         :key="icon"
         class="tab-icon"
-        :class="`${icon === routeTab.icon ? 'actived' : ''} ${icon}`"
+        :class="`${icon === routeTab.icon ? 'is-active' : ''} ${icon}`"
         title="设置页签图标"
         @click="routeTab.icon = icon"
       />
@@ -61,7 +61,7 @@ export default {
     font-size: 20px;
     cursor: pointer;
 
-    &.actived {
+    &.is-active {
       color: $color;
     }
   }

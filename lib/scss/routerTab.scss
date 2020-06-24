@@ -12,7 +12,7 @@ $hd-height: 40px;
 
 $tab-padding: 20px;
 $close-icon-margin: 4px;
-$close-icon-size: 14px;
+$close-icon-size: 13px;
 
 // 页签
 .router-tab {
@@ -23,23 +23,17 @@ $close-icon-size: 14px;
   min-height: 300px;
 
   // 页签头部
-  &-header {
+  &__header {
     display: flex;
-    flex: 0 0 $hd-height;
+    flex: none;
     height: $hd-height;
     position: relative;
     z-index: 9;
-    margin: 0 -1px;
     box-sizing: border-box;
     border-bottom: 1px solid $border-color;
     transition: all 0.2s ease-in-out;
 
     &.is-scroll {
-      .nav-prev,
-      .nav-next {
-        display: block;
-      }
-
       .router-tab-scroll {
         overflow: hidden;
       }
@@ -47,38 +41,43 @@ $close-icon-size: 14px;
   }
 
   // 滚动区域
-  &-scroll {
-    flex: 1;
+  &__scroll {
+    flex: 1 1 0px;
     height: $hd-height;
-    max-width: 100%;
-    overflow-x: visible;
+    overflow: hidden;
     scroll-behavior: smooth;
   }
 
   // 页签导航
-  &-nav {
+  &__nav {
     position: relative;
-    display: table;
-    border-collapse: collapse;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    list-style: none;
     margin: 0;
     padding: 0;
     height: 100%;
-    white-space: nowrap;
   }
 
   // 页签项
-  &-item {
+  &__item {
+    display: flex;
+    align-items: center;
+    flex: none;
     position: relative;
-    display: table-cell;
     padding: 0 $tab-padding;
     color: $text-color;
     font-size: $font-size;
     border: $border;
+    border-left: none;
     cursor: pointer;
     user-select: none;
     transition: $tab-trans;
     transform-origin: left bottom;
-    vertical-align: middle;
+
+    &:first-child {
+      border-left: $border;
+    }
 
     // 激活右键菜单的页签
     &.is-contextmenu {
@@ -86,14 +85,14 @@ $close-icon-size: 14px;
     }
 
     &:hover,
-    &.actived {
+    &.is-active {
       color: $color-primary;
 
       &.is-closable {
         padding: 0 ($tab-padding - ($close-icon-size + $close-icon-margin) / 2);
       }
 
-      .tab-close {
+      .router-tab__item-close {
         margin-left: $close-icon-margin;
         width: $close-icon-size;
 
@@ -105,38 +104,31 @@ $close-icon-size: 14px;
     }
 
     // 激活的页签
-    &.actived {
+    &.is-active {
       border-bottom-color: #fff;
     }
 
-    // 垂直居中
-    .inline-vm {
-      display: inline-block;
-      vertical-align: middle;
-    }
-
     // 页签标题
-    .tab-title {
+    &-title {
       max-width: 100px;
       min-width: 30px;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
-      @extend .inline-vm;
     }
 
     // 页签图标
-    .tab-icon {
+    &-icon {
       margin-right: 5px;
       font-size: 16px;
-      @extend .inline-vm;
     }
 
     // 页签关闭按钮
-    .tab-close {
+    &-close {
       $inner: 8px;
 
       position: relative;
+      display: block;
       margin-left: 0;
       width: 0;
       height: $close-icon-size;
@@ -144,12 +136,11 @@ $close-icon-size: 14px;
       cursor: pointer;
       overflow: hidden;
       transition: $tab-trans;
-      @extend .inline-vm;
 
       &::before,
       &::after {
         position: absolute;
-        top: 50%;
+        top: 6px;
         left: 50%;
         margin-left: -$inner/2;
         display: block;
@@ -179,66 +170,8 @@ $close-icon-size: 14px;
     }
   }
 
-  // 页签左右滑动按钮
-  .nav {
-    $size: 4px;
-
-    &-prev,
-    &-next {
-      position: relative;
-      display: none;
-      box-sizing: border-box;
-      margin-bottom: -1px;
-      width: $slider-width;
-      text-align: center;
-      border: $border;
-      transition: $tab-trans;
-      cursor: pointer;
-
-      &::after {
-        position: absolute;
-        top: 50%;
-        margin-top: -$size;
-        content: '';
-        font-size: 0;
-        border: $size solid transparent;
-        transition: $tab-trans;
-      }
-
-      &:active {
-        opacity: 0.5;
-      }
-    }
-
-    &-prev {
-      margin-right: -1px;
-
-      &::after {
-        left: 0;
-        border-right-color: $text-color;
-      }
-
-      &:hover::after {
-        border-right-color: $color-primary;
-      }
-    }
-
-    &-next {
-      margin-left: -1px;
-
-      &::after {
-        right: 0;
-        border-left-color: $text-color;
-      }
-
-      &:hover::after {
-        border-left-color: $color-primary;
-      }
-    }
-  }
-
   // 页面容器
-  &-container {
+  &__container {
     position: relative;
     flex: 1;
     overflow-x: hidden;
@@ -252,7 +185,7 @@ $close-icon-size: 14px;
   }
 
   // iframe 页面
-  &-iframe {
+  &__iframe {
     position: absolute;
     top: 0;
     left: 0;
@@ -261,7 +194,7 @@ $close-icon-size: 14px;
   }
 
   // 右键菜单
-  &-contextmenu {
+  &__contextmenu {
     position: fixed;
     z-index: 999;
     padding: 8px 0;
@@ -273,7 +206,7 @@ $close-icon-size: 14px;
     transition: all 0.3s ease-in;
     transform-origin: left top;
 
-    .contextmenu-item {
+    &-item {
       display: block;
       padding: 5px 20px;
       line-height: 1.5;
@@ -299,15 +232,9 @@ $close-icon-size: 14px;
   // 移动设备
   &.is-mobile {
     // 滚动
-    .router-tab-scroll {
+    .router-tab__scroll {
       overflow-y: hidden;
       overflow-x: auto;
-    }
-
-    // 隐藏左右滚动按钮
-    .nav-prev,
-    .nav-next {
-      display: none;
     }
   }
 }

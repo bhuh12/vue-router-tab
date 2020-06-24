@@ -3,28 +3,26 @@
     <!-- 页签头部 -->
     <header
       ref="header"
-      :class="['router-tab-header', hasScroller && 'is-scroll']"
+      :class="['router-tab__header', hasScroller && 'is-scroll']"
     >
-      <div class="router-tab_start">
+      <div class="router-tab__slot-start">
         <slot name="start" />
       </div>
 
-      <!-- 页签向前滚动 -->
-      <a class="nav-prev" @click="tabScroll('left')" />
-
-      <div ref="scroller" class="router-tab-scroll" @wheel.prevent="tabWheel">
+      <div ref="scroll" class="router-tab__scroll" @wheel.prevent="tabWheel">
         <!-- 页签列表 -->
         <transition-group
           ref="nav"
           tag="ul"
-          class="router-tab-nav"
+          class="router-tab__nav"
           v-bind="tabTrans"
-          @after-enter="onTabTransitionEnd"
-          @after-leave="onTabTransitionEnd"
+          @after-enter="onTabTransEnd"
+          @after-leave="onTabTransEnd"
         >
           <tab-item
             v-for="(item, index) in items"
             :key="item.id || item.to"
+            ref="tab"
             :data="item"
             :index="index"
             @contextmenu.native.prevent="
@@ -36,18 +34,17 @@
             </template>
           </tab-item>
         </transition-group>
+
+        <div ref="scroller" class="router-tab__scroller"></div>
       </div>
 
-      <!-- 页签向后滚动 -->
-      <a class="nav-next" @click="tabScroll('right')" />
-
-      <div class="router-tab_end">
+      <div class="router-tab__slot-end">
         <slot name="end" />
       </div>
     </header>
 
     <!-- 页面容器 -->
-    <div class="router-tab-container" :class="{ loading }">
+    <div class="router-tab__container" :class="{ loading }">
       <router-alive
         page-class="router-tab-page"
         :keep-alive="keepAlive"
@@ -59,7 +56,11 @@
       />
 
       <!-- iframe 页面 -->
-      <transition-group v-bind="pageTrans" tag="div" class="router-tab-iframes">
+      <transition-group
+        v-bind="pageTrans"
+        tag="div"
+        class="router-tab__iframes"
+      >
         <iframe
           v-for="url in iframes"
           v-show="url === currentIframe"
@@ -67,7 +68,7 @@
           :src="url"
           :name="iframeNamePrefix + url"
           frameborder="0"
-          class="router-tab-iframe"
+          class="router-tab__iframe"
           @load="iframeLoaded(url)"
         />
       </transition-group>
@@ -77,15 +78,18 @@
     <transition name="router-tab-zoom">
       <div
         v-if="contextmenu.id"
-        class="router-tab-contextmenu"
+        class="router-tab__contextmenu"
         :style="`left: ${contextmenu.left}px; top: ${contextmenu.top}px;`"
       >
-        <a class="contextmenu-item" @click="refreshTab(contextmenu.id)">
+        <a
+          class="router-tab__contextmenu-item"
+          @click="refreshTab(contextmenu.id)"
+        >
           {{ lang.contextmenu.refresh }}
         </a>
 
         <a
-          class="contextmenu-item"
+          class="router-tab__contextmenu-item"
           :disabled="items.length < 2"
           @click="items.length > 1 && refreshAll()"
         >
@@ -93,7 +97,7 @@
         </a>
 
         <a
-          class="contextmenu-item"
+          class="router-tab__contextmenu-item"
           :disabled="!isContextTabCanBeClosed"
           @click="isContextTabCanBeClosed && closeTab(contextmenu.id)"
         >
@@ -101,7 +105,7 @@
         </a>
 
         <a
-          class="contextmenu-item"
+          class="router-tab__contextmenu-item"
           :disabled="!tabsLeft.length"
           @click="tabsLeft.length && closeMulti(tabsLeft)"
         >
@@ -109,7 +113,7 @@
         </a>
 
         <a
-          class="contextmenu-item"
+          class="router-tab__contextmenu-item"
           :disabled="!tabsRight.length"
           @click="tabsRight.length && closeMulti(tabsRight)"
         >
@@ -117,7 +121,7 @@
         </a>
 
         <a
-          class="contextmenu-item"
+          class="router-tab__contextmenu-item"
           :disabled="!tabsOther.length"
           @click="tabsOther.length && closeMulti(tabsOther)"
         >

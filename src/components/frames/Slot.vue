@@ -20,10 +20,16 @@
 
     <!-- 页签项插槽 -->
     <template #default="tab">
-      <i v-if="tab.icon" class="tab-icon" :class="tab.icon" />
-      <span class="tab-title" :title="tab.tips">{{ tab.title }}</span>
+      <i v-if="tab.icon" class="router-tab__item-icon" :class="tab.icon" />
+      <span class="router-tab__item-title" :title="tab.tips">{{
+        tab.title
+      }}</span>
       <span class="tab-badge">{{ tab.index }}</span>
-      <i v-if="tab.closable" class="tab-close" @click.prevent="tab.close" />
+      <i
+        v-if="tab.closable"
+        class="router-tab__item-close"
+        @click.prevent="tab.close"
+      />
     </template>
   </router-tab>
 </template>
@@ -33,6 +39,14 @@ export default {
   data() {
     return {
       fullscreen: false
+    }
+  },
+
+  watch: {
+    // 切换全屏后更新滚动
+    async fullscreen() {
+      await this.$nextTick()
+      this.$routerTab.adjust()
     }
   }
 }
@@ -54,7 +68,7 @@ export default {
   border-radius: 100%;
 }
 
-.router-tab-item.actived .tab-badge {
+.router-tab__item.is-active .tab-badge {
   background-color: #f50;
 }
 
@@ -71,8 +85,8 @@ export default {
 
 // 页签前后插槽样式
 .router-tab /deep/ {
-  .router-tab_start,
-  .router-tab_end {
+  .router-tab__slot-start,
+  .router-tab__slot-end {
     display: flex;
     align-items: center;
   }

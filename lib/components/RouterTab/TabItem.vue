@@ -2,18 +2,22 @@
   <router-link
     tag="li"
     :class="{
-      'router-tab-item': true,
+      'router-tab__item': true,
       [tabClass || '']: true,
-      actived: Tab.activeTabId === id,
+      'is-active': Tab.activeTabId === id,
       'is-closable': closable,
       'is-contextmenu': Tab.contextmenu.id === id
     }"
     :to="to"
   >
     <slot v-bind="this">
-      <i v-if="icon" class="tab-icon" :class="icon" />
-      <span class="tab-title" :title="tips">{{ title }}</span>
-      <i v-if="closable" class="tab-close" @click.prevent.stop="close" />
+      <i v-if="icon" class="router-tab__item-icon" :class="icon" />
+      <span class="router-tab__item-title" :title="tips">{{ title }}</span>
+      <i
+        v-if="closable"
+        class="router-tab__item-close"
+        @click.prevent.stop="close"
+      />
     </slot>
   </router-link>
 </template>

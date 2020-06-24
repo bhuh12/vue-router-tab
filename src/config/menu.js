@@ -14,14 +14,6 @@ export default [
     ]
   },
   {
-    text: '多语言支持',
-    children: [
-      { text: '页签国际化', to: '/i18n/' },
-      { text: '组件语言', to: '/lang-en/' },
-      { text: '组件自定义语言', to: '/lang-custom' }
-    ]
-  },
-  {
     text: '页签规则',
     children: [
       { text: '默认', to: '/default/rule/default/' },
@@ -36,6 +28,14 @@ export default [
       { text: '动态页签配置', to: '/default/tab-dynamic' },
       { text: '页面离开确认', to: '/initial-tabs/page-leave' },
       { text: '嵌套路由', to: '/default/nest/1/page1' }
+    ]
+  },
+  {
+    text: '多语言支持',
+    children: [
+      { text: '页签国际化', to: '/i18n/' },
+      { text: '组件语言', to: '/lang-en/' },
+      { text: '组件自定义语言', to: '/lang-custom' }
     ]
   }
 ]
