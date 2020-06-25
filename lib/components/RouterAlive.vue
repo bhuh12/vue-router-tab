@@ -132,6 +132,11 @@ export default {
     // 监听路由
     $route: {
       handler($route, old) {
+        // 组件就绪
+        if (!old) this.$emit('ready', this)
+
+        if (!$route.matched.length) return
+
         const { key, alive, meta, reusable, alivePath, nest } = this
         const cacheItem = this.cache[key] || {}
         let {
@@ -139,9 +144,6 @@ export default {
           fullPath: cacheFullPath,
           vm
         } = cacheItem
-
-        // 组件就绪
-        if (!old) this.$emit('ready', this)
 
         // 不复用且路由改变则清理组件缓存
         if (cacheAlivePath && !reusable && cacheAlivePath !== alivePath) {
@@ -182,8 +184,19 @@ export default {
   methods: {
     // 获取页面路由索引
     getRouteIndex() {
-      const { matched } = this.$route
-      return matched.findIndex(item => !item.instances.default)
+      let cur = this
+      let depth = -1 // 路由深度
+
+      while (cur && depth < 0) {
+        const { data } = cur.$vnode || {}
+        if (data && data.routerView) {
+          depth = data.routerViewDepth
+        } else {
+          cur = cur.$parent
+        }
+      }
+
+      return depth + 1
     },
 
     // 移除缓存
