@@ -38,14 +38,10 @@ You can configure your RouterTab to open default tabs. You do this by using the 
           // Overrides the default key configuration, this tab is consistent with the key of the '/initial-tabs/page/2' tab, and only the first tab that appears will be retained
           { to: '/initial-tabs/page/2?t=1', title: 'Page 2-1' },
 
-          // iframe bookmark
-          {
-            to: `/initial-tabs/iframe/${encodeURIComponent(
-              'https://m.hao123.com/'
-            )}/Hao123/rt-icon-web`,
-            title: 'Hao123',
-            icon: 'rt-icon-web'
-          }
+          // iframe tab
+          `/initial-tabs/iframe/${encodeURIComponent(
+            'https://m.hao123.com/'
+          )}/Hao123/rt-icon-web`
         ]
       }
     }

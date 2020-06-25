@@ -30,13 +30,9 @@ export default {
         { to: '/initial-tabs/page/2?t=1', title: '页面2-1' },
 
         // iframe 页签
-        {
-          to: `/initial-tabs/iframe/${encodeURIComponent(
-            'https://m.hao123.com/'
-          )}/Hao123/rt-icon-web`,
-          title: 'Hao123',
-          icon: 'rt-icon-web'
-        }
+        `/initial-tabs/iframe/${encodeURIComponent(
+          'https://m.hao123.com/'
+        )}/Hao123/rt-icon-web`
       ]
     }
   }

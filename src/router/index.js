@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import frameRoutes from './routes/frames'
-import route404 from './routes/404'
+import frameRoutes from './frames'
+import route404 from './404'
 
 Vue.use(Router)
 
