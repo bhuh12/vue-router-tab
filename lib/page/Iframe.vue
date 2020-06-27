@@ -6,6 +6,7 @@
 // iframe 页签页面
 export default {
   name: 'Iframe',
+  inject: ['RouterTab'],
 
   props: {
     src: String,
@@ -28,7 +29,7 @@ export default {
   },
 
   async mounted() {
-    let { url, $routerTab: $tab } = this
+    let { url, RouterTab: $tab } = this
     let { iframes } = $tab
 
     if (!iframes.includes(url)) {
@@ -38,21 +39,21 @@ export default {
     $tab.currentIframe = url
 
     await this.$nextTick()
-    this.$routerTab.iframeMounted(url)
+    this.RouterTab.iframeMounted(url)
   },
 
   activated() {
-    this.$routerTab.currentIframe = this.url
+    this.RouterTab.currentIframe = this.url
   },
 
   deactivated() {
-    this.$routerTab.currentIframe = null
+    this.RouterTab.currentIframe = null
   },
 
   // 组件销毁后移除 iframe
   destroyed() {
     let { url } = this
-    let { iframes } = this.$routerTab
+    let { iframes } = this.RouterTab
     let index = iframes.indexOf(url)
 
     if (index > -1) {

@@ -132,7 +132,7 @@
   </div>
 </template>
 
-<script src="./index.js"></script>
+<script src="./RouterTab.js"></script>
 
-<style lang="scss" src="../../scss/routerTab.scss"></style>
-<style lang="scss" src="../../scss/transition.scss"></style>
+<style lang="scss" src="./scss/routerTab.scss"></style>
+<style lang="scss" src="./scss/transition.scss"></style>
