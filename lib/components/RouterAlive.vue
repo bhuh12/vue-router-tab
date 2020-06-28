@@ -28,7 +28,6 @@
         ref="page"
         :key="key"
         :class="pageClass"
-        v-on="hooks"
       />
     </transition>
   </div>
@@ -155,7 +154,7 @@ export default {
         if (nest && vm && $route.fullPath !== cacheFullPath) {
           const oldKey = this.matchRoute(old).key
           if (oldKey !== key) {
-            vm._nestCacheForceReload = true
+            this.nestForceUpdate = true
           }
         }
 
@@ -246,26 +245,31 @@ export default {
       this.onRefresh = true
     },
 
-    // 页面组件钩子
+    // 缓存页面组件钩子
     pageHook(hook) {
-      // 组件创建后记录缓存的复用路径
-      if (this.alive) {
-        let cacheItem = this.cache[this.key]
+      const handler = this[`pageHook:${hook}`]
+      if (typeof handler === 'function') handler()
+    },
 
-        if (hook === 'created') {
-          cacheItem = this.cache[this.key] = {
-            alivePath: this.alivePath,
-            fullPath: this.$route.fullPath
-          }
-        } else if (hook === 'mounted') {
-          cacheItem.vm = this.$refs.page
-        } else if (hook === 'activated') {
-          // 嵌套路由缓存导致页面不匹配时强制更新
-          if (cacheItem.vm._nestCacheForceReload) {
-            delete cacheItem.vm._nestCacheForceReload
-            this.reloadNestCache()
-          }
-        }
+    // 页面创建
+    'pageHook:created'() {
+      this.cache[this.key] = {
+        alivePath: this.alivePath,
+        fullPath: this.$route.fullPath
+      }
+    },
+
+    // 页面挂载
+    'pageHook:mounted'() {
+      this.cache[this.key].vm = this.$refs.page
+    },
+
+    // 页面激活
+    'pageHook:activated'() {
+      // 嵌套路由缓存导致页面不匹配时强制更新
+      if (this.nestForceUpdate) {
+        delete this.nestForceUpdate
+        this.$refs.page.$forceUpdate()
       }
     },
 
@@ -296,17 +300,6 @@ export default {
       }
 
       return (this._match = new RouteMatch(this, $route))
-    },
-
-    // 重载嵌套路由缓存
-    reloadNestCache() {
-      let { name, path, params, query, hash } = this.$route
-      // query 添加 _forceReload 以更新路由
-      query = {
-        ...query,
-        _forceReload: 1
-      }
-      this.$router.replace({ name, path, params, query, hash })
     }
   }
 }

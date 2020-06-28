@@ -26,20 +26,26 @@ Problems that we came across and solutions to them. If you have any better ideas
 
    2. Hide `<router-view>` by `v-if` and show it after transition ends or `nextTick`.
 
-4. Nested Routes share same tabs:
+4. Get the routing depth where the current component is:
+
+   Recursively find the corresponding value of the nearest parent component with `$vnode.data.routerViewDepth`.
+
+5. Nested Routes share same tabs:
 
    Get `path` of current matched route from `$route.matched`.
 
-5. Visit page **a** from a nested route, and go to a page of another route, then visit page **b** from the same nested route. The displayed page is still **a**:
+6. Visit page **a** from a keep-alive nested route, and go to a page of another route, then visit page **b** from the same nested route. The displayed page is still **a**:
 
-   After matching to the current scenario, manually replace the `$el` of the correct routing component.
+   Run `$forceUpdate` to force update the component on the page `activated`.
 
-6. Iframe tab gets reloaded on switching:
+   Side effect: Subroutine page **a** will still trigger the `activated` hook
+
+7. Iframe tab gets reloaded on switching:
 
    1. Extract `<iframe>` to outer layer of `<router-view>`, and show/hide it via `v-show`.
 
    2. Create a separate iframe route component, and manage `<iframe>` dom element in lifecycle hook methods, i.e., add, show, hide and remove.
 
-7. Js bundle size gets too big:
+8. Js bundle size gets too big:
 
    When building as lib, set `useBuiltIns` to `false` in `babel.config.js`, which means not including Polyfill in final bundle.
