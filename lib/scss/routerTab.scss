@@ -32,20 +32,61 @@ $close-icon-size: 13px;
     box-sizing: border-box;
     border-bottom: 1px solid $border-color;
     transition: all 0.2s ease-in-out;
-
-    &.is-scroll {
-      .router-tab-scroll {
-        overflow: hidden;
-      }
-    }
   }
 
   // 滚动区域
   &__scroll {
+    position: relative;
     flex: 1 1 0px;
     height: $hd-height;
     overflow: hidden;
-    scroll-behavior: smooth;
+
+    &-container {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+      // 移动设备原生滚动
+      &.is-mobile {
+        overflow-y: hidden;
+        overflow-x: auto;
+      }
+    }
+  }
+
+  // 滚动条
+  &__scrollbar {
+    $h: 4px;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: $h;
+    border-radius: $h;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease-in-out;
+
+    .router-tab__scroll:hover &,
+    &.is-dragging {
+      opacity: 1;
+    }
+
+    &-thumb {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: $h;
+      transition: background-color 0.3s ease-in-out;
+
+      &:hover,
+      .router-tab__scrollbar.is-dragging & {
+        background-color: rgba($color-primary, 0.8);
+      }
+    }
   }
 
   // 页签导航
@@ -226,15 +267,6 @@ $close-icon-size: 13px;
         pointer-events: none;
         cursor: default;
       }
-    }
-  }
-
-  // 移动设备
-  &.is-mobile {
-    // 滚动
-    .router-tab__scroll {
-      overflow-y: hidden;
-      overflow-x: auto;
     }
   }
 }

@@ -1,24 +1,14 @@
 <template>
-  <div class="router-tab" :class="{ 'is-mobile': isMobile }">
+  <div class="router-tab">
     <!-- 页签头部 -->
-    <header
-      ref="header"
-      :class="['router-tab__header', hasScroller && 'is-scroll']"
-    >
+    <header ref="header" class="router-tab__header">
       <div class="router-tab__slot-start">
         <slot name="start" />
       </div>
 
-      <div ref="scroll" class="router-tab__scroll" @wheel.prevent="tabWheel">
+      <tab-scroll ref="scroll">
         <!-- 页签列表 -->
-        <transition-group
-          ref="nav"
-          tag="ul"
-          class="router-tab__nav"
-          v-bind="tabTrans"
-          @after-enter="onTabTransEnd"
-          @after-leave="onTabTransEnd"
-        >
+        <transition-group tag="ul" class="router-tab__nav" v-bind="tabTrans">
           <tab-item
             v-for="(item, index) in items"
             :key="item.id || item.to"
@@ -34,9 +24,7 @@
             </template>
           </tab-item>
         </transition-group>
-
-        <div ref="scroller" class="router-tab__scroller"></div>
-      </div>
+      </tab-scroll>
 
       <div class="router-tab__slot-end">
         <slot name="end" />
