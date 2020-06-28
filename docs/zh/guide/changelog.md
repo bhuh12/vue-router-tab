@@ -1,5 +1,30 @@
 # 更新日志
 
+## [1.0.0](https://github.com/bhuh12/vue-router-tab/compare/v1.0.0-alpha.5...v1.0.0) (2020-06-28)
+
+### Code Refactoring
+
+- 样式重构，移除左右页签滚动按钮 ([a17543a](https://github.com/bhuh12/vue-router-tab/commit/a17543a8e4f3e82890a292c46f1185a6a8d21217))
+
+### Features
+
+- **RouterAlive:** RouterAlive 组件使用 keep-alive + router-view 重构 ([ac3a04d](https://github.com/bhuh12/vue-router-tab/commit/ac3a04df2055e673ea5e16993de5df1d4452d9b8))
+- **scroll:** 添加页签滚动组件 ([620d17e](https://github.com/bhuh12/vue-router-tab/commit/620d17e2a026511682ebf3ab6e4b1bd418a88a31))
+
+### Performance Improvements
+
+- 缓存的嵌套页面不更新使用 \$forceUpdate 强制刷新 ([a85a51e](https://github.com/bhuh12/vue-router-tab/commit/a85a51e446b9fca7ca962e9b43369f06cf88bd53))
+- **RouterAlive:** 通过 \$vnode.data.routerViewDepth 匹配页面路由索引。 ([c0dce87](https://github.com/bhuh12/vue-router-tab/commit/c0dce87278f213c90121bbd51cd322385e003d86))
+
+### BREAKING CHANGES
+
+- 组件节点 class 更改
+- **RouterAlive:**
+  1. close 方法多参数方式简化，只支持 close(path, to)
+  2. 组件配置弃用：alive-id、router-view
+  3. 路由 meta 配置 aliveId 更改为 key
+  4. 弃用路由页面 \_isRouterPage 标记
+
 ## [1.0.0-alpha.5](https://github.com/bhuh12/vue-router-tab/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2020-05-29)
 
 ### Features
@@ -129,8 +154,8 @@
 
 ### Bug Fixes
 
-- **style:** 去除 tab 滚动控制按钮的 element-ui 图标 class ([1404a7f](https://github.com/bhuh12/vue-router-tab/commit/1404a7fc92ebfc18d594fe5b0c7d64437cdd5f8b)), closes [#12](https://github.com/bhuh12/vue-router-tab/issues/12)
 - **style:** router-tab 添加最小高度 300px ([f4971ed](https://github.com/bhuh12/vue-router-tab/commit/f4971eda65986bdd7fe6c14035f001c4986f86ba)), closes [#9](https://github.com/bhuh12/vue-router-tab/issues/9)
+- **style:** 去除 tab 滚动控制按钮的 element-ui 图标 class ([1404a7f](https://github.com/bhuh12/vue-router-tab/commit/1404a7fc92ebfc18d594fe5b0c7d64437cdd5f8b)), closes [#12](https://github.com/bhuh12/vue-router-tab/issues/12)
 
 ## [0.1.9](https://github.com/bhuh12/vue-router-tab/compare/v0.1.8...v0.1.9) (2019-07-10)
 

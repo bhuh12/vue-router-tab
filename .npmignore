@@ -17,6 +17,7 @@ vue.config.js
 .eslintrc.js
 .eslintignore
 .prettierrc.js
+.browserslistrc
 
 .github
 .vscode

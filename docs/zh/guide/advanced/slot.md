@@ -31,4 +31,6 @@ RouterTab 支持通过以下插槽个性化页签组件：
 
 **示例：**
 
-<<< @/src/components/frames/Slot.vue{4,13,22}
+<<< @/src/components/frames/Slot.vue
+
+<!-- {4,13,22} -->

@@ -70,7 +70,6 @@ export default {
   components: { PageTimer, PageRouteInfo, IframeOperate },
   data() {
     let id = this.$route.params.id
-    let isI18nPage = this.$route.fullPath.indexOf('/i18n/') > -1
     return {
       pageId: id,
       nextId: +id + 1,

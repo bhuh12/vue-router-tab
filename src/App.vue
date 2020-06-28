@@ -29,7 +29,7 @@ export default {
 
   watch: {
     // 路由切换
-    $route($route) {
+    $route() {
       // 关闭侧边栏
       this.sidebarOpen = false
     }

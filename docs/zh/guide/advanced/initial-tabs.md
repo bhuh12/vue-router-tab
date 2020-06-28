@@ -6,4 +6,6 @@
 
 **示例：**
 
-<<< @/src/components/frames/InitialTabs.vue{2,10,12,15,18,22,30,34}
+<<< @/src/components/frames/InitialTabs.vue
+
+<!-- {2,10,12,15,18,22,30,34} -->

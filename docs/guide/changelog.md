@@ -1,5 +1,36 @@
 # Changelog
 
+## [1.0.0](https://github.com/bhuh12/vue-router-tab/compare/v1.0.0-alpha.5...v1.0.0) (2020-06-28)
+
+### Code Refactoring
+
+- Style refactoring, remove left and right tab scroll buttons ([a17543a](https://github.com/bhuh12/vue-router-tab/commit/a17543a8e4f3e82890a292c46f1185a6a8d21217))
+
+- **iframe:** Remove `openIframeTab`, `closeIframeTab`, `refreshIframeTab` methods ([87d0d77](https://github.com/bhuh12/vue-router-tab/commit/87d0d770a0b85a9e146023d74ca3f3d737b686c6))
+
+### Features
+
+- **RouterAlive:** RouterAlive component is refactored using keep-alive + router-view ([ac3a04d](https://github.com/bhuh12/vue-router-tab/commit/ac3a04df2055e673ea5e16993de5df1d4452d9b8))
+- **scroll:** Add tab scroll component ([620d17e](https://github.com/bhuh12/vue-router-tab/commit/620d17e2a026511682ebf3ab6e4b1bd418a88a31))-
+- **slot:** New Slots: `start` and `end` ([34d8542](https://github.com/bhuh12/vue-router-tab/commit/34d85421815f71364c1f8df157d1dbb95798c3e3))
+- **tab:** Mew route meta option: `closable` and `tabClass` ([b6c92fb](https://github.com/bhuh12/vue-router-tab/commit/b6c92fbb11939c7df84b8c1d77faa48bf17589d8))
+
+### Performance Improvements
+
+- Cached nested pages are not updated, use `$forceUpdate` ([a85a51e](https://github.com/bhuh12/vue-router-tab/commit/a85a51e446b9fca7ca962e9b43369f06cf88bd53))
+- **RouterAlive:** Match page route depth by `$vnode.data.routerViewDepth` ([c0dce87](https://github.com/bhuh12/vue-router-tab/commit/c0dce87278f213c90121bbd51cd322385e003d86))
+
+### BREAKING CHANGES
+
+- Component node class change
+- **tab:** Tab slot scope variable changes
+- **iframe:** Remove `openIframeTab`, `closeIframeTab`, `refreshIframeTab` methods
+- **RouterAlive:**
+  1. Simplify the close method arguments: `close(path, to)`
+  2. Deprecated options：`alive-id`、`router-view`
+  3. Change meta option `aliveId` to `key`
+  4. Deprecated routing page mark `_isRouterPage`
+
 ## [0.2.9](https://github.com/bhuh12/vue-router-tab/compare/v0.2.8...v0.2.9) (2019-11-20)
 
 ### Bug Fixes

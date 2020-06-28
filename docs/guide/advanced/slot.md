@@ -29,4 +29,6 @@ You can customize your tabs using the available slot `default`. Inside the slot 
 
 **Example:**
 
-<<< @/src/components/frames/Slot.vue{4,13,22}
+<<< @/src/components/frames/Slot.vue
+
+<!-- {4,13,22} -->

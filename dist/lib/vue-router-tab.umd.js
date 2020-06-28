@@ -96,35 +96,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ({
 
-/***/ "62e4":
-/***/ (function(module, exports) {
-
-module.exports = function(module) {
-	if (!module.webpackPolyfill) {
-		module.deprecate = function() {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if (!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
-
-/***/ }),
-
 /***/ "6b67":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -150,7 +121,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   } else {}
 }(typeof self !== 'undefined' ? self : this, function () {
   function getCurrentScript () {
-    if (document.currentScript) {
+    var descriptor = Object.getOwnPropertyDescriptor(document, 'currentScript')
+    // for chrome
+    if (!descriptor && 'currentScript' in document && document.currentScript) {
+      return document.currentScript
+    }
+
+    // for other browsers with native support for currentScript
+    if (descriptor && descriptor.get !== getCurrentScript && document.currentScript) {
       return document.currentScript
     }
   
@@ -210,10 +188,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
-/***/ "98b8":
+/***/ "96cf":
 /***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(module) {function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
@@ -221,13 +197,13 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var runtime = function (exports) {
+
+var runtime = (function (exports) {
   "use strict";
 
   var Op = Object.prototype;
   var hasOwn = Op.hasOwnProperty;
   var undefined; // More compressible than void 0.
-
   var $Symbol = typeof Symbol === "function" ? Symbol : {};
   var iteratorSymbol = $Symbol.iterator || "@@iterator";
   var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
@@ -237,14 +213,17 @@ var runtime = function (exports) {
     // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
     var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
     var generator = Object.create(protoGenerator.prototype);
-    var context = new Context(tryLocsList || []); // The ._invoke method unifies the implementations of the .next,
-    // .throw, and .return methods.
+    var context = new Context(tryLocsList || []);
 
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
     generator._invoke = makeInvokeMethod(innerFn, self, context);
+
     return generator;
   }
+  exports.wrap = wrap;
 
-  exports.wrap = wrap; // Try/catch helper to minimize deoptimizations. Returns a completion
+  // Try/catch helper to minimize deoptimizations. Returns a completion
   // record like context.tryEntries[i].completion. This interface could
   // have been (and was previously) designed to take a closure to be
   // invoked without arguments, but in all the cases we care about we
@@ -254,126 +233,121 @@ var runtime = function (exports) {
   // in every case, so we don't have to touch the arguments object. The
   // only additional allocation required is the completion record, which
   // has a stable shape and so hopefully should be cheap to allocate.
-
   function tryCatch(fn, obj, arg) {
     try {
-      return {
-        type: "normal",
-        arg: fn.call(obj, arg)
-      };
+      return { type: "normal", arg: fn.call(obj, arg) };
     } catch (err) {
-      return {
-        type: "throw",
-        arg: err
-      };
+      return { type: "throw", arg: err };
     }
   }
 
   var GenStateSuspendedStart = "suspendedStart";
   var GenStateSuspendedYield = "suspendedYield";
   var GenStateExecuting = "executing";
-  var GenStateCompleted = "completed"; // Returning this object from the innerFn has the same effect as
-  // breaking out of the dispatch switch statement.
+  var GenStateCompleted = "completed";
 
-  var ContinueSentinel = {}; // Dummy constructor functions that we use as the .constructor and
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
   // .constructor.prototype properties for functions that return Generator
   // objects. For full spec compliance, you may wish to configure your
   // minifier not to mangle the names of these two functions.
-
   function Generator() {}
-
   function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
 
-  function GeneratorFunctionPrototype() {} // This is a polyfill for %IteratorPrototype% for environments that
+  // This is a polyfill for %IteratorPrototype% for environments that
   // don't natively support it.
-
-
   var IteratorPrototype = {};
-
   IteratorPrototype[iteratorSymbol] = function () {
     return this;
   };
 
   var getProto = Object.getPrototypeOf;
   var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
-
-  if (NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
     // This environment has a native %IteratorPrototype%; use it instead
     // of the polyfill.
     IteratorPrototype = NativeIteratorPrototype;
   }
 
-  var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
   GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
   GeneratorFunctionPrototype.constructor = GeneratorFunction;
-  GeneratorFunctionPrototype[toStringTagSymbol] = GeneratorFunction.displayName = "GeneratorFunction"; // Helper for defining the .next, .throw, and .return methods of the
-  // Iterator interface in terms of a single ._invoke method.
+  GeneratorFunctionPrototype[toStringTagSymbol] =
+    GeneratorFunction.displayName = "GeneratorFunction";
 
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
   function defineIteratorMethods(prototype) {
-    ["next", "throw", "return"].forEach(function (method) {
-      prototype[method] = function (arg) {
+    ["next", "throw", "return"].forEach(function(method) {
+      prototype[method] = function(arg) {
         return this._invoke(method, arg);
       };
     });
   }
 
-  exports.isGeneratorFunction = function (genFun) {
+  exports.isGeneratorFunction = function(genFun) {
     var ctor = typeof genFun === "function" && genFun.constructor;
-    return ctor ? ctor === GeneratorFunction || // For the native GeneratorFunction constructor, the best we can
-    // do is to check its .name property.
-    (ctor.displayName || ctor.name) === "GeneratorFunction" : false;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
   };
 
-  exports.mark = function (genFun) {
+  exports.mark = function(genFun) {
     if (Object.setPrototypeOf) {
       Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
     } else {
       genFun.__proto__ = GeneratorFunctionPrototype;
-
       if (!(toStringTagSymbol in genFun)) {
         genFun[toStringTagSymbol] = "GeneratorFunction";
       }
     }
-
     genFun.prototype = Object.create(Gp);
     return genFun;
-  }; // Within the body of any async function, `await x` is transformed to
+  };
+
+  // Within the body of any async function, `await x` is transformed to
   // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
   // `hasOwn.call(value, "__await")` to determine if the yielded value is
   // meant to be awaited.
-
-
-  exports.awrap = function (arg) {
-    return {
-      __await: arg
-    };
+  exports.awrap = function(arg) {
+    return { __await: arg };
   };
 
   function AsyncIterator(generator, PromiseImpl) {
     function invoke(method, arg, resolve, reject) {
       var record = tryCatch(generator[method], generator, arg);
-
       if (record.type === "throw") {
         reject(record.arg);
       } else {
         var result = record.arg;
         var value = result.value;
-
-        if (value && _typeof(value) === "object" && hasOwn.call(value, "__await")) {
-          return PromiseImpl.resolve(value.__await).then(function (value) {
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return PromiseImpl.resolve(value.__await).then(function(value) {
             invoke("next", value, resolve, reject);
-          }, function (err) {
+          }, function(err) {
             invoke("throw", err, resolve, reject);
           });
         }
 
-        return PromiseImpl.resolve(value).then(function (unwrapped) {
+        return PromiseImpl.resolve(value).then(function(unwrapped) {
           // When a yielded Promise is resolved, its final value becomes
           // the .value of the Promise<{value,done}> result for the
           // current iteration.
           result.value = unwrapped;
           resolve(result);
-        }, function (error) {
+        }, function(error) {
           // If a rejected Promise was yielded, throw the rejection back
           // into the async generator function so it can be handled there.
           return invoke("throw", error, resolve, reject);
@@ -385,54 +359,64 @@ var runtime = function (exports) {
 
     function enqueue(method, arg) {
       function callInvokeWithMethodAndArg() {
-        return new PromiseImpl(function (resolve, reject) {
+        return new PromiseImpl(function(resolve, reject) {
           invoke(method, arg, resolve, reject);
         });
       }
 
-      return previousPromise = // If enqueue has been called before, then we want to wait until
-      // all previous Promises have been resolved before calling invoke,
-      // so that results are always delivered in the correct order. If
-      // enqueue has not been called before, then it is important to
-      // call invoke immediately, without waiting on a callback to fire,
-      // so that the async generator function has the opportunity to do
-      // any necessary setup in a predictable way. This predictability
-      // is why the Promise constructor synchronously invokes its
-      // executor callback, and why async functions synchronously
-      // execute code before the first await. Since we implement simple
-      // async functions in terms of async generators, it is especially
-      // important to get this right, even though it requires care.
-      previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, // Avoid propagating failures to Promises returned by later
-      // invocations of the iterator.
-      callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
-    } // Define the unified helper method that is used to implement .next,
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
     // .throw, and .return (see defineIteratorMethods).
-
-
     this._invoke = enqueue;
   }
 
   defineIteratorMethods(AsyncIterator.prototype);
-
   AsyncIterator.prototype[asyncIteratorSymbol] = function () {
     return this;
   };
+  exports.AsyncIterator = AsyncIterator;
 
-  exports.AsyncIterator = AsyncIterator; // Note that simple async functions are implemented on top of
+  // Note that simple async functions are implemented on top of
   // AsyncIterator objects; they just return a Promise for the value of
   // the final result produced by the iterator.
-
-  exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) {
+  exports.async = function(innerFn, outerFn, self, tryLocsList, PromiseImpl) {
     if (PromiseImpl === void 0) PromiseImpl = Promise;
-    var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl);
-    return exports.isGeneratorFunction(outerFn) ? iter // If outerFn is a generator, return the full iterator.
-    : iter.next().then(function (result) {
-      return result.done ? result.value : iter.next();
-    });
+
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList),
+      PromiseImpl
+    );
+
+    return exports.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
   };
 
   function makeInvokeMethod(innerFn, self, context) {
     var state = GenStateSuspendedStart;
+
     return function invoke(method, arg) {
       if (state === GenStateExecuting) {
         throw new Error("Generator is already running");
@@ -441,10 +425,10 @@ var runtime = function (exports) {
       if (state === GenStateCompleted) {
         if (method === "throw") {
           throw arg;
-        } // Be forgiving, per 25.3.3.3.3 of the spec:
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
         // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
-
-
         return doneResult();
       }
 
@@ -453,10 +437,8 @@ var runtime = function (exports) {
 
       while (true) {
         var delegate = context.delegate;
-
         if (delegate) {
           var delegateResult = maybeInvokeDelegate(delegate, context);
-
           if (delegateResult) {
             if (delegateResult === ContinueSentinel) continue;
             return delegateResult;
@@ -467,6 +449,7 @@ var runtime = function (exports) {
           // Setting context._sent for legacy support of Babel's
           // function.sent implementation.
           context.sent = context._sent = context.arg;
+
         } else if (context.method === "throw") {
           if (state === GenStateSuspendedStart) {
             state = GenStateCompleted;
@@ -474,17 +457,20 @@ var runtime = function (exports) {
           }
 
           context.dispatchException(context.arg);
+
         } else if (context.method === "return") {
           context.abrupt("return", context.arg);
         }
 
         state = GenStateExecuting;
-        var record = tryCatch(innerFn, self, context);
 
+        var record = tryCatch(innerFn, self, context);
         if (record.type === "normal") {
           // If an exception is thrown from innerFn, we leave state ===
           // GenStateExecuting and loop back for another invocation.
-          state = context.done ? GenStateCompleted : GenStateSuspendedYield;
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
 
           if (record.arg === ContinueSentinel) {
             continue;
@@ -494,24 +480,24 @@ var runtime = function (exports) {
             value: record.arg,
             done: context.done
           };
-        } else if (record.type === "throw") {
-          state = GenStateCompleted; // Dispatch the exception by looping back around to the
-          // context.dispatchException(context.arg) call above.
 
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
           context.method = "throw";
           context.arg = record.arg;
         }
       }
     };
-  } // Call delegate.iterator[context.method](context.arg) and handle the
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
   // result, either by returning a { value, done } result from the
   // delegate iterator, or by modifying context.method and context.arg,
   // setting context.delegate to null, and returning the ContinueSentinel.
-
-
   function maybeInvokeDelegate(delegate, context) {
     var method = delegate.iterator[context.method];
-
     if (method === undefined) {
       // A .throw or .return when the delegate iterator has no .throw
       // method always terminates the yield* loop.
@@ -534,7 +520,8 @@ var runtime = function (exports) {
         }
 
         context.method = "throw";
-        context.arg = new TypeError("The iterator does not provide a 'throw' method");
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
       }
 
       return ContinueSentinel;
@@ -551,7 +538,7 @@ var runtime = function (exports) {
 
     var info = record.arg;
 
-    if (!info) {
+    if (! info) {
       context.method = "throw";
       context.arg = new TypeError("iterator result is not an object");
       context.delegate = null;
@@ -561,51 +548,54 @@ var runtime = function (exports) {
     if (info.done) {
       // Assign the result of the finished delegate to the temporary
       // variable specified by delegate.resultName (see delegateYield).
-      context[delegate.resultName] = info.value; // Resume execution at the desired location (see delegateYield).
+      context[delegate.resultName] = info.value;
 
-      context.next = delegate.nextLoc; // If context.method was "throw" but the delegate handled the
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
       // exception, let the outer generator proceed normally. If
       // context.method was "next", forget context.arg since it has been
       // "consumed" by the delegate iterator. If context.method was
       // "return", allow the original .return call to continue in the
       // outer generator.
-
       if (context.method !== "return") {
         context.method = "next";
         context.arg = undefined;
       }
+
     } else {
       // Re-yield the result returned by the delegate method.
       return info;
-    } // The delegate iterator is finished, so forget it and continue with
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
     // the outer generator.
-
-
     context.delegate = null;
     return ContinueSentinel;
-  } // Define Generator.prototype.{next,throw,return} in terms of the
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
   // unified ._invoke helper method.
-
-
   defineIteratorMethods(Gp);
-  Gp[toStringTagSymbol] = "Generator"; // A Generator should always return itself as the iterator object when the
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
   // @@iterator function is called on it. Some browsers' implementations of the
   // iterator prototype chain incorrectly implement this, causing the Generator
   // object to not be returned from this call. This ensures that doesn't happen.
   // See https://github.com/facebook/regenerator/issues/274 for more details.
-
-  Gp[iteratorSymbol] = function () {
+  Gp[iteratorSymbol] = function() {
     return this;
   };
 
-  Gp.toString = function () {
+  Gp.toString = function() {
     return "[object Generator]";
   };
 
   function pushTryEntry(locs) {
-    var entry = {
-      tryLoc: locs[0]
-    };
+    var entry = { tryLoc: locs[0] };
 
     if (1 in locs) {
       entry.catchLoc = locs[1];
@@ -630,37 +620,33 @@ var runtime = function (exports) {
     // The root entry object (effectively a try statement without a catch
     // or a finally block) gives us a place to store values thrown from
     // locations where there is no enclosing try statement.
-    this.tryEntries = [{
-      tryLoc: "root"
-    }];
+    this.tryEntries = [{ tryLoc: "root" }];
     tryLocsList.forEach(pushTryEntry, this);
     this.reset(true);
   }
 
-  exports.keys = function (object) {
+  exports.keys = function(object) {
     var keys = [];
-
     for (var key in object) {
       keys.push(key);
     }
+    keys.reverse();
 
-    keys.reverse(); // Rather than returning an object with a next method, we keep
+    // Rather than returning an object with a next method, we keep
     // things simple and return the next function itself.
-
     return function next() {
       while (keys.length) {
         var key = keys.pop();
-
         if (key in object) {
           next.value = key;
           next.done = false;
           return next;
         }
-      } // To avoid creating an additional object, we just hang the .value
+      }
+
+      // To avoid creating an additional object, we just hang the .value
       // and .done properties off the next function object itself. This
       // also ensures that the minifier will not anonymize the function.
-
-
       next.done = true;
       return next;
     };
@@ -669,7 +655,6 @@ var runtime = function (exports) {
   function values(iterable) {
     if (iterable) {
       var iteratorMethod = iterable[iteratorSymbol];
-
       if (iteratorMethod) {
         return iteratorMethod.call(iterable);
       }
@@ -679,8 +664,7 @@ var runtime = function (exports) {
       }
 
       if (!isNaN(iterable.length)) {
-        var i = -1,
-            next = function next() {
+        var i = -1, next = function next() {
           while (++i < iterable.length) {
             if (hasOwn.call(iterable, i)) {
               next.value = iterable[i];
@@ -691,69 +675,70 @@ var runtime = function (exports) {
 
           next.value = undefined;
           next.done = true;
+
           return next;
         };
 
         return next.next = next;
       }
-    } // Return an iterator with no values.
+    }
 
-
-    return {
-      next: doneResult
-    };
+    // Return an iterator with no values.
+    return { next: doneResult };
   }
-
   exports.values = values;
 
   function doneResult() {
-    return {
-      value: undefined,
-      done: true
-    };
+    return { value: undefined, done: true };
   }
 
   Context.prototype = {
     constructor: Context,
-    reset: function reset(skipTempReset) {
-      this.prev = 0;
-      this.next = 0; // Resetting context._sent for legacy support of Babel's
-      // function.sent implementation.
 
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
       this.sent = this._sent = undefined;
       this.done = false;
       this.delegate = null;
+
       this.method = "next";
       this.arg = undefined;
+
       this.tryEntries.forEach(resetTryEntry);
 
       if (!skipTempReset) {
         for (var name in this) {
           // Not sure about the optimal order of these conditions:
-          if (name.charAt(0) === "t" && hasOwn.call(this, name) && !isNaN(+name.slice(1))) {
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
             this[name] = undefined;
           }
         }
       }
     },
-    stop: function stop() {
+
+    stop: function() {
       this.done = true;
+
       var rootEntry = this.tryEntries[0];
       var rootRecord = rootEntry.completion;
-
       if (rootRecord.type === "throw") {
         throw rootRecord.arg;
       }
 
       return this.rval;
     },
-    dispatchException: function dispatchException(exception) {
+
+    dispatchException: function(exception) {
       if (this.done) {
         throw exception;
       }
 
       var context = this;
-
       function handle(loc, caught) {
         record.type = "throw";
         record.arg = exception;
@@ -766,7 +751,7 @@ var runtime = function (exports) {
           context.arg = undefined;
         }
 
-        return !!caught;
+        return !! caught;
       }
 
       for (var i = this.tryEntries.length - 1; i >= 0; --i) {
@@ -790,31 +775,40 @@ var runtime = function (exports) {
             } else if (this.prev < entry.finallyLoc) {
               return handle(entry.finallyLoc);
             }
+
           } else if (hasCatch) {
             if (this.prev < entry.catchLoc) {
               return handle(entry.catchLoc, true);
             }
+
           } else if (hasFinally) {
             if (this.prev < entry.finallyLoc) {
               return handle(entry.finallyLoc);
             }
+
           } else {
             throw new Error("try statement without catch or finally");
           }
         }
       }
     },
-    abrupt: function abrupt(type, arg) {
+
+    abrupt: function(type, arg) {
       for (var i = this.tryEntries.length - 1; i >= 0; --i) {
         var entry = this.tryEntries[i];
-
-        if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) {
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
           var finallyEntry = entry;
           break;
         }
       }
 
-      if (finallyEntry && (type === "break" || type === "continue") && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc) {
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
         // Ignore the finally entry if control is not jumping to a
         // location outside the try/catch block.
         finallyEntry = null;
@@ -832,12 +826,14 @@ var runtime = function (exports) {
 
       return this.complete(record);
     },
-    complete: function complete(record, afterLoc) {
+
+    complete: function(record, afterLoc) {
       if (record.type === "throw") {
         throw record.arg;
       }
 
-      if (record.type === "break" || record.type === "continue") {
+      if (record.type === "break" ||
+          record.type === "continue") {
         this.next = record.arg;
       } else if (record.type === "return") {
         this.rval = this.arg = record.arg;
@@ -849,10 +845,10 @@ var runtime = function (exports) {
 
       return ContinueSentinel;
     },
-    finish: function finish(finallyLoc) {
+
+    finish: function(finallyLoc) {
       for (var i = this.tryEntries.length - 1; i >= 0; --i) {
         var entry = this.tryEntries[i];
-
         if (entry.finallyLoc === finallyLoc) {
           this.complete(entry.completion, entry.afterLoc);
           resetTryEntry(entry);
@@ -860,27 +856,26 @@ var runtime = function (exports) {
         }
       }
     },
-    "catch": function _catch(tryLoc) {
+
+    "catch": function(tryLoc) {
       for (var i = this.tryEntries.length - 1; i >= 0; --i) {
         var entry = this.tryEntries[i];
-
         if (entry.tryLoc === tryLoc) {
           var record = entry.completion;
-
           if (record.type === "throw") {
             var thrown = record.arg;
             resetTryEntry(entry);
           }
-
           return thrown;
         }
-      } // The context.catch method must only be called with a location
+      }
+
+      // The context.catch method must only be called with a location
       // argument that corresponds to a known catch block.
-
-
       throw new Error("illegal catch attempt");
     },
-    delegateYield: function delegateYield(iterable, resultName, nextLoc) {
+
+    delegateYield: function(iterable, resultName, nextLoc) {
       this.delegate = {
         iterator: values(iterable),
         resultName: resultName,
@@ -895,17 +890,21 @@ var runtime = function (exports) {
 
       return ContinueSentinel;
     }
-  }; // Regardless of whether this script is executing as a CommonJS module
+  };
+
+  // Regardless of whether this script is executing as a CommonJS module
   // or not, return the runtime object so that we can declare the variable
   // regeneratorRuntime in the outer scope, which allows this module to be
   // injected easily by `bin/regenerator --include-runtime script.js`.
-
   return exports;
-}( // If this script is executing as a CommonJS module, use module.exports
-// as the regeneratorRuntime namespace. Otherwise create a new empty
-// object. Either way, the resulting object will be used to initialize
-// the regeneratorRuntime variable at the top of this file.
-( false ? undefined : _typeof(module)) === "object" ? module.exports : {});
+
+}(
+  // If this script is executing as a CommonJS module, use module.exports
+  // as the regeneratorRuntime namespace. Otherwise create a new empty
+  // object. Either way, the resulting object will be used to initialize
+  // the regeneratorRuntime variable at the top of this file.
+   true ? module.exports : undefined
+));
 
 try {
   regeneratorRuntime = runtime;
@@ -921,14 +920,14 @@ try {
   // problems, please detail your unique predicament in a GitHub issue.
   Function("r", "regeneratorRuntime = r")(runtime);
 }
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__("62e4")(module)))
+
 
 /***/ }),
 
 /***/ "a34a":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("98b8");
+module.exports = __webpack_require__("96cf");
 
 /***/ }),
 
@@ -996,12 +995,12 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"64dccc4c-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/RouterTab/RouterTab.vue?vue&type=template&id=4b8e65cb&
-var RouterTabvue_type_template_id_4b8e65cb_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab",class:{ 'is-mobile': _vm.isMobile }},[_c('header',{ref:"header",class:['router-tab-header', _vm.hasScroller && 'is-scroll']},[_c('div',{staticClass:"router-tab_start"},[_vm._t("start")],2),_c('a',{staticClass:"nav-prev",on:{"click":function($event){return _vm.tabScroll('left')}}}),_c('div',{ref:"scroller",staticClass:"router-tab-scroll",on:{"wheel":function($event){$event.preventDefault();return _vm.tabWheel($event)}}},[_c('transition-group',_vm._b({ref:"nav",staticClass:"router-tab-nav",attrs:{"tag":"ul"},on:{"after-enter":_vm.onTabTransitionEnd,"after-leave":_vm.onTabTransitionEnd}},'transition-group',_vm.getTransOpt(_vm.tabTransition),false),_vm._l((_vm.items),function(item,index){return _c('tab-item',{key:item.id || item.to,attrs:{"data":item,"index":index},nativeOn:{"contextmenu":function($event){$event.preventDefault();return (function (e) { return _vm.showContextmenu(item.id, index, e); })($event)}},scopedSlots:_vm._u([(_vm.$scopedSlots.default)?{key:"default",fn:function(scope){return [_vm._t("default",null,null,scope)]}}:null],null,true)})}),1)],1),_c('a',{staticClass:"nav-next",on:{"click":function($event){return _vm.tabScroll('right')}}}),_c('div',{staticClass:"router-tab_end"},[_vm._t("end")],2)]),_c('div',{staticClass:"router-tab-container",class:{ loading: _vm.loading }},[_c('router-alive',{ref:"routerAlive",attrs:{"alive-id":_vm.aliveId},on:{"update":_vm.updateTab}},[_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onPageTransitionEnd,"after-leave":_vm.onPageTransitionEnd}},'transition',_vm.getTransOpt(_vm.pageTransition),false),[(_vm.isViewAlive)?_c('router-view',_vm._b({ref:"routerView",staticClass:"router-tab-page"},'router-view',_vm.routerView,false)):_vm._e()],1)],1),_c('transition-group',_vm._b({staticClass:"router-tab-iframes",attrs:{"tag":"div"}},'transition-group',_vm.getTransOpt(_vm.pageTransition),false),_vm._l((_vm.iframes),function(url){return _c('iframe',{directives:[{name:"show",rawName:"v-show",value:(url === _vm.currentIframe),expression:"url === currentIframe"}],key:url,staticClass:"router-tab-iframe",attrs:{"src":url,"name":_vm.iframeNamePrefix + url,"frameborder":"0"},on:{"load":function($event){return _vm.iframeLoaded(url)}}})}),0)],1),_c('transition',{attrs:{"name":"router-tab-zoom"}},[(_vm.contextmenu.id)?_c('div',{staticClass:"router-tab-contextmenu",style:(("left: " + (_vm.contextmenu.left) + "px; top: " + (_vm.contextmenu.top) + "px;"))},[_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabActived},on:{"click":function($event){_vm.isContextTabActived && _vm.refreshTab(_vm.contextmenu.id)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.refresh)+" ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":_vm.items.length < 2},on:{"click":function($event){_vm.items.length > 1 && _vm.refreshAll()}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.refreshAll)+" ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.isContextTabCanBeClosed},on:{"click":function($event){_vm.isContextTabCanBeClosed && _vm.closeTab(_vm.contextmenu.id)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.close)+" ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsLeft.length},on:{"click":function($event){_vm.tabsLeft.length && _vm.closeMulti(_vm.tabsLeft)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.closeLefts)+" ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsRight.length},on:{"click":function($event){_vm.tabsRight.length && _vm.closeMulti(_vm.tabsRight)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.closeRights)+" ")]),_c('a',{staticClass:"contextmenu-item",attrs:{"disabled":!_vm.tabsOther.length},on:{"click":function($event){_vm.tabsOther.length && _vm.closeMulti(_vm.tabsOther)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.closeOthers)+" ")])]):_vm._e()])],1)}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"971ce2f4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/RouterTab.vue?vue&type=template&id=4af9cf8f&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab"},[_c('header',{ref:"header",staticClass:"router-tab__header"},[_c('div',{staticClass:"router-tab__slot-start"},[_vm._t("start")],2),_c('tab-scroll',{ref:"scroll"},[_c('transition-group',_vm._b({staticClass:"router-tab__nav",attrs:{"tag":"ul"}},'transition-group',_vm.tabTrans,false),_vm._l((_vm.items),function(item,index){return _c('tab-item',{key:item.id || item.to,ref:"tab",refInFor:true,attrs:{"data":item,"index":index},nativeOn:{"contextmenu":function($event){$event.preventDefault();return (function (e) { return _vm.showContextmenu(item.id, index, e); })($event)}},scopedSlots:_vm._u([(_vm.$scopedSlots.default)?{key:"default",fn:function(scope){return [_vm._t("default",null,null,scope)]}}:null],null,true)})}),1)],1),_c('div',{staticClass:"router-tab__slot-end"},[_vm._t("end")],2)],1),_c('div',{staticClass:"router-tab__container",class:{ loading: _vm.loading }},[_c('router-alive',{attrs:{"page-class":"router-tab-page","keep-alive":_vm.keepAlive,"reuse":_vm.reuse,"max":_vm.maxAlive,"transition":_vm.pageTrans},on:{"ready":_vm.onAliveReady,"change":_vm.onAliveChange}}),_c('transition-group',_vm._b({staticClass:"router-tab__iframes",attrs:{"tag":"div"}},'transition-group',_vm.pageTrans,false),_vm._l((_vm.iframes),function(url){return _c('iframe',{directives:[{name:"show",rawName:"v-show",value:(url === _vm.currentIframe),expression:"url === currentIframe"}],key:url,staticClass:"router-tab__iframe",attrs:{"src":url,"name":_vm.iframeNamePrefix + url,"frameborder":"0"},on:{"load":function($event){return _vm.iframeLoaded(url)}}})}),0)],1),_c('transition',{attrs:{"name":"router-tab-zoom"}},[(_vm.contextmenu.id)?_c('div',{staticClass:"router-tab__contextmenu",style:(("left: " + (_vm.contextmenu.left) + "px; top: " + (_vm.contextmenu.top) + "px;"))},[_c('a',{staticClass:"router-tab__contextmenu-item",on:{"click":function($event){return _vm.refreshTab(_vm.contextmenu.id)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.refresh)+" ")]),_c('a',{staticClass:"router-tab__contextmenu-item",attrs:{"disabled":_vm.items.length < 2},on:{"click":function($event){_vm.items.length > 1 && _vm.refreshAll()}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.refreshAll)+" ")]),_c('a',{staticClass:"router-tab__contextmenu-item",attrs:{"disabled":!_vm.isContextTabCanBeClosed},on:{"click":function($event){_vm.isContextTabCanBeClosed && _vm.closeTab(_vm.contextmenu.id)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.close)+" ")]),_c('a',{staticClass:"router-tab__contextmenu-item",attrs:{"disabled":!_vm.tabsLeft.length},on:{"click":function($event){_vm.tabsLeft.length && _vm.closeMulti(_vm.tabsLeft)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.closeLefts)+" ")]),_c('a',{staticClass:"router-tab__contextmenu-item",attrs:{"disabled":!_vm.tabsRight.length},on:{"click":function($event){_vm.tabsRight.length && _vm.closeMulti(_vm.tabsRight)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.closeRights)+" ")]),_c('a',{staticClass:"router-tab__contextmenu-item",attrs:{"disabled":!_vm.tabsOther.length},on:{"click":function($event){_vm.tabsOther.length && _vm.closeMulti(_vm.tabsOther)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.closeOthers)+" ")])]):_vm._e()])],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./lib/components/RouterTab/RouterTab.vue?vue&type=template&id=4b8e65cb&
+// CONCATENATED MODULE: ./lib/RouterTab.vue?vue&type=template&id=4af9cf8f&
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/regenerator/index.js
 var regenerator = __webpack_require__("a34a");
@@ -1010,10 +1009,16 @@ var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
 // CONCATENATED MODULE: ./lib/util/index.js
 // 空对象和数组
 var emptyObj = Object.create(null);
-var emptyArray = []; // 是否定义
+var emptyArray = []; // 从数组删除项
 
-function isDef(v) {
-  return v !== undefined && v !== null;
+function util_remove(arr, item) {
+  if (arr.length) {
+    var index = arr.indexOf(item);
+
+    if (index > -1) {
+      return arr.splice(index, 1);
+    }
+  }
 } // 防抖
 
 function debounce(fn) {
@@ -1028,12 +1033,109 @@ function debounce(fn) {
     }, delay);
   };
 }
-// CONCATENATED MODULE: ./lib/components/RouterTab/contextmenu.js
+/**
+ * 滚动到指定位置
+ * @export
+ * @param {Element} wrap 滚动区域
+ * @param {number} [left=0]
+ * @param {number} [top=0]
+ */
+
+function util_scrollTo(_ref) {
+  var wrap = _ref.wrap,
+      _ref$left = _ref.left,
+      left = _ref$left === void 0 ? 0 : _ref$left,
+      _ref$top = _ref.top,
+      top = _ref$top === void 0 ? 0 : _ref$top,
+      _ref$smooth = _ref.smooth,
+      smooth = _ref$smooth === void 0 ? true : _ref$smooth;
+  if (!wrap) return;
+
+  if (wrap.scrollTo) {
+    wrap.scrollTo({
+      left: left,
+      top: top,
+      behavior: smooth ? 'smooth' : 'auto'
+    });
+  } else {
+    wrap.scrollLeft = left;
+    wrap.scrollTop = top;
+  }
+}
+/**
+ * 指定元素滚动到可视区域
+ * @export
+ * @param {Element} el 目标元素
+ * @param {Element} wrap 滚动区域
+ * @param {String} block 垂直方向的对齐，可选：'start', 'center', 'end', 或 'nearest'
+ * @param {String} inline 水平方向的对齐，可选值同上
+ */
+
+function util_scrollIntoView(_ref2) {
+  var el = _ref2.el,
+      wrap = _ref2.wrap,
+      _ref2$block = _ref2.block,
+      block = _ref2$block === void 0 ? 'start' : _ref2$block,
+      _ref2$inline = _ref2.inline,
+      inline = _ref2$inline === void 0 ? 'nearest' : _ref2$inline;
+  if (!el || !wrap) return;
+
+  if (el.scrollIntoView) {
+    el.scrollIntoView({
+      behavior: 'smooth',
+      block: block,
+      inline: inline
+    });
+  } else {
+    var offsetLeft = el.offsetLeft,
+        offsetTop = el.offsetTop;
+    var left, top;
+
+    if (block === 'center') {
+      top = offsetTop + (el.clientHeight - wrap.clientHeight) / 2;
+    } else {
+      top = offsetTop;
+    }
+
+    if (inline === 'center') {
+      left = offsetLeft + (el.clientWidth - wrap.clientWidth) / 2;
+    } else {
+      left = offsetLeft;
+    }
+
+    util_scrollTo({
+      wrap: wrap,
+      left: left,
+      top: top
+    });
+  }
+} // 提取计算属性
+
+function mapGetters(prop, keys) {
+  var map = {};
+  keys.forEach(function (key) {
+    map[key] = function () {
+      return this[prop][key];
+    };
+  });
+  return map;
+} // 去除路径中的 hash
+
+var prunePath = function prunePath(path) {
+  return path.split('#')[0];
+}; // 解析过渡配置
+
+function getTransOpt(trans) {
+  return typeof trans === 'string' ? {
+    name: trans
+  } : trans;
+}
+// CONCATENATED MODULE: ./lib/mixins/contextmenu.js
 
 
-function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
@@ -1043,7 +1145,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
  // 右键菜单
 
-/* harmony default export */ var RouterTab_contextmenu = ({
+/* harmony default export */ var mixins_contextmenu = ({
   data: function data() {
     return {
       // 右键菜单
@@ -1056,10 +1158,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   computed: {
-    // 右键菜单是否当前页签
-    isContextTabActived: function isContextTabActived() {
-      return this.contextmenu.id === this.activeTabId;
-    },
     // 右键页签是否允许关闭
     isContextTabCanBeClosed: function isContextTabCanBeClosed() {
       var items = this.items,
@@ -1285,12 +1383,12 @@ var messages = {
     return "\u8BE5".concat(target, "\u5DF2\u66F4\u540D\u4E3A\u201C").concat(newName, "\u201D\uFF0C\u8BF7\u4FEE\u6539\u540E\u4F7F\u7528");
   }
 };
-// CONCATENATED MODULE: ./lib/components/RouterTab/i18n.js
+// CONCATENATED MODULE: ./lib/mixins/i18n.js
 function _toArray(arr) { return _arrayWithHoles(arr) || _iterableToArray(arr) || i18n_unsupportedIterableToArray(arr) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function i18n_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return i18n_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return i18n_arrayLikeToArray(o, minLen); }
+function i18n_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return i18n_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return i18n_arrayLikeToArray(o, minLen); }
 
 function i18n_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
@@ -1369,7 +1467,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     }
   }
 });
-// CONCATENATED MODULE: ./lib/components/RouterTab/iframe.js
+// CONCATENATED MODULE: ./lib/mixins/iframe.js
 // iframe 页签
 /* harmony default export */ var iframe = ({
   data: function data() {
@@ -1384,7 +1482,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     getIframePath: function getIframePath(src) {
       var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       var icon = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-      var path = "".concat(this.getBasePath(), "/iframe/").concat(encodeURIComponent(src));
+      var path = "".concat(this.basePath, "/iframe/").replace(/\/+/g, '/') + encodeURIComponent(src);
 
       if (title) {
         path += '/' + title;
@@ -1401,7 +1499,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     // 关闭 iframe 页签
     closeIframe: function closeIframe(src) {
       var path = this.getIframePath(src);
-      this.close(path, false);
+      this.close({
+        path: path,
+        match: false
+      });
     },
     // 刷新 iframe 页签
     refreshIframe: function refreshIframe(src) {
@@ -1425,7 +1526,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     }
   }
 });
-// CONCATENATED MODULE: ./lib/components/RouterTab/operate.js
+// CONCATENATED MODULE: ./lib/mixins/operate.js
 
 
 function operate_asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -1436,7 +1537,7 @@ function _slicedToArray(arr, i) { return operate_arrayWithHoles(arr) || _iterabl
 
 function operate_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function operate_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return operate_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return operate_arrayLikeToArray(o, minLen); }
+function operate_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return operate_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return operate_arrayLikeToArray(o, minLen); }
 
 function operate_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
@@ -1453,41 +1554,22 @@ function getCloseArgs(args) {
   var argsLen = args.length;
   var arg = args[0]; // 首个选项
 
-  var arg2 = args[1]; // 第二个选项
-
   if (!argsLen) {
     // close()
     return {};
-  } else if (argsLen === 1 && arg && _typeof(arg) === 'object' && !arg.name && !arg.fullPath && !arg.params && !arg.query && !arg.hash) {
+  } else if (_typeof(arg) === 'object' && !arg.name && !arg.fullPath && !arg.params && !arg.query && !arg.hash) {
     // close({id, path, match, force, to, refresh})
     return arg;
-  } else if (typeof arg2 === 'boolean') {
-    // close(path, match, force)
+  } else {
+    // close(path, to)
     var _args = args,
-        _args2 = _slicedToArray(_args, 3),
+        _args2 = _slicedToArray(_args, 2),
         path = _args2[0],
-        match = _args2[1],
-        force = _args2[2];
+        to = _args2[1];
 
     return {
       path: path,
-      match: match,
-      force: force
-    };
-  } else {
-    // close(path, to, match, force)
-    var _args3 = args,
-        _args4 = _slicedToArray(_args3, 4),
-        _path = _args4[0],
-        to = _args4[1],
-        _match = _args4[2],
-        _force = _args4[3];
-
-    return {
-      path: _path,
-      to: to,
-      match: _match,
-      force: _force
+      to: to
     };
   }
 } // 路径是否一致
@@ -1519,8 +1601,8 @@ function equalPath(path1, path2) {
               case 0:
                 isReplace = _arguments.length > 1 && _arguments[1] !== undefined ? _arguments[1] : false;
                 refresh = _arguments.length > 2 && _arguments[2] !== undefined ? _arguments[2] : true;
-                curId = _this.getAliveId(_this.$route);
-                tarId = _this.getAliveId(path);
+                curId = _this.activeTabId;
+                tarId = _this.getRouteKey(path);
                 isSameTab = equalPath(curId, tarId); // 打开路由与当前路由相同页签才刷新
 
                 refresh === 'sameTab' && (refresh = isSameTab);
@@ -1539,7 +1621,7 @@ function equalPath(path1, path2) {
 
               case 14:
                 _context.prev = 14;
-                isSameTab && _this.reloadView();
+                isSameTab && _this.reload();
                 return _context.finish(14);
 
               case 17:
@@ -1602,8 +1684,7 @@ function equalPath(path1, path2) {
      * 关闭页签
      * 支持以下方式调用：
      *   1. this.$routerTab.close({id, path, match, force, to, refresh})
-     *   2. this.$routerTab.close(path, match, force)
-     *   3. this.$routerTab.close((path, to, match, force))
+     *   2. this.$routerTab.close(path, to)
      * @param {String} id 通过页签 id 关闭
      * @param {location} path 通过路由路径关闭页签，如果未配置 id 和 path 则关闭当前页签
      * @param {Boolean} [match = true] path 方式关闭时，是否匹配 path 完整路径
@@ -1752,23 +1833,22 @@ function equalPath(path1, path2) {
                 return _this5.pageLeavePromise(id, 'refresh');
 
               case 6:
-                _this5.$alive.remove(id);
+                _this5.$alive.refresh(id);
 
-                if (id === _this5.activeTabId) _this5.reloadView();
-                _context5.next = 13;
+                _context5.next = 12;
                 break;
 
-              case 10:
-                _context5.prev = 10;
+              case 9:
+                _context5.prev = 9;
                 _context5.t0 = _context5["catch"](2);
                 warn(false, _context5.t0);
 
-              case 13:
+              case 12:
               case "end":
                 return _context5.stop();
             }
           }
-        }, _callee5, null, [[2, 10]]);
+        }, _callee5, null, [[2, 9]]);
       }))();
     },
 
@@ -1808,7 +1888,7 @@ function equalPath(path1, path2) {
                 return _this6.pageLeavePromise(id, 'refresh');
 
               case 9:
-                _this6.$alive.remove(id);
+                _this6.$alive.refresh(id);
 
                 _context6.next = 14;
                 break;
@@ -1822,9 +1902,6 @@ function equalPath(path1, path2) {
                 break;
 
               case 16:
-                _this6.reloadView();
-
-              case 17:
               case "end":
                 return _context6.stop();
             }
@@ -1854,7 +1931,7 @@ function equalPath(path1, path2) {
     }
   }
 });
-// CONCATENATED MODULE: ./lib/components/RouterTab/pageLeave.js
+// CONCATENATED MODULE: ./lib/mixins/pageLeave.js
  // 页面离开
 
 /* harmony default export */ var pageLeave = ({
@@ -1871,14 +1948,15 @@ function equalPath(path1, path2) {
         if (idx > -1) hooks.splice(idx, 1);
         next();
       } else {
-        var id = this.getAliveId(to);
+        var id = this.getRouteKey(to);
         var $alive = this.$alive;
 
         var _ref = $alive && $alive.cache[id] || emptyObj,
-            cacheRoute = _ref.route; // 如果不是相同路由则检查 beforePageLeave
+            alivePath = _ref.alivePath;
 
+        var matched = this.matchRoute(to); // 如果不是相同路由则检查 beforePageLeave
 
-        if (cacheRoute && !this.isAlikeRoute(to, cacheRoute)) {
+        if (alivePath && alivePath !== matched.alivePath) {
           this.pageLeavePromise(id, 'replace').then(function () {
             return next();
           }).catch(function () {
@@ -1915,234 +1993,50 @@ function equalPath(path1, path2) {
     }
   }
 });
-// CONCATENATED MODULE: ./lib/components/RouterTab/matched.js
- // 匹配路由链
-
-/* harmony default export */ var RouterTab_matched = ({
-  methods: {
-    // 匹配路由
-    matchRoutes: function matchRoutes() {
-      var route = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.$route;
-      var matched = route.matched; // 页面所在路由 index
-
-      var pageRouteIdx = matched.findIndex(function (_ref) {
-        var instances = _ref.instances;
-        return !instances.default || // instances 为空
-        Object.values(instances).find(function (vm) {
-          return vm && vm._isRouterPage;
-        });
-      } // mounted 时 instances 会包含路由页面实例
-      );
-      warn(pageRouteIdx > -1, '未能匹配到路由信息');
-      return {
-        baseRoute: matched[pageRouteIdx - 1],
-        // 跟路由
-        pageRoute: matched[pageRouteIdx],
-        // 页面路由
-        pageRouteIdx: pageRouteIdx,
-        isNest: pageRouteIdx !== matched.length - 1 // 是否嵌套路由
-
-      };
-    },
-    // 解析匹配的路径
-    parsePath: function parsePath(path, params) {
-      for (var key in params) {
-        path = path.replace(':' + key, params[key]);
-      }
-
-      return path;
-    },
-    // 获取 vnode 构造 id
-    getCtorIdByNode: function getCtorIdByNode(node) {
-      var opts = node.componentOptions;
-      return opts ? opts.Ctor.cid : null;
-    },
-    // 获取跟路径
-    getBasePath: function getBasePath() {
-      var path = this.matchRoutes().baseRoute.path;
-      var params = this.$route.params;
-      return path && this.parsePath(path, params);
-    },
-    // 获取嵌套路由的页面路径
-    getPagePath: function getPagePath() {
-      var route = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.$route;
-      var matchRoutes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.matchRoutes(route);
-      var pageRoute = matchRoutes.pageRoute,
-          isNest = matchRoutes.isNest; // 页面嵌套路由
-
-      if (isNest) {
-        return this.parsePath(pageRoute.path, route.params);
-      }
-    },
-    // 获取嵌套路由的页面组件
-    getPageComp: function getPageComp() {
-      var route = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.$route;
-
-      var _this$matchRoutes = this.matchRoutes(route),
-          pageRoute = _this$matchRoutes.pageRoute;
-
-      return pageRoute ? pageRoute.components.default : null;
-    },
-    // 获取路由不带hash的路径
-    getPathWithoutHash: function getPathWithoutHash(route) {
-      return route.hash ? route.fullPath.replace(route.hash, '') : route.fullPath;
-    },
-    // 是否相似路由
-    isAlikeRoute: function isAlikeRoute(route1, route2) {
-      var route1Path = this.getPagePath(route1);
-      var route2Path = this.getPagePath(route2);
-      return this.getPathWithoutHash(route1) === this.getPathWithoutHash(route2) || route1Path && route2Path && route1Path === route2Path;
-    },
-    // 是否嵌套路由
-    isNestRoute: function isNestRoute(route) {
-      var matchRoutes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.matchRoutes(route);
-      return matchRoutes.isNest;
-    }
-  }
-});
-// CONCATENATED MODULE: ./lib/components/RouterTab/rule.js
- // 内置规则
-
-var rules = {
-  // 地址，例如："/page/1?type=a#title" 则取 "/page/1"
-  path: function path(route, pagePath) {
-    return pagePath || route.path;
-  },
-  // 完整地址 (忽略 hash)，例如："/page/1?type=a#title" 则取 "/page/1?type=a"
-  fullpath: function fullpath(route, pagePath) {
-    return pagePath || route.fullPath.replace(route.hash, '');
-  }
-}; // 页签缓存规则
-
-/* harmony default export */ var rule = ({
-  props: {
-    // 缓存 id，如果为函数，则参数为 route
-    aliveId: {
-      type: [String, Function],
-      default: 'path'
-    }
-  },
-  mixins: [RouterTab_matched],
-  methods: {
-    // 获取缓存 id
-    getAliveId: function getAliveId() {
-      var route = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.$route;
-
-      if (!route.matched) {
-        // location 获取 route
-        route = this.$router.match(route, this.$router.currentRoute);
-      }
-
-      var rule = route.meta && route.meta.aliveId || this.aliveId;
-
-      if (typeof rule === 'string') {
-        rule = rules[rule.toLowerCase()];
-      }
-
-      if (typeof rule !== 'function') {
-        rule = rules.path;
-      }
-
-      var matchRoutes = this.matchRoutes(route);
-      return rule.bind(this)(route, this.getPagePath(route, matchRoutes));
-    }
-  }
-});
-// CONCATENATED MODULE: ./lib/util/dom.js
- // 滚动
-
-function scrollTo($el) {
-  var left = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  var top = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-
-  if ($el.scrollTo) {
-    $el.scrollTo({
-      left: left,
-      top: top,
-      behavior: 'smooth'
-    });
-  } else {
-    $el.scrollLeft = left;
-    $el.scrollTop = top;
-  }
-} // 获取第一个子组件
-
-function getFirstComponentChild(children) {
-  if (Array.isArray(children)) {
-    for (var i = 0; i < children.length; i++) {
-      var c = children[i];
-
-      if (isDef(c) && (isDef(c.componentOptions) || isAsyncPlaceholder(c))) {
-        return c;
-      }
-    }
-  }
-} // 是否异步占位
-
-function isAsyncPlaceholder(node) {
-  return node.isComment && node.asyncFactory;
-}
-// CONCATENATED MODULE: ./lib/components/RouterTab/scroll.js
+// CONCATENATED MODULE: ./lib/mixins/scroll.js
 
 
 function scroll_asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function scroll_asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { scroll_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { scroll_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-
  // 页签滚动
 
-/* harmony default export */ var RouterTab_scroll = ({
-  data: function data() {
-    return {
-      hasScroller: false
-    };
-  },
+/* harmony default export */ var mixins_scroll = ({
   watch: {
-    activeTabId: function activeTabId() {
-      var _this = this;
+    activeTabId: {
+      handler: function handler() {
+        var _this = this;
 
-      return scroll_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
-        var $cur, $scr, cLeft, sLeft;
-        return regenerator_default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                if (_this.$el) {
-                  _context.next = 2;
-                  break;
-                }
-
-                return _context.abrupt("return");
-
-              case 2:
-                _context.next = 4;
-                return _this.$nextTick();
-
-              case 4:
-                $cur = _this.$el.querySelector('.router-tab-nav .actived');
-                $scr = _this.$el.querySelector('.router-tab-scroll');
-
-                if ($cur) {
-                  cLeft = $cur.offsetLeft;
-                  sLeft = $scr.scrollLeft;
-
-                  if (cLeft < sLeft || cLeft + $cur.clientWidth > sLeft + $scr.clientWidth) {
-                    _this.adjust();
+        return scroll_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
+          return regenerator_default.a.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  if (_this.$el) {
+                    _context.next = 2;
+                    break;
                   }
-                }
 
-              case 7:
-              case "end":
-                return _context.stop();
+                  return _context.abrupt("return");
+
+                case 2:
+                  _context.next = 4;
+                  return _this.$nextTick();
+
+                case 4:
+                  _this.adjust();
+
+                case 5:
+                case "end":
+                  return _context.stop();
+              }
             }
-          }
-        }, _callee);
-      }))();
+          }, _callee);
+        }))();
+      },
+      immediate: true
     }
-  },
-  created: function created() {
-    this.$nextTick(this.adjust);
   },
   mounted: function mounted() {
     // 页面载入和浏览器窗口大小改变时调整Tab滚动显示
@@ -2153,51 +2047,23 @@ function scroll_asyncToGenerator(fn) { return function () { var self = this, arg
     window.removeEventListener('resize', this.onResize);
   },
   methods: {
-    // Tab滚动
-    tabScroll: function tabScroll(space) {
-      var scroller = this.$refs.scroller;
-
-      if (space === 'left') {
-        space = 100 - scroller.clientWidth;
-      } else if (space === 'right') {
-        space = scroller.clientWidth - 100;
-      }
-
-      scrollTo(scroller, scroller.scrollLeft + space);
-    },
-    // 页签鼠标滚动
-    tabWheel: function tabWheel(e) {
-      var now = +new Date();
-      var enable = now - (this.lastWheel || 0) > 100;
-      if (!enable) return;
-      this.lastWheel = now;
-      var space = 300;
-      var isWheelUp = e.deltaY < 0;
-      this.tabScroll(isWheelUp ? -space : space);
-    },
-    // 调整Tab滚动显示
+    // 调整页签滚动，保证当前页签在可视区域
     adjust: function adjust() {
       if (!this.$el) return;
-      var _this$$refs = this.$refs,
-          scroller = _this$$refs.scroller,
-          nav = _this$$refs.nav.$el;
-      var $cur = nav.querySelector('.actived');
-      var hasScroller = this.hasScroller = nav.clientWidth > scroller.clientWidth; // 判断是否需要滚动
-
-      if ($cur && hasScroller) {
-        scrollTo(scroller, $cur.offsetLeft + ($cur.clientWidth - scroller.clientWidth) / 2);
-      }
+      var scroll = this.$refs.scroll;
+      var cur = this.$el.querySelector('.router-tab__item.is-active');
+      if (!scroll.isInView(cur)) scroll.scrollIntoView(cur);
     }
   }
 });
-// CONCATENATED MODULE: ./lib/components/RouterTab/restore.js
+// CONCATENATED MODULE: ./lib/mixins/restore.js
 // 页签刷新后还原
 /* harmony default export */ var restore = ({
   computed: {
     // 刷新还原存储 key
     restoreKey: function restoreKey() {
-      var restore = this.restore;
-      var basePath = this.getBasePath();
+      var restore = this.restore,
+          basePath = this.basePath;
       if (!restore || typeof sessionStorage === 'undefined') return '';
       var key = "RouterTab:restore:".concat(basePath);
       typeof restore === 'string' && (key += ":".concat(restore));
@@ -2252,149 +2118,169 @@ function scroll_asyncToGenerator(fn) { return function () { var self = this, arg
     }
   }
 });
-// CONCATENATED MODULE: ./lib/components/RouterAlive.js
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"971ce2f4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/RouterAlive.vue?vue&type=template&id=9a476282&
+var RouterAlivevue_type_template_id_9a476282_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-alive"},[_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onTransChange,"after-leave":_vm.onTransChange}},'transition',_vm.pageTrans,false),[_c('keep-alive',{attrs:{"max":_vm.max}},[(_vm.alive && !_vm.onRefresh)?_c('router-view',_vm._g({key:_vm.key,ref:"page",class:_vm.pageClass},_vm.hooks)):_vm._e()],1)],1),_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onTransChange,"after-leave":_vm.onTransChange}},'transition',_vm.pageTrans,false),[(!_vm.alive && !_vm.onRefresh)?_c('router-view',{key:_vm.key,ref:"page",class:_vm.pageClass}):_vm._e()],1)],1)}
+var RouterAlivevue_type_template_id_9a476282_staticRenderFns = []
 
 
+// CONCATENATED MODULE: ./lib/components/RouterAlive.vue?vue&type=template&id=9a476282&
 
-/* harmony default export */ var RouterAlive = ({
-  name: 'RouterAlive',
-  mixins: [rule],
-  created: function created() {
-    Object.assign(this, {
-      cache: Object.create(null),
-      lastRoute: this.$route
-    });
+// CONCATENATED MODULE: ./lib/util/RouteMatch.js
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+ // 内置规则
+
+var rules = {
+  // 地址，params 不一致则独立缓存
+  path: function path(route) {
+    return route.path;
   },
-  // 销毁后清理缓存
-  destroyed: function destroyed() {
-    this.removeAll();
-    this.cache = null;
-    this.lastRoute = null;
-  },
-  render: function render() {
-    var slot = this.$slots.default;
-    var vnode = getFirstComponentChild(slot);
-    var vmOpts = vnode && vnode.componentOptions;
-
-    if (vmOpts) {
-      var $route = this.$route,
-          lastRoute = this.lastRoute; // 如果是transition组件，页面组件则为子元素
-
-      var pageNode = vmOpts.tag === 'transition' ? vmOpts.children[0] : vnode;
-
-      if (pageNode && pageNode.componentOptions) {
-        // 获取缓存
-        var key = this.getAliveId();
-        var cacheItem = this.get(key);
-
-        var _ref = cacheItem || emptyObj,
-            cacheVm = _ref.vm,
-            cacheRoute = _ref.route; // 是否需要重载路由强制刷新页面组件
-
-
-        var needReloadView = false; // 路由是否改变
-
-        var isRouteChange = lastRoute !== $route; // 是否与上次路由相似
-
-        var likeLastRoute = this.isAlikeRoute($route, lastRoute); // 是否跟上次路由不同单共用组件
-
-        var isShareComp = isRouteChange && !likeLastRoute && this.getPageComp($route) === this.getPageComp(lastRoute);
-
-        if (isRouteChange) {
-          // 更新上次路由
-          this.lastRoute = $route; // 添加缓存
-
-          this.set(key, {
-            route: $route
-          });
-        }
-
-        if (cacheVm) {
-          var ctorId = this.getCtorIdByNode(pageNode);
-          var lastCtorId = cacheVm._ctorId; // 页面实例组件构造函数改变则清理旧缓存，解决 webpack 热加载后组件缓存不更新
-
-          if (lastCtorId && lastCtorId !== ctorId) {
-            // 清理缓存组件
-            this.remove(key);
-          } else if (this.isAlikeRoute(cacheRoute, $route)) {
-            // 缓存组件的路由地址匹配则取缓存的组件
-            pageNode.componentInstance = cacheVm; // 嵌套路由缓存导致页面不匹配时强制更新
-
-            if (!likeLastRoute && cacheRoute.fullPath !== $route.fullPath && this.isNestRoute($route)) {
-              cacheVm._nestCacheForceReload = true;
-            }
-          } else {
-            // 缓存组件路由地址不匹配则销毁缓存并重载路由
-            this.remove(key);
-            needReloadView = true;
-          } // 更新构造 id
-
-
-          cacheVm._ctorId = ctorId;
-        } // 共用组件的路由切换需重载路由
-
-
-        if (isShareComp) needReloadView = true; // 重载路由以强制更新页面
-
-        needReloadView && this.$routerTab.reloadView(); // 标记为 keepAlive和 routerAlive
-
-        pageNode.data.keepAlive = true;
-        pageNode.data.routerAlive = this;
-      }
-    }
-
-    return vnode || slot && slot[0];
-  },
-  methods: {
-    // 设置缓存项
-    set: function set(key, item) {
-      var cache = this.cache;
-      var origin = cache[key];
-
-      if (origin) {
-        item = Object.assign(origin, item);
-      }
-
-      this.$emit('update', key, item); // 更新缓存数据
-
-      return cache[key] = item;
-    },
-    // 获取缓存项
-    get: function get(key) {
-      return this.cache[key];
-    },
-    // 删除缓存项
-    remove: function remove(key) {
-      var cache = this.cache;
-      var item = this.get(key); // 销毁组件实例
-
-      if (item) {
-        item.vm && item.vm.$destroy();
-        delete cache[key];
-      }
-    },
-    // 清理所有缓存
-    removeAll: function removeAll() {
-      var cache = this.cache;
-
-      for (var i in cache) {
-        this.remove(i);
-      }
-    }
+  // 完整地址 (忽略 hash)，params 或 query 不一致则独立缓存
+  fullpath: function fullpath(route) {
+    return prunePath(route.fullPath);
   }
-});
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"64dccc4c-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/RouterTab/TabItem.vue?vue&type=template&id=275fc7c4&
-var TabItemvue_type_template_id_275fc7c4_render = function () {
-var _obj;
-var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('router-link',{class:( _obj = {
-    'router-tab-item': true
-  }, _obj[_vm.tabClass || ''] = true, _obj.actived = _vm.Tab.activeTabId === _vm.id, _obj['is-closable'] =  _vm.closable, _obj['is-contextmenu'] =  _vm.Tab.contextmenu.id === _vm.id, _obj ),attrs:{"tag":"li","to":_vm.to}},[_vm._t("default",[(_vm.icon)?_c('i',{staticClass:"tab-icon",class:_vm.icon}):_vm._e(),_c('span',{staticClass:"tab-title",attrs:{"title":_vm.tips}},[_vm._v(_vm._s(_vm.title))]),(_vm.closable)?_c('i',{staticClass:"tab-close",on:{"click":function($event){$event.preventDefault();return _vm.close($event)}}}):_vm._e()],null,this)],2)}
-var TabItemvue_type_template_id_275fc7c4_staticRenderFns = []
+}; // 解析路由 key
+
+function parseRouteKey($route, route, key) {
+  var defaultKey = route.path;
+  if (!key) return defaultKey;
+
+  if (typeof key === 'string') {
+    // 规则
+    var rule = rules[key.toLowerCase()];
+    return rule ? rule($route) : key;
+  }
+
+  if (typeof key === 'function') {
+    return parseRouteKey($route, route, key($route));
+  }
+
+  return defaultKey;
+} // 解析匹配的路径
 
 
-// CONCATENATED MODULE: ./lib/components/RouterTab/TabItem.vue?vue&type=template&id=275fc7c4&
+function parsePath(path, params) {
+  for (var key in params) {
+    path = path.replace(':' + key, params[key]);
+  }
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/RouterTab/TabItem.vue?vue&type=script&lang=js&
+  return path;
+} // 匹配路由数据
+
+
+var RouteMatch_RouteMatch = /*#__PURE__*/function () {
+  function RouteMatch(vm, $route) {
+    _classCallCheck(this, RouteMatch);
+
+    this.vm = vm;
+    this.$route = $route;
+  } // 设置路由
+
+
+  _createClass(RouteMatch, [{
+    key: "$route",
+    set: function set($route) {
+      if ($route && !$route.matched) {
+        var $router = this.vm.$router;
+        $route = $router.match($route, $router.currentRoute);
+      }
+
+      this._$route = $route;
+    } // 获取路由
+    ,
+    get: function get() {
+      return this._$route || this.vm.$route;
+    } // 页面路由索引
+
+  }, {
+    key: "routeIndex",
+    get: function get() {
+      return this.vm.routeIndex;
+    } // 下级路由
+
+  }, {
+    key: "route",
+    get: function get() {
+      return this.$route.matched[this.routeIndex];
+    } // 根路径
+
+  }, {
+    key: "basePath",
+    get: function get() {
+      if (!this.routeIndex) return '/';
+      var baseRoute = this.$route.matched[this.routeIndex - 1];
+      var path = baseRoute.path;
+      return path && parsePath(path, this.$route.params);
+    } // 缓存路径，用于判断是否复用
+
+  }, {
+    key: "alivePath",
+    get: function get() {
+      var $route = this.$route; // 嵌套路由
+
+      if (this.nest) {
+        return parsePath(this.route.path, $route.params);
+      }
+
+      return prunePath($route.fullPath);
+    } // 路由元
+
+  }, {
+    key: "meta",
+    get: function get() {
+      var route = this.route;
+      return route && route.meta || {};
+    } // 是否嵌套路由
+
+  }, {
+    key: "nest",
+    get: function get() {
+      return this.$route.matched.length > this.routeIndex + 1;
+    } // 路由 key
+
+  }, {
+    key: "key",
+    get: function get() {
+      if (!this.route) return '';
+      return parseRouteKey(this.$route, this.route, this.meta.key);
+    } // 是否缓存
+
+  }, {
+    key: "alive",
+    get: function get() {
+      var keepAlive = this.meta.keepAlive;
+      return typeof keepAlive === 'boolean' ? keepAlive : this.vm.keepAlive;
+    } // 是否复用组件
+
+  }, {
+    key: "reusable",
+    get: function get() {
+      var reuse = this.meta.reuse;
+      return typeof reuse === 'boolean' ? reuse : this.vm.reuse;
+    }
+  }]);
+
+  return RouteMatch;
+}();
+
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/RouterAlive.vue?vue&type=script&lang=js&
+function RouterAlivevue_type_script_lang_js_slicedToArray(arr, i) { return RouterAlivevue_type_script_lang_js_arrayWithHoles(arr) || RouterAlivevue_type_script_lang_js_iterableToArrayLimit(arr, i) || RouterAlivevue_type_script_lang_js_unsupportedIterableToArray(arr, i) || RouterAlivevue_type_script_lang_js_nonIterableRest(); }
+
+function RouterAlivevue_type_script_lang_js_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function RouterAlivevue_type_script_lang_js_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return RouterAlivevue_type_script_lang_js_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return RouterAlivevue_type_script_lang_js_arrayLikeToArray(o, minLen); }
+
+function RouterAlivevue_type_script_lang_js_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function RouterAlivevue_type_script_lang_js_iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function RouterAlivevue_type_script_lang_js_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2421,69 +2307,255 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-// 从 data 的字段直接生成 computed
-var mapDataComputed = function mapDataComputed() {
-  var map = {};
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-  for (var _len = arguments.length, keys = new Array(_len), _key = 0; _key < _len; _key++) {
-    keys[_key] = arguments[_key];
-  }
 
-  keys.forEach(function (key) {
-    map[key] = function () {
-      return this.data[key];
+/**
+ * 路由缓存控件
+ */
+
+/* harmony default export */ var RouterAlivevue_type_script_lang_js_ = ({
+  name: 'RouterAlive',
+  provide: function provide() {
+    // 提供实例给子组件调用
+    return {
+      RouterAlive: this
     };
-  });
-  return map;
-}; // 页签项
-
-
-/* harmony default export */ var TabItemvue_type_script_lang_js_ = ({
-  name: 'TabItem',
-  inject: ['Tab'],
-  props: {
-    // 页签原始数据，方便 slot 插槽自定义数据
-    data: {
-      type: Object,
-      required: true
-    },
-    // 页签项索引
-    index: Number
   },
-  computed: _objectSpread({}, mapDataComputed('id', 'to', 'icon', 'tabClass', 'target', 'href'), {
-    // 国际化
-    i18nText: function i18nText() {
-      return this.Tab.i18nText;
+  props: {
+    // 默认是否开启缓存
+    keepAlive: {
+      type: Boolean,
+      default: false
     },
-    // 未命名页签
-    untitled: function untitled() {
-      return this.Tab.lang.tab.untitled;
+    // 是否复用路由组件
+    reuse: {
+      type: Boolean,
+      default: false
     },
-    // 页签标题
-    title: function title() {
-      return this.i18nText(this.data.title) || this.untitled;
+    // 最大缓存数，0 则不限制
+    max: {
+      type: Number,
+      default: 0
     },
-    // 页签提示
-    tips: function tips() {
-      return this.i18nText(this.data.tips || this.data.title) || this.untitled;
+    // 页面 class
+    pageClass: {
+      type: [Array, Object, String],
+      default: 'router-alive-page'
     },
-    // 是否可关闭
-    closable: function closable() {
-      var _this$Tab = this.Tab,
-          keepLastTab = _this$Tab.keepLastTab,
-          items = _this$Tab.items;
-      return this.data.closable && !(keepLastTab && items.length < 2);
+    // 过渡效果
+    transition: {
+      type: [String, Object]
+    }
+  },
+  data: function data() {
+    // 缓存记录
+    this.cache = {};
+    return {
+      // 路由匹配信息
+      routeMatch: new RouteMatch_RouteMatch(this),
+      // 页面路由索引
+      routeIndex: this.getRouteIndex(),
+      // 是否正在更新
+      onRefresh: false
+    };
+  },
+  computed: _objectSpread(_objectSpread({}, mapGetters('routeMatch', ['key', 'meta', 'nest', 'alive', 'reusable', 'basePath', 'alivePath'])), {}, {
+    // 监听子页面钩子
+    hooks: function hooks() {
+      var _this = this;
+
+      var events = {};
+      var hooks = ['created', 'mounted', 'activated'];
+      hooks.forEach(function (hook) {
+        events['hook:' + hook] = function () {
+          return _this.pageHook(hook);
+        };
+      });
+      return events;
+    },
+    // 页面过渡
+    pageTrans: function pageTrans() {
+      return getTransOpt(this.transition);
     }
   }),
+  watch: {
+    // 监听路由
+    $route: {
+      handler: function handler($route, old) {
+        // 组件就绪
+        if (!old) this.$emit('ready', this);
+        if (!$route.matched.length) return;
+        var key = this.key,
+            alive = this.alive,
+            meta = this.meta,
+            reusable = this.reusable,
+            alivePath = this.alivePath,
+            nest = this.nest;
+        var cacheItem = this.cache[key] || {};
+        var cacheAlivePath = cacheItem.alivePath,
+            cacheFullPath = cacheItem.fullPath,
+            vm = cacheItem.vm; // 不复用且路由改变则清理组件缓存
+
+        if (cacheAlivePath && !reusable && cacheAlivePath !== alivePath) {
+          cacheAlivePath = '';
+          this.refresh(key);
+        } // 嵌套路由，地址跟缓存不一致
+
+
+        if (nest && vm && $route.fullPath !== cacheFullPath) {
+          var oldKey = this.matchRoute(old).key;
+
+          if (oldKey !== key) {
+            this.nestForceUpdate = true;
+          }
+        }
+
+        if ($route.query._forceReload && old) return; // 类型：更新或者新建缓存
+
+        var type = cacheAlivePath ? 'update' : 'create';
+        this.$emit('change', type, this.routeMatch); // 更新缓存路径
+
+        if (alive) {
+          cacheItem.fullPath = $route.fullPath;
+        }
+      },
+      immediate: true
+    }
+  },
+  mounted: function mounted() {
+    // 获取 keepAlive 组件实例
+    this.$refs.alive = this._vnode.children[0].child._vnode.componentInstance;
+  },
   methods: {
-    // 关闭当前页签
-    close: function close() {
-      this.Tab.closeTab(this.id);
+    // 获取页面路由索引
+    getRouteIndex: function getRouteIndex() {
+      var cur = this;
+      var depth = -1; // 路由深度
+
+      while (cur && depth < 0) {
+        var _ref = cur.$vnode || {},
+            data = _ref.data;
+
+        if (data && data.routerView) {
+          depth = data.routerViewDepth;
+        } else {
+          cur = cur.$parent;
+        }
+      }
+
+      return depth + 1;
+    },
+    // 移除缓存
+    remove: function remove() {
+      var key = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.key;
+      var $alive = this.$refs.alive;
+      if (!$alive) return;
+      var cacheItem = this.cache[key];
+      var cache = $alive.cache,
+          keys = $alive.keys; // 销毁缓存组件实例，清理 RouterAlive 缓存记录
+
+      if (cacheItem) {
+        cacheItem.vm.$destroy();
+        cacheItem.vm = null;
+        this.cache[key] = null;
+      } // 清理 keepAlive 缓存记录
+
+
+      Object.entries(cache).find(function (_ref2) {
+        var _ref3 = RouterAlivevue_type_script_lang_js_slicedToArray(_ref2, 2),
+            id = _ref3[0],
+            item = _ref3[1];
+
+        if (item && item.data.key === key) {
+          // 销毁组件实例
+          item.componentInstance && item.componentInstance.$destroy();
+          cache[id] = null;
+
+          util_remove(keys, id);
+
+          return true;
+        }
+      });
+    },
+    // 刷新
+    refresh: function refresh() {
+      var key = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.key;
+      this.remove(key); // 非当前缓存，直接移除
+
+      if (key === this.key) {
+        this.reload();
+      }
+    },
+    // 重新加载
+    reload: function reload() {
+      if (this.onRefresh) return;
+      this.onRefresh = true;
+    },
+    // 缓存页面组件钩子
+    pageHook: function pageHook(hook) {
+      var handler = this["pageHook:".concat(hook)];
+      if (typeof handler === 'function') handler();
+    },
+    // 页面创建
+    'pageHook:created': function pageHookCreated() {
+      this.cache[this.key] = {
+        alivePath: this.alivePath,
+        fullPath: this.$route.fullPath
+      };
+    },
+    // 页面挂载
+    'pageHook:mounted': function pageHookMounted() {
+      this.cache[this.key].vm = this.$refs.page;
+    },
+    // 页面激活
+    'pageHook:activated': function pageHookActivated() {
+      // 嵌套路由缓存导致页面不匹配时强制更新
+      if (this.nestForceUpdate) {
+        delete this.nestForceUpdate;
+        this.$refs.page.$forceUpdate();
+      }
+    },
+    // 页面过渡后结束刷新状态
+    onTransChange: function onTransChange() {
+      if (this.onRefresh) {
+        this.onRefresh = false;
+        this.$emit('change', 'create', this.routeMatch);
+      }
+    },
+    // 匹配路由信息
+    matchRoute: function matchRoute($route) {
+      var matched = this._match; // 当前路由
+
+      if ($route === this.$route || $route.fullPath === this.$route.fullPath || $route === this.$route.fullPath) {
+        return this.routeMatch;
+      }
+
+      if (matched) {
+        matched.$route = $route;
+        return matched;
+      }
+
+      return this._match = new RouteMatch_RouteMatch(this, $route);
     }
   }
 });
-// CONCATENATED MODULE: ./lib/components/RouterTab/TabItem.vue?vue&type=script&lang=js&
- /* harmony default export */ var RouterTab_TabItemvue_type_script_lang_js_ = (TabItemvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./lib/components/RouterAlive.vue?vue&type=script&lang=js&
+ /* harmony default export */ var components_RouterAlivevue_type_script_lang_js_ = (RouterAlivevue_type_script_lang_js_); 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
 /* globals __VUE_SSR_CONTEXT__ */
 
@@ -2549,7 +2621,12 @@ function normalizeComponent (
     options._ssrRegister = hook
   } else if (injectStyles) {
     hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      ? function () {
+        injectStyles.call(
+          this,
+          (options.functional ? this.parent : this).$root.$options.shadowRoot
+        )
+      }
       : injectStyles
   }
 
@@ -2579,7 +2656,7 @@ function normalizeComponent (
   }
 }
 
-// CONCATENATED MODULE: ./lib/components/RouterTab/TabItem.vue
+// CONCATENATED MODULE: ./lib/components/RouterAlive.vue
 
 
 
@@ -2588,9 +2665,9 @@ function normalizeComponent (
 /* normalize component */
 
 var component = normalizeComponent(
-  RouterTab_TabItemvue_type_script_lang_js_,
-  TabItemvue_type_template_id_275fc7c4_render,
-  TabItemvue_type_template_id_275fc7c4_staticRenderFns,
+  components_RouterAlivevue_type_script_lang_js_,
+  RouterAlivevue_type_template_id_9a476282_render,
+  RouterAlivevue_type_template_id_9a476282_staticRenderFns,
   false,
   null,
   null,
@@ -2598,13 +2675,342 @@ var component = normalizeComponent(
   
 )
 
-/* harmony default export */ var TabItem = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/eslint-loader??ref--13-0!./lib/components/RouterTab?vue&type=script&lang=js&
+/* harmony default export */ var RouterAlive = (component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"971ce2f4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/TabItem.vue?vue&type=template&id=64b9760c&
+var TabItemvue_type_template_id_64b9760c_render = function () {
+var _obj;
+var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('router-link',{class:( _obj = {
+    'router-tab__item': true
+  }, _obj[_vm.tabClass || ''] = true, _obj['is-active'] =  _vm.RouterTab.activeTabId === _vm.id, _obj['is-closable'] =  _vm.closable, _obj['is-contextmenu'] =  _vm.RouterTab.contextmenu.id === _vm.id, _obj ),attrs:{"tag":"li","to":_vm.to}},[_vm._t("default",[(_vm.icon)?_c('i',{staticClass:"router-tab__item-icon",class:_vm.icon}):_vm._e(),_c('span',{staticClass:"router-tab__item-title",attrs:{"title":_vm.tips}},[_vm._v(_vm._s(_vm.title))]),(_vm.closable)?_c('i',{staticClass:"router-tab__item-close",on:{"click":function($event){$event.preventDefault();$event.stopPropagation();return _vm.close($event)}}}):_vm._e()],null,this)],2)}
+var TabItemvue_type_template_id_64b9760c_staticRenderFns = []
 
 
-function RouterTab_vue_type_script_lang_js_asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+// CONCATENATED MODULE: ./lib/components/TabItem.vue?vue&type=template&id=64b9760c&
 
-function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { RouterTab_vue_type_script_lang_js_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { RouterTab_vue_type_script_lang_js_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/TabItem.vue?vue&type=script&lang=js&
+function TabItemvue_type_script_lang_js_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function TabItemvue_type_script_lang_js_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { TabItemvue_type_script_lang_js_ownKeys(Object(source), true).forEach(function (key) { TabItemvue_type_script_lang_js_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { TabItemvue_type_script_lang_js_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function TabItemvue_type_script_lang_js_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+ // 页签项
+
+/* harmony default export */ var TabItemvue_type_script_lang_js_ = ({
+  name: 'TabItem',
+  inject: ['RouterTab'],
+  props: {
+    // 页签原始数据，方便 slot 插槽自定义数据
+    data: {
+      type: Object,
+      required: true
+    },
+    // 页签项索引
+    index: Number
+  },
+  computed: TabItemvue_type_script_lang_js_objectSpread(TabItemvue_type_script_lang_js_objectSpread({}, mapGetters('data', ['id', 'to', 'icon', 'tabClass', 'target', 'href'])), {}, {
+    // 国际化
+    i18nText: function i18nText() {
+      return this.RouterTab.i18nText;
+    },
+    // 未命名页签
+    untitled: function untitled() {
+      return this.RouterTab.lang.tab.untitled;
+    },
+    // 页签标题
+    title: function title() {
+      return this.i18nText(this.data.title) || this.untitled;
+    },
+    // 页签提示
+    tips: function tips() {
+      return this.i18nText(this.data.tips || this.data.title) || this.untitled;
+    },
+    // 是否可关闭
+    closable: function closable() {
+      var _this$RouterTab = this.RouterTab,
+          keepLastTab = _this$RouterTab.keepLastTab,
+          items = _this$RouterTab.items;
+      return this.data.closable !== false && !(keepLastTab && items.length < 2);
+    }
+  }),
+  methods: {
+    // 关闭当前页签
+    close: function close() {
+      this.RouterTab.closeTab(this.id);
+    }
+  }
+});
+// CONCATENATED MODULE: ./lib/components/TabItem.vue?vue&type=script&lang=js&
+ /* harmony default export */ var components_TabItemvue_type_script_lang_js_ = (TabItemvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./lib/components/TabItem.vue
+
+
+
+
+
+/* normalize component */
+
+var TabItem_component = normalizeComponent(
+  components_TabItemvue_type_script_lang_js_,
+  TabItemvue_type_template_id_64b9760c_render,
+  TabItemvue_type_template_id_64b9760c_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var TabItem = (TabItem_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"971ce2f4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/TabScroll.vue?vue&type=template&id=7fea0f42&
+var TabScrollvue_type_template_id_7fea0f42_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab__scroll",on:{"wheel":function($event){$event.preventDefault();return _vm.onMouseWheel($event)},"mouseenter":_vm.update}},[_c('div',{ref:"container",staticClass:"router-tab__scroll-container",class:{ 'is-mobile': _vm.isMobile },on:{"scroll":_vm.update}},[_vm._t("default")],2),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.hasScroller),expression:"hasScroller"}],ref:"bar",staticClass:"router-tab__scrollbar",class:{ 'is-dragging': _vm.dragData }},[_c('div',{ref:"thumb",staticClass:"router-tab__scrollbar-thumb",style:(("width: " + _vm.thumbWidth + "px; transform: translateX(" + _vm.thumbLeft + "px)")),on:{"mousedown":function($event){$event.preventDefault();return _vm.onDragStart($event)}}})])])}
+var TabScrollvue_type_template_id_7fea0f42_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./lib/components/TabScroll.vue?vue&type=template&id=7fea0f42&
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/TabScroll.vue?vue&type=script&lang=js&
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+ // 滚动条
+
+/* harmony default export */ var TabScrollvue_type_script_lang_js_ = ({
+  name: 'TabScroll',
+  props: {
+    // 每次滚动距离
+    space: {
+      type: Number,
+      default: 300
+    }
+  },
+  data: function data() {
+    return {
+      isMobile: false,
+      // 是否移动端
+      scrollData: {
+        clientWidth: 0,
+        scrollWidth: 0,
+        scrollLeft: 0
+      },
+      dragData: null
+    };
+  },
+  computed: {
+    // 是否拥有滚动条
+    hasScroller: function hasScroller() {
+      return !this.isMobile && this.scrollData.scrollWidth > this.scrollData.clientWidth;
+    },
+    // 滑块宽度
+    thumbWidth: function thumbWidth() {
+      if (!this.hasScroller) return;
+      var _this$scrollData = this.scrollData,
+          clientWidth = _this$scrollData.clientWidth,
+          scrollWidth = _this$scrollData.scrollWidth;
+      return clientWidth / scrollWidth * clientWidth;
+    },
+    // 滑块 left
+    thumbLeft: function thumbLeft() {
+      if (!this.hasScroller) return; // 拖拽滚动
+
+      if (this.dragData) {
+        return this.dragData.thumbLeft;
+      }
+
+      var _this$scrollData2 = this.scrollData,
+          clientWidth = _this$scrollData2.clientWidth,
+          scrollWidth = _this$scrollData2.scrollWidth,
+          scrollLeft = _this$scrollData2.scrollLeft;
+      return (clientWidth - this.thumbWidth) * (scrollLeft / (scrollWidth - clientWidth));
+    }
+  },
+  mounted: function mounted() {
+    // 是否移动端
+    this.isMobile = /mobile/i.test(navigator.userAgent);
+    this.update();
+  },
+  methods: {
+    // 更新滚动数据
+    update: function update() {
+      var _this$$refs$container = this.$refs.container,
+          clientWidth = _this$$refs$container.clientWidth,
+          scrollWidth = _this$$refs$container.scrollWidth,
+          scrollLeft = _this$$refs$container.scrollLeft;
+      Object.assign(this.scrollData, {
+        clientWidth: clientWidth,
+        scrollWidth: scrollWidth,
+        scrollLeft: scrollLeft
+      });
+    },
+    // 滚动到指定位置
+    scrollTo: function scrollTo(left) {
+      var smooth = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+      util_scrollTo({
+        wrap: this.$refs.container,
+        left: left,
+        smooth: smooth
+      });
+    },
+    // 滚动到元素
+    scrollIntoView: function scrollIntoView(el) {
+      util_scrollIntoView({
+        el: el,
+        wrap: this.$refs.container,
+        inline: 'center'
+      });
+    },
+    // 判断子节点是否完全在可视区域
+    isInView: function isInView(el) {
+      var container = this.$refs.container;
+      var offsetLeft = el.offsetLeft;
+      var scrollLeft = container.scrollLeft;
+
+      if (offsetLeft < scrollLeft || offsetLeft + el.clientWidth > scrollLeft + container.clientWidth) {
+        return false;
+      }
+
+      return true;
+    },
+    // 页签鼠标滚动
+    onMouseWheel: function onMouseWheel(e) {
+      var now = +new Date();
+      var enable = now - (this.lastWheel || 0) > 100;
+      if (!enable) return;
+      this.lastWheel = now;
+      var space = this.space;
+      var isWheelUp = e.deltaY < 0;
+      this.scrollTo(this.$refs.container.scrollLeft + (isWheelUp ? -space : space));
+    },
+    // 拖拽
+    onDragStart: function onDragStart(e) {
+      var thumbLeft = this.thumbLeft;
+      this.dragData = {
+        startPageX: e.pageX,
+        startScrollLeft: this.$refs.container.scrollLeft,
+        startThumbLeft: thumbLeft,
+        thumbLeft: thumbLeft
+      };
+      document.addEventListener('mousemove', this.onDragMove);
+      document.addEventListener('mouseup', this.onDragEnd);
+    },
+    // 拖拽移动
+    onDragMove: function onDragMove(e) {
+      var dragData = this.dragData,
+          thumbWidth = this.thumbWidth;
+      var _this$scrollData3 = this.scrollData,
+          clientWidth = _this$scrollData3.clientWidth,
+          scrollWidth = _this$scrollData3.scrollWidth;
+      var thumbLeft = dragData.startThumbLeft + e.pageX - dragData.startPageX;
+      var maxThumbLeft = clientWidth - thumbWidth;
+
+      if (thumbLeft < 0) {
+        thumbLeft = 0;
+      } else if (thumbLeft > maxThumbLeft) {
+        thumbLeft = maxThumbLeft;
+      } // 更新滑块定位
+
+
+      dragData.thumbLeft = thumbLeft; // 滚动
+
+      this.scrollTo(thumbLeft * (scrollWidth - clientWidth) / (clientWidth - thumbWidth), false);
+      e.preventDefault();
+    },
+    // 拖拽结束
+    onDragEnd: function onDragEnd(e) {
+      this.dragData = null;
+      document.removeEventListener('mousemove', this.onDragMove);
+      document.removeEventListener('mouseup', this.onDragEnd);
+      e.preventDefault();
+    }
+  }
+});
+// CONCATENATED MODULE: ./lib/components/TabScroll.vue?vue&type=script&lang=js&
+ /* harmony default export */ var components_TabScrollvue_type_script_lang_js_ = (TabScrollvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./lib/components/TabScroll.vue
+
+
+
+
+
+/* normalize component */
+
+var TabScroll_component = normalizeComponent(
+  components_TabScrollvue_type_script_lang_js_,
+  TabScrollvue_type_template_id_7fea0f42_render,
+  TabScrollvue_type_template_id_7fea0f42_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var TabScroll = (TabScroll_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/eslint-loader??ref--13-0!./lib/RouterTab.js?vue&type=script&lang=js&
+
+
+function RouterTabvue_type_script_lang_js_asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function RouterTabvue_type_script_lang_js_asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { RouterTabvue_type_script_lang_js_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { RouterTabvue_type_script_lang_js_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function RouterTabvue_type_script_lang_js_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function RouterTabvue_type_script_lang_js_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { RouterTabvue_type_script_lang_js_ownKeys(Object(source), true).forEach(function (key) { RouterTabvue_type_script_lang_js_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { RouterTabvue_type_script_lang_js_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function RouterTabvue_type_script_lang_js_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 // 方法
  // 功能模块混入
@@ -2615,23 +3021,24 @@ function RouterTab_vue_type_script_lang_js_asyncToGenerator(fn) { return functio
 
 
 
-
  // 子组件
+
 
 
  // RouterTab 组件
 
 var RouterTab = {
   name: 'RouterTab',
-  mixins: [RouterTab_contextmenu, i18n, iframe, operate, pageLeave, rule, RouterTab_scroll, restore],
+  mixins: [mixins_contextmenu, i18n, iframe, operate, pageLeave, mixins_scroll, restore],
   components: {
     RouterAlive: RouterAlive,
-    TabItem: TabItem
+    TabItem: TabItem,
+    TabScroll: TabScroll
   },
   // 注入子组件
   provide: function provide() {
     return {
-      Tab: this
+      RouterTab: this
     };
   },
   props: {
@@ -2659,6 +3066,8 @@ var RouterTab = {
     },
     // 默认页面
     defaultPage: [String, Object],
+    // 页签国际化配置 i18n (key, [args])
+    i18n: Function,
 
     /**
      * 组件语言
@@ -2669,10 +3078,21 @@ var RouterTab = {
       type: [String, Object],
       default: 'zh-CN'
     },
-    // 页签国际化配置 i18n (key, [args])
-    i18n: Function,
-    // router-view组件配置
-    routerView: Object,
+    // 默认是否缓存，可通过路由 meta.keepAlive 重置
+    keepAlive: {
+      type: Boolean,
+      default: true
+    },
+    // 最大缓存数，0 则不限制
+    maxAlive: {
+      type: Number,
+      default: 0
+    },
+    // 是否复用路由组件，可通过路由 meta.reuse 重置
+    reuse: {
+      type: Boolean,
+      default: false
+    },
     // 页签过渡效果
     tabTransition: {
       type: [String, Object],
@@ -2691,27 +3111,22 @@ var RouterTab = {
   },
   data: function data() {
     return {
-      loading: false,
-      // 路由页面 loading
       items: [],
       // 页签项
-      activeTabId: null,
-      // 当前激活的页签 id
-      isViewAlive: true,
-      isMounted: false,
-      // 是否挂载
-      isMobile: false // 是否移动端
+      loading: false,
+      // 路由页面 loading
+      aliveReady: false // RouterAlive 初始化
 
     };
   },
   computed: {
-    // 默认路径
-    defaultPath: function defaultPath() {
-      return this.defaultPage || this.getBasePath() || '/';
-    },
     // routerAlive
     $alive: function $alive() {
-      return this.isMounted ? this.$refs.routerAlive : null;
+      return this.aliveReady ? this.$refs.routerAlive : null;
+    },
+    // 当前激活的页签 id
+    activeTabId: function activeTabId() {
+      return this.$alive ? this.$alive.key : null;
     },
     // 当前激活的页签
     activeTab: function activeTab() {
@@ -2720,26 +3135,33 @@ var RouterTab = {
       return this.items.find(function (item) {
         return item.id === _this.activeTabId;
       });
+    },
+    // 根路径
+    basePath: function basePath() {
+      return this.$alive ? this.$alive.basePath : '/';
+    },
+    // 默认路径
+    defaultPath: function defaultPath() {
+      return this.defaultPage || this.basePath || '/';
+    },
+    // 页签过渡
+    tabTrans: function tabTrans() {
+      return getTransOpt(this.tabTransition);
+    },
+    // 页面过渡
+    pageTrans: function pageTrans() {
+      return getTransOpt(this.pageTransition);
     }
   },
   watch: {
     // 路由切换更新激活的页签
     $route: function $route(_$route) {
       this.loading = false;
-      this.updateActiveTab();
-      this.fixCommentPage();
     }
   },
   created: function created() {
     // 添加到原型链
     RouterTab.Vue.prototype.$routerTab = this;
-    this.initTabs();
-    this.updateActiveTab();
-  },
-  mounted: function mounted() {
-    this.isMounted = true; // 是否移动端
-
-    this.isMobile = /mobile/i.test(navigator.userAgent);
   },
   destroyed: function destroyed() {
     var proto = RouterTab.Vue.prototype; // 取消原型挂载
@@ -2749,6 +3171,13 @@ var RouterTab = {
     }
   },
   methods: {
+    // RouterAlive 组件就绪
+    onAliveReady: function onAliveReady($alive) {
+      // 获取 keepAlive 组件实例
+      this.$refs.routerAlive = $alive;
+      this.aliveReady = true;
+      this.initTabs();
+    },
     // 初始页签数据
     initTabs: function initTabs() {
       if (this.restoreTabs()) return;
@@ -2760,15 +3189,15 @@ var RouterTab = {
 
       var tabs = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.tabs;
       var ids = {};
-      this.items = tabs.map(function (item, index) {
+      this.items = tabs.map(function (item) {
         item = typeof item === 'string' ? {
           to: item
         } : item || emptyObj;
 
-        var route = item.to && _this2.$router.match(item.to);
+        var matched = item.to && _this2.matchRoute(item.to);
 
-        if (route) {
-          var tab = _this2.getRouteTab(route);
+        if (matched) {
+          var tab = _this2.getRouteTab(matched);
 
           var id = tab.id; // 根据 id 去重
 
@@ -2783,91 +3212,68 @@ var RouterTab = {
         return !!item;
       });
     },
-    // 更新激活的页签
-    updateActiveTab: function updateActiveTab() {
-      this.activeTabId = this.getAliveId();
-    },
-    // 更新 tab 数据
-    updateTab: function updateTab(key, _ref) {
-      var route = _ref.route,
-          tab = _ref.tab;
+    // RouterAlive 缓存更新时同步更改页签
+    onAliveChange: function onAliveChange(type, matched) {
       var items = this.items;
-      var matchIdx = items.findIndex(function (_ref2) {
-        var id = _ref2.id;
-        return id === key;
+      var matchIdx = items.findIndex(function (_ref) {
+        var id = _ref.id;
+        return id === matched.key;
       });
-      var item = Object.assign(this.getRouteTab(route), tab);
+      var item = this.getRouteTab(matched); // 页签已存在
 
       if (matchIdx > -1) {
-        var matchTab = items[matchIdx];
-        item.closable = matchTab.closable !== false;
-        this.$set(items, matchIdx, item);
+        if (type === 'create') {
+          // 替换原页签
+          this.$set(items, matchIdx, item);
+        } else if (type === 'update') {
+          // 地址更改则替换页签
+          if (items[matchIdx].to !== matched.$route.fullPath) {
+            this.$set(items, matchIdx, item);
+          }
+        }
       } else {
+        // 新增页签
         items.push(item);
       }
     },
-    // 从路由地址获取 aliveId
-    getIdByPath: function getIdByPath(path) {
-      var match = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-      if (!path) return; // 路由地址精确匹配页签
-
-      if (match) {
-        var route = this.$router.match(path, this.$router.currentRoute);
-        var matchPath = this.getPathWithoutHash(route);
-        var matchTab = this.items.find(function (_ref3) {
-          var to = _ref3.to;
-          return to.split('#')[0] === matchPath;
-        });
-
-        if (matchTab) {
-          return matchTab.id;
-        }
-      } else {
-        return this.getAliveId(path);
-      }
-    },
     // 从 route 中获取 tab 配置
-    getRouteTab: function getRouteTab(route) {
-      var matchRoutes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.matchRoutes(route);
-      var tab = Object.create(matchRoutes.pageRoute.meta);
+    getRouteTab: function getRouteTab(_ref2) {
+      var key = _ref2.key,
+          $route = _ref2.$route,
+          meta = _ref2.meta;
+
+      var tab = RouterTabvue_type_script_lang_js_objectSpread({}, meta); // 支持根据路由函数返回的页签属性
+
+
+      var props = ['title', 'tips', 'icon', 'closable'];
+
+      for (var i in tab) {
+        if (props.includes(i)) {
+          var val = tab[i];
+
+          if (typeof val === 'function') {
+            tab[i] = val($route);
+          }
+        }
+      }
+
       return Object.assign(tab, {
-        id: this.getAliveId(route),
-        to: route.fullPath
+        id: key,
+        to: $route.fullPath
       });
     },
-    // 解析过渡配置
-    getTransOpt: function getTransOpt(trans) {
-      return typeof trans === 'string' ? {
-        name: trans
-      } : trans;
-    },
     // 重载路由视图
-    reloadView: function reloadView() {
-      var _arguments = arguments,
-          _this3 = this;
+    reload: function reload() {
+      var _this3 = this;
 
-      return RouterTab_vue_type_script_lang_js_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
-        var ignoreTransition;
+      return RouterTabvue_type_script_lang_js_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
         return regenerator_default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                ignoreTransition = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : false;
-                _this3.isViewAlive = false; // 默认在页面过渡结束后会设置 isViewAlive 为 true
-                // 如果过渡事件失效，则需传入 ignoreTransition 为 true 手动更改
+                _this3.$alive.reload();
 
-                if (!ignoreTransition) {
-                  _context.next = 6;
-                  break;
-                }
-
-                _context.next = 5;
-                return _this3.$nextTick();
-
-              case 5:
-                _this3.isViewAlive = true;
-
-              case 6:
+              case 1:
               case "end":
                 return _context.stop();
             }
@@ -2875,32 +3281,48 @@ var RouterTab = {
         }, _callee);
       }))();
     },
-    // 页签过渡结束
-    onTabTransitionEnd: function onTabTransitionEnd() {
-      this.adjust();
+    // 匹配路由信息
+    matchRoute: function matchRoute($route) {
+      return this.$alive.matchRoute($route);
     },
-    // 页面过渡结束
-    onPageTransitionEnd: function onPageTransitionEnd() {
-      if (!this.isViewAlive) this.isViewAlive = true;
+    // 获取路由缓存 key
+    getRouteKey: function getRouteKey() {
+      var route = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.$route;
+      return this.matchRoute(route).key;
     },
-    // 修复：当快速频繁切换页签时，旧页面离开过渡效果尚未完成，新页面内容无法正常 mount，内容节点为 comment 类型
-    fixCommentPage: function fixCommentPage() {
-      if (this.$alive.$el.nodeType === 8) {
-        this.reloadView(true);
+    // 从路由地址匹配页签 id
+    getIdByPath: function getIdByPath(path) {
+      var match = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+      if (!path) return;
+      var matched = this.matchRoute(path);
+      var key = matched.key;
+
+      if (match) {
+        // 路由地址精确匹配页签
+        var matchTab = this.items.find(function (_ref3) {
+          var to = _ref3.to;
+          return prunePath(to) === prunePath(matched.$route.fullPath);
+        });
+
+        if (matchTab) {
+          return key;
+        }
       }
+
+      return key;
     }
   }
 };
-/* harmony default export */ var RouterTab_vue_type_script_lang_js_ = (RouterTab);
-// CONCATENATED MODULE: ./lib/components/RouterTab?vue&type=script&lang=js&
- /* harmony default export */ var components_RouterTab_vue_type_script_lang_js_ = (RouterTab_vue_type_script_lang_js_); 
+/* harmony default export */ var RouterTabvue_type_script_lang_js_ = (RouterTab);
+// CONCATENATED MODULE: ./lib/RouterTab.js?vue&type=script&lang=js&
+ /* harmony default export */ var lib_RouterTabvue_type_script_lang_js_ = (RouterTabvue_type_script_lang_js_); 
 // EXTERNAL MODULE: ./lib/scss/routerTab.scss?vue&type=style&index=0&lang=scss&
 var routerTabvue_type_style_index_0_lang_scss_ = __webpack_require__("cec0");
 
 // EXTERNAL MODULE: ./lib/scss/transition.scss?vue&type=style&index=1&lang=scss&
 var transitionvue_type_style_index_1_lang_scss_ = __webpack_require__("ea7e");
 
-// CONCATENATED MODULE: ./lib/components/RouterTab/RouterTab.vue
+// CONCATENATED MODULE: ./lib/RouterTab.vue
 
 
 
@@ -2911,8 +3333,8 @@ var transitionvue_type_style_index_1_lang_scss_ = __webpack_require__("ea7e");
 /* normalize component */
 
 var RouterTab_component = normalizeComponent(
-  components_RouterTab_vue_type_script_lang_js_,
-  RouterTabvue_type_template_id_4b8e65cb_render,
+  lib_RouterTabvue_type_script_lang_js_,
+  render,
   staticRenderFns,
   false,
   null,
@@ -2921,13 +3343,13 @@ var RouterTab_component = normalizeComponent(
   
 )
 
-/* harmony default export */ var RouterTab_RouterTab = (RouterTab_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"64dccc4c-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/page/Iframe.vue?vue&type=template&id=a6d82392&
-var Iframevue_type_template_id_a6d82392_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab-iframe-fake"})}
-var Iframevue_type_template_id_a6d82392_staticRenderFns = []
+/* harmony default export */ var lib_RouterTab = (RouterTab_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"971ce2f4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/page/Iframe.vue?vue&type=template&id=f9e4f0ec&
+var Iframevue_type_template_id_f9e4f0ec_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab-iframe-fake"})}
+var Iframevue_type_template_id_f9e4f0ec_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./lib/page/Iframe.vue?vue&type=template&id=a6d82392&
+// CONCATENATED MODULE: ./lib/page/Iframe.vue?vue&type=template&id=f9e4f0ec&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/page/Iframe.vue?vue&type=script&lang=js&
 
@@ -2943,15 +3365,11 @@ function Iframevue_type_script_lang_js_asyncToGenerator(fn) { return function ()
 // iframe 页签页面
 /* harmony default export */ var Iframevue_type_script_lang_js_ = ({
   name: 'Iframe',
+  inject: ['RouterTab'],
   props: {
     src: String,
     title: String,
     icon: String
-  },
-  data: function data() {
-    return {
-      routeTab: null
-    };
   },
   computed: {
     // 链接安全过滤，避免执行js
@@ -2969,30 +3387,26 @@ function Iframevue_type_script_lang_js_asyncToGenerator(fn) { return function ()
     var _this = this;
 
     return Iframevue_type_script_lang_js_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
-      var url, title, icon, $tab, iframes;
+      var url, $tab, iframes;
       return regenerator_default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              url = _this.url, title = _this.title, icon = _this.icon, $tab = _this.$routerTab;
+              url = _this.url, $tab = _this.RouterTab;
               iframes = $tab.iframes;
-              _this.routeTab = {
-                title: title,
-                icon: icon
-              };
 
               if (!iframes.includes(url)) {
                 iframes.push(url);
               }
 
               $tab.currentIframe = url;
-              _context.next = 7;
+              _context.next = 6;
               return _this.$nextTick();
 
-            case 7:
-              _this.$routerTab.iframeMounted(url);
+            case 6:
+              _this.RouterTab.iframeMounted(url);
 
-            case 8:
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -3001,15 +3415,15 @@ function Iframevue_type_script_lang_js_asyncToGenerator(fn) { return function ()
     }))();
   },
   activated: function activated() {
-    this.$routerTab.currentIframe = this.url;
+    this.RouterTab.currentIframe = this.url;
   },
   deactivated: function deactivated() {
-    this.$routerTab.currentIframe = null;
+    this.RouterTab.currentIframe = null;
   },
   // 组件销毁后移除 iframe
   destroyed: function destroyed() {
     var url = this.url;
-    var iframes = this.$routerTab.iframes;
+    var iframes = this.RouterTab.iframes;
     var index = iframes.indexOf(url);
 
     if (index > -1) {
@@ -3029,8 +3443,8 @@ function Iframevue_type_script_lang_js_asyncToGenerator(fn) { return function ()
 
 var Iframe_component = normalizeComponent(
   page_Iframevue_type_script_lang_js_,
-  Iframevue_type_template_id_a6d82392_render,
-  Iframevue_type_template_id_a6d82392_staticRenderFns,
+  Iframevue_type_template_id_f9e4f0ec_render,
+  Iframevue_type_template_id_f9e4f0ec_staticRenderFns,
   false,
   null,
   null,
@@ -3048,74 +3462,43 @@ var Iframe_component = normalizeComponent(
   component: Iframe,
   props: true,
   meta: {
-    aliveId: function aliveId(route) {
+    key: function key(route) {
       return "iframe-".concat(route.params.src);
+    },
+    title: function title(route) {
+      return route.params.title;
+    },
+    icon: function icon(route) {
+      return route.params.icon;
     }
   }
 }]);
 // CONCATENATED MODULE: ./lib/mixins/routerPage.js
-function routerPage_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function routerPage_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { routerPage_ownKeys(Object(source), true).forEach(function (key) { routerPage_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { routerPage_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function routerPage_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 // 路由页面混入
 /* harmony default export */ var routerPage = ({
   // 创建前记录缓存
-  created: function created() {
-    var $route = this.$route,
-        $vnode = this.$vnode;
-    var $alive = $vnode && $vnode.data.routerAlive;
-    if (!$alive) return false; // 标记为路由页面
-
-    this._isRouterPage = true;
-    var key = $alive.getAliveId($route); // 更新缓存数据
-
-    var cacheItem = $alive.set(key, {
-      route: $route,
-      vm: this
-    }); // 监听routerTab字段，更新页签信息
-
-    this.$watch('routeTab', function (val, old) {
-      cacheItem.tab = typeof val === 'string' ? {
+  mounted: function mounted() {
+    // 监听 routerTab 字段，更新页签信息
+    this.$watch('routeTab', function (val) {
+      if (!val) return;
+      var tab = typeof val === 'string' ? {
         title: val
       } : val;
-      $alive.set(key, cacheItem);
+
+      var _ref = this.$routerTab || {},
+          activeTab = _ref.activeTab;
+
+      if (tab && activeTab) {
+        for (var key in tab) {
+          if (!['id', 'to'].includes(key)) {
+            this.$set(activeTab, key, tab[key]);
+          }
+        }
+      }
     }, {
       deep: true,
       immediate: true
     });
-  },
-  // 页面激活
-  activated: function activated() {
-    // 嵌套路由缓存导致页面不匹配时强制更新
-    if (this._nestCacheForceReload) {
-      delete this._nestCacheForceReload;
-      var _this$$route = this.$route,
-          name = _this$$route.name,
-          path = _this$$route.path,
-          params = _this$$route.params,
-          query = _this$$route.query,
-          hash = _this$$route.hash; // query 添加 _forceReload 以更新路由
-
-      query = routerPage_objectSpread({}, query, {
-        _forceReload: +new Date()
-      });
-      this.$router.replace({
-        name: name,
-        path: path,
-        params: params,
-        query: query,
-        hash: hash
-      });
-    }
-  },
-  // 销毁后清理数据
-  destroyed: function destroyed() {
-    if (this._isRouterPage) {
-      this.$vnode.data.routerAlive = null;
-    }
   }
 });
 // CONCATENATED MODULE: ./lib/index.js
@@ -3124,20 +3507,20 @@ function routerPage_defineProperty(obj, key, value) { if (key in obj) { Object.d
 
  // 安装
 
-RouterTab_RouterTab.install = function install(Vue, options) {
+lib_RouterTab.install = function install(Vue, options) {
   if (install.installed) return;
-  RouterTab_RouterTab.Vue = Vue;
+  lib_RouterTab.Vue = Vue;
   install.installed = true;
-  Vue.component(RouterTab_RouterTab.name, RouterTab_RouterTab);
+  Vue.component(lib_RouterTab.name, lib_RouterTab);
   Vue.mixin(routerPage);
 }; // 如果浏览器环境且拥有全局Vue，则自动安装组件
 
 
 if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(RouterTab_RouterTab);
+  window.Vue.use(lib_RouterTab);
 }
 
-/* harmony default export */ var lib = (RouterTab_RouterTab); // 导出
+/* harmony default export */ var lib = (lib_RouterTab); // 导出
 
 
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js

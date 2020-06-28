@@ -12,7 +12,7 @@ module.exports = {
   rules: {
     'no-console': isProd ? 'warn' : 'off',
     'no-debugger': isProd ? 'warn' : 'off',
-    'no-unused-vars': 'off',
+    'no-unused-vars': 'warn',
     'no-empty': ['error', { allowEmptyCatch: true }],
     'no-prototype-builtins': 'off',
     'vue/no-v-html': 'off',
