@@ -112,7 +112,7 @@ export default {
     // 监听子页面钩子
     hooks() {
       const events = {}
-      const hooks = ['created', 'mounted', 'activated']
+      const hooks = ['created', 'mounted', 'activated', 'destroyed']
 
       hooks.forEach(hook => {
         events['hook:' + hook] = () => this.pageHook(hook)
@@ -261,7 +261,9 @@ export default {
 
     // 页面挂载
     'pageHook:mounted'() {
-      this.cache[this.key].vm = this.$refs.page
+      const { page } = this.$refs
+
+      this.cache[this.key].vm = page
     },
 
     // 页面激活
@@ -271,6 +273,19 @@ export default {
         delete this.nestForceUpdate
         this.$refs.page.$forceUpdate()
       }
+    },
+
+    // 页面销毁后清理 cache
+    async 'pageHook:destroyed'() {
+      await this.$nextTick()
+
+      // 清理已销毁页面的缓存信息
+      Object.entries(this.cache).forEach(([key, item]) => {
+        const { vm } = item || {}
+        if (vm && vm._isDestroyed) {
+          this.remove(key)
+        }
+      })
     },
 
     // 页面过渡后结束刷新状态
