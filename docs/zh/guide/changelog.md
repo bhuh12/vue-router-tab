@@ -1,5 +1,15 @@
 # 更新日志
 
+## [1.0.1](https://github.com/bhuh12/vue-router-tab/compare/v1.0.0...v1.0.1) (2020-06-29)
+
+### Bug Fixes
+
+- 解决页签关闭 close(null) 报错 ([a87bcca](https://github.com/bhuh12/vue-router-tab/commit/a87bcca85917c2dc6389cb7bb1a1be526a98cf2f))
+
+### Performance Improvements
+
+- **RouterAlive:** 页面销毁后清理 cache，避免设置 max 后 keepAlive 销毁的组件无法清理 ([db66372](https://github.com/bhuh12/vue-router-tab/commit/db66372a1178bdf8f16f402f4166a086f450ae2f))
+
 ## [1.0.0](https://github.com/bhuh12/vue-router-tab/compare/v1.0.0-alpha.5...v1.0.0) (2020-06-28)
 
 ### Code Refactoring
