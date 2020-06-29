@@ -136,7 +136,7 @@ export default {
 
         if (!$route.matched.length) return
 
-        const { key, alive, meta, reusable, alivePath, nest } = this
+        const { key, alive, reusable, alivePath, nest } = this
         const cacheItem = this.cache[key] || {}
         let {
           alivePath: cacheAlivePath,
