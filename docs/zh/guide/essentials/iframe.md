@@ -14,19 +14,19 @@ RouterTab 支持通过 iframe 页签嵌入外部网站。
 
 ```js
 // 三个参数分别为：链接、页签标题、图标
-this.$routerTab.openIframe('https://www.baidu.com', '百度', 'icon-web')
+this.$routerTab.openIframe('https://cn.vuejs.org', 'Vue.js', 'icon-web')
 ```
 
 #### 关闭 iframe 页签
 
 ```js
-this.$routerTab.closeIframe('https://www.baidu.com')
+this.$routerTab.closeIframe('https://cn.vuejs.org')
 ```
 
 #### 刷新 iframe 页签
 
 ```js
-this.$routerTab.refreshIframe('https://www.baidu.com')
+this.$routerTab.refreshIframe('https://cn.vuejs.org')
 ```
 
 ## iframe 页签事件

@@ -5,25 +5,17 @@
     <p>
       <a
         class="demo-btn"
-        @click="
-          $routerTab.openIframe('https://www.baidu.com', '百度', 'rt-icon-web')
-        "
+        @click="$routerTab.openIframe(site.src, site.title, icon)"
       >
-        打开“百度”
+        打开“{{ site.title }}”
       </a>
 
-      <a
-        class="demo-btn"
-        @click="$routerTab.refreshIframe('https://www.baidu.com')"
-      >
-        刷新“百度”
+      <a class="demo-btn" @click="$routerTab.refreshIframe(site.src)">
+        刷新“{{ site.title }}”
       </a>
 
-      <a
-        class="demo-btn"
-        @click="$routerTab.closeIframe('https://www.baidu.com')"
-      >
-        关闭“百度”
+      <a class="demo-btn" @click="$routerTab.closeIframe(site.src)">
+        关闭“{{ site.title }}”
       </a>
     </p>
 
@@ -35,7 +27,7 @@
           $routerTab.openIframe(
             'javascript:alert(window.parent.document.body.innerHTML)',
             'XSS 跨站',
-            'rt-icon-web'
+            icon
           )
         "
       >
@@ -59,8 +51,7 @@
       <a
         class="demo-btn primary"
         @click="
-          iframe.src &&
-            $routerTab.openIframe(iframe.src, iframe.title, 'rt-icon-web')
+          iframe.src && $routerTab.openIframe(iframe.src, iframe.title, icon)
         "
       >
         打开页签
@@ -88,9 +79,14 @@ export default {
   name: 'IframeOperate',
   data() {
     return {
+      icon: 'rt-icon-web',
+      site: {
+        src: 'https://cn.vuejs.org',
+        title: 'Vue.js'
+      },
       iframe: {
-        src: 'https://www.hao123.com/',
-        title: 'Hao123'
+        src: 'https://router.vuejs.org/zh/',
+        title: 'Vue Router'
       }
     }
   }
