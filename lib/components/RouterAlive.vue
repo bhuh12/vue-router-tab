@@ -141,7 +141,7 @@ export default {
         let {
           alivePath: cacheAlivePath,
           fullPath: cacheFullPath,
-          vm
+          vm: cacheVM
         } = cacheItem
 
         // 不复用且路由改变则清理组件缓存
@@ -151,7 +151,7 @@ export default {
         }
 
         // 嵌套路由，地址跟缓存不一致
-        if (nest && vm && $route.fullPath !== cacheFullPath) {
+        if (nest && cacheVM && $route.fullPath !== cacheFullPath) {
           const oldKey = this.matchRoute(old).key
           if (oldKey !== key) {
             this.nestForceUpdate = true
@@ -178,6 +178,14 @@ export default {
   mounted() {
     // 获取 keepAlive 组件实例
     this.$refs.alive = this._vnode.children[0].child._vnode.componentInstance
+  },
+
+  // 销毁后清理
+  destroyed() {
+    this.cache = null
+    this.routeMatch = null
+    this._match = null
+    this.$refs.alive = null
   },
 
   methods: {
@@ -278,6 +286,8 @@ export default {
     // 页面销毁后清理 cache
     async 'pageHook:destroyed'() {
       await this.$nextTick()
+
+      if (!this.cache) return
 
       // 清理已销毁页面的缓存信息
       Object.entries(this.cache).forEach(([key, item]) => {
