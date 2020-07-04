@@ -24,6 +24,14 @@
       >
         替换
       </router-link>
+
+      <router-link
+        class="demo-btn"
+        title="离开页签所在路由"
+        to="/default/page/1"
+      >
+        离开
+      </router-link>
     </p>
   </div>
 </template>
@@ -49,7 +57,8 @@ export default {
     const action = {
       close: '关闭',
       refresh: '刷新',
-      replace: '替换'
+      replace: '替换',
+      leave: '离开'
     }[type]
 
     const msg = `您确认要${action}页签“${tab.title}”吗？`

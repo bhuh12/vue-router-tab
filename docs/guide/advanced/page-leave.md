@@ -22,7 +22,8 @@ export default {
     const action = {
       close: 'shut down',
       refresh: 'refresh',
-      replace: 'replace'
+      replace: 'replace',
+      leave: 'leave'
     }[type]
 
     const msg = `Are you sure you want to ${action} tab “${tab.title}”？`

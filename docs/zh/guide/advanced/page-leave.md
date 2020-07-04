@@ -22,7 +22,8 @@ export default {
     const action = {
       close: '关闭',
       refresh: '刷新',
-      replace: '替换'
+      replace: '替换',
+      leave: '离开'
     }[type]
 
     const msg = `您确认要${action}页签“${tab.title}”吗？`
