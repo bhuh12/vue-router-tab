@@ -1,5 +1,12 @@
 # 更新日志
 
+## [1.0.2](https://github.com/bhuh12/vue-router-tab/compare/v1.0.1...v1.0.2) (2020-07-07)
+
+### Performance Improvements
+
+- **pageLeave:** 页面离开确认支持路由离开当前页签组件 ([c53374b](https://github.com/bhuh12/vue-router-tab/commit/c53374b46fda78d3b49f68c9e0c238b801cf23d0))
+- **RouterAlive:** 组件销毁后清理数据 ([a621999](https://github.com/bhuh12/vue-router-tab/commit/a6219990b1d7bd422ebeb16bbbdc086c697e0881))
+
 ## [1.0.1](https://github.com/bhuh12/vue-router-tab/compare/v1.0.0...v1.0.1) (2020-06-29)
 
 ### Bug Fixes
