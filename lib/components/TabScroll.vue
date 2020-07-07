@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="router-tab__scroll"
-    @wheel.prevent="onMouseWheel"
-    @mouseenter="update"
-  >
+  <div class="router-tab__scroll" @wheel.prevent="onWheel" @mouseenter="update">
     <div
       ref="container"
       class="router-tab__scroll-container"
@@ -133,7 +129,7 @@ export default {
     },
 
     // 页签鼠标滚动
-    onMouseWheel(e) {
+    onWheel(e) {
       const now = +new Date()
       const enable = now - (this.lastWheel || 0) > 100
 
