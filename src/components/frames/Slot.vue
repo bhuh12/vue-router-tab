@@ -84,7 +84,7 @@ export default {
 }
 
 // 页签前后插槽样式
-.router-tab /deep/ {
+.router-tab ::v-deep {
   .router-tab__slot-start,
   .router-tab__slot-end {
     display: flex;

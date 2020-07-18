@@ -81,7 +81,7 @@ export default {
       display: none;
     }
 
-    /deep/ a {
+    ::v-deep a {
       margin: 0 0.3em;
     }
   }

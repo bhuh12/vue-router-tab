@@ -3,7 +3,7 @@
 </template>
 
 <style lang="scss" scoped>
-/deep/ {
+::v-deep {
   // 页面 fade 过渡
   .page-fade {
     &-enter-active,

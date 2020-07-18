@@ -1,6 +1,8 @@
 module.exports = {
-  singleQuote: true,
   semi: false,
+  singleQuote: true,
+  eslintIntegration: true,
+  arrowParens: 'avoid',
   trailingComma: 'none',
-  arrowParens: 'avoid'
+  endOfLine: 'auto'
 }

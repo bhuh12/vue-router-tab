@@ -4,7 +4,7 @@ You can change the default page and tab transitions by adding the `tab-transitio
 
 ::: warning
 
-- If the scope of the CSS component (configured `scoped`), you need to add `/deep/` before the selectors
+- If the scope of the CSS component (configured `scoped`), you need to add `>>>` / `/deep/` or `::v-deep` before the selectors
 
 - The .router-tab-item sets the `transition` and `transform-origin` styles by default, you may need to override it to avoid affecting the custom transition effect
   :::
@@ -19,7 +19,7 @@ You can change the default page and tab transitions by adding the `tab-transitio
 </template>
 
 <style lang="scss" scoped>
-  /deep/ {
+  ::v-deep {
     // Page fade transition
     .page-fade {
       &-enter-active,

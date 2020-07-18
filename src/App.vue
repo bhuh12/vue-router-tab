@@ -102,7 +102,7 @@ $just-trans: all 0.2s ease-in-out;
     left: 0;
   }
 
-  /deep/ .router-tab {
+  ::v-deep .router-tab {
     height: 100%;
 
     // 路由页面
