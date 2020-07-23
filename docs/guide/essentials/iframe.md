@@ -8,7 +8,7 @@ This feature requires RouterTabRoutes from RouterTab. See [Essentials - Route Co
 
 ## Iframe Tab Operation
 
-<doc-links api="#routertab-openiframetab" demo="/default/"></doc-links>
+<doc-links api="#routertab-openiframetab" demo="/default/" />
 
 #### Open iframe Tab
 
@@ -39,7 +39,7 @@ Supported iframe tab events are listed below:
 
 Note that url jumping within iframe will also trigger `iframe-loaded` event.
 
-<doc-links api="#iframe-mounted" demo="/iframe/"></doc-links>
+<doc-links api="#iframe-mounted" demo="/iframe/" />
 
 **Example：**
 

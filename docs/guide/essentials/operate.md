@@ -28,7 +28,7 @@ this.$router.push('/page/1')
 
 This method will reload the existing cached tab by default, which might be usefule if you intend to **force-new-open** a tab.
 
-<doc-links api="#routertab-open" demo="/default/"></doc-links>
+<doc-links api="#routertab-open" demo="/default/" />
 
 **Force-new-open**
 
@@ -42,7 +42,7 @@ this.$routerTab.open('/page/2')
 
 You can close a tab with [`routerTab.close`](../../api/README.md#routertab-close)
 
-<doc-links api="#routertab-close" demo="/default/"></doc-links>
+<doc-links api="#routertab-close" demo="/default/" />
 
 **Current tab**
 
@@ -96,7 +96,7 @@ this.$routerTab.close({
 
 You can refresh a tab with [`routerTab.refresh`](../../api/README.md#routertab-refresh)
 
-<doc-links api="#routertab-refresh" demo="/default/"></doc-links>
+<doc-links api="#routertab-refresh" demo="/default/" />
 
 **Current tab**
 

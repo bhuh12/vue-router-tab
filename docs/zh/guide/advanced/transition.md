@@ -7,9 +7,10 @@
 - 如果是组件作用域内的 CSS(配置了 `scoped`)，需要在选择器前添加 `>>>`、 `/deep/` 或 `::v-deep` 才能生效
 
 - 页签项 `.router-tab-item` 默认设置了 `transition` 和 `transform-origin` 的样式，您可能需要覆盖它已避免影响到自定义的过渡效果
-  :::
 
-<doc-links api="#tab-transition" demo="/transition/"></doc-links>
+:::
+
+<doc-links api="#tab-transition" demo="/transition/" />
 
 **示例：**
 

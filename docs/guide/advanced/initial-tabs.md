@@ -2,7 +2,7 @@
 
 You can configure your RouterTab to open default tabs. You do this by using the `tabs` property.
 
-<doc-links api="#tabs" demo="/initial-tabs/"></doc-links>
+<doc-links api="#tabs" demo="/initial-tabs/" />
 
 **Example:**
 

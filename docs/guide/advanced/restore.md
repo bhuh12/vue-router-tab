@@ -4,7 +4,7 @@ You can `restore` tabs after refreshing the page or logging in from another comp
 
 RouterTab uses sessionStorage to store the cache information of the tabs
 
-<doc-links api="#restore" demo="/restore/"></doc-links>
+<doc-links api="#restore" demo="/restore/" />
 
 **Default mode**
 

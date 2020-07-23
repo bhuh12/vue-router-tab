@@ -2,7 +2,7 @@
 
 通过配置 RouterTab 组件的 `tabs` 属性，可以设置进入页面时默认显示的页签。
 
-<doc-links api="#tabs" demo="/initial-tabs/"></doc-links>
+<doc-links api="#tabs" demo="/initial-tabs/" />
 
 **示例：**
 

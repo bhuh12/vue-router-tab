@@ -361,10 +361,18 @@ RouterAlive 组件就绪
 页面组件选项，与 `data`, `methods` 等选项并列配置
 
 - 参数:
-  - `{Function} resolve` 执行后允许离开页签
-  - `{Function} reject` 执行后阻止离开页签
+
   - `{Object} tab` 页签信息
-  - `{String} type` 离开类型: `close`: '关闭', `refresh`: '刷新', `replace`: '替换'
+  - `{String} type` 离开类型:
+    - `close`: 页签关闭
+    - `refresh`: 页签刷新
+    - `replace`: 页签被替换
+    - `leave`: 路由离开
+    - `unload`: 浏览器刷新或者关闭
+
+- 返回值类型：
+  - `{String}` 离开类型为 `unload` 时，浏览器离开提示消息
+  - `{Promise}` 其他类型，`resolve` 离开，`reject` 阻止离开
 
 ### vm.\$routerTab
 

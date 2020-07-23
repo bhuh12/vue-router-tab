@@ -1,54 +1,60 @@
 # Leave Confirm
 
-`BeforePageLeave` is triggered when the tab is **closed**, **refreshed**, or **replaced**, the Promise resolve and reject are used to allow or prevent the tab page from leaving.
+When the tab **close**, **refresh**, **replace**, **leave** the current route, or the browser window **close**, **refresh**, `beforePageLeave` will be triggered, allow or prevent the tab page to leave by returning a `Promise`.
 
 ::: warning
+`beforePageLeave` is at the outermost level of the component, not in `methods`
+:::
 
-- `beforePageLeave` is at the outermost level of the component, not in`methods`
-
-- If you also need to block before the browser page closes or refreshes, please use
-  [`onbeforeunload`](https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload)
-  :::
-
-<doc-links demo="/initial-tabs/page-leave"></doc-links>
+<doc-links api="#beforepageleave" demo="/initial-tabs/page-leave" />
 
 **Example:**
 
-```javascript {3,15,21,23,28,29}
+```javascript {13,15,18,23,33,44}
 export default {
-  // confirm before leaving
-  beforePageLeave(resolve, reject, tab, type) {
-    // types
+  /**
+   * confirm before leaving
+   * @param {Object} tab tab info
+   * @param {String} type leaving type
+   *   close: tab close
+   *   refresh: tab refresh
+   *   replace: tab replace
+   *   leave: leave the route
+   *   unload: browser window close or refresh
+   * @returns {String|Promise}
+   */
+  beforePageLeave(tab, type) {
+    //If the value has not changed, just leave the tab
+    if (this.editValue === this.value) return
+
+    // When the browser window is refreshed or closed, supported browsers will display a confirmation message
+    if (type === 'unload') {
+      return `Your changes on the tab "${tab.title}" have not been completed, Do you want to leave?`
+    }
+
+    // leaving type
     const action = {
-      close: 'shut down',
+      close: 'close',
       refresh: 'refresh',
       replace: 'replace',
       leave: 'leave'
     }[type]
 
-    const msg = `Are you sure you want to ${action} tab “${tab.title}”？`
+    const msg = `Are you sure to ${action} the tab “${tab.title}”?`
 
-    //If the value has not changed, just leave the tab
-    if (this.editValue === this.value) {
-      resolve()
-      return
-    }
+    // Promise resolve to allow the page to leave
+    return new Promise((resolve, reject) => {
+      if (confirm(msg)) {
+        resolve()
+      } else {
+        reject(`Refuse to ${action} the page`)
+      }
+    })
 
-    // Confirm the prompt when the value changes
-    if (confirm(msg)) {
-      resolve()
-    } else {
-      reject('Refuse to leave the page')
-    }
-
-    /*
     // The confirm component of Element is used here
     // You need to configure closeOnHashChange to false
     // to avoid the route switching causing the confirmation box to close
-    this.$confirm(msg, 'prompt', { closeOnHashChange: false })
-      .then(resolve)
-      .catch(reject)
-    */
+    // this.$confirm(msg, 'prompt', { closeOnHashChange: false })
   }
 }
 ```

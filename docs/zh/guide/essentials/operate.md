@@ -28,7 +28,7 @@ this.$router.push('/page/1')
 
 此方法默认会刷新已有页签，如果希望**全新打开页签**，您可以尝试此方法。
 
-<doc-links api="#routertab-open" demo="/default/"></doc-links>
+<doc-links api="#routertab-open" demo="/default/" />
 
 **全新打开页签**
 
@@ -42,7 +42,7 @@ this.$routerTab.open('/page/2')
 
 您可以通过 RouterTab 的实例方法 [`routerTab.close`](../../api/README.md#routertab-close) 来关闭指定页签
 
-<doc-links api="#routertab-close" demo="/default/"></doc-links>
+<doc-links api="#routertab-close" demo="/default/" />
 
 **关闭当前页签**
 
@@ -96,7 +96,7 @@ this.$routerTab.close({
 
 您可以通过 RouterTab 的实例方法 [`routerTab.refresh`](../../api/README.md#routertab-refresh) 来刷新指定页签
 
-<doc-links api="#routertab-refresh" demo="/default/"></doc-links>
+<doc-links api="#routertab-refresh" demo="/default/" />
 
 **刷新当前页签**
 

@@ -25,7 +25,7 @@ You can customize your tabs using the available slot `default`. Inside the slot 
 | index      | Number    | tab index                                        |
 | close      | Function  | tab closing method                               |
 
-<doc-links demo="/slot/"></doc-links>
+<doc-links demo="/slot/" />
 
 **Example:**
 

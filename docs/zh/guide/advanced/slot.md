@@ -27,7 +27,7 @@ RouterTab 支持通过以下插槽个性化页签组件：
 | index    | Number    | 页签索引       |
 | close    | Function  | 页签关闭方法   |
 
-<doc-links demo="/slot/"></doc-links>
+<doc-links demo="/slot/" />
 
 **示例：**
 

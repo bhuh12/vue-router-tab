@@ -4,7 +4,7 @@
 
 RouterTab 通过 sessionStorage 来存储页签缓存信息
 
-<doc-links api="#restore" demo="/restore/"></doc-links>
+<doc-links api="#restore" demo="/restore/" />
 
 **默认方式**
 
