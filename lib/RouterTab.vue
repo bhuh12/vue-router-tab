@@ -64,63 +64,13 @@
 
     <!-- 右键菜单 -->
     <transition name="router-tab-zoom">
-      <div
-        v-if="contextmenu.id"
-        class="router-tab__contextmenu"
-        :style="`left: ${contextmenu.left}px; top: ${contextmenu.top}px;`"
-      >
-        <a
-          class="router-tab__contextmenu-item"
-          @click="refreshTab(contextmenu.id)"
-        >
-          {{ lang.contextmenu.refresh }}
-        </a>
-
-        <a
-          class="router-tab__contextmenu-item"
-          :disabled="items.length < 2"
-          @click="items.length > 1 && refreshAll()"
-        >
-          {{ lang.contextmenu.refreshAll }}
-        </a>
-
-        <a
-          class="router-tab__contextmenu-item"
-          :disabled="!isContextTabCanBeClosed"
-          @click="isContextTabCanBeClosed && closeTab(contextmenu.id)"
-        >
-          {{ lang.contextmenu.close }}
-        </a>
-
-        <a
-          class="router-tab__contextmenu-item"
-          :disabled="!tabsLeft.length"
-          @click="tabsLeft.length && closeMulti(tabsLeft)"
-        >
-          {{ lang.contextmenu.closeLefts }}
-        </a>
-
-        <a
-          class="router-tab__contextmenu-item"
-          :disabled="!tabsRight.length"
-          @click="tabsRight.length && closeMulti(tabsRight)"
-        >
-          {{ lang.contextmenu.closeRights }}
-        </a>
-
-        <a
-          class="router-tab__contextmenu-item"
-          :disabled="!tabsOther.length"
-          @click="tabsOther.length && closeMulti(tabsOther)"
-        >
-          {{ lang.contextmenu.closeOthers }}
-        </a>
-      </div>
+      <tab-contextmenu
+        v-if="contextmenu !== false && contextData.id"
+        :data="contextData"
+        :menu="contextMenu"
+      />
     </transition>
   </div>
 </template>
 
 <script src="./RouterTab.js"></script>
-
-<style lang="scss" src="./scss/routerTab.scss"></style>
-<style lang="scss" src="./scss/transition.scss"></style>

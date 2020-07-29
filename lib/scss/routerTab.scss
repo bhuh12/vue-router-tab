@@ -1,3 +1,5 @@
+@import 'transition.scss';
+
 // 变量
 $color-primary: #42b983;
 $border-color: #eaecef;
@@ -248,9 +250,10 @@ $close-icon-size: 13px;
     transform-origin: left top;
 
     &-item {
+      position: relative;
       display: block;
-      padding: 5px 20px;
-      line-height: 1.5;
+      padding: 0 20px;
+      line-height: 30px;
       color: $text-color;
       cursor: pointer;
       user-select: none;
@@ -266,6 +269,24 @@ $close-icon-size: 13px;
         background: none;
         pointer-events: none;
         cursor: default;
+      }
+
+      // 拥有图标
+      .has-icon & {
+        padding-left: 30px;
+      }
+    }
+
+    &-icon {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 8px;
+      line-height: 30px;
+
+      // 拥有图标
+      .has-icon & {
+        display: block;
       }
     }
   }

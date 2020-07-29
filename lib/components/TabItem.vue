@@ -4,9 +4,9 @@
     :class="{
       'router-tab__item': true,
       [tabClass || '']: true,
-      'is-active': RouterTab.activeTabId === id,
+      'is-active': $tabs.activeTabId === id,
       'is-closable': closable,
-      'is-contextmenu': RouterTab.contextmenu.id === id
+      'is-contextmenu': $tabs.contextData.id === id
     }"
     :to="to"
   >
@@ -28,7 +28,7 @@ import { mapGetters } from '../util'
 // 页签项
 export default {
   name: 'TabItem',
-  inject: ['RouterTab'],
+  inject: ['$tabs'],
   props: {
     // 页签原始数据，方便 slot 插槽自定义数据
     data: {
@@ -46,12 +46,12 @@ export default {
 
     // 国际化
     i18nText() {
-      return this.RouterTab.i18nText
+      return this.$tabs.i18nText
     },
 
     // 未命名页签
     untitled() {
-      return this.RouterTab.lang.tab.untitled
+      return this.$tabs.lang.tab.untitled
     },
 
     // 页签标题
@@ -66,7 +66,7 @@ export default {
 
     // 是否可关闭
     closable() {
-      const { keepLastTab, items } = this.RouterTab
+      const { keepLastTab, items } = this.$tabs
       return this.data.closable !== false && !(keepLastTab && items.length < 2)
     }
   },
@@ -74,7 +74,7 @@ export default {
   methods: {
     // 关闭当前页签
     close() {
-      this.RouterTab.closeTab(this.id)
+      this.$tabs.closeTab(this.id)
     }
   }
 }

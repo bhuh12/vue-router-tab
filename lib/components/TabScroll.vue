@@ -18,7 +18,10 @@
       <div
         ref="thumb"
         class="router-tab__scrollbar-thumb"
-        :style="`width: ${thumbWidth}px; transform: translateX(${thumbLeft}px)`"
+        :style="{
+          width: `${thumbWidth}px`,
+          transform: `translateX(${thumbLeft}px`
+        }"
         @mousedown.prevent="onDragStart"
       />
     </div>
