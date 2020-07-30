@@ -3,18 +3,15 @@
     <h3>Iframe 页签操作</h3>
 
     <p>
-      <a
-        class="demo-btn"
-        @click="$routerTab.openIframe(site.src, site.title, icon)"
-      >
+      <a class="demo-btn" @click="$tabs.openIframe(site.src, site.title, icon)">
         打开“{{ site.title }}”
       </a>
 
-      <a class="demo-btn" @click="$routerTab.refreshIframe(site.src)">
+      <a class="demo-btn" @click="$tabs.refreshIframe(site.src)">
         刷新“{{ site.title }}”
       </a>
 
-      <a class="demo-btn" @click="$routerTab.closeIframe(site.src)">
+      <a class="demo-btn" @click="$tabs.closeIframe(site.src)">
         关闭“{{ site.title }}”
       </a>
     </p>
@@ -24,7 +21,7 @@
         class="demo-btn"
         title="XSS 跨站链接的 iframe 将展示空白页面"
         @click="
-          $routerTab.openIframe(
+          $tabs.openIframe(
             'javascript:alert(window.parent.document.body.innerHTML)',
             'XSS 跨站',
             icon
@@ -50,9 +47,7 @@
 
       <a
         class="demo-btn primary"
-        @click="
-          iframe.src && $routerTab.openIframe(iframe.src, iframe.title, icon)
-        "
+        @click="iframe.src && $tabs.openIframe(iframe.src, iframe.title, icon)"
       >
         打开页签
       </a>

@@ -14,19 +14,19 @@ This feature requires RouterTabRoutes from RouterTab. See [Essentials - Route Co
 
 ```js
 // the arguments are url, tab title and icon
-this.$routerTab.openIframe('https://vuejs.org', 'Vue.js', 'icon-web')
+this.$tabs.openIframe('https://vuejs.org', 'Vue.js', 'icon-web')
 ```
 
 #### Close iframe Tab
 
 ```js
-this.$routerTab.closeIframe('https://vuejs.org')
+this.$tabs.closeIframe('https://vuejs.org')
 ```
 
 #### Refresh iframe Tab
 
 ```js
-this.$routerTab.refreshIframe('https://vuejs.org')
+this.$tabs.refreshIframe('https://vuejs.org')
 ```
 
 ## Iframe Tab Events

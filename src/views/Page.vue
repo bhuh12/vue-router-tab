@@ -11,7 +11,7 @@
         打开“页面{{ nextId }}”
       </router-link>
 
-      <a class="demo-btn" @click="$routerTab.open(nextId, true)">
+      <a class="demo-btn" @click="$tabs.open(nextId, true)">
         全新打开“页面{{ nextId }}”
       </a>
     </p>
@@ -21,7 +21,7 @@
         打开“页面{{ prevId }}”
       </router-link>
 
-      <a class="demo-btn" @click="$routerTab.open(prevId, true)">
+      <a class="demo-btn" @click="$tabs.open(prevId, true)">
         全新打开“页面{{ prevId }}”
       </a>
     </p>
@@ -31,25 +31,25 @@
         打开“动态更新页签”
       </a>
 
-      <a class="demo-btn" @click="$routerTab.close('../tab-dynamic')">
+      <a class="demo-btn" @click="$tabs.close('../tab-dynamic')">
         关闭“动态更新页签”
       </a>
     </p>
 
     <p>
-      <a class="demo-btn" @click="$routerTab.refresh()">刷新当前页面</a>
+      <a class="demo-btn" @click="$tabs.refresh()">刷新当前页面</a>
 
-      <a class="demo-btn" @click="$routerTab.close()">关闭当前页面</a>
+      <a class="demo-btn" @click="$tabs.close()">关闭当前页面</a>
 
-      <a class="demo-btn" @click="$routerTab.close(null, '../tab-dynamic')">
+      <a class="demo-btn" @click="$tabs.close(null, '../tab-dynamic')">
         关闭当前并跳转
       </a>
     </p>
 
     <p>
-      <a class="demo-btn" @click="$routerTab.refreshAll()">刷新所有页面</a>
+      <a class="demo-btn" @click="$tabs.refreshAll()">刷新所有页面</a>
 
-      <a class="demo-btn" @click="$routerTab.reset()">重置页签</a>
+      <a class="demo-btn" @click="$tabs.reset()">重置页签</a>
     </p>
 
     <iframe-operate />

@@ -176,7 +176,7 @@ sidebar: auto
 
 ## RouterTab 实例属性
 
-在组件内部可通过 `this.$routerTab.[prop]` 访问
+在组件内部可通过 `this.$tabs.[prop]` 访问
 
 ### routerTab.activeTabId
 
@@ -185,7 +185,7 @@ sidebar: auto
 ## RouterTab 实例方法
 
 ::: tip
-在 Vue 实例内部，您可以通过 `this.$routerTab` 来访问路由页签实例。例如: 调用 `this.$routerTab.close()` 来关闭当前页签。
+在 Vue 实例内部，您可以通过 `this.$tabs` 来访问路由页签实例。例如: 调用 `this.$tabs.close()` 来关闭当前页签。
 :::
 
 ### routerTab.open
@@ -203,8 +203,8 @@ sidebar: auto
 
 - 调用:
 
-  1. `this.$routerTab.close({id, path, match, force, to, refresh})`
-  2. `this.$routerTab.close(path, to)`
+  1. `this.$tabs.close({id, path, match, force, to, refresh})`
+  2. `this.$tabs.close(path, to)`
 
 - 参数:
 
@@ -412,11 +412,11 @@ RouterAlive 组件就绪
   - `{String}` 离开类型为 `unload` 时，浏览器离开提示消息
   - `{Promise}` 其他类型，`resolve` 离开，`reject` 阻止离开
 
-### vm.\$routerTab
+### vm.\$tabs
 
 RouterTab 实例
 
-为了方便调用，RouterTab 将实例挂载在 `Vue.prototype` 上。因此，在所有 Vue 组件内部，您都可以通过 `this.$routerTab` 来访问路由页签实例
+为了方便调用，RouterTab 将实例挂载在 `Vue.prototype` 上。因此，在所有 Vue 组件内部，您都可以通过 `this.$tabs` 来访问路由页签实例
 
 ### pageVm.routeTab
 

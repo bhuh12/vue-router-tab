@@ -12,11 +12,11 @@
     <input v-model="editValue" type="text" />
 
     <p>
-      <a class="demo-btn" @click="$routerTab.refresh(null, true, false)">
+      <a class="demo-btn" @click="$tabs.refresh(null, true, false)">
         刷新页签
       </a>
 
-      <a class="demo-btn" @click="$routerTab.close({ force: false })">
+      <a class="demo-btn" @click="$tabs.close({ force: false })">
         关闭页签
       </a>
 

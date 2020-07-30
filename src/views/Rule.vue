@@ -22,7 +22,7 @@
           :class="{ on: curRole === item.id }"
           :style="{ cursor: curRole === item.id ? 'default' : 'pointer' }"
           title="点击切换当前规则"
-          @click="curRole !== item.id && $routerTab.reset(`../../${item.id}`)"
+          @click="curRole !== item.id && $tabs.reset(`../../${item.id}`)"
         >
           <td>{{ item.label }}</td>
           <td>

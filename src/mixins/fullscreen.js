@@ -10,7 +10,7 @@ export default {
     // 切换全屏后更新滚动
     async fullscreen() {
       await this.$nextTick()
-      this.$routerTab.adjust()
+      this.$tabs.adjust()
     }
   }
 }
