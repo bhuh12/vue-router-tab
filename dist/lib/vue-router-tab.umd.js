@@ -96,10 +96,60 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ({
 
-/***/ "6b67":
+/***/ "3dec":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  tab: {
+    untitled: 'Untitled'
+  },
+  contextmenu: {
+    refresh: 'Refresh',
+    refreshAll: 'Refresh All',
+    close: 'Close',
+    closeLefts: 'Close to the Left',
+    closeRights: 'Close to the Right',
+    closeOthers: 'Close Others'
+  },
+  msg: {
+    keepLastTab: 'Keep at least 1 tab',
+    i18nProp: 'Method "i18n" is not defined on the instance'
+  }
+});
+
+/***/ }),
+
+/***/ "751c":
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "783a":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  tab: {
+    untitled: '无标题'
+  },
+  contextmenu: {
+    refresh: '刷新',
+    refreshAll: '刷新全部',
+    close: '关闭',
+    closeLefts: '关闭左侧',
+    closeRights: '关闭右侧',
+    closeOthers: '关闭其他'
+  },
+  msg: {
+    keepLastTab: '至少应保留1个页签',
+    i18nProp: '请提供“i18n”方法以处理国际化内容'
+  }
+});
 
 /***/ }),
 
@@ -931,32 +981,33 @@ module.exports = __webpack_require__("96cf");
 
 /***/ }),
 
-/***/ "cec0":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_routerTab_scss_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("6b67");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_routerTab_scss_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_routerTab_scss_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_routerTab_scss_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "ea7e":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_transition_scss_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("f4d0");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_transition_scss_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_transition_scss_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_transition_scss_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "f4d0":
+/***/ "b13e":
 /***/ (function(module, exports, __webpack_require__) {
 
-// extracted by mini-css-extract-plugin
+var map = {
+	"./en.js": "3dec",
+	"./zh-CN.js": "783a"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "b13e";
 
 /***/ }),
 
@@ -995,18 +1046,32 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0d070753-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/RouterTab.vue?vue&type=template&id=4af9cf8f&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab"},[_c('header',{ref:"header",staticClass:"router-tab__header"},[_c('div',{staticClass:"router-tab__slot-start"},[_vm._t("start")],2),_c('tab-scroll',{ref:"scroll"},[_c('transition-group',_vm._b({staticClass:"router-tab__nav",attrs:{"tag":"ul"}},'transition-group',_vm.tabTrans,false),_vm._l((_vm.items),function(item,index){return _c('tab-item',{key:item.id || item.to,ref:"tab",refInFor:true,attrs:{"data":item,"index":index},nativeOn:{"contextmenu":function($event){$event.preventDefault();return (function (e) { return _vm.showContextmenu(item.id, index, e); })($event)}},scopedSlots:_vm._u([(_vm.$scopedSlots.default)?{key:"default",fn:function(scope){return [_vm._t("default",null,null,scope)]}}:null],null,true)})}),1)],1),_c('div',{staticClass:"router-tab__slot-end"},[_vm._t("end")],2)],1),_c('div',{staticClass:"router-tab__container",class:{ loading: _vm.loading }},[_c('router-alive',{attrs:{"page-class":"router-tab-page","keep-alive":_vm.keepAlive,"reuse":_vm.reuse,"max":_vm.maxAlive,"transition":_vm.pageTrans},on:{"ready":_vm.onAliveReady,"change":_vm.onAliveChange}}),_c('transition-group',_vm._b({staticClass:"router-tab__iframes",attrs:{"tag":"div"}},'transition-group',_vm.pageTrans,false),_vm._l((_vm.iframes),function(url){return _c('iframe',{directives:[{name:"show",rawName:"v-show",value:(url === _vm.currentIframe),expression:"url === currentIframe"}],key:url,staticClass:"router-tab__iframe",attrs:{"src":url,"name":_vm.iframeNamePrefix + url,"frameborder":"0"},on:{"load":function($event){return _vm.iframeLoaded(url)}}})}),0)],1),_c('transition',{attrs:{"name":"router-tab-zoom"}},[(_vm.contextmenu.id)?_c('div',{staticClass:"router-tab__contextmenu",style:(("left: " + (_vm.contextmenu.left) + "px; top: " + (_vm.contextmenu.top) + "px;"))},[_c('a',{staticClass:"router-tab__contextmenu-item",on:{"click":function($event){return _vm.refreshTab(_vm.contextmenu.id)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.refresh)+" ")]),_c('a',{staticClass:"router-tab__contextmenu-item",attrs:{"disabled":_vm.items.length < 2},on:{"click":function($event){_vm.items.length > 1 && _vm.refreshAll()}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.refreshAll)+" ")]),_c('a',{staticClass:"router-tab__contextmenu-item",attrs:{"disabled":!_vm.isContextTabCanBeClosed},on:{"click":function($event){_vm.isContextTabCanBeClosed && _vm.closeTab(_vm.contextmenu.id)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.close)+" ")]),_c('a',{staticClass:"router-tab__contextmenu-item",attrs:{"disabled":!_vm.tabsLeft.length},on:{"click":function($event){_vm.tabsLeft.length && _vm.closeMulti(_vm.tabsLeft)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.closeLefts)+" ")]),_c('a',{staticClass:"router-tab__contextmenu-item",attrs:{"disabled":!_vm.tabsRight.length},on:{"click":function($event){_vm.tabsRight.length && _vm.closeMulti(_vm.tabsRight)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.closeRights)+" ")]),_c('a',{staticClass:"router-tab__contextmenu-item",attrs:{"disabled":!_vm.tabsOther.length},on:{"click":function($event){_vm.tabsOther.length && _vm.closeMulti(_vm.tabsOther)}}},[_vm._v(" "+_vm._s(_vm.lang.contextmenu.closeOthers)+" ")])]):_vm._e()])],1)}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"04e48bad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/RouterTab.vue?vue&type=template&id=0774e0e2&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab"},[_c('header',{ref:"header",staticClass:"router-tab__header"},[_c('div',{staticClass:"router-tab__slot-start"},[_vm._t("start")],2),_c('tab-scroll',{ref:"scroll"},[_c('transition-group',_vm._b({staticClass:"router-tab__nav",attrs:{"tag":"ul"}},'transition-group',_vm.tabTrans,false),_vm._l((_vm.items),function(item,index){return _c('tab-item',{key:item.id || item.to,ref:"tab",refInFor:true,attrs:{"data":item,"index":index},nativeOn:{"contextmenu":function($event){$event.preventDefault();return (function (e) { return _vm.showContextmenu(item.id, index, e); })($event)}},scopedSlots:_vm._u([(_vm.$scopedSlots.default)?{key:"default",fn:function(scope){return [_vm._t("default",null,null,scope)]}}:null],null,true)})}),1)],1),_c('div',{staticClass:"router-tab__slot-end"},[_vm._t("end")],2)],1),_c('div',{staticClass:"router-tab__container",class:{ loading: _vm.loading }},[_c('router-alive',{attrs:{"page-class":"router-tab-page","keep-alive":_vm.keepAlive,"reuse":_vm.reuse,"max":_vm.maxAlive,"transition":_vm.pageTrans},on:{"ready":_vm.onAliveReady,"change":_vm.onAliveChange}}),_c('transition-group',_vm._b({staticClass:"router-tab__iframes",attrs:{"tag":"div"}},'transition-group',_vm.pageTrans,false),_vm._l((_vm.iframes),function(url){return _c('iframe',{directives:[{name:"show",rawName:"v-show",value:(url === _vm.currentIframe),expression:"url === currentIframe"}],key:url,staticClass:"router-tab__iframe",attrs:{"src":url,"name":_vm.iframeNamePrefix + url,"frameborder":"0"},on:{"load":function($event){return _vm.iframeLoaded(url)}}})}),0)],1),_c('transition',{attrs:{"name":"router-tab-zoom"}},[(_vm.contextmenu !== false && _vm.contextData.id)?_c('tab-contextmenu',{attrs:{"data":_vm.contextData,"menu":_vm.contextMenu}}):_vm._e()],1)],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./lib/RouterTab.vue?vue&type=template&id=4af9cf8f&
+// CONCATENATED MODULE: ./lib/RouterTab.vue?vue&type=template&id=0774e0e2&
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/regenerator/index.js
 var regenerator = __webpack_require__("a34a");
 var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
 
 // CONCATENATED MODULE: ./lib/util/index.js
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 // 空对象和数组
 var emptyObj = Object.create(null);
 var emptyArray = []; // 从数组删除项
@@ -1109,15 +1174,63 @@ function util_scrollIntoView(_ref2) {
       top: top
     });
   }
-} // 提取计算属性
+}
+/**
+ * 提取计算属性
+ * @export
+ * @param {String} origin 来源属性
+ * @param {Array|Object} props 需要提取的计算属性
+ * @param {String} context 来源选项为 function 时的入参
+ * @returns {Object}
+ */
 
-function mapGetters(prop, keys) {
+function mapGetters(origin, props, context) {
   var map = {};
-  keys.forEach(function (key) {
-    map[key] = function () {
-      return this[prop][key];
+
+  var each = function each(prop, option) {
+    if (option === null || _typeof(option) !== 'object') {
+      option = {
+        default: option
+      };
+    }
+
+    var _option = option,
+        def = _option.default,
+        alias = _option.alias;
+
+    map[alias || prop] = function () {
+      var val = this[origin][prop];
+
+      if (context && typeof val === 'function') {
+        // 函数返回
+        return val(this[context]);
+      } else if (def !== undefined && val === undefined) {
+        // 默认值
+        if (typeof def === 'function') {
+          return def.bind(this)();
+        }
+
+        return def;
+      }
+
+      return val;
     };
-  });
+  };
+
+  if (Array.isArray(props)) {
+    props.forEach(function (prop) {
+      return each(prop);
+    });
+  } else {
+    Object.entries(props).forEach(function (_ref3) {
+      var _ref4 = _slicedToArray(_ref3, 2),
+          prop = _ref4[0],
+          def = _ref4[1];
+
+      return each(prop, def);
+    });
+  }
+
   return map;
 } // 去除路径中的 hash
 
@@ -1131,25 +1244,13 @@ function getTransOpt(trans) {
   } : trans;
 }
 // CONCATENATED MODULE: ./lib/mixins/contextmenu.js
-
-
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
  // 右键菜单
 
-/* harmony default export */ var mixins_contextmenu = ({
+/* harmony default export */ var contextmenu = ({
   data: function data() {
     return {
       // 右键菜单
-      contextmenu: {
+      contextData: {
         id: null,
         index: -1,
         left: 0,
@@ -1158,44 +1259,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   computed: {
-    // 右键页签是否允许关闭
-    isContextTabCanBeClosed: function isContextTabCanBeClosed() {
-      var items = this.items,
-          contextmenu = this.contextmenu;
-      var contextTab = items[contextmenu.index];
-      return items.length > 1 && contextTab && contextTab.closable !== false;
-    },
-    // 左侧可关闭的页签
-    tabsLeft: function tabsLeft() {
-      var items = this.items,
-          _this$contextmenu = this.contextmenu,
-          id = _this$contextmenu.id,
-          index = _this$contextmenu.index;
-      return id ? items.slice(0, index).filter(function (_ref) {
-        var closable = _ref.closable;
-        return closable !== false;
-      }) : emptyArray;
-    },
-    // 左侧可关闭的页签
-    tabsRight: function tabsRight() {
-      var items = this.items,
-          _this$contextmenu2 = this.contextmenu,
-          id = _this$contextmenu2.id,
-          index = _this$contextmenu2.index;
-      return id ? items.slice(index + 1).filter(function (_ref2) {
-        var closable = _ref2.closable;
-        return closable !== false;
-      }) : emptyArray;
-    },
-    // 其他可关闭的页签
-    tabsOther: function tabsOther() {
-      var items = this.items,
-          id = this.contextmenu.id;
-      return id ? items.filter(function (_ref3) {
-        var closable = _ref3.closable,
-            tid = _ref3.id;
-        return closable !== false && id !== tid;
-      }) : emptyArray;
+    // 菜单配置
+    contextMenu: function contextMenu() {
+      if (Array.isArray(this.contextmenu)) {
+        return this.contextmenu;
+      }
+
+      return undefined;
     }
   },
   watch: {
@@ -1204,7 +1274,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.hideContextmenu();
     },
     // 监听右键菜单显示关闭
-    'contextmenu.id': function contextmenuId(val, old) {
+    'contextData.id': function contextDataId(val, old) {
       var _this = this;
 
       if (!old && val) {
@@ -1224,11 +1294,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     // 显示页签右键菜单
     showContextmenu: function showContextmenu(id, index, e) {
       // 菜单定位
-      var _ref4 = e || emptyObj,
-          top = _ref4.clientY,
-          left = _ref4.clientX;
+      var _ref = e || emptyObj,
+          top = _ref.clientY,
+          left = _ref.clientX;
 
-      Object.assign(this.contextmenu, {
+      Object.assign(this.contextData, {
         id: id,
         index: index,
         top: top,
@@ -1238,130 +1308,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     // 关闭页签右键菜单
     hideContextmenu: function hideContextmenu() {
       this.showContextmenu(null, -1);
-    },
-    // 关闭多个页签
-    closeMulti: function closeMulti(tabs) {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
-        var items, $router, contextmenu, nextTab, _iterator, _step, id;
-
-        return regenerator_default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                items = _this2.items, $router = _this2.$router, contextmenu = _this2.contextmenu;
-                nextTab = items.find(function (_ref5) {
-                  var id = _ref5.id;
-                  return id === contextmenu.id;
-                });
-                _iterator = _createForOfIteratorHelper(tabs);
-                _context.prev = 3;
-
-                _iterator.s();
-
-              case 5:
-                if ((_step = _iterator.n()).done) {
-                  _context.next = 16;
-                  break;
-                }
-
-                id = _step.value.id;
-                _context.prev = 7;
-                _context.next = 10;
-                return _this2.removeTab(id);
-
-              case 10:
-                _context.next = 14;
-                break;
-
-              case 12:
-                _context.prev = 12;
-                _context.t0 = _context["catch"](7);
-
-              case 14:
-                _context.next = 5;
-                break;
-
-              case 16:
-                _context.next = 21;
-                break;
-
-              case 18:
-                _context.prev = 18;
-                _context.t1 = _context["catch"](3);
-
-                _iterator.e(_context.t1);
-
-              case 21:
-                _context.prev = 21;
-
-                _iterator.f();
-
-                return _context.finish(21);
-
-              case 24:
-                // 当前页签如已关闭，则打开右键选中页签
-                if (items.findIndex(function (_ref6) {
-                  var id = _ref6.id;
-                  return id === _this2.activeTabId;
-                }) === -1) {
-                  $router.replace(nextTab.to);
-                }
-
-              case 25:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, null, [[3, 18, 21, 24], [7, 12]]);
-      }))();
     }
   }
 });
-// CONCATENATED MODULE: ./lib/lang/zh-CN.js
-/* harmony default export */ var zh_CN = ({
-  tab: {
-    untitled: '无标题'
-  },
-  contextmenu: {
-    refresh: '刷新',
-    refreshAll: '刷新所有',
-    close: '关闭',
-    closeLefts: '关闭左侧',
-    closeRights: '关闭右侧',
-    closeOthers: '关闭其他'
-  },
-  msg: {
-    keepLastTab: '至少应保留1个页签',
-    i18nProp: '请提供“i18n”方法以处理国际化内容'
-  }
-});
-// CONCATENATED MODULE: ./lib/lang/en.js
-/* harmony default export */ var en = ({
-  tab: {
-    untitled: 'Untitled'
-  },
-  contextmenu: {
-    refresh: 'Refresh',
-    refreshAll: 'Refresh All',
-    close: 'Close',
-    closeLefts: 'Close to the Left',
-    closeRights: 'Close to the Right',
-    closeOthers: 'Close Others'
-  },
-  msg: {
-    keepLastTab: 'Keep at least 1 tab',
-    i18nProp: 'Method "i18n" is not defined on the instance'
-  }
-});
-// CONCATENATED MODULE: ./lib/lang/index.js
+// CONCATENATED MODULE: ./lib/config/lang/index.js
+function lang_slicedToArray(arr, i) { return lang_arrayWithHoles(arr) || lang_iterableToArrayLimit(arr, i) || lang_unsupportedIterableToArray(arr, i) || lang_nonIterableRest(); }
+
+function lang_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function lang_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return lang_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return lang_arrayLikeToArray(o, minLen); }
+
+function lang_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function lang_iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function lang_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+// 引入目录下语言配置
+var context = __webpack_require__("b13e"); // 语言配置
 
 
-/* harmony default export */ var lib_lang = ({
-  'zh-CN': zh_CN,
-  en: en
-});
+/* harmony default export */ var config_lang = (context.keys().reduce(function (map, path) {
+  var _$exec = /\.\/(.*).js/g.exec(path),
+      _$exec2 = lang_slicedToArray(_$exec, 2),
+      key = _$exec2[1];
+
+  map[key] = context(path).default;
+  return map;
+}, {}));
 // CONCATENATED MODULE: ./lib/util/warn.js
 var prefix = '[Vue Router Tab]'; // 错误
 
@@ -1384,9 +1358,9 @@ var messages = {
   }
 };
 // CONCATENATED MODULE: ./lib/mixins/i18n.js
-function _toArray(arr) { return _arrayWithHoles(arr) || _iterableToArray(arr) || i18n_unsupportedIterableToArray(arr) || _nonIterableRest(); }
+function _toArray(arr) { return i18n_arrayWithHoles(arr) || _iterableToArray(arr) || i18n_unsupportedIterableToArray(arr) || i18n_nonIterableRest(); }
 
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function i18n_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
 function i18n_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return i18n_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return i18n_arrayLikeToArray(o, minLen); }
 
@@ -1394,7 +1368,7 @@ function i18n_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) 
 
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
 
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function i18n_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
  // 语言配置
 
@@ -1407,11 +1381,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       var lang = this.language;
 
       if (typeof lang === 'string') {
-        lang = lib_lang[lang];
+        lang = config_lang[lang];
       } // 找不到语言配置，则使用英文
 
 
-      if (!lang) lang = lib_lang['en'];
+      if (!lang) lang = config_lang['en'];
       return lang;
     }
   },
@@ -1468,7 +1442,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   }
 });
 // CONCATENATED MODULE: ./lib/mixins/iframe.js
-// iframe 页签
+// Iframe 页签
 /* harmony default export */ var iframe = ({
   data: function data() {
     return {
@@ -1478,7 +1452,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     };
   },
   methods: {
-    // 获取 iframe 页签路由路径
+    // 获取 Iframe 页签路由路径
     getIframePath: function getIframePath(src) {
       var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       var icon = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
@@ -1491,12 +1465,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
       return path;
     },
-    // 打开 iframe 页签
+    // 打开 Iframe 页签
     openIframe: function openIframe(src, title, icon) {
       var path = this.getIframePath(src, title, icon);
       this.$router.push(path);
     },
-    // 关闭 iframe 页签
+    // 关闭 Iframe 页签
     closeIframe: function closeIframe(src) {
       var path = this.getIframePath(src);
       this.close({
@@ -1504,7 +1478,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         match: false
       });
     },
-    // 刷新 iframe 页签
+    // 刷新 Iframe 页签
     refreshIframe: function refreshIframe(src) {
       var path = this.getIframePath(src);
       this.refresh(path, false);
@@ -1529,11 +1503,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 // CONCATENATED MODULE: ./lib/mixins/operate.js
 
 
-function operate_asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
-function operate_asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { operate_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { operate_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-function _slicedToArray(arr, i) { return operate_arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || operate_unsupportedIterableToArray(arr, i) || operate_nonIterableRest(); }
+function operate_slicedToArray(arr, i) { return operate_arrayWithHoles(arr) || operate_iterableToArrayLimit(arr, i) || operate_unsupportedIterableToArray(arr, i) || operate_nonIterableRest(); }
 
 function operate_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
@@ -1541,11 +1515,11 @@ function operate_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typ
 
 function operate_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function operate_iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function operate_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function operate_typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { operate_typeof = function _typeof(obj) { return typeof obj; }; } else { operate_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return operate_typeof(obj); }
 
  // 获取关闭参数
 
@@ -1557,13 +1531,13 @@ function getCloseArgs(args) {
   if (!argsLen) {
     // close()
     return {};
-  } else if (arg && _typeof(arg) === 'object' && !arg.name && !arg.fullPath && !arg.params && !arg.query && !arg.hash) {
+  } else if (arg && operate_typeof(arg) === 'object' && !arg.name && !arg.fullPath && !arg.params && !arg.query && !arg.hash) {
     // close({id, path, match, force, to, refresh})
     return arg;
   } else {
     // close(path, to)
     var _args = args,
-        _args2 = _slicedToArray(_args, 2),
+        _args2 = operate_slicedToArray(_args, 2),
         path = _args2[0],
         to = _args2[1];
 
@@ -1593,7 +1567,7 @@ function equalPath(path1, path2) {
       var _arguments = arguments,
           _this = this;
 
-      return operate_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
+      return _asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
         var isReplace, refresh, curId, tarId, isSameTab;
         return regenerator_default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -1637,7 +1611,7 @@ function equalPath(path1, path2) {
       var _arguments2 = arguments,
           _this2 = this;
 
-      return operate_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee2() {
+      return _asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee2() {
         var force, items, idx;
         return regenerator_default.a.wrap(function _callee2$(_context2) {
           while (1) {
@@ -1663,7 +1637,7 @@ function equalPath(path1, path2) {
                 }
 
                 _context2.next = 8;
-                return _this2.pageLeavePromise(id, 'close');
+                return _this2.leavePage(id, 'close');
 
               case 8:
                 // 承诺关闭后移除页签和缓存
@@ -1683,8 +1657,8 @@ function equalPath(path1, path2) {
     /**
      * 关闭页签
      * 支持以下方式调用：
-     *   1. this.$routerTab.close({id, path, match, force, to, refresh})
-     *   2. this.$routerTab.close(path, to)
+     *   1. this.$tabs.close({id, path, match, force, to, refresh})
+     *   2. this.$tabs.close(path, to)
      * @param {String} id 通过页签 id 关闭
      * @param {location} path 通过路由路径关闭页签，如果未配置 id 和 path 则关闭当前页签
      * @param {Boolean} [match = true] path 方式关闭时，是否匹配 path 完整路径
@@ -1696,7 +1670,7 @@ function equalPath(path1, path2) {
       var _arguments3 = arguments,
           _this3 = this;
 
-      return operate_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee3() {
+      return _asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee3() {
         var _getCloseArgs, id, path, _getCloseArgs$match, match, _getCloseArgs$force, force, to, _getCloseArgs$refresh, refresh, activeTabId, items, idx, nextTab;
 
         return regenerator_default.a.wrap(function _callee3$(_context3) {
@@ -1772,7 +1746,7 @@ function equalPath(path1, path2) {
       var _arguments4 = arguments,
           _this4 = this;
 
-      return operate_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee4() {
+      return _asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee4() {
         var id, to, force;
         return regenerator_default.a.wrap(function _callee4$(_context4) {
           while (1) {
@@ -1814,7 +1788,7 @@ function equalPath(path1, path2) {
       var _arguments5 = arguments,
           _this5 = this;
 
-      return operate_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee5() {
+      return _asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee5() {
         var id, force;
         return regenerator_default.a.wrap(function _callee5$(_context5) {
           while (1) {
@@ -1830,7 +1804,7 @@ function equalPath(path1, path2) {
                 }
 
                 _context5.next = 6;
-                return _this5.pageLeavePromise(id, 'refresh');
+                return _this5.leavePage(id, 'refresh');
 
               case 6:
                 _this5.$alive.refresh(id);
@@ -1860,7 +1834,7 @@ function equalPath(path1, path2) {
       var _arguments6 = arguments,
           _this6 = this;
 
-      return operate_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee6() {
+      return _asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee6() {
         var force, cache, id;
         return regenerator_default.a.wrap(function _callee6$(_context6) {
           while (1) {
@@ -1885,7 +1859,7 @@ function equalPath(path1, path2) {
                 }
 
                 _context6.next = 9;
-                return _this6.pageLeavePromise(id, 'refresh');
+                return _this6.leavePage(id, 'refresh');
 
               case 9:
                 _this6.$alive.refresh(id);
@@ -1932,61 +1906,30 @@ function equalPath(path1, path2) {
   }
 });
 // CONCATENATED MODULE: ./lib/mixins/pageLeave.js
- // 页面离开
-
-/* harmony default export */ var pageLeave = ({
-  created: function created() {
-    var $router = this.$router;
-    if ($router._RouterTabInit) return; // 初始化路由导航守卫
-
-    $router.beforeEach(pageLeave_leaveGuard($router));
-    $router._RouterTabInit = true;
-  },
-  methods: {
-    // 页面离开Promise
-    pageLeavePromise: function pageLeavePromise(id, type) {
-      var _this = this;
-
-      return new Promise(function (resolve, reject) {
-        var tab = _this.items.find(function (item) {
-          return item.id === id;
-        }); // 当前页签
 
 
-        var _ref = _this.$alive.cache[id] || emptyObj,
-            vm = _ref.vm; // 缓存数据
+function pageLeave_asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
+function pageLeave_asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { pageLeave_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { pageLeave_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-        var beforePageLeave = vm && vm.$vnode.componentOptions.Ctor.options.beforePageLeave;
-
-        if (typeof beforePageLeave === 'function') {
-          // 页签关闭前
-          beforePageLeave.bind(vm)(resolve, reject, tab, type);
-        } else {
-          resolve();
-        }
-      });
-    }
-  }
-}); // 路由导航守卫
+ // 路由导航守卫
 
 var pageLeave_leaveGuard = function leaveGuard(router) {
   return function (to, from, next) {
-    var tab = router.app.$routerTab;
+    var $tabs = router.app.$tabs;
 
-    if (!tab) {
+    if (!$tabs) {
       next();
       return;
     }
 
-    var fromId = tab.activeTabId;
-    var toId = tab.getRouteKey(to);
-    var $alive = tab.$alive;
+    var toId = $tabs.getRouteKey(to);
+    var $alive = $tabs.$alive;
 
-    var _ref2 = $alive && $alive.cache[toId] || emptyObj,
-        alivePath = _ref2.alivePath;
+    var _ref = $alive && $alive.cache[toId] || emptyObj,
+        alivePath = _ref.alivePath;
 
-    var matched = tab.matchRoute(to);
+    var matched = $tabs.matchRoute(to);
     var id, type;
 
     if (alivePath && alivePath !== matched.alivePath) {
@@ -1996,20 +1939,64 @@ var pageLeave_leaveGuard = function leaveGuard(router) {
     } else if ($alive.basePath !== matched.basePath) {
       // 离开页签组件：to 不在当前页签组件路由下
       type = 'leave';
-      id = fromId;
+      id = $tabs.activeTabId;
     }
 
     if (type) {
-      tab.pageLeavePromise(id, type).then(function () {
-        return next();
-      }).catch(function () {
+      $tabs.leavePage(id, type).then(next).catch(function () {
         return next(false);
       });
     } else {
       next();
     }
   };
-};
+}; // 页面离开
+
+/* harmony default export */ var mixins_pageLeave = ({
+  created: function created() {
+    var $router = this.$router;
+    if ($router._RouterTabInit) return; // 初始化路由导航守卫
+
+    $router.beforeEach(pageLeave_leaveGuard($router));
+    $router._RouterTabInit = true;
+  },
+  methods: {
+    // 页面离开 Promise
+    leavePage: function leavePage(id, type) {
+      var _this = this;
+
+      return pageLeave_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
+        var tab, _ref2, vm, pageLeave;
+
+        return regenerator_default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                tab = _this.items.find(function (item) {
+                  return item.id === id;
+                }); // 当前页签
+
+                _ref2 = _this.$alive.cache[id] || emptyObj, vm = _ref2.vm; // 缓存数据
+
+                pageLeave = vm && vm.$vnode.componentOptions.Ctor.options.beforePageLeave;
+
+                if (!(typeof pageLeave === 'function')) {
+                  _context.next = 5;
+                  break;
+                }
+
+                return _context.abrupt("return", pageLeave.bind(vm)(tab, type));
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  }
+});
 // CONCATENATED MODULE: ./lib/mixins/scroll.js
 
 
@@ -2135,23 +2122,17 @@ function scroll_asyncToGenerator(fn) { return function () { var self = this, arg
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0d070753-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/RouterAlive.vue?vue&type=template&id=ffca4b3e&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"04e48bad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/RouterAlive.vue?vue&type=template&id=ffca4b3e&
 var RouterAlivevue_type_template_id_ffca4b3e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-alive"},[_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onTransChange,"after-leave":_vm.onTransChange}},'transition',_vm.pageTrans,false),[_c('keep-alive',{attrs:{"max":_vm.max}},[(_vm.alive && !_vm.onRefresh)?_c('router-view',_vm._g({key:_vm.key,ref:"page",class:_vm.pageClass},_vm.hooks)):_vm._e()],1)],1),_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onTransChange,"after-leave":_vm.onTransChange}},'transition',_vm.pageTrans,false),[(!_vm.alive && !_vm.onRefresh)?_c('router-view',{key:_vm.key,ref:"page",class:_vm.pageClass}):_vm._e()],1)],1)}
 var RouterAlivevue_type_template_id_ffca4b3e_staticRenderFns = []
 
 
 // CONCATENATED MODULE: ./lib/components/RouterAlive.vue?vue&type=template&id=ffca4b3e&
 
-// CONCATENATED MODULE: ./lib/util/RouteMatch.js
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
+// CONCATENATED MODULE: ./lib/config/rules.js
  // 内置规则
 
-var rules = {
+/* harmony default export */ var rules = ({
   // 地址，params 不一致则独立缓存
   path: function path(route) {
     return route.path;
@@ -2160,7 +2141,16 @@ var rules = {
   fullpath: function fullpath(route) {
     return prunePath(route.fullPath);
   }
-}; // 解析路由 key
+});
+// CONCATENATED MODULE: ./lib/util/RouteMatch.js
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+ // 解析路由 key
 
 function parseRouteKey($route, route, key) {
   var defaultKey = route.path;
@@ -2749,16 +2739,16 @@ var component = normalizeComponent(
 )
 
 /* harmony default export */ var RouterAlive = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0d070753-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/TabItem.vue?vue&type=template&id=64b9760c&
-var TabItemvue_type_template_id_64b9760c_render = function () {
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"04e48bad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/TabItem.vue?vue&type=template&id=41fe9c1a&
+var TabItemvue_type_template_id_41fe9c1a_render = function () {
 var _obj;
 var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('router-link',{class:( _obj = {
     'router-tab__item': true
-  }, _obj[_vm.tabClass || ''] = true, _obj['is-active'] =  _vm.RouterTab.activeTabId === _vm.id, _obj['is-closable'] =  _vm.closable, _obj['is-contextmenu'] =  _vm.RouterTab.contextmenu.id === _vm.id, _obj ),attrs:{"tag":"li","to":_vm.to}},[_vm._t("default",[(_vm.icon)?_c('i',{staticClass:"router-tab__item-icon",class:_vm.icon}):_vm._e(),_c('span',{staticClass:"router-tab__item-title",attrs:{"title":_vm.tips}},[_vm._v(_vm._s(_vm.title))]),(_vm.closable)?_c('i',{staticClass:"router-tab__item-close",on:{"click":function($event){$event.preventDefault();$event.stopPropagation();return _vm.close($event)}}}):_vm._e()],null,this)],2)}
-var TabItemvue_type_template_id_64b9760c_staticRenderFns = []
+  }, _obj[_vm.tabClass || ''] = true, _obj['is-active'] =  _vm.$tabs.activeTabId === _vm.id, _obj['is-closable'] =  _vm.closable, _obj['is-contextmenu'] =  _vm.$tabs.contextData.id === _vm.id, _obj ),attrs:{"tag":"li","to":_vm.to}},[_vm._t("default",[(_vm.icon)?_c('i',{staticClass:"router-tab__item-icon",class:_vm.icon}):_vm._e(),_c('span',{staticClass:"router-tab__item-title",attrs:{"title":_vm.tips}},[_vm._v(_vm._s(_vm.title))]),(_vm.closable)?_c('i',{staticClass:"router-tab__item-close",on:{"click":function($event){$event.preventDefault();$event.stopPropagation();return _vm.close($event)}}}):_vm._e()],null,this)],2)}
+var TabItemvue_type_template_id_41fe9c1a_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./lib/components/TabItem.vue?vue&type=template&id=64b9760c&
+// CONCATENATED MODULE: ./lib/components/TabItem.vue?vue&type=template&id=41fe9c1a&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/TabItem.vue?vue&type=script&lang=js&
 function TabItemvue_type_script_lang_js_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -2795,7 +2785,7 @@ function TabItemvue_type_script_lang_js_defineProperty(obj, key, value) { if (ke
 
 /* harmony default export */ var TabItemvue_type_script_lang_js_ = ({
   name: 'TabItem',
-  inject: ['RouterTab'],
+  inject: ['$tabs'],
   props: {
     // 页签原始数据，方便 slot 插槽自定义数据
     data: {
@@ -2808,11 +2798,11 @@ function TabItemvue_type_script_lang_js_defineProperty(obj, key, value) { if (ke
   computed: TabItemvue_type_script_lang_js_objectSpread(TabItemvue_type_script_lang_js_objectSpread({}, mapGetters('data', ['id', 'to', 'icon', 'tabClass', 'target', 'href'])), {}, {
     // 国际化
     i18nText: function i18nText() {
-      return this.RouterTab.i18nText;
+      return this.$tabs.i18nText;
     },
     // 未命名页签
     untitled: function untitled() {
-      return this.RouterTab.lang.tab.untitled;
+      return this.$tabs.lang.tab.untitled;
     },
     // 页签标题
     title: function title() {
@@ -2824,16 +2814,16 @@ function TabItemvue_type_script_lang_js_defineProperty(obj, key, value) { if (ke
     },
     // 是否可关闭
     closable: function closable() {
-      var _this$RouterTab = this.RouterTab,
-          keepLastTab = _this$RouterTab.keepLastTab,
-          items = _this$RouterTab.items;
+      var _this$$tabs = this.$tabs,
+          keepLastTab = _this$$tabs.keepLastTab,
+          items = _this$$tabs.items;
       return this.data.closable !== false && !(keepLastTab && items.length < 2);
     }
   }),
   methods: {
     // 关闭当前页签
     close: function close() {
-      this.RouterTab.closeTab(this.id);
+      this.$tabs.closeTab(this.id);
     }
   }
 });
@@ -2849,8 +2839,8 @@ function TabItemvue_type_script_lang_js_defineProperty(obj, key, value) { if (ke
 
 var TabItem_component = normalizeComponent(
   components_TabItemvue_type_script_lang_js_,
-  TabItemvue_type_template_id_64b9760c_render,
-  TabItemvue_type_template_id_64b9760c_staticRenderFns,
+  TabItemvue_type_template_id_41fe9c1a_render,
+  TabItemvue_type_template_id_41fe9c1a_staticRenderFns,
   false,
   null,
   null,
@@ -2859,14 +2849,20 @@ var TabItem_component = normalizeComponent(
 )
 
 /* harmony default export */ var TabItem = (TabItem_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0d070753-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/TabScroll.vue?vue&type=template&id=0741803e&
-var TabScrollvue_type_template_id_0741803e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab__scroll",on:{"wheel":function($event){$event.preventDefault();return _vm.onWheel($event)},"mouseenter":_vm.update}},[_c('div',{ref:"container",staticClass:"router-tab__scroll-container",class:{ 'is-mobile': _vm.isMobile },on:{"scroll":_vm.update}},[_vm._t("default")],2),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.hasScroller),expression:"hasScroller"}],ref:"bar",staticClass:"router-tab__scrollbar",class:{ 'is-dragging': _vm.dragData }},[_c('div',{ref:"thumb",staticClass:"router-tab__scrollbar-thumb",style:(("width: " + _vm.thumbWidth + "px; transform: translateX(" + _vm.thumbLeft + "px)")),on:{"mousedown":function($event){$event.preventDefault();return _vm.onDragStart($event)}}})])])}
-var TabScrollvue_type_template_id_0741803e_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"04e48bad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/TabScroll.vue?vue&type=template&id=b781fa08&
+var TabScrollvue_type_template_id_b781fa08_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab__scroll",on:{"wheel":function($event){$event.preventDefault();return _vm.onWheel($event)},"mouseenter":_vm.update}},[_c('div',{ref:"container",staticClass:"router-tab__scroll-container",class:{ 'is-mobile': _vm.isMobile },on:{"scroll":_vm.update}},[_vm._t("default")],2),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.hasScroller),expression:"hasScroller"}],ref:"bar",staticClass:"router-tab__scrollbar",class:{ 'is-dragging': _vm.dragData }},[_c('div',{ref:"thumb",staticClass:"router-tab__scrollbar-thumb",style:({
+        width: (_vm.thumbWidth + "px"),
+        transform: ("translateX(" + _vm.thumbLeft + "px")
+      }),on:{"mousedown":function($event){$event.preventDefault();return _vm.onDragStart($event)}}})])])}
+var TabScrollvue_type_template_id_b781fa08_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./lib/components/TabScroll.vue?vue&type=template&id=0741803e&
+// CONCATENATED MODULE: ./lib/components/TabScroll.vue?vue&type=template&id=b781fa08&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/TabScroll.vue?vue&type=script&lang=js&
+//
+//
+//
 //
 //
 //
@@ -3058,8 +3054,8 @@ var TabScrollvue_type_template_id_0741803e_staticRenderFns = []
 
 var TabScroll_component = normalizeComponent(
   components_TabScrollvue_type_script_lang_js_,
-  TabScrollvue_type_template_id_0741803e_render,
-  TabScrollvue_type_template_id_0741803e_staticRenderFns,
+  TabScrollvue_type_template_id_b781fa08_render,
+  TabScrollvue_type_template_id_b781fa08_staticRenderFns,
   false,
   null,
   null,
@@ -3068,6 +3064,400 @@ var TabScroll_component = normalizeComponent(
 )
 
 /* harmony default export */ var TabScroll = (TabScroll_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"04e48bad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/Contextmenu.vue?vue&type=template&id=00944f94&
+var Contextmenuvue_type_template_id_00944f94_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab__contextmenu",class:{ 'has-icon': _vm.hasIcon },style:({
+    left: ((_vm.data.left) + "px"),
+    top: ((_vm.data.top) + "px")
+  })},_vm._l((_vm.menuList),function(item){return _c('tab-contextmenu-item',{key:item.id,attrs:{"data":item}})}),1)}
+var Contextmenuvue_type_template_id_00944f94_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./lib/components/Contextmenu.vue?vue&type=template&id=00944f94&
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"04e48bad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/ContextmenuItem.vue?vue&type=template&id=29d67537&
+var ContextmenuItemvue_type_template_id_29d67537_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.visible)?_c('a',{staticClass:"router-tab__contextmenu-item",class:_vm.menuClass,attrs:{"data-action":_vm.id,"disabled":!_vm.enable,"title":_vm.tips},on:{"click":function($event){_vm.enable && _vm.data.handler(_vm.context)}}},[(_vm.icon)?_c('i',{staticClass:"router-tab__contextmenu-icon",class:_vm.icon}):_vm._e(),_vm._v(" "+_vm._s(_vm.title)+" ")]):_vm._e()}
+var ContextmenuItemvue_type_template_id_29d67537_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./lib/components/ContextmenuItem.vue?vue&type=template&id=29d67537&
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/ContextmenuItem.vue?vue&type=script&lang=js&
+function ContextmenuItemvue_type_script_lang_js_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function ContextmenuItemvue_type_script_lang_js_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ContextmenuItemvue_type_script_lang_js_ownKeys(Object(source), true).forEach(function (key) { ContextmenuItemvue_type_script_lang_js_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ContextmenuItemvue_type_script_lang_js_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function ContextmenuItemvue_type_script_lang_js_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var ContextmenuItemvue_type_script_lang_js_ = ({
+  name: 'ContextmenuItem',
+  inject: ['$tabs'],
+  props: {
+    // 菜单数据
+    data: {
+      type: Object,
+      required: true
+    }
+  },
+  computed: ContextmenuItemvue_type_script_lang_js_objectSpread({
+    // 参数
+    context: function context() {
+      var $tabs = this.$tabs,
+          $menu = this.$parent;
+      var target = $menu.target,
+          data = $menu.data;
+      return {
+        $tabs: $tabs,
+        $menu: $menu,
+        target: target,
+        data: data
+      };
+    }
+  }, mapGetters('data', {
+    id: '',
+    // 菜单标题
+    title: function title() {
+      return this.$tabs.lang.contextmenu[this.id];
+    },
+    icon: '',
+    tips: '',
+    class: {
+      default: '',
+      alias: 'menuClass'
+    },
+    visible: true,
+    // 是否显示
+    enable: true // 是否启用
+
+  }, 'context'))
+});
+// CONCATENATED MODULE: ./lib/components/ContextmenuItem.vue?vue&type=script&lang=js&
+ /* harmony default export */ var components_ContextmenuItemvue_type_script_lang_js_ = (ContextmenuItemvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./lib/components/ContextmenuItem.vue
+
+
+
+
+
+/* normalize component */
+
+var ContextmenuItem_component = normalizeComponent(
+  components_ContextmenuItemvue_type_script_lang_js_,
+  ContextmenuItemvue_type_template_id_29d67537_render,
+  ContextmenuItemvue_type_template_id_29d67537_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var ContextmenuItem = (ContextmenuItem_component.exports);
+// CONCATENATED MODULE: ./lib/config/contextmenu.js
+function contextmenu_slicedToArray(arr, i) { return contextmenu_arrayWithHoles(arr) || contextmenu_iterableToArrayLimit(arr, i) || contextmenu_unsupportedIterableToArray(arr, i) || contextmenu_nonIterableRest(); }
+
+function contextmenu_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function contextmenu_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return contextmenu_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return contextmenu_arrayLikeToArray(o, minLen); }
+
+function contextmenu_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function contextmenu_iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function contextmenu_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+// 菜单数据
+var menuMap = {
+  // 刷新
+  refresh: {
+    handler: function handler(_ref) {
+      var data = _ref.data,
+          $tabs = _ref.$tabs;
+      $tabs.refreshTab(data.id);
+    }
+  },
+  // 刷新全部
+  refreshAll: {
+    handler: function handler(_ref2) {
+      var $tabs = _ref2.$tabs;
+      $tabs.refreshAll();
+    }
+  },
+  // 关闭
+  close: {
+    enable: function enable(_ref3) {
+      var target = _ref3.target;
+      return target.closable;
+    },
+    handler: function handler(_ref4) {
+      var data = _ref4.data,
+          $tabs = _ref4.$tabs;
+      $tabs.closeTab(data.id);
+    }
+  },
+  // 关闭左侧
+  closeLefts: {
+    enable: function enable(_ref5) {
+      var $menu = _ref5.$menu;
+      return $menu.lefts.length;
+    },
+    handler: function handler(_ref6) {
+      var $menu = _ref6.$menu;
+      $menu.closeMulti($menu.lefts);
+    }
+  },
+  // 关闭右侧
+  closeRights: {
+    enable: function enable(_ref7) {
+      var $menu = _ref7.$menu;
+      return $menu.rights.length;
+    },
+    handler: function handler(_ref8) {
+      var $menu = _ref8.$menu;
+      $menu.closeMulti($menu.rights);
+    }
+  },
+  // 关闭其他
+  closeOthers: {
+    enable: function enable(_ref9) {
+      var $menu = _ref9.$menu;
+      return $menu.others.length;
+    },
+    handler: function handler(_ref10) {
+      var $menu = _ref10.$menu;
+      $menu.closeMulti($menu.others);
+    }
+  }
+}; // 遍历填充 id
+
+Object.entries(menuMap).forEach(function (_ref11) {
+  var _ref12 = contextmenu_slicedToArray(_ref11, 2),
+      id = _ref12[0],
+      item = _ref12[1];
+
+  return item.id = id;
+});
+/* harmony default export */ var config_contextmenu = (menuMap); // 默认菜单
+
+var defaultMenu = ['refresh', 'refreshAll', 'close', 'closeLefts', 'closeRights', 'closeOthers'];
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/Contextmenu.vue?vue&type=script&lang=js&
+
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = Contextmenuvue_type_script_lang_js_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function Contextmenuvue_type_script_lang_js_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Contextmenuvue_type_script_lang_js_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Contextmenuvue_type_script_lang_js_arrayLikeToArray(o, minLen); }
+
+function Contextmenuvue_type_script_lang_js_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function Contextmenuvue_type_script_lang_js_asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function Contextmenuvue_type_script_lang_js_asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { Contextmenuvue_type_script_lang_js_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { Contextmenuvue_type_script_lang_js_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function Contextmenuvue_type_script_lang_js_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function Contextmenuvue_type_script_lang_js_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { Contextmenuvue_type_script_lang_js_ownKeys(Object(source), true).forEach(function (key) { Contextmenuvue_type_script_lang_js_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { Contextmenuvue_type_script_lang_js_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function Contextmenuvue_type_script_lang_js_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ var Contextmenuvue_type_script_lang_js_ = ({
+  name: 'TabContextmenu',
+  inject: ['$tabs'],
+  components: {
+    TabContextmenuItem: ContextmenuItem
+  },
+  props: {
+    // 右键数据
+    data: {
+      type: [Boolean, Object]
+    },
+    // 菜单配置
+    menu: {
+      type: Array,
+      default: function _default() {
+        return defaultMenu;
+      }
+    }
+  },
+  computed: {
+    // 激活菜单的页签
+    target: function target() {
+      return this.$tabs.$refs.tab[this.data.index];
+    },
+    // 菜单选项
+    menuList: function menuList() {
+      return this.menu.map(function (item) {
+        if (typeof item === 'string') {
+          // 内置菜单
+          return config_contextmenu[item];
+        } else if (item && item.id) {
+          // 扩展内置菜单
+          var origin = config_contextmenu[item.id];
+          return origin ? Contextmenuvue_type_script_lang_js_objectSpread(Contextmenuvue_type_script_lang_js_objectSpread({}, origin), item) : item;
+        }
+      }).filter(function (item) {
+        return item;
+      });
+    },
+    // 是否显示图标
+    hasIcon: function hasIcon() {
+      return this.menuList.some(function (item) {
+        return item.icon;
+      });
+    },
+    // 页签
+    tabs: function tabs() {
+      return this.$tabs.$refs.tab;
+    },
+    // 左侧可关闭的页签
+    lefts: function lefts() {
+      return this.tabs.slice(0, this.data.index).filter(function (item) {
+        return item.closable;
+      });
+    },
+    // 左侧可关闭的页签
+    rights: function rights() {
+      return this.tabs.slice(this.data.index + 1).filter(function (item) {
+        return item.closable;
+      });
+    },
+    // 其他可关闭的页签
+    others: function others() {
+      var _this = this;
+
+      return this.tabs.filter(function (item) {
+        return item.closable && _this.data.id !== item.id;
+      });
+    }
+  },
+  methods: {
+    // 关闭多个页签
+    closeMulti: function closeMulti(tabs) {
+      var _this2 = this;
+
+      return Contextmenuvue_type_script_lang_js_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
+        var _iterator, _step, id;
+
+        return regenerator_default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _iterator = _createForOfIteratorHelper(tabs);
+                _context.prev = 1;
+
+                _iterator.s();
+
+              case 3:
+                if ((_step = _iterator.n()).done) {
+                  _context.next = 14;
+                  break;
+                }
+
+                id = _step.value.id;
+                _context.prev = 5;
+                _context.next = 8;
+                return _this2.$tabs.removeTab(id);
+
+              case 8:
+                _context.next = 12;
+                break;
+
+              case 10:
+                _context.prev = 10;
+                _context.t0 = _context["catch"](5);
+
+              case 12:
+                _context.next = 3;
+                break;
+
+              case 14:
+                _context.next = 19;
+                break;
+
+              case 16:
+                _context.prev = 16;
+                _context.t1 = _context["catch"](1);
+
+                _iterator.e(_context.t1);
+
+              case 19:
+                _context.prev = 19;
+
+                _iterator.f();
+
+                return _context.finish(19);
+
+              case 22:
+                // 当前页签如已关闭，则打开右键选中页签
+                if (!_this2.$tabs.activeTab) {
+                  _this2.$router.replace(_this2.target.to);
+                }
+
+              case 23:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[1, 16, 19, 22], [5, 10]]);
+      }))();
+    }
+  }
+});
+// CONCATENATED MODULE: ./lib/components/Contextmenu.vue?vue&type=script&lang=js&
+ /* harmony default export */ var components_Contextmenuvue_type_script_lang_js_ = (Contextmenuvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./lib/components/Contextmenu.vue
+
+
+
+
+
+/* normalize component */
+
+var Contextmenu_component = normalizeComponent(
+  components_Contextmenuvue_type_script_lang_js_,
+  Contextmenuvue_type_template_id_00944f94_render,
+  Contextmenuvue_type_template_id_00944f94_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var Contextmenu = (Contextmenu_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/eslint-loader??ref--13-0!./lib/RouterTab.js?vue&type=script&lang=js&
 
 
@@ -3094,20 +3484,22 @@ function RouterTabvue_type_script_lang_js_defineProperty(obj, key, value) { if (
 
 
 
+
  // RouterTab 组件
 
 var RouterTab = {
   name: 'RouterTab',
-  mixins: [mixins_contextmenu, i18n, iframe, operate, pageLeave, mixins_scroll, restore],
+  mixins: [contextmenu, i18n, iframe, operate, mixins_pageLeave, mixins_scroll, restore],
   components: {
     RouterAlive: RouterAlive,
     TabItem: TabItem,
-    TabScroll: TabScroll
+    TabScroll: TabScroll,
+    TabContextmenu: Contextmenu
   },
   // 注入子组件
   provide: function provide() {
     return {
-      RouterTab: this
+      $tabs: this
     };
   },
   props: {
@@ -3146,6 +3538,16 @@ var RouterTab = {
     language: {
       type: [String, Object],
       default: 'zh-CN'
+    },
+
+    /**
+     * 自定义右键菜单
+     * 1. 为 false 时禁用
+     * 2. 为数组时可自定义右键菜单
+     */
+    contextmenu: {
+      type: [Boolean, Array],
+      default: true
     },
     // 默认是否缓存，可通过路由 meta.keepAlive 重置
     keepAlive: {
@@ -3230,13 +3632,13 @@ var RouterTab = {
   },
   created: function created() {
     // 添加到原型链
-    RouterTab.Vue.prototype.$routerTab = this;
+    RouterTab.Vue.prototype.$tabs = this;
   },
   destroyed: function destroyed() {
     var proto = RouterTab.Vue.prototype; // 取消原型挂载
 
-    if (proto.$routerTab === this) {
-      proto.$routerTab = null;
+    if (proto.$tabs === this) {
+      proto.$tabs = null;
     }
   },
   methods: {
@@ -3382,15 +3784,7 @@ var RouterTab = {
 /* harmony default export */ var RouterTabvue_type_script_lang_js_ = (RouterTab);
 // CONCATENATED MODULE: ./lib/RouterTab.js?vue&type=script&lang=js&
  /* harmony default export */ var lib_RouterTabvue_type_script_lang_js_ = (RouterTabvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./lib/scss/routerTab.scss?vue&type=style&index=0&lang=scss&
-var routerTabvue_type_style_index_0_lang_scss_ = __webpack_require__("cec0");
-
-// EXTERNAL MODULE: ./lib/scss/transition.scss?vue&type=style&index=1&lang=scss&
-var transitionvue_type_style_index_1_lang_scss_ = __webpack_require__("ea7e");
-
 // CONCATENATED MODULE: ./lib/RouterTab.vue
-
-
 
 
 
@@ -3410,12 +3804,12 @@ var RouterTab_component = normalizeComponent(
 )
 
 /* harmony default export */ var lib_RouterTab = (RouterTab_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0d070753-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/page/Iframe.vue?vue&type=template&id=f9e4f0ec&
-var Iframevue_type_template_id_f9e4f0ec_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab-iframe-fake"})}
-var Iframevue_type_template_id_f9e4f0ec_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"04e48bad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/page/Iframe.vue?vue&type=template&id=28764eeb&
+var Iframevue_type_template_id_28764eeb_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab-iframe-fake"})}
+var Iframevue_type_template_id_28764eeb_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./lib/page/Iframe.vue?vue&type=template&id=f9e4f0ec&
+// CONCATENATED MODULE: ./lib/page/Iframe.vue?vue&type=template&id=28764eeb&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/page/Iframe.vue?vue&type=script&lang=js&
 
@@ -3428,10 +3822,10 @@ function Iframevue_type_script_lang_js_asyncToGenerator(fn) { return function ()
 //
 //
 //
-// iframe 页签页面
+// Iframe 页签页面
 /* harmony default export */ var Iframevue_type_script_lang_js_ = ({
   name: 'Iframe',
-  inject: ['RouterTab'],
+  inject: ['$tabs'],
   props: {
     src: String,
     title: String,
@@ -3453,24 +3847,24 @@ function Iframevue_type_script_lang_js_asyncToGenerator(fn) { return function ()
     var _this = this;
 
     return Iframevue_type_script_lang_js_asyncToGenerator( /*#__PURE__*/regenerator_default.a.mark(function _callee() {
-      var url, $tab, iframes;
+      var url, $tabs, iframes;
       return regenerator_default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              url = _this.url, $tab = _this.RouterTab;
-              iframes = $tab.iframes;
+              url = _this.url, $tabs = _this.$tabs;
+              iframes = $tabs.iframes;
 
               if (!iframes.includes(url)) {
                 iframes.push(url);
               }
 
-              $tab.currentIframe = url;
+              $tabs.currentIframe = url;
               _context.next = 6;
               return _this.$nextTick();
 
             case 6:
-              _this.RouterTab.iframeMounted(url);
+              _this.$tabs.iframeMounted(url);
 
             case 7:
             case "end":
@@ -3481,15 +3875,15 @@ function Iframevue_type_script_lang_js_asyncToGenerator(fn) { return function ()
     }))();
   },
   activated: function activated() {
-    this.RouterTab.currentIframe = this.url;
+    this.$tabs.currentIframe = this.url;
   },
   deactivated: function deactivated() {
-    this.RouterTab.currentIframe = null;
+    this.$tabs.currentIframe = null;
   },
   // 组件销毁后移除 iframe
   destroyed: function destroyed() {
     var url = this.url;
-    var iframes = this.RouterTab.iframes;
+    var iframes = this.$tabs.iframes;
     var index = iframes.indexOf(url);
 
     if (index > -1) {
@@ -3509,8 +3903,8 @@ function Iframevue_type_script_lang_js_asyncToGenerator(fn) { return function ()
 
 var Iframe_component = normalizeComponent(
   page_Iframevue_type_script_lang_js_,
-  Iframevue_type_template_id_f9e4f0ec_render,
-  Iframevue_type_template_id_f9e4f0ec_staticRenderFns,
+  Iframevue_type_template_id_28764eeb_render,
+  Iframevue_type_template_id_28764eeb_staticRenderFns,
   false,
   null,
   null,
@@ -3519,7 +3913,7 @@ var Iframe_component = normalizeComponent(
 )
 
 /* harmony default export */ var Iframe = (Iframe_component.exports);
-// CONCATENATED MODULE: ./lib/util/routes.js
+// CONCATENATED MODULE: ./lib/config/routes.js
  // 注入的路由
 
 /* harmony default export */ var routes = ([{
@@ -3540,34 +3934,78 @@ var Iframe_component = normalizeComponent(
   }
 }]);
 // CONCATENATED MODULE: ./lib/mixins/routerPage.js
-// 路由页面混入
+ // 浏览器窗口关闭或者刷新
+
+var beforeunload = function beforeunload($tabs, tabId, beforePageLeave) {
+  return function (e) {
+    if (!$tabs && $tabs._isDestroyed) return;
+    var tab = $tabs.items.find(function (item) {
+      return item.id === tabId;
+    });
+    var msg = beforePageLeave(tab, 'unload');
+
+    if (msg && typeof msg === 'string') {
+      e.preventDefault();
+      e.returnValue = msg; // 非当前页签则切换
+
+      if ($tabs.activeTabId !== tabId) {
+        $tabs.open(tab.to, false, false);
+      }
+
+      return msg;
+    }
+  };
+}; // 路由页面混入
+
+
 /* harmony default export */ var routerPage = ({
-  // 创建前记录缓存
-  mounted: function mounted() {
+  watch: {
     // 监听 routerTab 字段，更新页签信息
-    this.$watch('routeTab', function (val) {
-      if (!val) return;
-      var tab = typeof val === 'string' ? {
-        title: val
-      } : val;
+    routeTab: {
+      handler: function handler(val) {
+        if (!val) return;
+        var tab = typeof val === 'string' ? {
+          title: val
+        } : val;
 
-      var _ref = this.$routerTab || {},
-          activeTab = _ref.activeTab;
+        var _ref = this.$tabs || emptyObj,
+            activeTab = _ref.activeTab;
 
-      if (tab && activeTab) {
-        for (var key in tab) {
-          if (!['id', 'to'].includes(key)) {
-            this.$set(activeTab, key, tab[key]);
+        if (tab && activeTab) {
+          for (var key in tab) {
+            if (!['id', 'to'].includes(key)) {
+              this.$set(activeTab, key, tab[key]);
+            }
           }
         }
-      }
-    }, {
+      },
       deep: true,
       immediate: true
-    });
+    }
+  },
+  // 创建前记录缓存
+  mounted: function mounted() {
+    var $tabs = this.$tabs;
+
+    var _ref2 = this.$vnode && this.$vnode.componentOptions.Ctor.options || emptyObj,
+        beforePageLeave = _ref2.beforePageLeave; // 页面离开确认
+
+
+    if ($tabs && beforePageLeave) {
+      window.addEventListener('beforeunload', this._beforeunload = beforeunload($tabs, $tabs.activeTabId, beforePageLeave.bind(this)));
+    }
+  },
+  destroyed: function destroyed() {
+    if (this._beforeunload) {
+      window.removeEventListener('beforeunload', this._beforeunload);
+    }
   }
 });
+// EXTERNAL MODULE: ./lib/scss/routerTab.scss
+var routerTab = __webpack_require__("751c");
+
 // CONCATENATED MODULE: ./lib/index.js
+
 
 
 

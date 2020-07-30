@@ -1,5 +1,21 @@
 # 更新日志
 
+## [1.1.0](https://github.com/bhuh12/vue-router-tab/compare/v1.0.2...v1.1.0) (2020-07-30)
+
+### Code Refactoring
+
+- 全局 `$routerTab` 修改为 `$tabs` ([6edc214](https://github.com/bhuh12/vue-router-tab/commit/6edc214a21b83fe2f23627bcdfb0318ba4c10ed1))
+
+### Features
+
+- **contextmenu:** 支持自定义右键菜单配置 ([d475ebe](https://github.com/bhuh12/vue-router-tab/commit/d475ebeeade5ee95cda9a3b3636031a8963ac4c2))
+- **beforePageLeave** 支持浏览器 `beforeunload` 事件 ([5d57e60](https://github.com/bhuh12/vue-router-tab/commit/5d57e60e50017a913fd3b7c3950f7c4160c40492))
+
+### BREAKING CHANGES
+
+- 全局访问 RouterTab 组件弃用 `this.$routerTab`，修改为 `this.$tabs`
+- `beforePageLeave` 弃用参数 resolve, reject，返回 promise 来允许或者阻止页签页面的离开
+
 ## [1.0.2](https://github.com/bhuh12/vue-router-tab/compare/v1.0.1...v1.0.2) (2020-07-07)
 
 ### Performance Improvements

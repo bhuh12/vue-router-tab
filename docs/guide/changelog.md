@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.1.0](https://github.com/bhuh12/vue-router-tab/compare/v1.0.2...v1.1.0) (2020-07-30)
+
+### Code Refactoring
+
+- Global `$routerTab` is changed to `$tabs` ([6edc214](https://github.com/bhuh12/vue-router-tab/commit/6edc214a21b83fe2f23627bcdfb0318ba4c10ed1))
+
+### Features
+
+- **contextmenu:** Custom contextmenu support ([d475ebe](https://github.com/bhuh12/vue-router-tab/commit/d475ebeeade5ee95cda9a3b3636031a8963ac4c2))
+- **beforePageLeave** Support browser `beforeunload` event ([5d57e60](https://github.com/bhuh12/vue-router-tab/commit/5d57e60e50017a913fd3b7c3950f7c4160c40492))
+
+### BREAKING CHANGES
+
+- Global access to the RouterTab component `this.$routerTab` has been deprecated and changed to `this.$tabs`
+- `beforePageLeave` deprecate the parameters `resolve`, `reject`, return a promise to allow or prevent the tab page from leaving
+
 ## [1.0.0](https://github.com/bhuh12/vue-router-tab/compare/v1.0.0-alpha.5...v1.0.0) (2020-06-28)
 
 ### Code Refactoring
