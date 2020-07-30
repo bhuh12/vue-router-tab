@@ -6,6 +6,7 @@ const i18n = {
   guide: '教程',
   changelog: '更新日志',
   essentials: '基础',
+  custom: '个性化',
   advanced: '进阶'
 }
 

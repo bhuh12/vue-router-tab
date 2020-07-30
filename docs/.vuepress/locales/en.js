@@ -6,6 +6,7 @@ const i18n = {
   guide: 'Guide',
   changelog: 'Changelog',
   essentials: 'Essentials',
+  custom: 'Customized',
   advanced: 'Advanced'
 }
 

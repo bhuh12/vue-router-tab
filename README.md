@@ -54,33 +54,29 @@ A tab router component based on Vue Router.
 
 ✅ Open or switch to tabs responding to route change
 
-✅ Support context menu on tabs
-
 ✅ Tabs mouse wheel scrolling
 
-✅ [Cache control](https://bhuh12.github.io/vue-router-tab/guide/essentials/cache.html): tab rules, cacheable, maximum keep alive, reusable
+✅ [Tab Operations](https://bhuh12.github.io/vue-router-tab/guide/essentials/operate.html): open, switch, close, refresh, reset
 
-✅ Built-in [Transition](https://bhuh12.github.io/vue-router-tab/guide/advanced/transition.html): support custom configuration
+✅ [Iframe tab](https://bhuh12.github.io/vue-router-tab/guide/essentials/iframe.html): for external website
 
-✅ [Custom slot](https://bhuh12.github.io/vue-router-tab/guide/advanced/slot.html)
+✅ Customized：[transition](https://bhuh12.github.io/vue-router-tab/guide/custom/transition.html), [slot](https://bhuh12.github.io/vue-router-tab/guide/custom/slot.html), [contextmenu](https://bhuh12.github.io/vue-router-tab/guide/custom/contextmenu.html)
+
+✅ [I18n](https://bhuh12.github.io/vue-router-tab/guide/custom/i18n.html)
+
+✅ [Cache control](https://bhuh12.github.io/vue-router-tab/guide/advanced/cache.html): tab rules, cacheable, maximum keep alive, reusable
+
+✅ [Dynamic Tab Info](https://bhuh12.github.io/vue-router-tab/guide/advanced/dynamic-tab-info.html): title, icon, tooltip
 
 ✅ [Initial Tabs](https://bhuh12.github.io/vue-router-tab/guide/advanced/initial-tabs.html): initially opened tabs when entering page
 
 ✅ [Restore Tabs](https://bhuh12.github.io/vue-router-tab/guide/advanced/restore.html): reopen tabs after browser refresh
 
-✅ [Reset Tabs](https://bhuh12.github.io/vue-router-tab/guide/essentials/operate.html#%E9%87%8D%E7%BD%AE%E9%A1%B5%E7%AD%BE): reset tabs to initial state
-
-✅ [Dynamic Tab Info](https://bhuh12.github.io/vue-router-tab/guide/advanced/dynamic-tab-info.html) (title / icon / tooltip)
-
-✅ [iframe](https://bhuh12.github.io/vue-router-tab/guide/essentials/iframe.html): for external website
-
-✅ [Leave Prompt](https://bhuh12.github.io/vue-router-tab/guide/advanced/page-leave.html) before tab close / refresh / replace
-
-✅ [i18n](https://bhuh12.github.io/vue-router-tab/guide/essentials/i18n.html)
+✅ [Page Leave Confirm](https://bhuh12.github.io/vue-router-tab/guide/advanced/page-leave.html)
 
 ## 🛠 Installation
 
-[https://bhuh12.github.io/vue-router-tab/guide/installation.html](https://bhuh12.github.io/vue-router-tab/guide/installation.html)
+[https://bhuh12.github.io/vue-router-tab/guide/essentials/installation.html](https://bhuh12.github.io/vue-router-tab/guide/essentials/installation.html)
 
 ## 📝 Documentation
 

@@ -1,37 +1,37 @@
-# iframe 页签
+# Iframe 页签
 
-RouterTab 支持通过 iframe 页签嵌入外部网站。
+RouterTab 支持通过 Iframe 页签嵌入外部网站。
 
 ::: warning
 该功能需要引入 RouterTab 内置路由，请参考 [基础 - 路由配置](README.md#路由配置)
 :::
 
-## iframe 页签操作
+## Iframe 页签操作
 
 <doc-links api="#routertab-openiframetab" demo="/default/" />
 
-#### 打开 iframe 页签
+#### 打开 Iframe 页签
 
 ```js
 // 三个参数分别为：链接、页签标题、图标
 this.$routerTab.openIframe('https://cn.vuejs.org', 'Vue.js', 'icon-web')
 ```
 
-#### 关闭 iframe 页签
+#### 关闭 Iframe 页签
 
 ```js
 this.$routerTab.closeIframe('https://cn.vuejs.org')
 ```
 
-#### 刷新 iframe 页签
+#### 刷新 Iframe 页签
 
 ```js
 this.$routerTab.refreshIframe('https://cn.vuejs.org')
 ```
 
-## iframe 页签事件
+## Iframe 页签事件
 
-RouterTab 支持以下的 iframe 页签事件：
+RouterTab 支持以下的 Iframe 页签事件：
 
 - `iframe-mounted` iframe 节点挂载就绪
 

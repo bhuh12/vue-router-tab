@@ -131,6 +131,7 @@ code {
 
 // 表格
 .demo-table {
+  $bg: #e5fff3;
   min-width: 300px;
   border-collapse: collapse;
 
@@ -146,7 +147,22 @@ code {
     background-color: #f7f7f7;
   }
 
-  .on {
-    background-color: #e9f4ff;
+  tr:hover {
+    background-color: rgba($bg, 0.6);
   }
+
+  .on {
+    background-color: $bg;
+  }
+}
+
+// 页签组件 - 全屏
+.router-tab.is-fullscreen {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  background: #fff;
 }

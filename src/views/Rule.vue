@@ -20,6 +20,9 @@
           v-for="item in rules"
           :key="item.id"
           :class="{ on: curRole === item.id }"
+          :style="{ cursor: curRole === item.id ? 'default' : 'pointer' }"
+          title="点击切换当前规则"
+          @click="curRole !== item.id && $routerTab.reset(`../../${item.id}`)"
         >
           <td>{{ item.label }}</td>
           <td>
@@ -30,7 +33,7 @@
       </tbody>
     </table>
 
-    <h4>点击下面的链接，并观察页签的变化</h4>
+    <h4>选定规则后，点击下面的链接，并观察页签的变化</h4>
 
     <ul class="btn-list">
       <li v-for="cat in catalogs" :key="cat">

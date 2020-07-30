@@ -124,7 +124,7 @@
 
 ### Bug Fixes
 
-- **iframe:** 防止通过 iframe 页签 XSS 攻击 ([3745813](https://github.com/bhuh12/vue-router-tab/commit/3745813cae029847d3f41df81a745fb1bff3d353))
+- **iframe:** 防止通过 Iframe 页签 XSS 攻击 ([3745813](https://github.com/bhuh12/vue-router-tab/commit/3745813cae029847d3f41df81a745fb1bff3d353))
 
 ## [0.2.5](https://github.com/bhuh12/vue-router-tab/compare/v0.2.4...v0.2.5) (2019-10-12)
 
@@ -196,7 +196,7 @@
 
 ### Features
 
-- **iframe:** iframe 页签嵌入外部网站 ([5d8d93b](https://github.com/bhuh12/vue-router-tab/commit/5d8d93bfde4d287431767b8d2cda4c40c1c47126)), closes [#3](https://github.com/bhuh12/vue-router-tab/issues/3)
+- **iframe:** Iframe 页签嵌入外部网站 ([5d8d93b](https://github.com/bhuh12/vue-router-tab/commit/5d8d93bfde4d287431767b8d2cda4c40c1c47126)), closes [#3](https://github.com/bhuh12/vue-router-tab/issues/3)
 
 ## [0.1.7](https://github.com/bhuh12/vue-router-tab/compare/v0.1.6...v0.1.7) (2019-07-10)
 

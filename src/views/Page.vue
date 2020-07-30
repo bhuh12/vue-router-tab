@@ -7,21 +7,21 @@
     <h3>页签操作</h3>
 
     <p>
-      <router-link class="demo-btn" :to="'../page/' + nextId">
+      <router-link class="demo-btn" :to="nextId">
         打开“页面{{ nextId }}”
       </router-link>
 
-      <a class="demo-btn" @click="$routerTab.open('../page/' + nextId, true)">
+      <a class="demo-btn" @click="$routerTab.open(nextId, true)">
         全新打开“页面{{ nextId }}”
       </a>
     </p>
 
     <p v-if="prevId > 0">
-      <router-link class="demo-btn" :to="'../page/' + prevId">
+      <router-link class="demo-btn" :to="prevId">
         打开“页面{{ prevId }}”
       </router-link>
 
-      <a class="demo-btn" @click="$routerTab.open('../page/' + prevId, true)">
+      <a class="demo-btn" @click="$routerTab.open(prevId, true)">
         全新打开“页面{{ prevId }}”
       </a>
     </p>
@@ -72,8 +72,8 @@ export default {
     let id = this.$route.params.id
     return {
       pageId: id,
-      nextId: +id + 1,
-      prevId: +id - 1
+      nextId: +id + 1 + '',
+      prevId: +id - 1 + ''
     }
   },
 

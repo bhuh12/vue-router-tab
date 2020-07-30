@@ -12,6 +12,20 @@ export default () => [
     }
   },
   {
+    path: 'no-cache',
+    redirect: 'no-cache/1'
+  },
+  {
+    path: 'no-cache/:id',
+    component: importPage('Page'),
+    meta: {
+      title: route => `无缓存页面${route.params.id}`,
+      keepAlive: false,
+      icon: 'rt-icon-doc',
+      key: 'path'
+    }
+  },
+  {
     path: 'rule',
     redirect: 'rule/default/a/1'
   },
@@ -85,8 +99,11 @@ export default () => [
     }
   },
   {
-    path: 'nest/:nestId/',
+    path: 'nest/:nestId',
     component: importPage('Nest'),
+    redirect(route) {
+      return route.fullPath + '/page1'
+    },
     meta: {
       title: '嵌套路由',
       icon: 'rt-icon-doc'

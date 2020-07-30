@@ -3,7 +3,7 @@
 </template>
 
 <script>
-// iframe 页签页面
+// Iframe 页签页面
 export default {
   name: 'Iframe',
   inject: ['$tabs'],

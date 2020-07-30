@@ -54,33 +54,29 @@ Vue Router Tab 是基于 Vue Router 的路由页签组件，用来实现多页�
 
 ✅ 响应路由变化来打开或切换页签
 
-✅ 页签右键菜单操作
-
 ✅ 页签过多鼠标滚轮滚动
 
-✅ [缓存控制](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/cache.html)：页签规则、页签是否缓存、最大缓存数、是否复用组件等配置
+✅ 支持页签打开、切换、关闭、刷新、重置等[操作](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/operate.html)
 
-✅ 内置页签和页面[过渡效果](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/transition.html)，支持自定义配置
+✅ [Iframe 页签](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/iframe.html)嵌入外部网站
 
-✅ [自定义插槽](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/slot.html)
+✅ 组件个性化设置：[过渡效果](https://bhuh12.github.io/vue-router-tab/zh/guide/custom/transition.html)、[自定义插槽](https://bhuh12.github.io/vue-router-tab/zh/guide/custom/slot.html)、[页签右键菜单](https://bhuh12.github.io/vue-router-tab/zh/guide/custom/contextmenu.html)
+
+✅ [多语言支持](https://bhuh12.github.io/vue-router-tab/zh/guide/custom/i18n.html)
+
+✅ [缓存控制](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/cache.html)：页签规则、页签是否缓存、最大缓存数、是否复用组件等
+
+✅ [动态页签信息](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/dynamic-tab-info.html)：标题、图标、提示
 
 ✅ [初始页签数据](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/initial-tabs.html)，进入页面时默认显示的页签
 
 ✅ [页签刷新还原](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/restore.html)，在浏览器刷新后恢复页签
 
-✅ [页签重置](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/operate.html#%E9%87%8D%E7%BD%AE%E9%A1%B5%E7%AD%BE)，重置页签到初始状态
-
-✅ [动态页签信息](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/dynamic-tab-info.html) (标题/图标/提示)
-
-✅ [iframe 页签嵌入外部网站](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/iframe.html)
-
-✅ [页签页面离开 (页签关闭/刷新/替换) 前确认](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/page-leave.html)
-
-✅ [多语言支持](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/i18n.html)
+✅ [页面离开前确认](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/page-leave.html)
 
 ## 🛠 安装
 
-[https://bhuh12.github.io/vue-router-tab/zh/guide/installation.html](https://bhuh12.github.io/vue-router-tab/zh/guide/installation.html)
+[https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/installation.html](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/installation.html)
 
 ## 📝 文档
 

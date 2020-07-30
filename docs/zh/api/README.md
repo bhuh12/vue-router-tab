@@ -56,6 +56,44 @@ sidebar: auto
 
 - 默认值: `{ name: 'router-tab-swap', mode: 'out-in' }`
 
+### contextmenu
+
+自定义**右键菜单**
+
+- 类型: `Boolean | Array <String | Object>`
+
+  - 设置为 `false` 时禁用右键菜单
+
+  - 设置为数组时可自定义右键菜单
+
+    - 数组中菜单项类型为 `String` 时，为内置菜单项
+
+    - 数组中菜单项类型为 `Object` 时，如果 `id` 与内置菜单项匹配，则扩展内置菜单；否则为自定义菜单
+
+- 默认值: `true`
+
+**菜单项配置**
+
+| 属性    | 说明         | 类型                                          | 默认值 | 必需 |
+| ------- | ------------ | --------------------------------------------- | ------ | ---- |
+| id      | id           | `String`                                      | -      | 是   |
+| title   | 名称         | `String | Function(context)`                  | -      | 是   |
+| icon    | 图标         | `String | Function(context)`                  | -      | 否   |
+| tips    | 提示         | `String | Function(context)`                  | -      | 否   |
+| class   | class        | `String | Array | Object | Function(context)` | -      | 否   |
+| visible | 是否可见     | `Function(context) => String`                 | `true` | 否   |
+| enable  | 是否启用     | `Function(context) => String`                 | `true` | 否   |
+| handler | 菜单触发方法 | `Function(context)`                           | -      | 是   |
+
+菜单项动态参数 `context` 说明
+
+| 属性   | 说明                 |
+| ------ | -------------------- |
+| \$tabs | RouterTab 组件实例   |
+| \$menu | 菜单项组件实例       |
+| target | 右键操作的页签项实例 |
+| data   | 右键相关数据         |
+
 ### restore
 
 **是否在浏览器刷新后恢复页签**
@@ -202,26 +240,26 @@ sidebar: auto
 
 ### routerTab.openIframe
 
-打开 iframe 页签
+打开 Iframe 页签
 
 - 参数:
-  - `{String} [src]` 要打开的 iframe 页签链接
+  - `{String} [src]` 要打开的 Iframe 页签链接
   - `{String} [title]` 页签标题
   - `{String} [icon]` 页签图标
 
 ### routerTab.closeIframe
 
-关闭 iframe 页签
+关闭 Iframe 页签
 
 - 参数:
-  - `{String} [src]` 要关闭的 iframe 页签链接
+  - `{String} [src]` 要关闭的 Iframe 页签链接
 
 ### routerTab.refreshIframe
 
-刷新 iframe 页签
+刷新 Iframe 页签
 
 - 参数:
-  - `{String} [src]` 要刷新的 iframe 页签链接
+  - `{String} [src]` 要刷新的 Iframe 页签链接
 
 ## RouterTab 事件
 

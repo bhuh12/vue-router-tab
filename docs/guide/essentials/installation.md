@@ -4,7 +4,7 @@
 Please make sure your Node.js version >= 8.6. There might be errors with lower versions.
 :::
 
-### NPM
+## NPM
 
 yarn (recommended):
 
@@ -18,7 +18,7 @@ npm：
 npm i vue-router-tab -S
 ```
 
-### dev build
+## Dev Build
 
 If you like to start with the dev version, clone it from GitHub, and build your own `vue-router-tab`.
 
@@ -29,7 +29,7 @@ yarn
 yarn lib:build
 ```
 
-### Polyfill
+## Polyfill
 
 Vue Router Tab uses [**Vue CLI**](https://cli.vuejs.org) to build as library, so there's no polyfills.
 

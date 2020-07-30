@@ -4,9 +4,9 @@ RouterTab will listen to the component `this.routeTab` to dynamically update the
 
 <doc-links demo="/default/tab-dynamic" />
 
-### Computed (recommend)
+## Computed (recommend)
 
-**Example**
+**Example:**
 
 ```javascript  {13,14,17,24}
 export default {
@@ -42,9 +42,9 @@ export default {
 }
 ```
 
-### Data
+## Data
 
-**Example**
+**Example:**
 
 ```javascript {9,15}
 export default {
@@ -71,9 +71,9 @@ export default {
 }
 ```
 
-### Route.meta
+## Route.meta
 
-**Example**
+**Example:**
 
 ```javascript {5}
 const route = {

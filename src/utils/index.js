@@ -4,10 +4,3 @@ export const importPage = view => () =>
     /* webpackChunkName: "p-[request]" */
     '../views/' + view + '.vue'
   )
-
-// 异步加载路由框架
-export const importFrame = view => () =>
-  import(
-    /* webpackChunkName: "ly-[request]" */
-    '../components/frames/' + view + '.vue'
-  )

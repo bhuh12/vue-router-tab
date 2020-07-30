@@ -34,7 +34,7 @@ export default {
 
   &-menu {
     flex: auto;
-    padding: 2rem 0;
+    padding-top: 1rem;
     height: 0;
     overflow-y: auto;
 

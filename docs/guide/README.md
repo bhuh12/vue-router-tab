@@ -6,29 +6,25 @@ A tab router component based on Vue Router.
 
 ✅ Open or switch to tabs responding to route change
 
-✅ Support context menu on tabs
-
 ✅ Tabs mouse wheel scrolling
 
-✅ [Cache control](essentials/cache.md): tab rules, cacheable, maximum keep alive, reusable
+✅ [Tab Operations](essentials/operate.md): open, switch, close, refresh, reset
 
-✅ Built-in [Transition](advanced/transition.md): support custom configuration
+✅ [Iframe tab](essentials/iframe.md): for external website
 
-✅ [Custom slot](advanced/slot.md)
+✅ Customized：[transition](custom/transition.md), [slot](custom/slot.md), [contextmenu](custom/contextmenu.md)
+
+✅ [I18n](custom/i18n.md)
+
+✅ [Cache control](advanced/cache.md): tab rules, cacheable, maximum keep alive, reusable
+
+✅ [Dynamic Tab Info](advanced/dynamic-tab-info.md): title, icon, tooltip
 
 ✅ [Initial Tabs](advanced/initial-tabs.md): initially opened tabs when entering page
 
 ✅ [Restore Tabs](advanced/restore.md): reopen tabs after browser refresh
 
-✅ [Reset Tabs](essentials/operate.md#重置页签): reset tabs to initial
-
-✅ [Dynamic Tab Info](advanced/dynamic-tab-info.md) (title / icon / tooltip)
-
-✅ [iframe](essentials/iframe.md): for external website
-
-✅ [Leave Prompt](advanced/page-leave.md) before tab close / refresh / replace
-
-✅ [i18n](essentials/i18n.md)
+✅ [Page Leave Confirm](advanced/page-leave.md)
 
 ### Browser compatibility
 

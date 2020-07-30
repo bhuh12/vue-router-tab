@@ -48,7 +48,7 @@ $fs: 0.875rem;
 .menu-title {
   padding: 0 1.25rem;
   margin: 0.5rem 0;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: 600;
 }
 

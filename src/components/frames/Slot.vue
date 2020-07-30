@@ -12,7 +12,8 @@
     <!-- 页签结束 -->
     <template #end>
       <a
-        class="tab-slot-icon rt-icon-fullscreen"
+        class="tab-slot-icon"
+        :class="fullscreen ? 'rt-icon-fullscreen-exit' : 'rt-icon-fullscreen'"
         :title="fullscreen ? '退出全屏' : '全屏'"
         @click="fullscreen = !fullscreen"
       />
@@ -35,20 +36,11 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      fullscreen: false
-    }
-  },
+// 引入全屏混入
+import fullscreen from '../../mixins/fullscreen'
 
-  watch: {
-    // 切换全屏后更新滚动
-    async fullscreen() {
-      await this.$nextTick()
-      this.$routerTab.adjust()
-    }
-  }
+export default {
+  mixins: [fullscreen]
 }
 </script>
 
@@ -70,17 +62,6 @@ export default {
 
 .router-tab__item.is-active .tab-badge {
   background-color: #f50;
-}
-
-// 全屏
-.router-tab.is-fullscreen {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 999;
-  background: #fff;
 }
 
 // 页签前后插槽样式

@@ -50,7 +50,7 @@ RouterTab 仅支持单例模式，请勿在同一个页面中引入多个 Router
 
 ## 路由配置
 
-1. 引入 RouterTab 内置路由以支持 [iframe 页签](iframe.md)
+1. 引入 RouterTab 内置路由以支持 [Iframe 页签](iframe.md)
 2. 通过路由的 `meta` 信息，来设置页签的**标题**、**图标**、**提示**和**路由页签规则**
 
 > 配置参考: [Route.meta 路由元信息](../../api/README.md#route-meta-路由元信息)
@@ -90,7 +90,7 @@ export default new Router({
       component: Frame,
       // 子路由里配置需要通过页签打开的页面路由
       children: [
-        // 引入 RouterTab 内置路由以支持 iframe 页签
+        // 引入 RouterTab 内置路由以支持 Iframe 页签
         ...RouterTabRoutes,
         {
           path: '/', // 默认页和父级路由一致

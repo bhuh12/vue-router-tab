@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>iframe 页签操作</h3>
+    <h3>Iframe 页签操作</h3>
 
     <p>
       <a
@@ -35,7 +35,7 @@
       </a>
     </p>
 
-    <h3>打开 iframe 页签</h3>
+    <h3>打开 Iframe 页签</h3>
 
     <div class="custom-iframe">
       <label>
@@ -64,7 +64,7 @@
       </h3>
 
       <p>
-        开启浏览器开发者工具的 console 页签，打开 iframe 页签并查看
+        开启浏览器开发者工具的 console 页签，打开 Iframe 页签并查看
         <code>iframe-mounted</code>
         和
         <code>iframe-loaded</code>

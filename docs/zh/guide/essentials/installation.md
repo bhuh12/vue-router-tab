@@ -4,7 +4,7 @@
 请确保你的 Node.js 版本 >= 8.6，旧的版本可能存在错误。
 :::
 
-### NPM
+## NPM
 
 推荐使用 yarn：
 
@@ -18,7 +18,7 @@ yarn add vue-router-tab
 npm i vue-router-tab -S
 ```
 
-### 构建开发版
+## 构建开发版
 
 如果你想使用最新的开发版，就得从 GitHub 上直接 clone，然后自己 build 一个 `vue-router-tab`。
 
@@ -29,7 +29,7 @@ yarn
 yarn lib:build
 ```
 
-### Polyfill
+## Polyfill
 
 Vue Router Tab 使用 [**Vue CLI**](https://cli.vuejs.org) 来构建库，没有内置 Polyfills。
 

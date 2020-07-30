@@ -29,7 +29,7 @@ export default {
         // 默认 key 配置下，该页签与 '/initial-tabs/page/2' 页签的 key 一致，将只保留第一个出现的页签
         { to: '/initial-tabs/page/2?t=1', title: '页面2-1' },
 
-        // iframe 页签
+        // Iframe 页签
         `/initial-tabs/iframe/${encodeURIComponent(
           'https://m.hao123.com/'
         )}/Hao123/rt-icon-web`

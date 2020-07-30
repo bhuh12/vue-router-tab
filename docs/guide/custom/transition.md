@@ -1,4 +1,4 @@
-# Transition effects
+# Transition
 
 You can change the default page and tab transitions by adding the `tab-transition` and `page-transition` attributes to your `router-tab`
 
