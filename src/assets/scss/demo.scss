@@ -15,33 +15,30 @@ body {
   color: $text;
 }
 
-/*滚动条*/
-::-webkit-scrollbar {
-  $w: 6px;
-  $mw: 3px;
-  width: $w;
-  height: $w;
+/* PC 滚动条 */
+@include screen-pc {
+  ::-webkit-scrollbar {
+    $w: 6px;
+    $mw: 3px;
+    width: $w;
+    height: $w;
 
-  @include screen-mob {
-    width: $mw;
-    height: $mw;
-  }
+    &-thumb {
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
 
-  &-thumb {
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
+      &:hover {
+        background: rgba($color, 0.5);
+      }
 
-    &:hover {
-      background: rgba($color, 0.5);
+      &:active {
+        background: rgba($color, 0.8);
+      }
     }
 
-    &:active {
-      background: rgba($color, 0.8);
+    &-corner {
+      display: none;
     }
-  }
-
-  &-corner {
-    display: none;
   }
 }
 

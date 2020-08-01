@@ -8,7 +8,7 @@ module.exports = {
       'link',
       {
         rel: 'icon',
-        href: 'https://bhuh12.github.io/vue-router-tab/demo/img/logo.png'
+        href: '/vue-router-tab/demo/img/logo.png'
       }
     ]
   ],
@@ -35,7 +35,7 @@ module.exports = {
     },
 
     // Demo路径
-    demoUrl: 'https://bhuh12.github.io/vue-router-tab/demo/',
+    demoUrl: '/vue-router-tab/demo/',
 
     // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
     repo: 'bhuh12/vue-router-tab',

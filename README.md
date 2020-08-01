@@ -74,34 +74,23 @@ A tab router component based on Vue Router.
 
 ✅ [Page Leave Confirm](https://bhuh12.github.io/vue-router-tab/guide/advanced/page-leave.html)
 
-## 🛠 Installation
+## 🔗 Links
 
-[https://bhuh12.github.io/vue-router-tab/guide/essentials/installation.html](https://bhuh12.github.io/vue-router-tab/guide/essentials/installation.html)
+### [🛠 Installation](https://bhuh12.github.io/vue-router-tab/guide/essentials/installation.html)
 
-## 📝 Documentation
+### [📝 Documentation](https://bhuh12.github.io/vue-router-tab/)
 
-[https://bhuh12.github.io/vue-router-tab/](https://bhuh12.github.io/vue-router-tab/)
+- [Introduction](https://bhuh12.github.io/vue-router-tab/guide/)
 
-- Introduction：
-  [https://bhuh12.github.io/vue-router-tab/guide/](https://bhuh12.github.io/vue-router-tab/guide/)
+- [Getting Started](https://bhuh12.github.io/vue-router-tab/guide/essentials/)
 
-- Getting Started：
-  [https://bhuh12.github.io/vue-router-tab/guide/essentials/](https://bhuh12.github.io/vue-router-tab/guide/essentials/)
+- [API](https://bhuh12.github.io/vue-router-tab/api/)
 
-- API：
-  [https://bhuh12.github.io/vue-router-tab/api/](https://bhuh12.github.io/vue-router-tab/api/)
+### [📺 Online Demo](https://bhuh12.github.io/vue-router-tab/demo/)
 
-## 📺 Online Demo
+### [👨‍💻 Sample Project](https://github.com/bhuh12/vue-router-tab-sample)
 
-[https://bhuh12.github.io/vue-router-tab/demo/](https://bhuh12.github.io/vue-router-tab/demo/)
-
-## 👨‍💻 Sample Project
-
-[https://github.com/bhuh12/vue-router-tab-sample](https://github.com/bhuh12/vue-router-tab-sample)
-
-## 📃 Changelog
-
-[https://bhuh12.github.io/vue-router-tab/guide/changelog.html](https://bhuh12.github.io/vue-router-tab/guide/changelog.html)
+### [📃 Changelog](https://bhuh12.github.io/vue-router-tab/guide/changelog.html)
 
 ---
 

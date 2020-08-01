@@ -91,9 +91,6 @@ export default {
   },
 
   mounted() {
-    // 是否移动端
-    this.isMobile = /mobile/i.test(navigator.userAgent)
-
     this.update()
   },
 
@@ -101,6 +98,9 @@ export default {
     // 更新滚动数据
     update() {
       const { clientWidth, scrollWidth, scrollLeft } = this.$refs.container
+
+      // 是否移动端
+      this.isMobile = /mobile/i.test(navigator.userAgent)
 
       Object.assign(this.scrollData, { clientWidth, scrollWidth, scrollLeft })
     },

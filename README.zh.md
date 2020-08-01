@@ -1,7 +1,7 @@
 [English](README.md) | 简体中文
 
 <p align="center">
-  <a href="https://bhuh12.github.io/vue-router-tab/" target="_blank" rel="noopener noreferrer">
+  <a href="https://bhuh12.gitee.io/vue-router-tab/" target="_blank" rel="noopener noreferrer">
     <img width="100" src="public/img/logo.png" alt="vue-router-tab logo">
   </a>
 </p>
@@ -56,52 +56,41 @@ Vue Router Tab 是基于 Vue Router 的路由页签组件，用来实现多页�
 
 ✅ 页签过多鼠标滚轮滚动
 
-✅ 支持页签打开、切换、关闭、刷新、重置等[操作](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/operate.html)
+✅ 支持页签打开、切换、关闭、刷新、重置等[操作](https://bhuh12.gitee.io/vue-router-tab/zh/guide/essentials/operate.html)
 
-✅ [Iframe 页签](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/iframe.html)嵌入外部网站
+✅ [Iframe 页签](https://bhuh12.gitee.io/vue-router-tab/zh/guide/essentials/iframe.html)嵌入外部网站
 
-✅ 组件个性化设置：[过渡效果](https://bhuh12.github.io/vue-router-tab/zh/guide/custom/transition.html)、[自定义插槽](https://bhuh12.github.io/vue-router-tab/zh/guide/custom/slot.html)、[页签右键菜单](https://bhuh12.github.io/vue-router-tab/zh/guide/custom/contextmenu.html)
+✅ 组件个性化设置：[过渡效果](https://bhuh12.gitee.io/vue-router-tab/zh/guide/custom/transition.html)、[自定义插槽](https://bhuh12.gitee.io/vue-router-tab/zh/guide/custom/slot.html)、[页签右键菜单](https://bhuh12.gitee.io/vue-router-tab/zh/guide/custom/contextmenu.html)
 
-✅ [多语言支持](https://bhuh12.github.io/vue-router-tab/zh/guide/custom/i18n.html)
+✅ [多语言支持](https://bhuh12.gitee.io/vue-router-tab/zh/guide/custom/i18n.html)
 
-✅ [缓存控制](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/cache.html)：页签规则、页签是否缓存、最大缓存数、是否复用组件等
+✅ [缓存控制](https://bhuh12.gitee.io/vue-router-tab/zh/guide/advanced/cache.html)：页签规则、页签是否缓存、最大缓存数、是否复用组件等
 
-✅ [动态页签信息](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/dynamic-tab-info.html)：标题、图标、提示
+✅ [动态页签信息](https://bhuh12.gitee.io/vue-router-tab/zh/guide/advanced/dynamic-tab-info.html)：标题、图标、提示
 
-✅ [初始页签数据](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/initial-tabs.html)，进入页面时默认显示的页签
+✅ [初始页签数据](https://bhuh12.gitee.io/vue-router-tab/zh/guide/advanced/initial-tabs.html)，进入页面时默认显示的页签
 
-✅ [页签刷新还原](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/restore.html)，在浏览器刷新后恢复页签
+✅ [页签刷新还原](https://bhuh12.gitee.io/vue-router-tab/zh/guide/advanced/restore.html)，在浏览器刷新后恢复页签
 
-✅ [页面离开前确认](https://bhuh12.github.io/vue-router-tab/zh/guide/advanced/page-leave.html)
+✅ [页面离开前确认](https://bhuh12.gitee.io/vue-router-tab/zh/guide/advanced/page-leave.html)
 
-## 🛠 安装
+## 🔗 链接
 
-[https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/installation.html](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/installation.html)
+### [🛠 安装](https://bhuh12.gitee.io/vue-router-tab/zh/guide/essentials/installation.html)
 
-## 📝 文档
+### [📝 文档](https://bhuh12.gitee.io/vue-router-tab/zh/)
 
-[https://bhuh12.github.io/vue-router-tab/zh/](https://bhuh12.github.io/vue-router-tab/zh/)
+- [介绍](https://bhuh12.gitee.io/vue-router-tab/zh/guide/)
 
-- 介绍：
-  [https://bhuh12.github.io/vue-router-tab/zh/guide/](https://bhuh12.github.io/vue-router-tab/zh/guide/)
+- [入门](https://bhuh12.gitee.io/vue-router-tab/zh/guide/essentials/)
 
-- 入门：
-  [https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/](https://bhuh12.github.io/vue-router-tab/zh/guide/essentials/)
+- [API](https://bhuh12.gitee.io/vue-router-tab/zh/api/)
 
-- API：
-  [https://bhuh12.github.io/vue-router-tab/zh/api/](https://bhuh12.github.io/vue-router-tab/zh/api/)
+### [📺 演示](https://bhuh12.gitee.io/vue-router-tab/demo/)
 
-## 📺 演示
+### [👨‍💻 示例项目](https://github.com/bhuh12/vue-router-tab-sample)
 
-[https://bhuh12.github.io/vue-router-tab/demo/](https://bhuh12.github.io/vue-router-tab/demo/)
-
-## 👨‍💻 示例项目
-
-[https://github.com/bhuh12/vue-router-tab-sample](https://github.com/bhuh12/vue-router-tab-sample)
-
-## 📃 更新日志
-
-[https://bhuh12.github.io/vue-router-tab/zh/guide/changelog.html](https://bhuh12.github.io/vue-router-tab/zh/guide/changelog.html)
+### [📃 更新日志](https://bhuh12.gitee.io/vue-router-tab/zh/guide/changelog.html)
 
 ---
 

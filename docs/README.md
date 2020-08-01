@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: https://bhuh12.github.io/vue-router-tab/demo/img/logo.png
+heroImage: /demo/img/logo.png
 heroText: Vue Router Tab
 tagline: Vue.js tab component, based on Vue Router.
 actionText: Get Started →

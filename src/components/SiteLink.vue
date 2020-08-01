@@ -4,9 +4,9 @@
       v-for="({ label, icon, url }, index) in links"
       :key="index"
       :href="url"
-      :target="url.indexOf('http') === 0 ? '_blank' : '_self'"
       :title="label"
       :class="`rt-icon-${icon}`"
+      target="_blank"
     />
   </div>
 </template>
@@ -23,9 +23,14 @@ export default {
           url: 'https://github.com/bhuh12/vue-router-tab'
         },
         {
+          label: 'Gitee',
+          icon: 'gitee',
+          url: 'https://gitee.com/bhuh12/vue-router-tab'
+        },
+        {
           label: '文档和API',
           icon: 'api',
-          url: 'https://bhuh12.github.io/vue-router-tab/'
+          url: '/vue-router-tab/'
         },
         {
           label: 'Issues',

@@ -158,8 +158,6 @@ export default {
           }
         }
 
-        if ($route.query._forceReload && old) return
-
         // 类型：更新或者新建缓存
         const type = cacheAlivePath ? 'update' : 'create'
 
