@@ -8,7 +8,13 @@
 
       <tab-scroll ref="scroll">
         <!-- 页签列表 -->
-        <transition-group tag="ul" class="router-tab__nav" v-bind="tabTrans">
+        <transition-group
+          tag="ul"
+          class="router-tab__nav"
+          v-bind="tabTrans"
+          @after-enter="onTabTrans"
+          @after-leave="onTabTrans"
+        >
           <tab-item
             v-for="(item, index) in items"
             :key="item.id || item.to"

@@ -3,8 +3,8 @@
     <transition
       v-bind="pageTrans"
       appear
-      @after-enter="onTransChange"
-      @after-leave="onTransChange"
+      @after-enter="onTrans"
+      @after-leave="onTrans"
     >
       <keep-alive :max="max">
         <router-view
@@ -20,8 +20,8 @@
     <transition
       v-bind="pageTrans"
       appear
-      @after-enter="onTransChange"
-      @after-leave="onTransChange"
+      @after-enter="onTrans"
+      @after-leave="onTrans"
     >
       <router-view
         v-if="!alive && !onRefresh"
@@ -297,7 +297,7 @@ export default {
     },
 
     // 页面过渡后结束刷新状态
-    onTransChange() {
+    onTrans() {
       if (this.onRefresh) {
         this.onRefresh = false
         this.$emit('change', 'create', this.routeMatch)
