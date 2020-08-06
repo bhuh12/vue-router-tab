@@ -58,7 +58,7 @@ $close-icon-size: 13px;
 
   // 滚动条
   &__scrollbar {
-    $h: 4px;
+    $h: 3px;
 
     position: absolute;
     left: 0;
@@ -149,6 +149,12 @@ $close-icon-size: 13px;
     // 激活的页签
     &.is-active {
       border-bottom-color: #fff;
+    }
+
+    // 拖拽经过
+    &.is-drag-over {
+      background: rgba(0, 0, 0, 0.05);
+      transition: background 0.15s ease;
     }
 
     // 页签标题

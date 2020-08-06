@@ -6,9 +6,16 @@
       [tabClass || '']: true,
       'is-active': $tabs.activeTabId === id,
       'is-closable': closable,
-      'is-contextmenu': $tabs.contextData.id === id
+      'is-contextmenu': $tabs.contextData.id === id,
+      'is-drag-over': isDragOver && !isDragging
     }"
     :to="to"
+    :draggable="$tabs.dragsort"
+    @dragstart.native="onDragStart"
+    @dragend.native="onDragEnd"
+    @dragover.native.prevent="isDragOver = true"
+    @dragleave.native.prevent="isDragOver = false"
+    @drop.native="onDrop"
   >
     <slot v-bind="this">
       <i v-if="icon" class="router-tab__item-icon" :class="icon" />
@@ -38,6 +45,13 @@ export default {
 
     // 页签项索引
     index: Number
+  },
+
+  data() {
+    return {
+      isDragging: false, // 是否正在拖拽
+      isDragOver: false // 是否拖拽经过
+    }
   },
 
   computed: {
@@ -75,6 +89,30 @@ export default {
     // 关闭当前页签
     close() {
       this.$tabs.closeTab(this.id)
+    },
+
+    // 拖拽
+    onDragStart(e) {
+      this.isDragging = this.$tabs.isDragging = true
+      e.dataTransfer.dropEffect = 'move'
+      e.dataTransfer.setData('text', this.index + '')
+    },
+
+    // 拖拽结束
+    onDragEnd() {
+      this.isDragging = this.$tabs.isDragging = false
+    },
+
+    // 释放后排序
+    onDrop(e) {
+      const { items } = this.$tabs
+      const fromIndex = +e.dataTransfer.getData('text')
+      const tab = items[fromIndex]
+
+      items.splice(fromIndex, 1)
+      items.splice(this.index, 0, tab)
+
+      this.isDragOver = false
     }
   }
 }

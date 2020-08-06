@@ -40,7 +40,7 @@ export default {
   computed: {
     // 激活菜单的页签
     target() {
-      return this.$tabs.$refs.tab[this.data.index]
+      return this.tabMap[this.data.id]
     },
 
     // 菜单选项
@@ -64,9 +64,20 @@ export default {
       return this.menuList.some(item => item.icon)
     },
 
-    // 页签
+    // 页签 map
+    tabMap() {
+      const map = {}
+
+      this.$tabs.$refs.tab.forEach(item => {
+        map[item.id] = item
+      })
+
+      return map
+    },
+
+    // 页签组件列表
     tabs() {
-      return this.$tabs.$refs.tab
+      return this.$tabs.items.map(item => this.tabMap[item.id])
     },
 
     // 左侧可关闭的页签

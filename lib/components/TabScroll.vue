@@ -60,6 +60,7 @@ export default {
     hasScroller() {
       return (
         !this.isMobile &&
+        !this.$tabs.isDragging &&
         this.scrollData.scrollWidth > this.scrollData.clientWidth
       )
     },

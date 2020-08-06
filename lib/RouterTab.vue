@@ -38,7 +38,7 @@
     </header>
 
     <!-- 页面容器 -->
-    <div class="router-tab__container" :class="{ loading }">
+    <div class="router-tab__container">
       <router-alive
         page-class="router-tab-page"
         :keep-alive="keepAlive"

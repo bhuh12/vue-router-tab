@@ -14,14 +14,15 @@ export default [
     children: [
       { text: '过渡效果', to: '/transition' },
       { text: '插槽', to: '/slot' },
-      { text: '右键菜单', to: '/contextmenu' }
+      { text: '右键菜单', to: '/contextmenu' },
+      { text: '页签排序-禁用', to: '/dragsort' }
     ]
   },
   {
     text: '缓存控制',
     children: [
       { text: '页签规则', to: '/default/rule' },
-      { text: '页签缓存', to: '/default/no-cache' },
+      { text: '页签缓存-禁用', to: '/default/no-cache' },
       { text: '最大缓存数', to: '/max-alive' },
       { text: '复用组件', to: '/reuse' }
     ]
