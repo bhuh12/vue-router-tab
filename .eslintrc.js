@@ -7,7 +7,11 @@ module.exports = {
   },
   extends: ['plugin:vue/recommended', 'eslint:recommended', '@vue/prettier'],
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: 'babel-eslint',
+    ecmaFeatures: {
+      // 支持装饰器
+      legacyDecorators: true
+    }
   },
   rules: {
     'no-console': isProd ? 'warn' : 'off',
