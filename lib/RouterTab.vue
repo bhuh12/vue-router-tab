@@ -71,7 +71,7 @@
     <!-- 右键菜单 -->
     <transition name="router-tab-zoom">
       <tab-contextmenu
-        v-if="contextmenu !== false && contextData.id"
+        v-if="contextmenu !== false && contextData.index > -1"
         :data="contextData"
         :menu="contextMenu"
       />
