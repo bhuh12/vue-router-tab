@@ -3,10 +3,18 @@
 </template>
 
 <script>
+// Iframe 路由元
+export const iframeMeta = {
+  key: route => `iframe-${route.params.src}`,
+  title: route => route.params.title,
+  icon: route => route.params.icon
+}
+
 // Iframe 页签页面
 export default {
   name: 'Iframe',
   inject: ['$tabs'],
+  meta: iframeMeta, // Nuxt 页面路由元
 
   props: {
     src: String,
