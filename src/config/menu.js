@@ -5,8 +5,7 @@ export default [
       { text: '默认配置', to: '/default' },
       { text: '初始展示页签', to: '/initial-tabs' },
       { text: '刷新还原页签', to: '/restore' },
-      { text: 'Iframe 页签', to: '/iframe' },
-      { text: '关闭最后的页签', to: '/close-last-tab' }
+      { text: 'Iframe 页签', to: '/iframe' }
     ]
   },
   {
@@ -15,7 +14,9 @@ export default [
       { text: '过渡效果', to: '/transition' },
       { text: '插槽', to: '/slot' },
       { text: '右键菜单', to: '/contextmenu' },
-      { text: '页签排序-禁用', to: '/dragsort' }
+      { text: '页签排序-禁用', to: '/dragsort' },
+      { text: '新页签插入位置', to: '/append' },
+      { text: '关闭最后的页签', to: '/close-last-tab' }
     ]
   },
   {
