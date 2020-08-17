@@ -88,7 +88,7 @@ A tab router component based on Vue Router.
 
 ### [📺 Online Demo](https://bhuh12.github.io/vue-router-tab/demo/)
 
-### [👨‍💻 Sample Project](https://github.com/bhuh12/vue-router-tab-sample)
+### [👨‍💻 Sample Project](https://github.com/bhuh12/router-tab-sample)
 
 ### [📃 Changelog](https://bhuh12.github.io/vue-router-tab/guide/changelog.html)
 

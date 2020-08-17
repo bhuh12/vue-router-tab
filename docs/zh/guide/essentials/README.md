@@ -133,14 +133,14 @@ export default new Router({
 
 ## 👨‍💻 示例项目
 
-**Github**: [https://github.com/bhuh12/vue-router-tab-sample](https://github.com/bhuh12/vue-router-tab-sample)
+**Github**: [https://github.com/bhuh12/router-tab-sample](https://github.com/bhuh12/router-tab-sample)
 
-**CodeSandbox**: [https://codesandbox.io/s/vue-router-tab-sample-8vbj6](https://codesandbox.io/s/vue-router-tab-sample-8vbj6)
+**CodeSandbox**: [https://codesandbox.io/s/router-tab-sample-8vbj6](https://codesandbox.io/s/router-tab-sample-8vbj6)
 
 <iframe
-  src="https://codesandbox.io/embed/vue-router-tab-sample-8vbj6?fontsize=14&hidenavigation=1&theme=dark"
+  src="https://codesandbox.io/embed/router-tab-sample-8vbj6?fontsize=14&hidenavigation=1&theme=dark"
   style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-  title="vue-router-tab-sample"
+  title="router-tab-sample"
   allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
   sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
 ></iframe>
