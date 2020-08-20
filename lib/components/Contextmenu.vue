@@ -96,6 +96,10 @@ export default {
     }
   },
 
+  mounted() {
+    this.adjust()
+  },
+
   methods: {
     // 关闭多个页签
     async closeMulti(tabs) {
@@ -108,6 +112,15 @@ export default {
       // 当前页签如已关闭，则打开右键选中页签
       if (!this.$tabs.activeTab) {
         this.$router.replace(this.target.to)
+      }
+    },
+
+    // 适应边界位置
+    adjust() {
+      const { clientWidth } = this.$el
+      const winWidth = window.innerWidth
+      if (this.data.left + clientWidth > winWidth) {
+        this.data.left = winWidth - clientWidth - 5
       }
     }
   }
