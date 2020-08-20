@@ -43,7 +43,7 @@ export default {
         id: '',
         // 菜单标题
         title() {
-          return this.$tabs.lang.contextmenu[this.id]
+          return this.$tabs.langs.contextmenu[this.id]
         },
         icon: '',
         tips: '',

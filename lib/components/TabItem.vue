@@ -7,7 +7,7 @@
       'is-active': $tabs.activeTabId === id,
       'is-closable': closable,
       'is-contextmenu': $tabs.contextData.id === id,
-      'is-drag-over': isDragOver && !isDragging
+      'is-drag-over': isDragOver && !onDragSort
     }"
     :to="to"
     :draggable="$tabs.dragsort"
@@ -49,7 +49,7 @@ export default {
 
   data() {
     return {
-      isDragging: false, // 是否正在拖拽
+      onDragSort: false, // 是否正在拖拽
       isDragOver: false // 是否拖拽经过
     }
   },
@@ -65,7 +65,7 @@ export default {
 
     // 未命名页签
     untitled() {
-      return this.$tabs.lang.tab.untitled
+      return this.$tabs.langs.tab.untitled
     },
 
     // 页签标题
@@ -93,14 +93,14 @@ export default {
 
     // 拖拽
     onDragStart(e) {
-      this.isDragging = this.$tabs.isDragging = true
+      this.onDragSort = this.$tabs.onDragSort = true
       e.dataTransfer.dropEffect = 'move'
       e.dataTransfer.setData('text', this.index + '')
     },
 
     // 拖拽结束
     onDragEnd() {
-      this.isDragging = this.$tabs.isDragging = false
+      this.onDragSort = this.$tabs.onDragSort = false
     },
 
     // 释放后排序
