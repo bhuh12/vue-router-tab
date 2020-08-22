@@ -1,5 +1,31 @@
 # 更新日志
 
+## [1.2.0](https://github.com/bhuh12/vue-router-tab/compare/v1.1.0...v1.2.0) (2020-08-22)
+
+### Bug Fixes
+
+- **contextmenu:** 右键菜单优化 ([0088b63](https://github.com/bhuh12/vue-router-tab/commit/0088b637b29b4f5c1f928e0e7d14f713917d5706))
+- 解决浏览器历史前进后退和还原页签时没有 adjust 到当前页签位置 ([66bf4c1](https://github.com/bhuh12/vue-router-tab/commit/66bf4c12a576ee7ad6bc7f3b4540091e4cfceb4a))
+- 解决缓存 key 为空时右键菜单不显示 ([f9448de](https://github.com/bhuh12/vue-router-tab/commit/f9448decc310fcd404cdde0fc1abdcb675bf73bc))
+
+### Code Refactoring
+
+- **lang:** 语言配置由 language 修改为 lang ([8866760](https://github.com/bhuh12/vue-router-tab/commit/8866760839fa5f71ab7649f0e868b0e05c5c966c))
+
+### Features
+
+- Nuxt 支持从页面 meta 配置页签 ([02daa90](https://github.com/bhuh12/vue-router-tab/commit/02daa9068c73ad9accb7ae89826c611d287e9c5c))
+- 新增配置项：`append` 新页签插入位置 ([458fc34](https://github.com/bhuh12/vue-router-tab/commit/458fc34489b7276200e8dd51ba0f3a9a9de92174))
+- **dragsort:** 页签拖拽排序 ([479bfcd](https://github.com/bhuh12/vue-router-tab/commit/479bfcd0cc1b46968e13e68d3e2d7fac0a56718a))
+
+### Performance Improvements
+
+- 新增 Nuxt Iframe 页面路由元配置 ([706e7e6](https://github.com/bhuh12/vue-router-tab/commit/706e7e6626e4eed8a07505d6e540546c55724936))
+
+### BREAKING CHANGES
+
+- **lang:** 组件语言配置由 language 修改为 lang
+
 ## [1.1.0](https://github.com/bhuh12/vue-router-tab/compare/v1.0.2...v1.1.0) (2020-07-30)
 
 ### Code Refactoring

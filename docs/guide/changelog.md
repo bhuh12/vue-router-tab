@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.2.0](https://github.com/bhuh12/vue-router-tab/compare/v1.1.0...v1.2.0) (2020-08-22)
+
+### Bug Fixes
+
+- **contextmenu:** Contextmenu Optimize ([0088b63](https://github.com/bhuh12/vue-router-tab/commit/0088b637b29b4f5c1f928e0e7d14f713917d5706))
+- Fixed that RouterTab does not adjust to the current tab position when the browser forward or backward in history and RouterTab restores the tab ([66bf4c1](https://github.com/bhuh12/vue-router-tab/commit/66bf4c12a576ee7ad6bc7f3b4540091e4cfceb4a))
+- Fixed that the contextmenu does not display when the cache key is a empty string ([f9448de](https://github.com/bhuh12/vue-router-tab/commit/f9448decc310fcd404cdde0fc1abdcb675bf73bc))
+
+### Code Refactoring
+
+- **lang:** The language configuration is changed from `language` to `lang` ([8866760](https://github.com/bhuh12/vue-router-tab/commit/8866760839fa5f71ab7649f0e868b0e05c5c966c))
+
+### Features
+
+- Nuxt supports configuring tabs from the page meta ([02daa90](https://github.com/bhuh12/vue-router-tab/commit/02daa9068c73ad9accb7ae89826c611d287e9c5c))
+- New configuration item: `append`, insert position of the new tab ([458fc34](https://github.com/bhuh12/vue-router-tab/commit/458fc34489b7276200e8dd51ba0f3a9a9de92174))
+- **dragsort:** Tabs drag sort ([479bfcd](https://github.com/bhuh12/vue-router-tab/commit/479bfcd0cc1b46968e13e68d3e2d7fac0a56718a))
+
+### BREAKING CHANGES
+
+- **lang:** The language configuration is changed from `language` to `lang`
+
 ## [1.1.0](https://github.com/bhuh12/vue-router-tab/compare/v1.0.2...v1.1.0) (2020-07-30)
 
 ### Code Refactoring

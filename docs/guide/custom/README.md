@@ -14,7 +14,7 @@ RouterTab supports tab drag sort by default, you can disable this function by co
 
 ## Insert Position
 
-RouterTab can specify the insertion position of the new tab by configuring `append`, and supports the following two options:
+RouterTab can specify the insert position of the new tab by configuring `append`, and supports the following two options:
 
 - `last` End of tabs (default)
 
