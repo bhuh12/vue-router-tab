@@ -95,14 +95,16 @@ RouterTab 仅支持单例模式，请勿在同一个页面中引入多个 Router
 
 ## 👨‍💻 示例项目
 
+**router-tab-nuxt-sample**
+
 [**Github**](https://github.com/bhuh12/router-tab-nuxt-sample)
 
-<!-- [**CodeSandbox**](https://codesandbox.io/s/router-tab-sample-8vbj6)
+[**CodeSandbox**](https://codesandbox.io/s/github/bhuh12/router-tab-nuxt-sample)
 
 <iframe
-  src="https://codesandbox.io/embed/router-tab-sample-8vbj6?fontsize=14&hidenavigation=1&theme=dark"
+  src="https://codesandbox.io/embed/github/bhuh12/router-tab-nuxt-sample/tree/master/?fontsize=14&hidenavigation=1&theme=dark"
   style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-  title="router-tab-sample"
+  title="router-tab-nuxt-sample"
   allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
   sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-></iframe> -->
+></iframe>
