@@ -8,6 +8,8 @@ Vue Router Tab 是基于 Vue.js 和 Vue Router 的路由页签组件，用来实
 
 ✅ 页签过多鼠标滚轮滚动
 
+✅ 页签拖拽排序
+
 ✅ 支持页签打开、切换、关闭、刷新、重置等[操作](essentials/operate.md)
 
 ✅ [Iframe 页签](essentials/iframe.md)嵌入外部网站
@@ -25,6 +27,8 @@ Vue Router Tab 是基于 Vue.js 和 Vue Router 的路由页签组件，用来实
 ✅ [页签刷新还原](advanced/restore.md)，在浏览器刷新后恢复页签
 
 ✅ [页面离开前确认](advanced/page-leave.md)
+
+✅ [Nuxt 支持](essentials/nuxt.md)
 
 ### 浏览器支持
 

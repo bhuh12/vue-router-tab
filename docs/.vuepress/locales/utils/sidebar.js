@@ -7,6 +7,7 @@ exports.default = i18n => ({
       children: [
         'essentials/installation',
         'essentials/',
+        'essentials/nuxt',
         'essentials/operate',
         'essentials/iframe'
       ]
@@ -18,7 +19,8 @@ exports.default = i18n => ({
         'custom/transition',
         'custom/slot',
         'custom/contextmenu',
-        'custom/i18n'
+        'custom/i18n',
+        'custom/'
       ]
     },
     {

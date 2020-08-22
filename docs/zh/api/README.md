@@ -24,6 +24,28 @@ sidebar: auto
 
 - 默认值: `[]`
 
+### restore
+
+**是否在浏览器刷新后恢复页签**
+
+开启后，浏览器刷新后将会还原刷新前的页签
+
+- 类型: `Boolean | String`
+
+  - 类型为 `String` 且不为空字符串时，RouterTab 会拼接该值作为 sessionStorage 的 key 来本地存储页签信息
+
+- 默认值: `false`
+
+### restore-watch
+
+**是否监听 restore 参数自动恢复页签**
+
+开启后，RouterTab 会监听传入的 restore 值，改变后自动恢复对应配置的页签
+
+- 类型: `Boolean`
+
+- 默认值: `false`
+
 ### default-page
 
 默认页面，最后一个页签关闭或者页签重置后跳转的默认地址。
@@ -94,27 +116,31 @@ sidebar: auto
 | target | 右键操作的页签项实例 |
 | data   | 右键相关数据         |
 
-### restore
+### dragsort
 
-**是否在浏览器刷新后恢复页签**
-
-开启后，浏览器刷新后将会还原刷新前的页签
-
-- 类型: `Boolean | String`
-
-  - 类型为 `String` 且不为空字符串时，RouterTab 会拼接该值作为 sessionStorage 的 key 来本地存储页签信息
-
-- 默认值: `false`
-
-### restore-watch
-
-**是否监听 restore 参数自动恢复页签**
-
-开启后，RouterTab 会监听传入的 restore 值，改变后自动恢复对应配置的页签
+是否支持页签拖拽排序
 
 - 类型: `Boolean`
 
-- 默认值: `false`
+- 默认值: `true`
+
+### append
+
+新页签插入位置
+
+- 类型: `String`
+
+- 可选值: `'last'` 末尾、`'next'` 下一个
+
+- 默认值: `'last'`
+
+### keep-last-tab
+
+是否保留最后一个页签不被关闭
+
+- 类型: `Boolean`
+
+- 默认值: `true`
 
 ### keep-alive
 
@@ -140,14 +166,6 @@ sidebar: auto
 
 - 默认值: `false`
 
-### keep-last-tab
-
-是否保留最后一个页签不被关闭
-
-- 类型: `Boolean`
-
-- 默认值: `true`
-
 ### i18n
 
 页签国际化转换
@@ -162,17 +180,17 @@ sidebar: auto
 
 - 返回: `Strong` 国际化转换后的字符串
 
-### language
+### lang
 
 组件语言
 
 - 类型: `String | Object`
 
-  - 如果类型为 `String` ，可以设置为内置的语言 `'zh-CN'` (默认) 和 `'en'`
+  - 如果类型为 `String` ，可以设置为内置的语言 `'zh'` (默认) 和 `'en'`
 
   - 如果类型为 `Object` ，可设置自定义的语言
 
-- 默认值: `'zh-CN'`
+- 默认值: `'zh'`
 
 ## RouterTab 实例属性
 

@@ -56,6 +56,8 @@ A tab router component based on Vue Router.
 
 ✅ Tabs mouse wheel scrolling
 
+✅ Tabs drag sort
+
 ✅ [Tab Operations](https://bhuh12.github.io/vue-router-tab/guide/essentials/operate.html): open, switch, close, refresh, reset
 
 ✅ [Iframe tab](https://bhuh12.github.io/vue-router-tab/guide/essentials/iframe.html): for external website
@@ -74,11 +76,13 @@ A tab router component based on Vue Router.
 
 ✅ [Page Leave Confirm](https://bhuh12.github.io/vue-router-tab/guide/advanced/page-leave.html)
 
+✅ [Nuxt Support](https://bhuh12.github.io/vue-router-tab/guide/essentials/nuxt.html)
+
 ## 🔗 Links
 
 ### [🛠 Installation](https://bhuh12.github.io/vue-router-tab/guide/essentials/installation.html)
 
-### [📝 Documentation](https://bhuh12.github.io/vue-router-tab/)
+### [📝 Documentation](https://bhuh12.github.io/vue-router-tab/) ([Gitee](https://bhuh12.gitee.io/vue-router-tab/))
 
 - [Introduction](https://bhuh12.github.io/vue-router-tab/guide/)
 
@@ -86,7 +90,7 @@ A tab router component based on Vue Router.
 
 - [API](https://bhuh12.github.io/vue-router-tab/api/)
 
-### [📺 Online Demo](https://bhuh12.github.io/vue-router-tab/demo/)
+### [📺 Online Demo](https://bhuh12.github.io/vue-router-tab/demo/) ([Gitee](https://bhuh12.gitee.io/vue-router-tab/demo/))
 
 ### [👨‍💻 Sample Project](https://github.com/bhuh12/router-tab-sample)
 

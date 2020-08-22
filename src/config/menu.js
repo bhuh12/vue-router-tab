@@ -14,7 +14,7 @@ export default [
       { text: '过渡效果', to: '/transition' },
       { text: '插槽', to: '/slot' },
       { text: '右键菜单', to: '/contextmenu' },
-      { text: '页签排序-禁用', to: '/dragsort' },
+      { text: '拖拽排序-禁用', to: '/dragsort' },
       { text: '新页签插入位置', to: '/append' },
       { text: '关闭最后的页签', to: '/close-last-tab' }
     ]

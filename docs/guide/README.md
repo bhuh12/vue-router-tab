@@ -8,6 +8,8 @@ A tab router component based on Vue Router.
 
 ✅ Tabs mouse wheel scrolling
 
+✅ Tabs drag sort
+
 ✅ [Tab Operations](essentials/operate.md): open, switch, close, refresh, reset
 
 ✅ [Iframe tab](essentials/iframe.md): for external website
@@ -25,6 +27,8 @@ A tab router component based on Vue Router.
 ✅ [Restore Tabs](advanced/restore.md): reopen tabs after browser refresh
 
 ✅ [Page Leave Confirm](advanced/page-leave.md)
+
+✅ [Nuxt Support](essentials/nuxt.md)
 
 ### Browser compatibility
 

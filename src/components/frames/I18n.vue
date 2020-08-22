@@ -17,7 +17,7 @@ export default {
           page: 'Page {0}'
         },
 
-        'zh-CN': {
+        zh: {
           i18n: '国际化页面',
           page: '页面 {0}'
         }

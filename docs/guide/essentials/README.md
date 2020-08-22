@@ -1,12 +1,12 @@
 # Getting Started
 
-## Integrating into your app
+## Import RouterTab
 
 **Example:**
 
-```javascript {8,9,15}
-// @/main.js entry file
+`main.js` entry file
 
+```javascript {6,7,13}
 // router-tab requires vue and vue-router
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -27,18 +27,19 @@ new Vue({
 }).$mount('#app')
 ```
 
-## Locate Router Outlet
+## Use Component
 
 > More options at [RouterTab Options](../../api/README.md#routertab-配置参数)
 
 ::: danger
-**DO NOT** place plural `<router-tab/>`s in one page. RouterTab only supports singleton so far.
+RouterTab only supports singleton mode, **do not** introduce multiple RouterTab components in the same page!
 :::
 
 **Example:**
 
-```html {6}
-<!-- @/components/layout/Frame.vue layout file -->
+`components/layout/Frame.vue` layout file
+
+```html {5}
 <template>
   <div class="app-header">Header</div>
   <div class="app-body">
@@ -48,7 +49,7 @@ new Vue({
 </template>
 ```
 
-## Extend your router config
+## Router Config
 
 1. Integrate RouterTabRoutes into your router config to support [iframe Tab](iframe.md)
 2. Set **title**, **icon**, **tooltip** and **cache rule** in `meta`.
@@ -64,8 +65,9 @@ RouterTab need a default route, we can do this in two ways：
 
 **Example:**
 
-```javascript {6,9,18,20,22,24,26,39,40,41,42,43,44}
-// @/router.js
+`router.js` router
+
+```javascript {5,8,17,19,21,23,25,38,39,40,41,42,43}
 import Vue from 'vue'
 import Router from 'vue-router'
 
@@ -132,10 +134,11 @@ export default new Router({
 
 ## 👨‍💻 Sample Project
 
-router-tab-sample
-**Github**: [https://github.com/bhuh12/router-tab-sample](https://github.com/bhuh12/router-tab-sample)
+**router-tab-sample**
 
-**CodeSandbox**: [https://codesandbox.io/s/router-tab-sample-8vbj6](https://codesandbox.io/s/router-tab-sample-8vbj6)
+[**Github**](https://github.com/bhuh12/router-tab-sample)
+
+<!-- [**CodeSandbox**](https://codesandbox.io/s/router-tab-sample-8vbj6)
 
 <iframe
   src="https://codesandbox.io/embed/router-tab-sample-8vbj6?fontsize=14&hidenavigation=1&theme=dark"
@@ -143,4 +146,4 @@ router-tab-sample
   title="router-tab-sample"
   allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
   sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-></iframe>
+></iframe> -->

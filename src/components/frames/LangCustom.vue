@@ -1,5 +1,5 @@
 <template>
-  <router-tab :language="customLanguage" />
+  <router-tab :lang="customLanguage" />
 </template>
 
 <script>

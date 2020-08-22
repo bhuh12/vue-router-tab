@@ -56,6 +56,8 @@ Vue Router Tab 是基于 Vue Router 的路由页签组件，用来实现多页�
 
 ✅ 页签过多鼠标滚轮滚动
 
+✅ 页签拖拽排序
+
 ✅ 支持页签打开、切换、关闭、刷新、重置等[操作](https://bhuh12.gitee.io/vue-router-tab/zh/guide/essentials/operate.html)
 
 ✅ [Iframe 页签](https://bhuh12.gitee.io/vue-router-tab/zh/guide/essentials/iframe.html)嵌入外部网站
@@ -73,6 +75,8 @@ Vue Router Tab 是基于 Vue Router 的路由页签组件，用来实现多页�
 ✅ [页签刷新还原](https://bhuh12.gitee.io/vue-router-tab/zh/guide/advanced/restore.html)，在浏览器刷新后恢复页签
 
 ✅ [页面离开前确认](https://bhuh12.gitee.io/vue-router-tab/zh/guide/advanced/page-leave.html)
+
+✅ [Nuxt 支持](https://bhuh12.gitee.io/vue-router-tab/zh/guide/essentials/nuxt.html)
 
 ## 🔗 链接
 

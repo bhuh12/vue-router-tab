@@ -33,6 +33,14 @@ yarn lib:build
 
 Vue Router Tab 使用 [**Vue CLI**](https://cli.vuejs.org) 来构建库，没有内置 Polyfills。
 
-如果您的项目有兼容旧版本浏览器的需求，可以参考以下链接，自行 Polyfill:
+如果您的项目有兼容旧版本浏览器的需求，可以参考以下配置，通过 Babel 显式转译依赖
 
-[https://cli.vuejs.org/zh/guide/browser-compatibility.html](https://cli.vuejs.org/zh/guide/browser-compatibility.html)
+> 参考文档: [Vue CLI - 浏览器兼容性](https://cli.vuejs.org/zh/guide/browser-compatibility.html)
+
+`vue.config.js`
+
+```javascript
+module.exports = {
+  transpileDependencies: ['vue-router-tab']
+}
+```

@@ -113,7 +113,7 @@ const route = {
 
 ## Max Alive
 
-You can set the `max-alive` of the RouterTab component to control the maximum number of caches for the tabs. (default) `0` for no limit.
+You can set the `max-alive` of the RouterTab component to control the maximum number of caches for the tabs. `0` (default) for no limit.
 
 After the number of tabs exceeds the set value, the cache of the earliest opened tabs will be cleared.
 

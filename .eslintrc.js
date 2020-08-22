@@ -14,7 +14,7 @@ module.exports = {
     }
   },
   rules: {
-    'no-console': isProd ? 'warn' : 'off',
+    'no-console': 'off',
     'no-debugger': isProd ? 'warn' : 'off',
     'no-unused-vars': 'warn',
     'no-empty': ['error', { allowEmptyCatch: true }],

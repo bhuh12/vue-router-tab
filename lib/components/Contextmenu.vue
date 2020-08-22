@@ -66,13 +66,10 @@ export default {
 
     // 页签 map
     tabMap() {
-      const map = {}
-
-      this.$tabs.$refs.tab.forEach(item => {
+      return this.$tabs.$refs.tab.reduce((map, item) => {
         map[item.id] = item
-      })
-
-      return map
+        return map
+      }, {})
     },
 
     // 页签组件列表

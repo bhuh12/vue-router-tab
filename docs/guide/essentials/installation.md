@@ -33,6 +33,14 @@ yarn lib:build
 
 Vue Router Tab uses [**Vue CLI**](https://cli.vuejs.org) to build as library, so there's no polyfills.
 
-If your project has to support browsers at lower versions, you need to polyfill yourself:
+If your project has to support browsers at lower versions, you can refer to the following configuration to transpile dependencies through Babel.
 
-[https://cli.vuejs.org/guide/browser-compatibility.html](https://cli.vuejs.org/guide/browser-compatibility.html)
+> Reference: [Vue CLI - Browser Compatibility](https://cli.vuejs.org/guide/browser-compatibility.html)
+
+`vue.config.js`
+
+```javascript
+module.exports = {
+  transpileDependencies: ['vue-router-tab']
+}
+```

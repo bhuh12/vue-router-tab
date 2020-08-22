@@ -4,9 +4,9 @@
 
 **示例：**
 
-```javascript {8,9,15}
-// @/main.js 入口
+`main.js` 入口文件
 
+```javascript {6,7,13}
 // router-tab 组件依赖 vue 和 vue-router
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -37,8 +37,9 @@ RouterTab 仅支持单例模式，请勿在同一个页面中引入多个 Router
 
 **示例：**
 
-```html {6}
-<!-- @/components/layout/Frame.vue 布局框架 -->
+`components/layout/Frame.vue` 布局框架
+
+```html {5}
 <template>
   <div class="app-header">头部</div>
   <div class="app-body">
@@ -65,8 +66,9 @@ RouterTab 所在父路由必须提供能访问的默认路由，您可以通过�
 
 **示例：**
 
-```javascript {6,9,18,20,22,24,26,39,40,41,42,43,44}
-// @/router.js 路由
+`router.js` 路由
+
+```javascript {5,8,17,19,21,23,25,38,39,40,41,42,43}
 import Vue from 'vue'
 import Router from 'vue-router'
 
@@ -133,9 +135,9 @@ export default new Router({
 
 ## 👨‍💻 示例项目
 
-**Github**: [https://github.com/bhuh12/router-tab-sample](https://github.com/bhuh12/router-tab-sample)
+[**Github**](https://github.com/bhuh12/router-tab-sample)
 
-**CodeSandbox**: [https://codesandbox.io/s/router-tab-sample-8vbj6](https://codesandbox.io/s/router-tab-sample-8vbj6)
+<!-- [**CodeSandbox**](https://codesandbox.io/s/router-tab-sample-8vbj6)
 
 <iframe
   src="https://codesandbox.io/embed/router-tab-sample-8vbj6?fontsize=14&hidenavigation=1&theme=dark"
@@ -143,4 +145,4 @@ export default new Router({
   title="router-tab-sample"
   allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
   sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-></iframe>
+></iframe> -->
