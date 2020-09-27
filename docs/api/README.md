@@ -2,442 +2,450 @@
 sidebar: auto
 ---
 
-# API 参考
+# API Reference
 
-## RouterTab 配置参数
+## `<router-tab>` Props
 
 ### tabs
 
-**初始页签数据**，进入页面时默认显示的页签。相同 `key` 的页签只保留第一个
+**Default Tabs**, The tabs displayed by default when entering the page. Only keep the first tab with the same `key`.
 
-- 类型: `Array <String | Object>`
+- type: `Array <String | Object>`
 
-  - tabs 子元素类型为 `String` 时，应配置为要打开页面的 `fullPath` ，页签的标题、图标、提示等信息会从对应页面的 `router` 配置中获取
+  - When the tab item type is `String`, it should be configured as the `fullPath` of the route. The title, icon, prompt and other information of the tab will be obtained from the `router` configuration of the corresponding page.
 
-  - tabs 子元素类型为 `Object` 时:
+  - When the tab item type is `Object`:
 
-    - to: 页签路由地址，跟 `router.push` 的 `location` 参数一致，可以为 `fullPath`，也可以为 `location` 对象 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
+    - to: The routing address of the tab is consistent with the `location` parameter of `router.push`, which can be either `fullPath` or a `location` object - [Reference](https://router.vuejs.org/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
 
-    - title: 页签标题，如果页面有设置 `routerTab.title` 动态标题，可在此设置最终的动态标题值，以免与默认从 `router` 获取的标题不一致
+    - title: Tab title, if the page has a dynamic title of `routeTab.title`, you can set the final dynamic title value here to avoid inconsistency with the title obtained from `router` by default.
 
-    - closable: 页签是否允许关闭，默认为 `true`
+    - closable: Whether the tab is allowed to be closed, the default is `true`.
 
-- 默认值: `[]`
+- default: `[]`
 
 ### restore
 
-**是否在浏览器刷新后恢复页签**
+**Whether to restore the tabs after the browser refreshes**
 
-开启后，浏览器刷新后将会还原刷新前的页签
+If enabled, the previous tabs will be restored after the browser is refreshed.
 
-- 类型: `Boolean | String`
+- type: `Boolean | String`
 
-  - 类型为 `String` 且不为空字符串时，RouterTab 会拼接该值作为 sessionStorage 的 key 来本地存储页签信息
+  - When the type is `String` and is not empty, RouterTab will splice this value as the key of SessionStorage to store tabs information locally
 
-- 默认值: `false`
+- default: `false`
 
 ### restore-watch
 
-**是否监听 restore 参数自动恢复页签**
+**Whether to watch the restore parameter to automatic restoration tab**
 
-开启后，RouterTab 会监听传入的 restore 值，改变后自动恢复对应配置的页签
+If enabled, RouterTab will watch the `restore` option, and automatically restore the corresponding tabs of the local storage after the change.
 
-- 类型: `Boolean`
+- type: `Boolean`
 
-- 默认值: `false`
+- default: `false`
 
 ### default-page
 
-默认页面，最后一个页签关闭或者页签重置后跳转的默认地址。
+Default page, the default path to redirect to after the last tab is closed or reset.
 
-程序会自动获取页签父路由地址为默认页面。
+The program will automatically obtain the parent routing address of the tab as the default page.
 
-- 类型: `String | Object` location 地址
+- type: `String | Object` location path.
 
-- 默认值: 页签组件父路由地址。
+- default: Parent routing path of the tab component.
 
 ### tab-transition
 
-**页签过渡效果**，新增和关闭页签时的过渡
+The transition effect of tab, transition when adding and closing tabs
 
-- 类型: `String | Object`
+- type: `String | Object`
 
-  - 类型为 `String` 时，应配置为 `transition.name`
+  - When the type is `String`, it should be configured as `transition.name`
 
-  - 类型为 `Object` 时，配置参考: [Vue - transition](https://cn.vuejs.org/v2/api/#transition)
+  - When the type is `Object`, reference: [Vue - transition](https://vuejs.org/v2/guide/transitions.html)
 
-- 默认值: `'router-tab-zoom'`
+- default: `'router-tab-zoom'`
 
 ### page-transition
 
-页面过渡效果
+The transition effect of tab page.
 
-- 类型: `String | Object`
+- type: `String | Object`
 
-  同 [`tab-transition`](#tab-transition)
+  Same as [`tab-transition`](#tab-transition)
 
-- 默认值: `{ name: 'router-tab-swap', mode: 'out-in' }`
+- default: `{ name: 'router-tab-swap', mode: 'out-in' }`
 
 ### contextmenu
 
-自定义**右键菜单**
+Custom contextmenu.
 
-- 类型: `Boolean | Array <String | Object>`
+- type: `Boolean | Array <String | Object>`
 
-  - 设置为 `false` 时禁用右键菜单
+  - Set to `false` to disable contextmenu.
 
-  - 设置为数组时可自定义右键菜单
+  - Set as an array to customize contextmenu.
 
-    - 数组中菜单项类型为 `String` 时，为内置菜单项
+    - When the menu item type is `String`, it matches the built-in menu item
 
-    - 数组中菜单项类型为 `Object` 时，如果 `id` 与内置菜单项匹配，则扩展内置菜单；否则为自定义菜单
+    - When the menu item type is `Object`, if the `id` matches the built-in menu item, the built-in menu will be extended; otherwise, it will be a custom menu.
 
-- 默认值: `true`
+- default: `true`
 
-**菜单项配置**
+**Menu-item options**
 
-| 属性    | 说明         | 类型                                          | 默认值 | 必需 |
-| ------- | ------------ | --------------------------------------------- | ------ | ---- |
-| id      | id           | `String`                                      | -      | 是   |
-| title   | 名称         | `String | Function(context)`                  | -      | 是   |
-| icon    | 图标         | `String | Function(context)`                  | -      | 否   |
-| tips    | 提示         | `String | Function(context)`                  | -      | 否   |
-| class   | class        | `String | Array | Object | Function(context)` | -      | 否   |
-| visible | 是否可见     | `Function(context) => String`                 | `true` | 否   |
-| enable  | 是否启用     | `Function(context) => String`                 | `true` | 否   |
-| handler | 菜单触发方法 | `Function(context)`                           | -      | 是   |
+| Attribute | Description                                 | Type                                          | Default | Required |
+| --------- | ------------------------------------------- | --------------------------------------------- | ------- | -------- |
+| id        | id                                          | `String`                                      | -       | ✅       |
+| title     | text of menu-item                           | `String | Function(context)`                  | -       | ✅       |
+| icon      | icon of menu-item                           | `String | Function(context)`                  | -       | -        |
+| tips      | tips of menu-item                           | `String | Function(context)`                  | -       | -        |
+| class     | class                                       | `String | Array | Object | Function(context)` | -       | -        |
+| visible   | whether menu-item is visible                | `Function(context) => String`                 | `true`  | -        |
+| enable    | whether menu-item is enable                 | `Function(context) => String`                 | `true`  | -        |
+| handler   | callback function when menu-item is clicked | `Function(context)`                           | -       | ✅       |
 
-菜单项动态参数 `context` 说明
+Menu-item dynamic parameter `context` description:
 
-| 属性   | 说明                 |
-| ------ | -------------------- |
-| \$tabs | RouterTab 组件实例   |
-| \$menu | 菜单项组件实例       |
-| target | 右键操作的页签项实例 |
-| data   | 右键相关数据         |
+| Attribute | Description                                             |
+| --------- | ------------------------------------------------------- |
+| \$tabs    | Instance of RouterTab                                   |
+| \$menu    | Instance of Menu-item                                   |
+| target    | Instance of the tab-item with the contextmenu activated |
+| data      | data of contextmenu                                     |
 
 ### dragsort
 
-是否支持页签拖拽排序
+Whether to support tab drag and drop sort.
 
-- 类型: `Boolean`
+- type: `Boolean`
 
-- 默认值: `true`
+- default: `true`
 
 ### append
 
-新页签插入位置
+Insert position of new tab.
 
-- 类型: `String`
+- type: `String`
 
-- 可选值: `'last'` 末尾、`'next'` 下一个
+- available values: `'last'` | `'next'`
 
-- 默认值: `'last'`
+- default: `'last'`
 
 ### keep-last-tab
 
-是否保留最后一个页签不被关闭
+Whether to keep the last tab and cannot be closed.
 
-- 类型: `Boolean`
+- type: `Boolean`
 
-- 默认值: `true`
+- default: `true`
 
 ### keep-alive
 
-默认是否缓存页签，可通过路由 meta.keepAlive 重置
+Whether to cache tabs by default, it can be reset through the routing configuration `meta.keepAlive`.
 
-- 类型: `Boolean`
+- type: `Boolean`
 
-- 默认值: `true`
+- default: `true`
 
 ### max-alive
 
-最大缓存数，0 则不限制
+The maximum number of caches, set `0` to not limit.
 
-- 类型: `Number`
+- type: `Number`
 
-- 默认值: `0`
+- default: `0`
 
 ### reuse
 
-是否复用路由组件，可通过路由 meta.reuse 重置
+Whether to reuse routing components, can be reset through the routing configuration `meta.reuse`.
 
-- 类型: `Boolean`
+- type: `Boolean`
 
-- 默认值: `false`
+- default: `false`
 
 ### i18n
 
-页签国际化转换
+Tab internationalization function.
 
-- 类型: `Function`
+- type: `Function`
 
-- 参数:
+- parameters:
 
-  - `{String} [key]`: 国际化字段 `key`
+  - `{String} [key]`: i18n `key`
 
-  - `{Array} [params]` 国际化字段参数列表
+  - `{Array} [params]` List of parameters for internationalized fields
 
-- 返回: `Strong` 国际化转换后的字符串
+- returns: `String` Internationalized string
 
 ### lang
 
-组件语言
+Component language.
 
-- 类型: `String | Object`
+- type: `String | Object`
 
-  - 如果类型为 `String` ，可以设置为内置的语言 `'zh'` (默认) 和 `'en'`
+  - If the type is `String`, it can be set to the built-in language `'zh'` (default) and `'en'`.
 
-  - 如果类型为 `Object` ，可设置自定义的语言
+  - If the type is `Object`, you can set a custom language.
 
-- 默认值: `'zh'`
+- default: `'zh'`
 
-## RouterTab 实例属性
+## RouterTab Instance Properties
 
-在组件内部可通过 `this.$tabs.[prop]` 访问
+Can be accessed via `this.$tabs.[prop]` inside your component.
+
+### routerTab.items
+
+Data of all tabs.
+
+### routerTab.activeTab
+
+Data of the currently activated tab.
 
 ### routerTab.activeTabId
 
-当前激活的页签 id
+Id of the currently activated tab.
 
-## RouterTab 实例方法
+## RouterTab Instance Methods
 
 ::: tip
-在 Vue 实例内部，您可以通过 `this.$tabs` 来访问路由页签实例。例如: 调用 `this.$tabs.close()` 来关闭当前页签。
+Inside the Vue instance, you can access the routing tab instance through `this.$tabs`. For example: call `this.$tabs.close()` to close the current tab.
 :::
 
 ### routerTab.open
 
-打开指定地址的页签（默认为全新打开）
+Open tab with a specified path (new tab by default)
 
-- 参数:
-  - `{String | Object} [path]` 要打开的路由地址 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
-  - `{Boolean} [isReplace = false]` 是否 `$router.replace` 方式打开
-  - `{Boolean} [refresh = true]` 是否全新打开（会清理之前的页签页面缓存）
+- parameters:
+  - `{String | Object} [path]` A string path, or a location descriptor object - [Reference](https://router.vuejs.org/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
+  - `{Boolean} [isReplace = false]` Whether to open with `$router.replace`
+  - `{Boolean} [refresh = true]` Whether to refresh if the opened tab already exists (the previous tab page cache will be cleared)
 
 ### routerTab.close
 
-关闭指定页签
+Close the target tab
 
-- 调用:
+- call:
 
   1. `this.$tabs.close({id, path, match, force, to, refresh})`
   2. `this.$tabs.close(path, to)`
 
-- 参数:
+- parameters:
 
-  - `{String} [id]` 通过页签 id 关闭
-  - `{location} [path]` 通过路由路径关闭页签，如果未配置 id 和 path 则关闭
-  - `{Boolean} [match = true]` path 方式关闭时，是否匹配 path 完整路径
-  - `{Boolean} [force = true]` 是否强制关闭
-  - `{location} to` 关闭后跳转的地址，为 null 则不跳转
-  - `{Boolean} [refresh = false]` 是否全新打开跳转地址
+  - `{String} [id]` Close by tab `id`
+  - `{location} [path]` Close the tab through the routing `path`, if the `id` and `path` are not configured, close the current tab
+  - `{Boolean} [match = true]` When closed by `path`, whether to match the fullPath
+  - `{Boolean} [force = true]` Whether to force close
+  - `{location} to` The path to jump after closing, set `null` to not jump
+  - `{Boolean} [refresh = false]` Whether to refresh if the opened tab already exists
 
 ### routerTab.refresh
 
-刷新指定路由地址的页签
+Refresh the tab of target routing location
 
-- 参数:
-  - `{location} [path]` 路由地址 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
-  - `{Boolean} [match = true]` 是否全匹配（匹配 fullPath 去除 hash 部分）
-  - `{Boolean} [force = true]` 是否强制刷新
+- parameters:
+  - `{location} [path]` A string path, or a location descriptor object - [Reference](https://router.vuejs.org/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
+  - `{Boolean} [match = true]` Whether to match fullPath without hash
+  - `{Boolean} [force = true]` Whether to force refresh
 
 ### routerTab.refreshAll
 
-刷新所有页签
+Refresh all tabs
 
-- 参数:
-  - `{Boolean} [force = false]` 如果 `force` 为 `true`，则忽略页面组件的 `beforePageLeave` 配置，强制刷新所有页签
+- parameters:
+  - `{Boolean} [force = false]` If `force` is set to `true`, the `beforePageLeave` configuration of the page component is ignored and all tabs are forced to refresh
 
 ### routerTab.reset
 
-重置页签到初始状态
+Reset tabs to initial state
 
-- 参数:
-  - `{location} [to]` 重置后跳转的地址，默认为 `default-page`
+- parameters:
+  - `{location} [to]` The redirected location after reset, default to `default-page`
 
 ### routerTab.openIframe
 
-打开 Iframe 页签
+Open a iframe tab
 
-- 参数:
-  - `{String} [src]` 要打开的 Iframe 页签链接
-  - `{String} [title]` 页签标题
-  - `{String} [icon]` 页签图标
+- parameters:
+  - `{String} [src]` The url of the Iframe tab to be opened
+  - `{String} [title]` Title of tab
+  - `{String} [icon]` Icon of tab
 
 ### routerTab.closeIframe
 
-关闭 Iframe 页签
+Close the iframe tab
 
-- 参数:
-  - `{String} [src]` 要关闭的 Iframe 页签链接
+- parameters:
+  - `{String} [src]` The url of the iframe tab to be closed
 
 ### routerTab.refreshIframe
 
-刷新 Iframe 页签
+Refresh a iframe tab
 
-- 参数:
-  - `{String} [src]` 要刷新的 Iframe 页签链接
+- parameters:
+  - `{String} [src]` The url of the iframe tab to be refreshed
 
-## RouterTab 事件
+## RouterTab Events
 
 ### iframe-mounted
 
-iframe 节点挂载就绪
+Iframe component mounted
 
-- 参数:
-  - `{String} [url]` iframe 的链接地址
-  - `{HTMLIFrameElement} [iframe]` iframe 节点
+- parameters:
+  - `{String} [url]` The url of the iframe
+  - `{HTMLIFrameElement} [iframe]` Html element of iframe
 
 ### iframe-loaded
 
-iframe 内容加载成功
+iframe content loaded
 
-- 参数:
-  - `{String} [url]` iframe 的链接地址
-  - `{HTMLIFrameElement} [iframe]` iframe 节点
+- parameters:
+  - `{String} [url]` The url of the iframe
+  - `{HTMLIFrameElement} [iframe]` Html element of iframe
 
-## RouterTab 插槽
+## RouterTab Slot
 
-RouterTab 支持通过以下插槽个性化页签组件：
+RouterTab supports personalization tab components through the following slots:
 
-| 插槽名称  | 作用域 | 说明     |
-| --------- | ------ | -------- |
-| `default` | `tab`  | 页签项   |
-| `start`   | -      | 页签开始 |
-| `end`     | -      | 页签结束 |
+| Slot Name | Scope | Description   |
+| --------- | ----- | ------------- |
+| `default` | `tab` | Tab item      |
+| `start`   | -     | Tab bar start |
+| `end`     | -     | Tab bar end   |
 
-## RouterAlive 配置参数
+## `<router-alive>` Props
 
 ### keep-alive
 
-默认是否开启缓存
+Whether to cache components by default, it can be reset through the routing configuration `meta.keepAlive`.
 
-- 类型: `Boolean`
+- type: `Boolean`
 
-- 默认值: `false`
+- default: `false`
 
 ### max
 
-最大缓存数，0 则不限制
+The maximum number of caches, set `0` to not limit.
 
-- 类型: `Number`
+- type: `Number`
 
-- 默认值: `0`
+- default: `0`
 
 ### reuse
 
-是否复用路由组件
+Whether to reuse routing components, can be reset through the routing configuration `meta.reuse`.
 
-- 类型: `Boolean`
+- type: `Boolean`
 
-- 默认值: `false`
+- default: `false`
 
 ### page-class
 
-页面 class
+class of tab page.
 
-- 类型: `Array | Object | String`
+- type: `Array | Object | String`
 
-- 默认值: `router-alive-page`
+- default: `router-alive-page`
 
 ### transition
 
-路由组件过渡效果
+The transition effect of routing components
 
-- 类型: `String | Object`
+- type: `String | Object`
 
-  同 [`tab-transition`](#tab-transition)
+  Same as [`tab-transition`](#tab-transition)
 
-## RouterAlive 实例方法
+## RouterAlive Instance Methods
 
 ::: tip
-在 RouterAlive 子组件，您可以通过 `inject: ['RouterAlive']` 来访问 RouterAlive 实例。
-然后调用 `this.RouterAlive.refresh()` 来刷新组件。
+In the sub-component of RouterAlive, you can access the RouterAlive instance through `inject: ['RouterAlive']`.
+Then call `this.RouterAlive.refresh()` to refresh the component.
 :::
 
 ### routerAlive.remove
 
-移除组件缓存
+Remove the cache of component.
 
-- 参数:
-  - `{String} [key]` 需要移除的组件缓存 key，默认为当前组件
+- parameters:
+  - `{String} [key]` The cache key of the component to be removed, default to current component.
 
 ### routerAlive.refresh
 
-刷新组件缓存
+Refresh the cache of component.
 
-- 参数:
-  - `{String} [key]` 需要刷新的组件缓存 key，默认为当前组件
+- parameters:
+  - `{String} [key]` The cache key of the component to be refreshed, default to current component.
 
-## RouterAlive 事件
+## RouterAlive Events
 
 ### ready
 
-RouterAlive 组件就绪
+RouterAlive component is ready.
 
-- 参数:
-  - `{VueInstance} [alive]` RouterAlive 实例
+- parameters:
+  - `{VueInstance} [alive]` RouterAlive instance
 
 ### change
 
-路由缓存更改
+Route cache changes.
 
-- 参数:
-  - `{String} [type]` 类型：`create` 或者 `update`
-  - `{RouteMatch} [routeMatch]` 路由匹配信息
+- parameters:
+  - `{String} [type]` type: `create` | `update`
+  - `{RouteMatch} [routeMatch]` Route matching information
 
-## Route.meta 路由元信息
+## Route.meta
 
-通过路由的 `meta` 信息，我们可以配置路由页签的标题、图标、提示和缓存规则
+Through the `meta` route, we can configure the title, icon, prompt and cache rule of a route tab.
 
-| 属性      | 说明         | 类型                | 默认值     | 备注                                                                      |
-| --------- | ------------ | ------------------- | ---------- | ------------------------------------------------------------------------- |
-| key       | 路由 key     | `String | Function` | -          | 用于页签 id 和组件缓存 key<br>内置 `path` `fullPath` 两种规则             |
-| keepAlive | 是否缓存     | `Boolean`           | `true`     | 如果不缓存，每次进入页面将重新创建实例                                    |
-| reuse     | 是否复用组件 | `Boolean`           | `false`    | 相同页签规则下，同一个路由的 `params` 或 `query` 更改后是否复用之前的组件 |
-| title     | 页签标题     | `String | Array`    | `'无标题'` | 支持国际化<br>参考: [教程 - 多语言支持](../guide/essentials/i18n.md)      |
-| tips      | 鼠标悬浮提示 | `String | Array`    | 和标题一致 | 支持国际化<br>参考: [教程 - 多语言支持](../guide/essentials/i18n.md)      |
-| icon      | 图标         | `String`            | -          | -                                                                         |
-| tabClass  | 页签 class   | `String`            | -          | -                                                                         |
-| closable  | 是否可关闭   | `Boolean`           | `true`     | -                                                                         | - |
+| Attribute | Description                   | Type                | Default         | Remark                                                                                                                  |
+| --------- | ----------------------------- | ------------------- | --------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| key       | Routing key                   | `String | Function` | -               | Key that used for tab id and component cache<br>Built-in rules: `path` \| `fullPath`                                    |
+| keepAlive | Whether to cache              | `Boolean`           | `true`          | If disabled, the instance will be recreated every time the page is entered                                              |
+| reuse     | Whether to reuse components   | `Boolean`           | `false`         | Under the same rules, whether to reuse the previous components after changing the `params` or `query` of the same route |
+| title     | Title of tab                  | `String | Array`    | `'Untitled'`    | I18n support<br>Reference: [Guide - I18n](../guide/custom/i18n.md)                                                      |
+| tips      | Mouse hover tips              | `String | Array`    | Same as `title` | I18n support<br>Reference: [Guide - I18n](../guide/custom/i18n.md)                                                      |
+| icon      | Icon of tab                   | `String`            | -               | -                                                                                                                       |
+| tabClass  | Class of tab                  | `String`            | -               | -                                                                                                                       |
+| closable  | Whether the tab can be closed | `Boolean`           | `true`          | -                                                                                                                       | - |
 
-## 扩展
+## Extends
 
-::: tip 说明
-`vm`: Vue 组件实例
+::: tip Description
+`vm`: Instance of vue component.
 
-`pageVm`: 通过 RouterTab 加载的页面组件实例
+`pageVm`: Instance of page component loaded through RouterTab.
 :::
 
 ### beforePageLeave
 
-页面离开确认。
+Page leave confirmation.
 
-页面组件选项，与 `data`, `methods` 等选项并列配置
+Page component options, Same level configuration as `data` and `methods`.
 
-- 参数:
+- parameters:
 
-  - `{Object} tab` 页签信息
-  - `{String} type` 离开类型:
-    - `close`: 页签关闭
-    - `refresh`: 页签刷新
-    - `replace`: 页签被替换
-    - `leave`: 路由离开
-    - `unload`: 浏览器刷新或者关闭
+  - `{Object} tab` Tab data
+  - `{String} type` Leave type:
+    - `close`: tab be closed
+    - `refresh`: tab be refreshed
+    - `replace`: tab be replaced
+    - `leave`: Route leave
+    - `unload`: Browser refresh or close
 
-- 返回值类型：
-  - `{String}` 离开类型为 `unload` 时，浏览器离开提示消息
-  - `{Promise}` 其他类型，`resolve` 离开，`reject` 阻止离开
+- Type of return value:
+  - `{String}` When the leave type is `unload`, provide a prompt message for the browser to leave.
+  - `{Promise}` Other types, `resolve` to leave, `reject` to prevent leaving
 
-### vm.\$tabs
+### `vm.$tabs`
 
-RouterTab 实例
+Instance of RouterTab.
 
-为了方便调用，RouterTab 将实例挂载在 `Vue.prototype` 上。因此，在所有 Vue 组件内部，您都可以通过 `this.$tabs` 来访问路由页签实例
+To facilitate the call, RouterTab mounts the instance on `Vue.prototype`. Therefore, in all Vue components, you can access the instance of RouterTab through `this.$tabs`.
 
-### pageVm.routeTab
+### `pageVm.routeTab`
 
-路由页签配置
+Current routing tab configuration.
 
-RouterTab 通过监听页面组件的 `this.routeTab` 来更新页面对应页签的标题、图标、提示
+RouterTab updates the title, icon, and prompt of the corresponding tab of the page by watching the `this.routeTab` of the page component.

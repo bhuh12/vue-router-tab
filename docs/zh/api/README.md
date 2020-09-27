@@ -4,7 +4,7 @@ sidebar: auto
 
 # API 参考
 
-## RouterTab 配置参数
+## `<router-tab>` 配置参数
 
 ### tabs
 
@@ -18,7 +18,7 @@ sidebar: auto
 
     - to: 页签路由地址，跟 `router.push` 的 `location` 参数一致，可以为 `fullPath`，也可以为 `location` 对象 - [参考文档](https://router.vuejs.org/zh/guide/essentials/navigation.html#router-push-location-oncomplete-onabort)
 
-    - title: 页签标题，如果页面有设置 `routerTab.title` 动态标题，可在此设置最终的动态标题值，以免与默认从 `router` 获取的标题不一致
+    - title: 页签标题，如果页面有设置 `routeTab.title` 动态标题，可在此设置最终的动态标题值，以免与默认从 `router` 获取的标题不一致
 
     - closable: 页签是否允许关闭，默认为 `true`
 
@@ -32,15 +32,15 @@ sidebar: auto
 
 - 类型: `Boolean | String`
 
-  - 类型为 `String` 且不为空字符串时，RouterTab 会拼接该值作为 sessionStorage 的 key 来本地存储页签信息
+  - 类型为 `String` 且不为空字符串时，RouterTab 会拼接该值作为 SessionStorage 的 key 来本地存储页签信息
 
 - 默认值: `false`
 
 ### restore-watch
 
-**是否监听 restore 参数自动恢复页签**
+**是否监听 `restore` 参数自动恢复页签**
 
-开启后，RouterTab 会监听传入的 restore 值，改变后自动恢复对应配置的页签
+开启后，RouterTab 会监听 `restore` 选项，改变后自动恢复本地存储的对应页签
 
 - 类型: `Boolean`
 
@@ -98,14 +98,14 @@ sidebar: auto
 
 | 属性    | 说明         | 类型                                          | 默认值 | 必需 |
 | ------- | ------------ | --------------------------------------------- | ------ | ---- |
-| id      | id           | `String`                                      | -      | 是   |
-| title   | 名称         | `String | Function(context)`                  | -      | 是   |
-| icon    | 图标         | `String | Function(context)`                  | -      | 否   |
-| tips    | 提示         | `String | Function(context)`                  | -      | 否   |
-| class   | class        | `String | Array | Object | Function(context)` | -      | 否   |
-| visible | 是否可见     | `Function(context) => String`                 | `true` | 否   |
-| enable  | 是否启用     | `Function(context) => String`                 | `true` | 否   |
-| handler | 菜单触发方法 | `Function(context)`                           | -      | 是   |
+| id      | id           | `String`                                      | -      | ✅   |
+| title   | 名称         | `String | Function(context)`                  | -      | ✅   |
+| icon    | 图标         | `String | Function(context)`                  | -      | -    |
+| tips    | 提示         | `String | Function(context)`                  | -      | -    |
+| class   | class        | `String | Array | Object | Function(context)` | -      | -    |
+| visible | 是否可见     | `Function(context) => String`                 | `true` | -    |
+| enable  | 是否启用     | `Function(context) => String`                 | `true` | -    |
+| handler | 菜单触发方法 | `Function(context)`                           | -      | ✅   |
 
 菜单项动态参数 `context` 说明
 
@@ -144,7 +144,7 @@ sidebar: auto
 
 ### keep-alive
 
-默认是否缓存页签，可通过路由 meta.keepAlive 重置
+默认是否缓存页签，可通过路由 `meta.keepAlive` 重置
 
 - 类型: `Boolean`
 
@@ -152,7 +152,7 @@ sidebar: auto
 
 ### max-alive
 
-最大缓存数，0 则不限制
+最大缓存数，`0` 则不限制
 
 - 类型: `Number`
 
@@ -160,7 +160,7 @@ sidebar: auto
 
 ### reuse
 
-是否复用路由组件，可通过路由 meta.reuse 重置
+是否复用路由组件，可通过路由 `meta.reuse` 重置
 
 - 类型: `Boolean`
 
@@ -178,7 +178,7 @@ sidebar: auto
 
   - `{Array} [params]` 国际化字段参数列表
 
-- 返回: `Strong` 国际化转换后的字符串
+- 返回: `String` 国际化转换后的字符串
 
 ### lang
 
@@ -186,15 +186,23 @@ sidebar: auto
 
 - 类型: `String | Object`
 
-  - 如果类型为 `String` ，可以设置为内置的语言 `'zh'` (默认) 和 `'en'`
+  - 如果类型为 `String`，可以设置为内置的语言 `'zh'` (默认) 和 `'en'`
 
-  - 如果类型为 `Object` ，可设置自定义的语言
+  - 如果类型为 `Object`，可设置自定义的语言
 
 - 默认值: `'zh'`
 
 ## RouterTab 实例属性
 
 在组件内部可通过 `this.$tabs.[prop]` 访问
+
+### routerTab.items
+
+所有的页签数据
+
+### routerTab.activeTab
+
+当前激活的页签数据
 
 ### routerTab.activeTabId
 
@@ -226,11 +234,11 @@ sidebar: auto
 
 - 参数:
 
-  - `{String} [id]` 通过页签 id 关闭
-  - `{location} [path]` 通过路由路径关闭页签，如果未配置 id 和 path 则关闭
-  - `{Boolean} [match = true]` path 方式关闭时，是否匹配 path 完整路径
+  - `{String} [id]` 通过页签 `id` 关闭
+  - `{location} [path]` 通过路由路径关闭页签，如果未配置 `id` 和 `path` 则关闭当前页签
+  - `{Boolean} [match = true]` `path` 方式关闭时，是否匹配 `path` 完整路径
   - `{Boolean} [force = true]` 是否强制关闭
-  - `{location} to` 关闭后跳转的地址，为 null 则不跳转
+  - `{location} to` 关闭后跳转的地址，为 `null` 则不跳转
   - `{Boolean} [refresh = false]` 是否全新打开跳转地址
 
 ### routerTab.refresh
@@ -301,17 +309,17 @@ iframe 内容加载成功
 
 RouterTab 支持通过以下插槽个性化页签组件：
 
-| 插槽名称  | 作用域 | 说明     |
-| --------- | ------ | -------- |
-| `default` | `tab`  | 页签项   |
-| `start`   | -      | 页签开始 |
-| `end`     | -      | 页签结束 |
+| 插槽名称  | 作用域 | 说明       |
+| --------- | ------ | ---------- |
+| `default` | `tab`  | 页签项     |
+| `start`   | -      | 页签栏开始 |
+| `end`     | -      | 页签栏结束 |
 
-## RouterAlive 配置参数
+## `<router-alive>` 配置参数
 
 ### keep-alive
 
-默认是否开启缓存
+默认是否缓存组件，可通过路由 `meta.keepAlive` 重置
 
 - 类型: `Boolean`
 
@@ -327,7 +335,7 @@ RouterTab 支持通过以下插槽个性化页签组件：
 
 ### reuse
 
-是否复用路由组件
+是否复用路由组件，可通过路由 `meta.reuse` 重置
 
 - 类型: `Boolean`
 
@@ -396,8 +404,8 @@ RouterAlive 组件就绪
 | key       | 路由 key     | `String | Function` | -          | 用于页签 id 和组件缓存 key<br>内置 `path` `fullPath` 两种规则             |
 | keepAlive | 是否缓存     | `Boolean`           | `true`     | 如果不缓存，每次进入页面将重新创建实例                                    |
 | reuse     | 是否复用组件 | `Boolean`           | `false`    | 相同页签规则下，同一个路由的 `params` 或 `query` 更改后是否复用之前的组件 |
-| title     | 页签标题     | `String | Array`    | `'无标题'` | 支持国际化<br>参考: [教程 - 多语言支持](../guide/essentials/i18n.md)      |
-| tips      | 鼠标悬浮提示 | `String | Array`    | 和标题一致 | 支持国际化<br>参考: [教程 - 多语言支持](../guide/essentials/i18n.md)      |
+| title     | 页签标题     | `String | Array`    | `'无标题'` | 支持国际化<br>参考: [教程 - 多语言支持](../guide/custom/i18n.md)          |
+| tips      | 鼠标悬浮提示 | `String | Array`    | 和标题一致 | 支持国际化<br>参考: [教程 - 多语言支持](../guide/custom/i18n.md)          |
 | icon      | 图标         | `String`            | -          | -                                                                         |
 | tabClass  | 页签 class   | `String`            | -          | -                                                                         |
 | closable  | 是否可关闭   | `Boolean`           | `true`     | -                                                                         | - |
@@ -430,13 +438,13 @@ RouterAlive 组件就绪
   - `{String}` 离开类型为 `unload` 时，浏览器离开提示消息
   - `{Promise}` 其他类型，`resolve` 离开，`reject` 阻止离开
 
-### vm.\$tabs
+### `vm.$tabs`
 
 RouterTab 实例
 
 为了方便调用，RouterTab 将实例挂载在 `Vue.prototype` 上。因此，在所有 Vue 组件内部，您都可以通过 `this.$tabs` 来访问路由页签实例
 
-### pageVm.routeTab
+### `pageVm.routeTab`
 
 路由页签配置
 

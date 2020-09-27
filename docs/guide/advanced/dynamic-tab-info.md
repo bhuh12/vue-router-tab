@@ -1,4 +1,4 @@
-# Dynamic update
+# Dynamic Update
 
 RouterTab will listen to the component `this.routeTab` to dynamically update the tab info. You can change the title, icon, and tips of the tab by setting `this.routeTab`.
 

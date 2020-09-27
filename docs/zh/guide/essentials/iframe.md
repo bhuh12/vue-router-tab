@@ -8,7 +8,7 @@ RouterTab 支持通过 Iframe 页签嵌入外部网站。
 
 ## Iframe 页签操作
 
-<doc-links api="#routertab-openiframetab" demo="/default/" />
+<doc-links api="#routertab-openiframe" demo="/default/" />
 
 #### 打开 Iframe 页签
 

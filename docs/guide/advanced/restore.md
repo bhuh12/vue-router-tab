@@ -1,4 +1,4 @@
-# Restore tabs
+# Restore Tabs
 
 You can `restore` tabs after refreshing the page or logging in from another computer by using the `restore` property.
 

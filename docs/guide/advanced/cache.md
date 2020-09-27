@@ -14,11 +14,11 @@ By default, pages from the same route opens the same tab.
 
 - `path`
 
-  - Rule：`route => route.path`
+  - Rule:`route => route.path`
   - Note: Routes with the same `route.params` share tabs.
   - <demo-link href="/default/rule/path/a/1"/>
 
-  **Example：**
+  **Example:**
 
   ```javascript {6}
   const route = {
@@ -38,11 +38,11 @@ By default, pages from the same route opens the same tab.
 
 - `fullPath`
 
-  - Rule：`route => route.fullPath.replace(route.hash, '')`
+  - Rule:`route => route.fullPath.replace(route.hash, '')`
   - Note: Routes with the same `route.params` and `route.query` share tabs.
   - <demo-link href="/default/rule/fullPath/a/1"/>
 
-  **Example：**
+  **Example:**
 
   ```javascript {6}
   const route = {
@@ -64,7 +64,7 @@ By default, pages from the same route opens the same tab.
 
 In addition to using built-in rules, you can also customize your own rules with functions.
 
-**示例：**
+**Example:**
 
 ```javascript {6,7,8}
 const route = {

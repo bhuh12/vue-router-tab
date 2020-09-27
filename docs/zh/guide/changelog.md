@@ -116,7 +116,7 @@
 
 ### Bug Fixes
 
-- 解决某些场景无法访问 this.\$tabs ([f458763](https://github.com/bhuh12/vue-router-tab/commit/f458763095f982370c674d076293c274abff8bd7))
+- 解决某些场景无法访问 `this.$tabs` ([f458763](https://github.com/bhuh12/vue-router-tab/commit/f458763095f982370c674d076293c274abff8bd7))
 
 ## [1.0.0-alpha.1](https://github.com/bhuh12/vue-router-tab/compare/v0.2.9...v1.0.0-alpha.1) (2020-01-27)
 

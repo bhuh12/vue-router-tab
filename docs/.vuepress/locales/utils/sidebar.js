@@ -34,6 +34,10 @@ exports.default = i18n => ({
         'advanced/page-leave'
       ]
     },
-    'solutions'
+    {
+      title: i18n.meta,
+      collapsable: false,
+      children: ['meta/solutions', 'meta/faqs', 'meta/uninstall']
+    }
   ]
 })

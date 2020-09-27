@@ -29,7 +29,7 @@ new Vue({
 
 ## Use Component
 
-> More options at [RouterTab Options](../../api/README.md#routertab-配置参数)
+> More props at [RouterTab Props](../../api/README.md#router-tab-props)
 
 ::: danger
 RouterTab only supports singleton mode, **do not** introduce multiple RouterTab components in the same page!
@@ -54,7 +54,7 @@ RouterTab only supports singleton mode, **do not** introduce multiple RouterTab 
 1. Integrate RouterTabRoutes into your router config to support [iframe Tab](iframe.md)
 2. Set **title**, **icon**, **tooltip** and **cache rule** in `meta`.
 
-> Details at [Route.meta](../../api/README.md#route-meta-路由元信息)
+> Details at [Route.meta](../../api/README.md#route-meta)
 
 ::: warning
 RouterTab need a default route, we can do this in two ways：

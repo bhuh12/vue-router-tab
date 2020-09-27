@@ -52,7 +52,7 @@ export default {
 
 ## Use Component
 
-> More options at [RouterTab Options](../../api/README.md#routertab-配置参数)
+> More props at [RouterTab Props](../../api/README.md#router-tab-props)
 
 ::: danger
 RouterTab only supports singleton mode, **do not** introduce multiple RouterTab components in the same page!

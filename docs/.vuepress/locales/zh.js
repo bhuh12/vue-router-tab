@@ -7,7 +7,8 @@ const i18n = {
   changelog: '更新日志',
   essentials: '基础',
   custom: '个性化',
-  advanced: '进阶'
+  advanced: '进阶',
+  meta: '更多'
 }
 
 // 站点配置

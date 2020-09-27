@@ -7,7 +7,8 @@ const i18n = {
   changelog: 'Changelog',
   essentials: 'Essentials',
   custom: 'Customized',
-  advanced: 'Advanced'
+  advanced: 'Advanced',
+  meta: 'Meta'
 }
 
 // 站点配置

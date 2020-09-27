@@ -8,7 +8,7 @@ This feature requires RouterTabRoutes from RouterTab. See [Essentials - Route Co
 
 ## Iframe Tab Operation
 
-<doc-links api="#routertab-openiframetab" demo="/default/" />
+<doc-links api="#routertab-openiframe" demo="/default/" />
 
 #### Open iframe Tab
 
@@ -41,6 +41,6 @@ Note that url jumping within iframe will also trigger `iframe-loaded` event.
 
 <doc-links api="#iframe-mounted" demo="/iframe/" />
 
-**Example：**
+**Example:**
 
 <<< @/src/components/frames/Iframe.vue
