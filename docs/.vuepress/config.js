@@ -8,7 +8,7 @@ module.exports = {
       'link',
       {
         rel: 'icon',
-        href: '/vue-router-tab/demo/img/logo.png'
+        href: '/demo/img/logo.png'
       }
     ]
   ],
