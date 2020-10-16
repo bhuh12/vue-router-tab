@@ -37,6 +37,9 @@
 import { remove, mapGetters, getTransOpt } from '../util'
 import RouteMatch from '../util/RouteMatch'
 
+// 页面监听钩子
+const PAGE_HOOKS = ['created', 'mounted', 'activated', 'destroyed']
+
 /**
  * 路由缓存控件
  */
@@ -111,14 +114,10 @@ export default {
 
     // 监听子页面钩子
     hooks() {
-      const events = {}
-      const hooks = ['created', 'mounted', 'activated', 'destroyed']
-
-      hooks.forEach(hook => {
+      return PAGE_HOOKS.reduce((events, hook) => {
         events['hook:' + hook] = () => this.pageHook(hook)
-      })
-
-      return events
+        return events
+      }, {})
     },
 
     // 页面过渡
