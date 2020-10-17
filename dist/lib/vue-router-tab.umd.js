@@ -2193,12 +2193,12 @@ function scroll_asyncToGenerator(fn) { return function () { var self = this, arg
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47deaf46-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/RouterAlive.vue?vue&type=template&id=0d380a4a&
-var RouterAlivevue_type_template_id_0d380a4a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-alive"},[_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onTrans,"after-leave":_vm.onTrans}},'transition',_vm.pageTrans,false),[_c('keep-alive',{attrs:{"max":_vm.max}},[(_vm.alive && !_vm.onRefresh)?_c('router-view',_vm._g({key:_vm.key,ref:"page",class:_vm.pageClass},_vm.hooks)):_vm._e()],1)],1),_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onTrans,"after-leave":_vm.onTrans}},'transition',_vm.pageTrans,false),[(!_vm.alive && !_vm.onRefresh)?_c('router-view',{key:_vm.key,ref:"page",class:_vm.pageClass}):_vm._e()],1)],1)}
-var RouterAlivevue_type_template_id_0d380a4a_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47deaf46-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/RouterAlive.vue?vue&type=template&id=5ffb6c17&
+var RouterAlivevue_type_template_id_5ffb6c17_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-alive"},[_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onTrans,"after-leave":_vm.onTrans}},'transition',_vm.pageTrans,false),[_c('keep-alive',{attrs:{"max":_vm.max}},[(_vm.alive && !_vm.onRefresh)?_c('router-view',_vm._g({key:_vm.key,ref:"page",class:_vm.pageClass},_vm.hooks)):_vm._e()],1)],1),_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onTrans,"after-leave":_vm.onTrans}},'transition',_vm.pageTrans,false),[(!_vm.alive && !_vm.onRefresh)?_c('router-view',{key:_vm.key,ref:"page",class:_vm.pageClass}):_vm._e()],1)],1)}
+var RouterAlivevue_type_template_id_5ffb6c17_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./lib/components/RouterAlive.vue?vue&type=template&id=0d380a4a&
+// CONCATENATED MODULE: ./lib/components/RouterAlive.vue?vue&type=template&id=5ffb6c17&
 
 // CONCATENATED MODULE: ./lib/config/rules.js
  // 内置规则
@@ -2219,6 +2219,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function RouteMatch_slicedToArray(arr, i) { return RouteMatch_arrayWithHoles(arr) || RouteMatch_iterableToArrayLimit(arr, i) || RouteMatch_unsupportedIterableToArray(arr, i) || RouteMatch_nonIterableRest(); }
+
+function RouteMatch_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function RouteMatch_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return RouteMatch_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return RouteMatch_arrayLikeToArray(o, minLen); }
+
+function RouteMatch_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function RouteMatch_iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function RouteMatch_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
  // 解析路由 key
@@ -2242,11 +2254,13 @@ function parseRouteKey($route, route, key) {
 
 
 function parsePath(path, params) {
-  for (var key in params) {
-    path = path.replace(':' + key, params[key]);
-  }
+  return Object.entries(params).reduce(function (p, _ref) {
+    var _ref2 = RouteMatch_slicedToArray(_ref, 2),
+        key = _ref2[0],
+        val = _ref2[1];
 
-  return path;
+    return p.replace(':' + key, val);
+  }, path);
 } // 匹配路由数据
 
 
@@ -2289,10 +2303,10 @@ var RouteMatch_RouteMatch = /*#__PURE__*/function () {
   }, {
     key: "basePath",
     get: function get() {
-      if (!this.routeIndex) return '/';
-      var baseRoute = this.$route.matched[this.routeIndex - 1];
+      if (this.routeIndex < 1) return '/';
+      var baseRoute = this.$route.matched[this.routeIndex - 1] || {};
       var path = baseRoute.path;
-      return path && parsePath(path, this.$route.params);
+      return path && parsePath(path, this.$route.params) || '/';
     } // 缓存路径，用于判断是否复用
 
   }, {
@@ -2423,7 +2437,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 
+ // 页面监听钩子
 
+var PAGE_HOOKS = ['created', 'mounted', 'activated', 'destroyed'];
 /**
  * 路由缓存控件
  */
@@ -2479,14 +2495,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     hooks: function hooks() {
       var _this = this;
 
-      var events = {};
-      var hooks = ['created', 'mounted', 'activated', 'destroyed'];
-      hooks.forEach(function (hook) {
+      return PAGE_HOOKS.reduce(function (events, hook) {
         events['hook:' + hook] = function () {
           return _this.pageHook(hook);
         };
-      });
-      return events;
+
+        return events;
+      }, {});
     },
     // 页面过渡
     pageTrans: function pageTrans() {
@@ -2815,8 +2830,8 @@ function normalizeComponent (
 
 var component = normalizeComponent(
   components_RouterAlivevue_type_script_lang_js_,
-  RouterAlivevue_type_template_id_0d380a4a_render,
-  RouterAlivevue_type_template_id_0d380a4a_staticRenderFns,
+  RouterAlivevue_type_template_id_5ffb6c17_render,
+  RouterAlivevue_type_template_id_5ffb6c17_staticRenderFns,
   false,
   null,
   null,
@@ -3967,12 +3982,12 @@ var RouterTab_component = normalizeComponent(
 )
 
 /* harmony default export */ var lib_RouterTab = (RouterTab_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47deaf46-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/page/Iframe.vue?vue&type=template&id=31382aae&
-var Iframevue_type_template_id_31382aae_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab-iframe-fake"})}
-var Iframevue_type_template_id_31382aae_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47deaf46-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/page/Iframe.vue?vue&type=template&id=204eb22f&
+var Iframevue_type_template_id_204eb22f_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-tab-iframe-fake"})}
+var Iframevue_type_template_id_204eb22f_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./lib/page/Iframe.vue?vue&type=template&id=31382aae&
+// CONCATENATED MODULE: ./lib/page/Iframe.vue?vue&type=template&id=204eb22f&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/page/Iframe.vue?vue&type=script&lang=js&
 
@@ -4011,7 +4026,7 @@ var iframeMeta = {
   computed: {
     // 链接安全过滤，避免执行js
     url: function url() {
-      var src = this.src; // XSS 攻击链接返回空白页
+      var src = decodeURIComponent(this.src); // XSS 攻击链接返回空白页
 
       if (/^javascript:/.test(src)) {
         return 'about:blank';
@@ -4080,8 +4095,8 @@ var iframeMeta = {
 
 var Iframe_component = normalizeComponent(
   page_Iframevue_type_script_lang_js_,
-  Iframevue_type_template_id_31382aae_render,
-  Iframevue_type_template_id_31382aae_staticRenderFns,
+  Iframevue_type_template_id_204eb22f_render,
+  Iframevue_type_template_id_204eb22f_staticRenderFns,
   false,
   null,
   null,

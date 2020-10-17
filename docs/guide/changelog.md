@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/bhuh12/vue-router-tab/compare/v1.2.0...v1.2.1) (2020-10-17)
+
+### Bug Fixes
+
+- **iframe:** Fix the problem of iframe tab loading failure due to undecoded url in vue-router 3.4.6 params ([9ff5d16](https://github.com/bhuh12/vue-router-tab/commit/9ff5d1687abc5676c8301efc0a0302bfd2bb5359))
+- **RouteMatch:** Fix an error when matching the root path `basePath` of external routing ([f6073d3](https://github.com/bhuh12/vue-router-tab/commit/f6073d39e16a25e0600868d6411f28cdc4e2dff7))
+
 ## [1.2.0](https://github.com/bhuh12/vue-router-tab/compare/v1.1.0...v1.2.0) (2020-08-22)
 
 ### Bug Fixes

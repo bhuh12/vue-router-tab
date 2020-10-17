@@ -32,8 +32,8 @@ export default {
 
         // Iframe 页签
         `/initial-tabs/iframe/${encodeURIComponent(
-          'https://m.hao123.com/'
-        )}/Hao123/rt-icon-web`
+          'https://cn.vuejs.org'
+        )}/Vue.js/rt-icon-web`
       ]
     }
   }

@@ -49,8 +49,8 @@ In nuxt project, if the configuration of the tab comes from the page 'meta', the
 
           // iframe tab
           `/initial-tabs/iframe/${encodeURIComponent(
-            'https://m.hao123.com/'
-          )}/Hao123/rt-icon-web`
+            'https://vuejs.org/'
+          )}/Vue.js/rt-icon-web`
         ]
       }
     }

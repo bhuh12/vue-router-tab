@@ -1,11 +1,12 @@
 {
   "name": "vue-router-tab",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Vue.js tab components, based on Vue Router",
   "keywords": [
-    "vue",
-    "router",
-    "tab"
+    "vue-router-tab",
+    "routertab",
+    "tabs",
+    "admin"
   ],
   "author": "碧海幽虹 <bhuh12@126.com> (https://bhuh.net)",
   "private": false,
