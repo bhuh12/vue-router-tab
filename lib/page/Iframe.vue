@@ -25,7 +25,7 @@ export default {
   computed: {
     // 链接安全过滤，避免执行js
     url() {
-      let { src } = this
+      let src = decodeURIComponent(this.src)
 
       // XSS 攻击链接返回空白页
       if (/^javascript:/.test(src)) {
