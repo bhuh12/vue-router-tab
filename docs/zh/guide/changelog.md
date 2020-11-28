@@ -1,5 +1,12 @@
 # 更新日志
 
+## [1.2.2](https://github.com/bhuh12/vue-router-tab/compare/v1.2.1...v1.2.2) (2020-11-28)
+
+### Bug Fixes
+
+- **iframe:** 屏蔽 Base64 方式 XSS 攻击链接 ([665b897](https://github.com/bhuh12/vue-router-tab/commit/665b897a898d7fab38505acbedd6f495dffbf5b6))
+- **scroll:** 解决页签滚动调整时未获取到当前页签报错 ([61e3a95](https://github.com/bhuh12/vue-router-tab/commit/61e3a95dee9313e62320b30f126224cc96986bbc))
+
 ## [1.2.1](https://github.com/bhuh12/vue-router-tab/compare/v1.2.0...v1.2.1) (2020-10-17)
 
 ### Bug Fixes
