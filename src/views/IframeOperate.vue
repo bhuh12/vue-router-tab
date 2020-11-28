@@ -20,15 +20,17 @@
       <a
         class="demo-btn"
         title="XSS 跨站链接的 iframe 将展示空白页面"
-        @click="
-          $tabs.openIframe(
-            'javascript:alert(window.parent.document.body.innerHTML)',
-            'XSS 跨站',
-            icon
-          )
-        "
+        @click="$tabs.openIframe(xss.js, 'XSS - JS', icon)"
       >
-        XSS 跨站
+        XSS - JS
+      </a>
+
+      <a
+        class="demo-btn"
+        title="XSS 跨站链接的 iframe 将展示空白页面"
+        @click="$tabs.openIframe(xss.base64, 'XSS - Base64', icon)"
+      >
+        XSS - Base64
       </a>
     </p>
 
@@ -75,13 +77,22 @@ export default {
   data() {
     return {
       icon: 'rt-icon-web',
+
       site: {
         src: 'https://cn.vuejs.org',
         title: 'Vue.js'
       },
+
       iframe: {
         src: 'https://router.vuejs.org/zh/',
         title: 'Vue Router'
+      },
+
+      xss: {
+        js: 'javascript:alert(1)',
+        base64:
+          'data:text/html;base64,' +
+          window.btoa('<script>alert(1)</s' + 'cript>')
       }
     }
   }

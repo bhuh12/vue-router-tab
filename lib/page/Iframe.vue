@@ -23,12 +23,15 @@ export default {
   },
 
   computed: {
-    // 链接安全过滤，避免执行js
+    /**
+     * 链接安全过滤，屏蔽以下方式 XSS 攻击，并返回空白页：
+     * 1. `javascript:` 执行代码：`javascript:alert(1)`
+     * 2. `data:` Base64 链接: `'data:text/html;base64,' + window.btoa('<script>alert(1)<\/script>')`
+     */
     url() {
       let src = decodeURIComponent(this.src)
 
-      // XSS 攻击链接返回空白页
-      if (/^javascript:/.test(src)) {
+      if (/^(javascript|data):/i.test(src)) {
         return 'about:blank'
       }
 
