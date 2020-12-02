@@ -9,6 +9,7 @@ exports.default = i18n => ({
         'essentials/',
         'essentials/nuxt',
         'essentials/operate',
+        'essentials/rule',
         'essentials/iframe'
       ]
     },
