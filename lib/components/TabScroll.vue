@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { scrollTo, scrollIntoView } from '../util'
+import { scrollTo, scrollIntoView, getScrollbarWidth } from '../util'
 
 // 滚动条
 export default {
@@ -100,8 +100,10 @@ export default {
     update() {
       const { clientWidth, scrollWidth, scrollLeft } = this.$refs.container
 
-      // 是否移动端
-      this.isMobile = /mobile/i.test(navigator.userAgent)
+      // 判断是否移动端
+      // userAgent 中包含 mobile 字段，或者浏览器滚动条宽度为 0
+      this.isMobile =
+        /mobile/i.test(navigator.userAgent) || !getScrollbarWidth()
 
       Object.assign(this.scrollData, { clientWidth, scrollWidth, scrollLeft })
     },
