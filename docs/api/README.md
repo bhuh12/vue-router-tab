@@ -186,11 +186,11 @@ Component language.
 
 - type: `String | Object`
 
-  - If the type is `String`, it can be set to the built-in language `'zh'` (default) and `'en'`.
+  - If the type is `String`, it can be set to the built-in language `'zh'` and `'en'`.
 
   - If the type is `Object`, you can set a custom language.
 
-- default: `'zh'`
+- default: `'auto'`. Automatically recognize component language according to browser language.
 
 ## RouterTab Instance Properties
 

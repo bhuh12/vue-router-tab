@@ -186,11 +186,11 @@ sidebar: auto
 
 - 类型: `String | Object`
 
-  - 如果类型为 `String`，可以设置为内置的语言 `'zh'` (默认) 和 `'en'`
+  - 如果类型为 `String`，可以设置为内置的语言 `'zh'` 和 `'en'`
 
   - 如果类型为 `Object`，可设置自定义的语言
 
-- 默认值: `'zh'`
+- 默认值: `'auto'`。 根据浏览器语言自动识别组件语言
 
 ## RouterTab 实例属性
 
