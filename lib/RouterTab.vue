@@ -24,11 +24,7 @@
             @contextmenu.native.prevent="
               e => showContextmenu(item.id, index, e)
             "
-          >
-            <template v-if="$scopedSlots.default" #default="scope">
-              <slot v-bind="scope" />
-            </template>
-          </tab-item>
+          />
         </transition-group>
       </tab-scroll>
 
