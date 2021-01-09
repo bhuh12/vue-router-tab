@@ -1,5 +1,16 @@
 # 更新日志
 
+## [1.2.3](https://github.com/bhuh12/vue-router-tab/compare/v1.2.2...v1.2.3) (2021-01-09)
+
+### Bug Fixes
+
+- 使用 jsx 生成 TabItem 模板，解决 Vue 2.5.22 版本 TabItem 报错 ([48c6065](https://github.com/bhuh12/vue-router-tab/commit/48c60656f0f086355d170ceb5f21adb469df4ff0))
+- **scroll:** 解决有些移动设备页签无法滚动 ([06b12a2](https://github.com/bhuh12/vue-router-tab/commit/06b12a2622487335bd8a90f0e33c7c603ddf02ff))
+
+### Features
+
+- **lang:** 根据浏览器语言自动识别组件语言 ([67a3c26](https://github.com/bhuh12/vue-router-tab/commit/67a3c260393e97d5fccaa63586ca39f961cf94d5))
+
 ## [1.2.2](https://github.com/bhuh12/vue-router-tab/compare/v1.2.1...v1.2.2) (2020-11-28)
 
 ### Bug Fixes

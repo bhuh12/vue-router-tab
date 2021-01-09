@@ -2,6 +2,7 @@
 dist/docs
 dist/lib/**.html
 docs
+lib
 node_modules
 public
 scripts
@@ -12,6 +13,7 @@ yarn.lock
 babel.config.js
 tsconfig.json
 tslint.json
+jsconfig.json
 vue.config.js
 
 .eslintrc.js
