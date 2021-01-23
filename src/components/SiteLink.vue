@@ -36,11 +36,6 @@ export default {
           label: 'Issues',
           icon: 'feedback',
           url: 'https://github.com/bhuh12/vue-router-tab/issues'
-        },
-        {
-          label: '作者主页',
-          icon: 'home',
-          url: 'https://bhuh.net'
         }
       ]
     }

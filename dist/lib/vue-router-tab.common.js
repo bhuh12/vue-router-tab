@@ -1253,6 +1253,10 @@ function getTransOpt(trans) {
   return typeof trans === 'string' ? {
     name: trans
   } : trans;
+} // 获取组件 id
+
+function getCtorId(vm) {
+  return vm.$vnode.componentOptions.Ctor.cid;
 }
 // CONCATENATED MODULE: ./lib/mixins/contextmenu.js
 
@@ -2201,12 +2205,12 @@ function scroll_asyncToGenerator(fn) { return function () { var self = this, arg
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"36db6691-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/RouterAlive.vue?vue&type=template&id=17d16e12&
-var RouterAlivevue_type_template_id_17d16e12_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-alive"},[_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onTrans,"after-leave":_vm.onTrans}},'transition',_vm.pageTrans,false),[_c('keep-alive',{attrs:{"max":_vm.max}},[(_vm.alive && !_vm.onRefresh)?_c('router-view',_vm._g({key:_vm.key,ref:"page",class:_vm.pageClass},_vm.hooks)):_vm._e()],1)],1),_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onTrans,"after-leave":_vm.onTrans}},'transition',_vm.pageTrans,false),[(!_vm.alive && !_vm.onRefresh)?_c('router-view',{key:_vm.key,ref:"page",class:_vm.pageClass}):_vm._e()],1)],1)}
-var RouterAlivevue_type_template_id_17d16e12_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"36db6691-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/components/RouterAlive.vue?vue&type=template&id=094c381e&
+var RouterAlivevue_type_template_id_094c381e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"router-alive"},[_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onTrans,"after-leave":_vm.onTrans}},'transition',_vm.pageTrans,false),[_c('keep-alive',{attrs:{"max":_vm.max}},[(_vm.alive && !_vm.onRefresh)?_c('router-view',_vm._g({key:_vm.key,ref:"page",class:_vm.pageClass},_vm.hooks)):_vm._e()],1)],1),_c('transition',_vm._b({attrs:{"appear":""},on:{"after-enter":_vm.onTrans,"after-leave":_vm.onTrans}},'transition',_vm.pageTrans,false),[(!_vm.alive && !_vm.onRefresh)?_c('router-view',{key:_vm.key,ref:"page",class:_vm.pageClass}):_vm._e()],1)],1)}
+var RouterAlivevue_type_template_id_094c381e_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./lib/components/RouterAlive.vue?vue&type=template&id=17d16e12&
+// CONCATENATED MODULE: ./lib/components/RouterAlive.vue?vue&type=template&id=094c381e&
 
 // CONCATENATED MODULE: ./lib/config/rules.js
  // 内置规则
@@ -2447,7 +2451,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
  // 页面监听钩子
 
-var PAGE_HOOKS = ['created', 'mounted', 'activated', 'destroyed'];
+var PAGE_HOOKS = ['created', 'mounted', 'activated', 'deactivated', 'destroyed'];
 /**
  * 路由缓存控件
  */
@@ -2648,16 +2652,22 @@ var PAGE_HOOKS = ['created', 'mounted', 'activated', 'destroyed'];
     },
     // 页面挂载
     'pageHook:mounted': function pageHookMounted() {
-      var page = this.$refs.page;
-      this.cache[this.key].vm = page;
+      this.cache[this.key].vm = this.$refs.page;
     },
     // 页面激活
     'pageHook:activated': function pageHookActivated() {
-      // 嵌套路由缓存导致页面不匹配时强制更新
+      var pageVm = this.$refs.page; // 热重载更新
+
+      if (this.checkHotReloading()) return; // 嵌套路由缓存导致页面不匹配时强制更新
+
       if (this.nestForceUpdate) {
         delete this.nestForceUpdate;
-        this.$refs.page.$forceUpdate();
+        pageVm.$forceUpdate();
       }
+    },
+    // 页面失活
+    'pageHook:deactivated': function pageHookDeactivated() {
+      if (this.checkHotReloading()) return;
     },
     // 页面销毁后清理 cache
     'pageHook:destroyed': function pageHookDestroyed() {
@@ -2723,6 +2733,19 @@ var PAGE_HOOKS = ['created', 'mounted', 'activated', 'destroyed'];
       }
 
       return this._match = new RouteMatch_RouteMatch(this, $route);
+    },
+    // 检测热重载
+    checkHotReloading: function checkHotReloading() {
+      var pageVm = this.$refs.page;
+      var lastCid = pageVm._lastCtorId;
+      var cid = pageVm._lastCtorId = getCtorId(pageVm); // 热重载更新
+
+      if (lastCid && lastCid !== cid) {
+        this.refresh();
+        return true;
+      }
+
+      return false;
     }
   }
 });
@@ -2838,8 +2861,8 @@ function normalizeComponent (
 
 var component = normalizeComponent(
   components_RouterAlivevue_type_script_lang_js_,
-  RouterAlivevue_type_template_id_17d16e12_render,
-  RouterAlivevue_type_template_id_17d16e12_staticRenderFns,
+  RouterAlivevue_type_template_id_094c381e_render,
+  RouterAlivevue_type_template_id_094c381e_staticRenderFns,
   false,
   null,
   null,

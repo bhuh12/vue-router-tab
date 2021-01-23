@@ -117,4 +117,4 @@ A tab router component based on Vue Router.
 
 [MIT](http://opensource.org/licenses/MIT)
 
-Copyright (c) 2019-present, [碧海幽虹](https://bhuh.net)
+Copyright (c) 2019-present, 碧海幽虹

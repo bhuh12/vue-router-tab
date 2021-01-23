@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.4](https://github.com/bhuh12/vue-router-tab/compare/v1.2.3...v1.2.4) (2021-01-23)
+
+### Bug Fixes
+
+- **routerAlive:** Fix that the hot reload does not take effect after the dom node of the page component is modified ([85912a9](https://github.com/bhuh12/vue-router-tab/commit/85912a964374fc8bc77a29f493dadf7643fd3b7e))
+
 ## [1.2.3](https://github.com/bhuh12/vue-router-tab/compare/v1.2.2...v1.2.3) (2021-01-09)
 
 ### Bug Fixes

@@ -117,4 +117,4 @@ Vue Router Tab 是基于 Vue Router 的路由页签组件，用来实现多页�
 
 [MIT](http://opensource.org/licenses/MIT)
 
-Copyright (c) 2019-present, [碧海幽虹](https://bhuh.net)
+Copyright (c) 2019-present, 碧海幽虹
