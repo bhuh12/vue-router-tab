@@ -34,11 +34,17 @@
 </template>
 
 <script>
-import { remove, mapGetters, getTransOpt } from '../util'
+import { remove, mapGetters, getTransOpt, getCtorId } from '../util'
 import RouteMatch from '../util/RouteMatch'
 
 // 页面监听钩子
-const PAGE_HOOKS = ['created', 'mounted', 'activated', 'destroyed']
+const PAGE_HOOKS = [
+  'created',
+  'mounted',
+  'activated',
+  'deactivated',
+  'destroyed'
+]
 
 /**
  * 路由缓存控件
@@ -266,18 +272,26 @@ export default {
 
     // 页面挂载
     'pageHook:mounted'() {
-      const { page } = this.$refs
-
-      this.cache[this.key].vm = page
+      this.cache[this.key].vm = this.$refs.page
     },
 
     // 页面激活
     'pageHook:activated'() {
+      const pageVm = this.$refs.page
+
+      // 热重载更新
+      if (this.checkHotReloading()) return
+
       // 嵌套路由缓存导致页面不匹配时强制更新
       if (this.nestForceUpdate) {
         delete this.nestForceUpdate
-        this.$refs.page.$forceUpdate()
+        pageVm.$forceUpdate()
       }
+    },
+
+    // 页面失活
+    'pageHook:deactivated'() {
+      if (this.checkHotReloading()) return
     },
 
     // 页面销毁后清理 cache
@@ -322,6 +336,21 @@ export default {
       }
 
       return (this._match = new RouteMatch(this, $route))
+    },
+
+    // 检测热重载
+    checkHotReloading() {
+      const pageVm = this.$refs.page
+      const lastCid = pageVm._lastCtorId
+      const cid = (pageVm._lastCtorId = getCtorId(pageVm))
+
+      // 热重载更新
+      if (lastCid && lastCid !== cid) {
+        this.refresh()
+        return true
+      }
+
+      return false
     }
   }
 }
