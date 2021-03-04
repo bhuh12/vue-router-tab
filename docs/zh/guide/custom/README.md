@@ -12,6 +12,13 @@ RouterTab 默认支持页签拖拽排序，你可以通过配置 `:dragsort="fal
 <router-tab :dragsort="false" />
 ```
 
+也支持传入函数，下面示例表示只有```/```路由的页签能拖拽
+
+**示例：**
+```html
+<router-tab :dragsort="meta => meta.id === '/'" />
+```
+
 ## 新页签插入位置
 
 RouterTab 可以通过配置 `append` 来指定新页签插入位置，支持以下两种选项：
