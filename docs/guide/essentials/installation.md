@@ -6,17 +6,35 @@ Please make sure your Node.js version >= 8.6. There might be errors with lower v
 
 ## NPM
 
-yarn (recommended):
+Installing with npm is recommended and it works seamlessly with webpack.
+
+**yarn** (recommended):
 
 ```bash
 yarn add vue-router-tab
 ```
 
-npm：
+**npm**:
 
 ```bash
 npm i vue-router-tab -S
 ```
+
+## CDN
+
+Get the latest version from [cdn.jsdelivr.net/npm/vue-router-tab](https://cdn.jsdelivr.net/npm/vue-router-tab/) , and import JavaScript and CSS file in your page.
+
+```html
+<!-- import CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/vue-router-tab@1.2.5/dist/lib/vue-router-tab.css"
+/>
+<!-- import JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/vue-router-tab@1.2.5" />
+```
+
+RouterTab is also available on [unpkg](https://unpkg.com/vue-router-tab/).
 
 ## Dev Build
 

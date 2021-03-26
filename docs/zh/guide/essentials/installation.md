@@ -6,17 +6,35 @@
 
 ## NPM
 
-推荐使用 yarn：
+推荐使用 npm 的方式安装，它能更好地和 webpack 打包工具配合使用。
+
+推荐使用 **yarn**：
 
 ```bash
 yarn add vue-router-tab
 ```
 
-你也可以用 npm：
+你也可以用 **npm**：
 
 ```bash
 npm i vue-router-tab -S
 ```
+
+## CDN
+
+你可以通过 [cdn.jsdelivr.net/npm/vue-router-tab](https://cdn.jsdelivr.net/npm/vue-router-tab/) 获取到最新版本的资源，在页面上引入 js 和 css 文件即可开始使用。
+
+```html
+<!-- 引入样式 -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/vue-router-tab@1.2.5/dist/lib/vue-router-tab.css"
+/>
+<!-- 引入组件 -->
+<script src="https://cdn.jsdelivr.net/npm/vue-router-tab@1.2.5" />
+```
+
+RouterTab 也可以在 [unpkg](https://unpkg.com/vue-router-tab/) 上获取。
 
 ## 构建开发版
 
