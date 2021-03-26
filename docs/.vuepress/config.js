@@ -42,7 +42,7 @@ module.exports = {
 
     repoLabel: 'GitHub',
 
-    docsBranch: 'master',
+    docsBranch: 'main',
 
     // Algolia 搜索
     algolia: {

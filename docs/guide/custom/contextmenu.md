@@ -15,7 +15,7 @@ You can disable the contextmenu by configuring `:contextmenu="false"`
 Configure `contextmenu` through an array to customize the contextmenu
 
 ::: tip
-Reference: [Built-in Contextmenu](https://github.com/bhuh12/vue-router-tab/blob/master/lib/config/contextmenu.js)
+Reference: [Built-in Contextmenu](https://github.com/bhuh12/vue-router-tab/blob/main/lib/config/contextmenu.js)
 :::
 
 <doc-links api="#contextmenu" demo="/contextmenu/" />

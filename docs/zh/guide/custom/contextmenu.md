@@ -15,7 +15,7 @@
 通过数组方式配置 `contextmenu`，可以自定义右键菜单
 
 ::: tip
-参考：[内置右键菜单](https://github.com/bhuh12/vue-router-tab/blob/master/lib/config/contextmenu.js)
+参考：[内置右键菜单](https://github.com/bhuh12/vue-router-tab/blob/main/lib/config/contextmenu.js)
 :::
 
 <doc-links api="#contextmenu" demo="/contextmenu/" />

@@ -41,7 +41,7 @@ English | [简体中文](README.zh.md)
     <img alt="gzip size: css" src="http://img.badgesize.io/https://unpkg.com/vue-router-tab/dist/lib/vue-router-tab.css?compression=gzip&label=gzip:CSS">
   </a>
   
-  <a target="_blank" href="https://github.com/bhuh12/vue-router-tab/blob/master/LICENSE">
+  <a target="_blank" href="https://github.com/bhuh12/vue-router-tab/blob/main/LICENSE">
     <img src="https://img.shields.io/npm/l/vue-router-tab.svg" alt="License">
   </a>
 </p>
