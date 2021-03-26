@@ -2878,7 +2878,9 @@ function TabItem_objectSpread(target) { for (var i = 1; i < arguments.length; i+
 
 function TabItem_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
- // 页签项
+ // 拖拽传输数据前缀
+
+var TRANSFER_PREFIX = 'RouterTabDragSortIndex:'; // 页签项
 
 /* harmony default export */ var TabItem = ({
   name: 'TabItem',
@@ -2966,7 +2968,7 @@ function TabItem_defineProperty(obj, key, value) { if (key in obj) { Object.defi
     onDragStart: function onDragStart(e) {
       this.onDragSort = this.$tabs.onDragSort = true;
       e.dataTransfer.dropEffect = 'move';
-      e.dataTransfer.setData('text', this.index + '');
+      e.dataTransfer.setData('text', TRANSFER_PREFIX + this.index);
     },
     // 拖拽结束
     onDragEnd: function onDragEnd() {
@@ -2975,11 +2977,13 @@ function TabItem_defineProperty(obj, key, value) { if (key in obj) { Object.defi
     // 释放后排序
     onDrop: function onDrop(e) {
       var items = this.$tabs.items;
-      var fromIndex = +e.dataTransfer.getData('text');
+      var raw = e.dataTransfer.getData('text');
+      this.isDragOver = false;
+      if (typeof raw !== 'string' || !raw.startsWith(TRANSFER_PREFIX)) return;
+      var fromIndex = raw.replace(TRANSFER_PREFIX, '');
       var tab = items[fromIndex];
       items.splice(fromIndex, 1);
       items.splice(this.index, 0, tab);
-      this.isDragOver = false;
     }
   },
   // 渲染组件
@@ -3012,7 +3016,11 @@ function TabItem_defineProperty(obj, key, value) { if (key in obj) { Object.defi
             return _this2.isDragOver = false;
           }($event);
         },
-        "drop": this.onDrop
+        "drop": function drop($event) {
+          $event.stopPropagation();
+          $event.preventDefault();
+          return _this2.onDrop($event);
+        }
       }
     }, [slot(this)]);
   }

@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.5](https://github.com/bhuh12/vue-router-tab/compare/v1.2.4...v1.2.5) (2021-03-26)
+
+### Bug Fixes
+
+- **DragSort:** Fixed that a new tab will be opened after dragging and sorting the router tab in the Firefox browser ([b5134cb](https://github.com/bhuh12/vue-router-tab/commit/b5134cbd2b2036b2c1d1584da10bb67fc2a8c143))
+
 ## [1.2.4](https://github.com/bhuh12/vue-router-tab/compare/v1.2.3...v1.2.4) (2021-01-23)
 
 ### Bug Fixes
