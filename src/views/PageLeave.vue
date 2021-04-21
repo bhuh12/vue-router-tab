@@ -5,11 +5,8 @@
     <page-timer />
 
     <p>
-      <strong class="text-strong">修改输入框的值</strong>
-      后，页面在页签关闭/刷新/被替换时将会确认提示
+      页面在页签关闭/刷新/被替换时将会确认提示
     </p>
-
-    <input v-model="editValue" type="text" />
 
     <p>
       <a class="demo-btn" @click="$tabs.refresh(null, true, false)">
@@ -45,14 +42,6 @@ export default {
   name: 'PageLeave',
   components: { PageTimer },
 
-  data() {
-    let value = '初始值'
-    return {
-      value,
-      editValue: value
-    }
-  },
-
   /**
    * 页面离开前确认
    * @param {Object} tab 页签信息
@@ -65,9 +54,6 @@ export default {
    * @returns {String|Promise}
    */
   beforePageLeave(tab, type) {
-    // 值未改变，则直接离开页签
-    if (this.editValue === this.value) return
-
     // 浏览器窗口刷新或者关闭时，支持的浏览器会展示确认消息
     if (type === 'unload') {
       return `您在“${tab.title}”页签的更改尚未完成，是否要离开？`
