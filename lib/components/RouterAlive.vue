@@ -13,6 +13,7 @@
           :key="key"
           :class="pageClass"
           v-on="hooks"
+          @page-loaded="onPageLoaded"
         />
       </keep-alive>
     </transition>
@@ -82,6 +83,12 @@ export default {
     pageClass: {
       type: [Array, Object, String],
       default: 'router-alive-page'
+    },
+
+    // 页面滚动元素选择器
+    pageScroller: {
+      type: String,
+      default: ''
     },
 
     // 过渡效果
@@ -273,6 +280,9 @@ export default {
     // 页面挂载
     'pageHook:mounted'() {
       this.cache[this.key].vm = this.$refs.page
+
+      // 重置初始滚动位置
+      this.resetScrollPosition()
     },
 
     // 页面激活
@@ -287,11 +297,17 @@ export default {
         delete this.nestForceUpdate
         pageVm.$forceUpdate()
       }
+
+      // 还原滚动位置
+      this.restoreScrollPosition()
     },
 
     // 页面失活
     'pageHook:deactivated'() {
       if (this.checkHotReloading()) return
+
+      // 保存滚动位置
+      this.saveScrollPosition()
     },
 
     // 页面销毁后清理 cache
@@ -351,6 +367,91 @@ export default {
       }
 
       return false
+    },
+
+    // 获取滚动元素
+    getScroller(selector) {
+      return selector.startsWith('$')
+        ? document.querySelector(selector.replace(/^\$/, ''))
+        : this.$el.querySelector(selector)
+    },
+
+    // 保存滚动位置
+    saveScrollPosition() {
+      const pageVm = this.$refs.page
+
+      if (!pageVm) return
+
+      // 页面内部配置的滚动元素
+      let { pageScroller } = pageVm.$vnode.componentOptions.Ctor.options
+
+      if (typeof pageScroller === 'string' && pageScroller.length) {
+        pageScroller = pageScroller.split(/\s?,\s?/)
+      }
+
+      if (!Array.isArray(pageScroller)) {
+        pageScroller = []
+      }
+
+      // 默认保存页面根节点位置
+      pageScroller.push('.' + this.pageClass)
+
+      // 添加全局的滚动元素配置
+      // 组件外部选择器使用 $ 前缀区分
+      if (this.pageScroller) {
+        pageScroller.push('$' + this.pageScroller)
+      }
+
+      // 记录位置
+      const position = pageScroller.reduce((pos, selector) => {
+        const el = this.getScroller(selector)
+
+        if (el) {
+          pos[selector] = {
+            left: el.scrollLeft,
+            top: el.scrollTop
+          }
+        }
+
+        return pos
+      }, {})
+
+      pageVm._pageScrollPosition = position
+    },
+
+    // 还原滚动位置
+    restoreScrollPosition() {
+      const pageVm = this.$refs.page
+      const position = pageVm?._pageScrollPosition
+
+      if (!position) return
+
+      Object.entries(position).forEach(([selector, pos]) => {
+        const el = this.getScroller(selector)
+        if (el) {
+          el.scrollLeft = pos.left
+          el.scrollTop = pos.top
+        }
+      })
+    },
+
+    // 重置全局滚动位置
+    resetScrollPosition() {
+      if (!this.pageScroller) return
+
+      const el = this.getScroller('$' + this.pageScroller)
+
+      if (!el) return
+
+      el.scrollLeft = 0
+      el.scrollTop = 0
+    },
+
+    // 页面数据加载成功
+    async onPageLoaded() {
+      await this.$nextTick()
+      // 页面数据加载成功后还原滚动位置
+      this.restoreScrollPosition()
     }
   }
 }

@@ -41,6 +41,7 @@
         :reuse="reuse"
         :max="maxAlive"
         :transition="pageTrans"
+        :page-scroller="pageScroller"
         @ready="onAliveReady"
         @change="onAliveChange"
       />
