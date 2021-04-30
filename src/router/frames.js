@@ -47,6 +47,45 @@ const frameRoutes = {
         }
       }
     ]
+  },
+
+  PageScroller: {
+    redirect: 'page/1',
+    children: [
+      {
+        path: 'page/:id',
+        component: importPage('Page'),
+        meta: {
+          title: route => `页面外部滚动${route.params.id}`,
+          icon: 'rt-icon-doc',
+          key: 'path'
+        }
+      },
+      {
+        path: 'scroll-position',
+        component: importPage('ScrollPosition'),
+        meta: {
+          title: '页面内部滚动',
+          icon: 'rt-icon-doc'
+        }
+      },
+      {
+        path: 'scroll-multi',
+        component: importPage('ScrollMulti'),
+        meta: {
+          title: '多个滚动',
+          icon: 'rt-icon-doc'
+        }
+      },
+      {
+        path: 'scroll-async',
+        component: importPage('ScrollAsync'),
+        meta: {
+          title: '异步滚动',
+          icon: 'rt-icon-doc'
+        }
+      }
+    ]
   }
 }
 

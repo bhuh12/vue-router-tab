@@ -1,7 +1,7 @@
 <template>
   <aside class="app-sd">
     <div class="app-sd-menu">
-      <menu-group v-for="(item, index) in menu" :key="index" :data="item" />
+      <menu-item v-for="(item, index) in menu" :key="index" :data="item" />
     </div>
     <footer class="app-sd-ft">
       <site-link />
@@ -10,14 +10,14 @@
 </template>
 
 <script>
-import MenuGroup from './MenuGroup.vue'
+import MenuItem from './MenuItem.vue'
 import SiteLink from './SiteLink.vue'
 
 import menu from '../config/menu'
 
 export default {
   name: 'AppAside',
-  components: { MenuGroup, SiteLink },
+  components: { MenuItem, SiteLink },
   data() {
     return { menu }
   }
