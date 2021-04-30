@@ -45,10 +45,12 @@ export default {
           visible(context) {
             return context.$tabs.items.length < 3
           },
+
           // 是否启用，不提供则默认启用
           enable(context) {
             return !(context.data.index % 2)
           },
+
           // 点击触发
           handler(context) {
             console.log(context)
@@ -62,6 +64,7 @@ export default {
           title: () => (this.fullscreen ? '退出全屏' : '全屏'),
           icon: () =>
             this.fullscreen ? 'rt-icon-fullscreen-exit' : 'rt-icon-fullscreen',
+
           // 点击触发
           handler: () =>
             setTimeout(() => {

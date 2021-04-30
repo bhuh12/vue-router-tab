@@ -21,8 +21,8 @@ import menuMap, { defaultMenu } from '../config/contextmenu'
 
 export default {
   name: 'TabContextmenu',
-  inject: ['$tabs'],
   components: { TabContextmenuItem },
+  inject: ['$tabs'],
 
   props: {
     // 右键数据

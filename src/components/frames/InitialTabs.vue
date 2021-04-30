@@ -24,6 +24,7 @@ export default {
             path: '/initial-tabs/page/2',
             query: { t: 2 }
           },
+
           title: '页面2'
         },
 

@@ -46,11 +46,13 @@ export default {
   data() {
     return {
       isMobile: false, // 是否移动端
+
       scrollData: {
         clientWidth: 0,
         scrollWidth: 0,
         scrollLeft: 0
       },
+
       dragData: null
     }
   },

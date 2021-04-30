@@ -11,6 +11,7 @@ export default {
         tab: {
           untitled: 'Untitled Page'
         },
+
         contextmenu: {
           refresh: 'Refresh This',
           refreshAll: 'Refresh All',
@@ -19,6 +20,7 @@ export default {
           closeRights: 'Close to the Right',
           closeOthers: 'Close Others'
         },
+
         msg: {
           keepLastTab: 'Keep at least 1 tab'
         }

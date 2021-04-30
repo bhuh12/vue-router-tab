@@ -100,6 +100,7 @@ export default {
           desc: '相同 catalog 参数的路由共用页签'
         }
       ],
+
       curRole: /\/rule\/([^/]+)\//.exec(route.path)[1],
       catalog,
       type,

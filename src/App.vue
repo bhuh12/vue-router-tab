@@ -12,8 +12,6 @@
   </div>
 </template>
 
-<style lang="scss" src="./assets/scss/demo.scss"></style>
-
 <script>
 import AppHeader from './components/AppHeader.vue'
 import AppAside from './components/AppAside.vue'
@@ -114,3 +112,5 @@ $just-trans: all 0.2s ease-in-out;
   }
 }
 </style>
+
+<style lang="scss" src="./assets/scss/demo.scss"></style>

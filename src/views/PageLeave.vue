@@ -17,10 +17,7 @@
         关闭页签
       </a>
 
-      <router-link
-        class="demo-btn"
-        :to="`?id=${+(this.$route.query.id || 0) + 1}`"
-      >
+      <router-link class="demo-btn" :to="`?id=${+($route.query.id || 0) + 1}`">
         替换页签
       </router-link>
 
