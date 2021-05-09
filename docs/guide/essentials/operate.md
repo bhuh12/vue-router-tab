@@ -127,7 +127,7 @@ this.$tabs.refresh({
 this.$tabs.refresh('/page/1', false)
 ```
 
-## Refresh all
+## Refresh All
 
 `refreshAll (force = false)`
 

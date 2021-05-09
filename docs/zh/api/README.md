@@ -2,7 +2,7 @@
 sidebar: auto
 ---
 
-# API 参考
+# API - RouterTab
 
 ## `<router-tab>` 配置参数
 
@@ -77,6 +77,14 @@ sidebar: auto
   同 [`tab-transition`](#tab-transition)
 
 - 默认值: `{ name: 'router-tab-swap', mode: 'out-in' }`
+
+### page-scroller
+
+全局**滚动元素选择器**，设置后已缓存的页签重新激活时将会还原滚动位置。
+
+- 类型: `String`
+
+- 默认值: `'.router-tab__container'`
 
 ### contextmenu
 
@@ -315,86 +323,6 @@ RouterTab 支持通过以下插槽个性化页签组件：
 | `start`   | -      | 页签栏开始 |
 | `end`     | -      | 页签栏结束 |
 
-## `<router-alive>` 配置参数
-
-### keep-alive
-
-默认是否缓存组件，可通过路由 `meta.keepAlive` 重置
-
-- 类型: `Boolean`
-
-- 默认值: `false`
-
-### max
-
-最大缓存数，0 则不限制
-
-- 类型: `Number`
-
-- 默认值: `0`
-
-### reuse
-
-是否复用路由组件，可通过路由 `meta.reuse` 重置
-
-- 类型: `Boolean`
-
-- 默认值: `false`
-
-### page-class
-
-页面 class
-
-- 类型: `Array | Object | String`
-
-- 默认值: `router-alive-page`
-
-### transition
-
-路由组件过渡效果
-
-- 类型: `String | Object`
-
-  同 [`tab-transition`](#tab-transition)
-
-## RouterAlive 实例方法
-
-::: tip
-在 RouterAlive 子组件，您可以通过 `inject: ['RouterAlive']` 来访问 RouterAlive 实例。
-然后调用 `this.RouterAlive.refresh()` 来刷新组件。
-:::
-
-### routerAlive.remove
-
-移除组件缓存
-
-- 参数:
-  - `{String} [key]` 需要移除的组件缓存 key，默认为当前组件
-
-### routerAlive.refresh
-
-刷新组件缓存
-
-- 参数:
-  - `{String} [key]` 需要刷新的组件缓存 key，默认为当前组件
-
-## RouterAlive 事件
-
-### ready
-
-RouterAlive 组件就绪
-
-- 参数:
-  - `{VueInstance} [alive]` RouterAlive 实例
-
-### change
-
-路由缓存更改
-
-- 参数:
-  - `{String} [type]` 类型：`create` 或者 `update`
-  - `{RouteMatch} [routeMatch]` 路由匹配信息
-
 ## Route.meta 路由元信息
 
 通过路由的 `meta` 信息，我们可以配置路由页签的标题、图标、提示和缓存规则
@@ -413,12 +341,14 @@ RouterAlive 组件就绪
 ## 扩展
 
 ::: tip 说明
+`pageComp`: 页面组件选项
+
 `vm`: Vue 组件实例
 
 `pageVm`: 通过 RouterTab 加载的页面组件实例
 :::
 
-### beforePageLeave
+### `pageComp.beforePageLeave`
 
 页面离开确认。
 
@@ -437,6 +367,14 @@ RouterAlive 组件就绪
 - 返回值类型：
   - `{String}` 离开类型为 `unload` 时，浏览器离开提示消息
   - `{Promise}` 其他类型，`resolve` 离开，`reject` 阻止离开
+
+### `pageComp.pageScroller`
+
+页面内部**滚动元素选择器**，设置后已缓存的页签重新激活时将会还原滚动位置。
+
+值为数组时可应用页面内的多个滚动条。
+
+- 类型: `String | Array`
 
 ### `vm.$tabs`
 

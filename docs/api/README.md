@@ -2,7 +2,7 @@
 sidebar: auto
 ---
 
-# API Reference
+# API - RouterTab
 
 ## `<router-tab>` Props
 
@@ -77,6 +77,14 @@ The transition effect of tab page.
   Same as [`tab-transition`](#tab-transition)
 
 - default: `{ name: 'router-tab-swap', mode: 'out-in' }`
+
+### page-scroller
+
+Global **Scroll Element Selector**, the scroll position will be restored when the cached tab is reactivated.
+
+- type: `String`
+
+- default: `'.router-tab__container'`
 
 ### contextmenu
 
@@ -315,86 +323,6 @@ RouterTab supports personalization tab components through the following slots:
 | `start`   | -     | Tab bar start |
 | `end`     | -     | Tab bar end   |
 
-## `<router-alive>` Props
-
-### keep-alive
-
-Whether to cache components by default, it can be reset through the routing configuration `meta.keepAlive`.
-
-- type: `Boolean`
-
-- default: `false`
-
-### max
-
-The maximum number of caches, set `0` to not limit.
-
-- type: `Number`
-
-- default: `0`
-
-### reuse
-
-Whether to reuse routing components, can be reset through the routing configuration `meta.reuse`.
-
-- type: `Boolean`
-
-- default: `false`
-
-### page-class
-
-class of tab page.
-
-- type: `Array | Object | String`
-
-- default: `router-alive-page`
-
-### transition
-
-The transition effect of routing components
-
-- type: `String | Object`
-
-  Same as [`tab-transition`](#tab-transition)
-
-## RouterAlive Instance Methods
-
-::: tip
-In the sub-component of RouterAlive, you can access the RouterAlive instance through `inject: ['RouterAlive']`.
-Then call `this.RouterAlive.refresh()` to refresh the component.
-:::
-
-### routerAlive.remove
-
-Remove the cache of component.
-
-- parameters:
-  - `{String} [key]` The cache key of the component to be removed, default to current component.
-
-### routerAlive.refresh
-
-Refresh the cache of component.
-
-- parameters:
-  - `{String} [key]` The cache key of the component to be refreshed, default to current component.
-
-## RouterAlive Events
-
-### ready
-
-RouterAlive component is ready.
-
-- parameters:
-  - `{VueInstance} [alive]` RouterAlive instance
-
-### change
-
-Route cache changes.
-
-- parameters:
-  - `{String} [type]` type: `create` | `update`
-  - `{RouteMatch} [routeMatch]` Route matching information
-
 ## Route.meta
 
 Through the `meta` route, we can configure the title, icon, prompt and cache rule of a route tab.
@@ -413,12 +341,14 @@ Through the `meta` route, we can configure the title, icon, prompt and cache rul
 ## Extends
 
 ::: tip Description
+`pageComp`: Page component options.
+
 `vm`: Instance of vue component.
 
 `pageVm`: Instance of page component loaded through RouterTab.
 :::
 
-### beforePageLeave
+### `pageComp.beforePageLeave`
 
 Page leave confirmation.
 
@@ -437,6 +367,14 @@ Page component options, Same level configuration as `data` and `methods`.
 - Type of return value:
   - `{String}` When the leave type is `unload`, provide a prompt message for the browser to leave.
   - `{Promise}` Other types, `resolve` to leave, `reject` to prevent leaving
+
+### `pageComp.pageScroller`
+
+**Scroll element selector** inside the page, the scroll position will be restored when the cached tab is reactivated.
+
+When the value is an array, multiple scroll bars in the page can be applied.
+
+- type: `String | Array`
 
 ### `vm.$tabs`
 

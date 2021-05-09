@@ -21,7 +21,8 @@ exports.default = i18n => ({
         'custom/slot',
         'custom/contextmenu',
         'custom/i18n',
-        'custom/'
+        'custom/',
+        'custom/scroll'
       ]
     },
     {

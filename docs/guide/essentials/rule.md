@@ -4,11 +4,11 @@
 
 By configuring the routing of `meta.key` properties, you can customize the tab for a particular route.
 
-## Default rule
+## Default Rule
 
 By default, pages from the same route opens the same tab.
 
-## Built-in rules
+## Built-in Rules
 
 ### `path`
 
@@ -58,7 +58,7 @@ According to the tab rules in the example:
 1. `/my-page/1` and `/my-page/2` have different `params`, will open in **separate** tab.
 2. `/my-page/1`、`/my-page/1?a=1` and `/my-page/1?b=2` have the different `query`, will open in **separate** tab.
 
-## Custom rule
+## Custom Rule
 
 In addition to using built-in rules, you can also customize your own rules with functions.
 

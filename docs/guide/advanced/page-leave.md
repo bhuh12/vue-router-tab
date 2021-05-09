@@ -6,7 +6,7 @@ When the tab **close**, **refresh**, **replace**, **leave** the current route, o
 `beforePageLeave` is at the outermost level of the component, not in `methods`
 :::
 
-<doc-links api="#beforepageleave" demo="/initial-tabs/page-leave" />
+<doc-links api="#pagecomp-beforepageleave" demo="/initial-tabs/page-leave" />
 
 **Example:**
 

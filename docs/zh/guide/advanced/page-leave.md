@@ -6,7 +6,7 @@
 `beforePageLeave` 在组件的最外层，不是放在 `methods` 里
 :::
 
-<doc-links api="#beforepageleave" demo="/initial-tabs/page-leave" />
+<doc-links api="#pagecomp-beforepageleave" demo="/initial-tabs/page-leave" />
 
 **示例：**
 
