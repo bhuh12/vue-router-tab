@@ -1,5 +1,18 @@
 # 更新日志
 
+## [1.2.6](https://github.com/bhuh12/vue-router-tab/compare/v1.2.5...v1.2.6) (2021-05-09)
+
+### Bug Fixes
+
+- **DragSort:** 修复双核浏览器兼容模式下拖拽排序失效 ([78ecec3](https://github.com/bhuh12/vue-router-tab/commit/78ecec3bb860ff4eec2c9c0d66ae8bdd3b469491))
+- **PageLeave:** 支持页签未缓存时离开提醒 ([1d70e03](https://github.com/bhuh12/vue-router-tab/commit/1d70e0334b882382edff7c6a506bbbcec9f0e23b)), closes [#116](https://github.com/bhuh12/vue-router-tab/issues/116)
+
+### Features
+
+- **pageScroller:** 页签切换保留滚动位置 ([958a85d](https://github.com/bhuh12/vue-router-tab/commit/958a85d7d0f317156ab71b7d35fe79a1874fc1ff)), closes [#108](https://github.com/bhuh12/vue-router-tab/issues/108)
+- **TabItem:** 鼠标中键点击关闭页签项 ([ef673b5](https://github.com/bhuh12/vue-router-tab/commit/ef673b5dff481795f9c37126d94a3cbb3ee123cb)), closes [#118](https://github.com/bhuh12/vue-router-tab/issues/118)
+- **vetur:** 为 Vetur 扩展提供组件语法提示 ([c78a5b6](https://github.com/bhuh12/vue-router-tab/commit/c78a5b62afdf052768df2f82ec69a922c252d0d3))
+
 ## [1.2.5](https://github.com/bhuh12/vue-router-tab/compare/v1.2.4...v1.2.5) (2021-03-26)
 
 ### Bug Fixes

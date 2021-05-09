@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.6](https://github.com/bhuh12/vue-router-tab/compare/v1.2.5...v1.2.6) (2021-05-09)
+
+### Bug Fixes
+
+- **DragSort:** Fixed the drag and drop sorting failure in dual-core browser compatibility mode ([78ecec3](https://github.com/bhuh12/vue-router-tab/commit/78ecec3bb860ff4eec2c9c0d66ae8bdd3b469491))
+- **PageLeave:** Support leave reminder when the tab is not cached ([1d70e03](https://github.com/bhuh12/vue-router-tab/commit/1d70e0334b882382edff7c6a506bbbcec9f0e23b)), closes [#116](https://github.com/bhuh12/vue-router-tab/issues/116)
+- **vetur:** Provide component syntax hints for Vetur extension ([c78a5b6](https://github.com/bhuh12/vue-router-tab/commit/c78a5b62afdf052768df2f82ec69a922c252d0d3))
+
+### Features
+
+- **pageScroller:** Keep scroll position after tab switching ([958a85d](https://github.com/bhuh12/vue-router-tab/commit/958a85d7d0f317156ab71b7d35fe79a1874fc1ff)), closes [#108](https://github.com/bhuh12/vue-router-tab/issues/108)
+- **TabItem:** Click the middle mouse button to close the tab ([ef673b5](https://github.com/bhuh12/vue-router-tab/commit/ef673b5dff481795f9c37126d94a3cbb3ee123cb)), closes [#118](https://github.com/bhuh12/vue-router-tab/issues/118)
+
 ## [1.2.5](https://github.com/bhuh12/vue-router-tab/compare/v1.2.4...v1.2.5) (2021-03-26)
 
 ### Bug Fixes
