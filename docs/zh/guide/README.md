@@ -18,6 +18,8 @@ Vue Router Tab 是基于 Vue.js 和 Vue Router 的路由页签组件，用来实
 
 ✅ [多语言支持](custom/i18n.md)
 
+✅ 页签切换后[保留滚动位置](custom/scroll.md)
+
 ✅ [缓存控制](advanced/cache.md)：页签规则、页签是否缓存、最大缓存数、是否复用组件等
 
 ✅ [动态页签信息](advanced/dynamic-tab-info.md)：标题、图标、提示

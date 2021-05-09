@@ -1,0 +1,113 @@
+{
+  "page-scroller": {
+    "type": "string",
+    "description": "Global **Scroll Element Selector**, the scroll position will be restored when the cached tab is reactivated.\n\r\n\r全局**滚动元素选择器**，设置后已缓存的页签重新激活时将会还原滚动位置。"
+  },
+
+  "keep-alive": {
+    "type": "boolean",
+    "description": "Whether to cache tabs by default, it can be reset through the routing configuration `meta.keepAlive`.\n\r\n\r默认是否缓存页签，可通过路由 `meta.keepAlive` 重置。"
+  },
+
+  "reuse": {
+    "type": "boolean",
+    "description": "Whether to reuse routing components, can be reset through the routing configuration `meta.reuse`.\n\r\n\r是否复用路由组件，可通过路由 `meta.reuse` 重置。"
+  },
+
+  "router-tab/tabs": {
+    "type": "array <string | object>",
+    "description": "**Default Tabs**, The tabs displayed by default when entering the page.\n\rOnly keep the first tab with the same `key`.\n\rhttps://bhuh12.github.io/vue-router-tab/guide/advanced/initial-tabs.html \n\r\n\r**初始页签数据**，进入页面时默认显示的页签。\n\r相同 `key` 的页签只保留第一个。\n\rhttps://bhuh12.gitee.io/vue-router-tab/zh/guide/advanced/initial-tabs.html"
+  },
+
+  "router-tab/restore": {
+    "type": "boolean | string",
+    "description": "Whether to **restore the tabs** after the browser refreshes.\n\rIf enabled, the previous tabs will be restored after the browser is refreshed.\n\rWhen the type is `String` and is not empty, RouterTab will splice this value as the key of SessionStorage to store tabs information locally\n\r\n\r是否在浏览器刷新后**恢复页签**。\n\r开启后，浏览器刷新后将会还原刷新前的页签。\n\r类型为 `String` 且不为空字符串时，RouterTab 会拼接该值作为 SessionStorage 的 key 来本地存储页签信息"
+  },
+
+  "router-tab/default-page": {
+    "type": "string | object",
+    "description": "**Default page**, the default path to redirect to after the last tab is closed or reset.\n\rThe program will automatically obtain the parent routing address of the tab as the default page.\n\r\n\r**默认页面**，最后一个页签关闭或者页签重置后跳转的默认地址。\n\r程序会自动获取页签父路由地址为默认页面。"
+  },
+
+  "router-tab/tab-transition": {
+    "type": "string | object",
+    "description": "The transition effect of tab, transition when adding and closing tabs.\n\r\n\r**页签过渡效果**，新增和关闭页签时的过渡。"
+  },
+
+  "router-tab/page-transition": {
+    "type": "string | object",
+    "description": "The transition effect of tab page.\n\r\n\r页面过渡效果。"
+  },
+
+  "router-tab/contextmenu": {
+    "type": "boolean | array <string | object>",
+    "description": "Custom contextmenu.\n\rhttps://bhuh12.github.io/vue-router-tab/guide/custom/contextmenu.html#disable-contextmenu \n\r\n\r自定义**右键菜单**\n\rhttps://bhuh12.gitee.io/vue-router-tab/zh/guide/custom/contextmenu.html"
+  },
+
+  "router-tab/dragsort": {
+    "type": "boolean",
+    "description": "Whether to support tab drag and drop sort.\n\r\n\r是否支持页签拖拽排序。"
+  },
+
+  "router-tab/append": {
+    "type": "string",
+    "options": ["last", "next"],
+    "description": "Insert position of new tab.\n\r\n\r新页签插入位置。"
+  },
+
+  "router-tab/keep-last-tab": {
+    "type": "boolean",
+    "description": "Whether to keep the last tab and cannot be closed.\n\r\n\r是否保留最后一个页签不被关闭。"
+  },
+
+  "router-tab/max-alive": {
+    "type": "number",
+    "description": "The maximum number of caches, set `0` to not limit.\n\r\n\r最大缓存数，`0` 则不限制。"
+  },
+
+  "router-tab/i18n": {
+    "type": "function",
+    "description": "`function(key: string, params: []): string`\n\rTab internationalization function.\n\r\n\r页签国际化转换。"
+  },
+
+  "router-tab/lang": {
+    "type": "string | object",
+    "options": ["auto", "zh", "en"],
+    "description": "Component language.\n\r- If the type is `String`, it can be set to the built-in language `'zh'` and `'en'`.\n\r- If the type is `Object`, you can set a custom language.\n\r- default: `'auto'`. Automatically recognize component language according to browser language.\n\r\n\r组件语言。\n\r- 如果类型为 `String`，可以设置为内置的语言 `'zh'` 和 `'en'`\n\r- 如果类型为 `Object`，可设置自定义的语言\n\r- 默认值: `'auto'`。 根据浏览器语言自动识别组件语言"
+  },
+
+  "router-tab/@iframe-mounted": {
+    "type": "event",
+    "description": "`function(url: string, iframe: HTMLIFrameElement)`\n\rEvent: Iframe component mounted.\n\r\n\r事件：iframe 节点挂载就绪"
+  },
+
+  "router-tab/@iframe-loaded": {
+    "type": "event",
+    "description": "`function(url: string, iframe: HTMLIFrameElement)`\n\rEvent: Iframe content loaded.\n\r\n\r事件：iframe 内容加载成功"
+  },
+
+  "router-alive/max": {
+    "type": "number",
+    "description": "The maximum number of caches, set `0` to not limit.\n\r\n\r最大缓存数，`0` 则不限制。"
+  },
+
+  "router-alive/page-class": {
+    "type": "array | object | string",
+    "description": "Class of tab page.\n\r\n\r页面 class。"
+  },
+
+  "router-alive/transition": {
+    "type": "string | object",
+    "description": "The transition effect of routing components.\n\r\n\r路由组件过渡效果。"
+  },
+
+  "router-alive/@ready": {
+    "type": "event",
+    "description": "`function(alive: VueInstance)`\n\rEvent: RouterAlive component is ready.\n\r\n\r事件：RouterAlive 组件就绪。"
+  },
+
+  "router-alive/@change": {
+    "type": "event",
+    "description": "`function(type: string, routeMatch: RouteMatch)`\n\rEvent: Route cache changes.\n\r\n\r事件：路由缓存更改。"
+  }
+}

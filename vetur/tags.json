@@ -1,0 +1,38 @@
+{
+  "router-tab": {
+    "attributes": [
+      "tabs",
+      "restore",
+      "default-page",
+      "tab-transition",
+      "page-transition",
+      "page-scroller",
+      "contextmenu",
+      "dragsort",
+      "append",
+      "keep-last-tab",
+      "keep-alive",
+      "max-alive",
+      "reuse",
+      "i18n",
+      "lang",
+      "@iframe-mounted",
+      "@iframe-loaded"
+    ],
+    "description": "Vue.js tab components, based on Vue Router.\n\r🐧 GitHub: https://github.com/bhuh12/vue-router-tab \n\r📝 Documentation: https://bhuh12.github.io/vue-router-tab/ \n\r📺 Online Demo: https://bhuh12.github.io/vue-router-tab/demo/ \n\r\n\rVue Router Tab 是基于 Vue Router 的路由页签组件，用来实现多页签页面的管理。\n\r🦄 Gitee: https://gitee.com/bhuh12/vue-router-tab \n\r📝 文档: https://bhuh12.gitee.io/vue-router-tab/zh/ \n\r📺 演示: https://bhuh12.gitee.io/vue-router-tab/demo/"
+  },
+
+  "router-alive": {
+    "attributes": [
+      "keep-alive",
+      "max",
+      "reuse",
+      "page-class",
+      "page-scroller",
+      "transition",
+      "@ready",
+      "@change"
+    ],
+    "description": "Route cache component of Vue.js.\n\r\n\rVue.js 的路由缓存组件。"
+  }
+}

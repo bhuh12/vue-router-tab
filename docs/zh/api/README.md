@@ -48,7 +48,7 @@ sidebar: auto
 
 ### default-page
 
-默认页面，最后一个页签关闭或者页签重置后跳转的默认地址。
+**默认页面**，最后一个页签关闭或者页签重置后跳转的默认地址。
 
 程序会自动获取页签父路由地址为默认页面。
 
@@ -58,7 +58,7 @@ sidebar: auto
 
 ### tab-transition
 
-**页签过渡效果**，新增和关闭页签时的过渡
+**页签过渡效果**，新增和关闭页签时的过渡。
 
 - 类型: `String | Object`
 
@@ -70,7 +70,7 @@ sidebar: auto
 
 ### page-transition
 
-页面过渡效果
+页面过渡效果。
 
 - 类型: `String | Object`
 
@@ -177,6 +177,8 @@ sidebar: auto
 ### i18n
 
 页签国际化转换
+
+`function(key: string, params: []): string`
 
 - 类型: `Function`
 

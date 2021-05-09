@@ -48,7 +48,7 @@ English | [简体中文](README.zh.md)
 
 <h2 align="center">Vue Router Tab</h2>
 
-A tab router component based on Vue Router.
+Vue.js tab components, based on Vue Router.
 
 ## 📌 Features
 
@@ -65,6 +65,8 @@ A tab router component based on Vue Router.
 ✅ Customized：[transition](https://bhuh12.github.io/vue-router-tab/guide/custom/transition.html), [slot](https://bhuh12.github.io/vue-router-tab/guide/custom/slot.html), [contextmenu](https://bhuh12.github.io/vue-router-tab/guide/custom/contextmenu.html)
 
 ✅ [I18n](https://bhuh12.github.io/vue-router-tab/guide/custom/i18n.html)
+
+✅ [Keep scroll position](https://bhuh12.github.io/vue-router-tab/guide/custom/scroll.html) after tab switching
 
 ✅ [Cache control](https://bhuh12.github.io/vue-router-tab/guide/advanced/cache.html): tab rules, cacheable, maximum keep alive, reusable
 

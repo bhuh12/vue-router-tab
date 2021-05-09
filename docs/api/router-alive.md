@@ -32,7 +32,7 @@ Whether to reuse routing components, can be reset through the routing configurat
 
 ### page-class
 
-class of tab page.
+Class of tab page.
 
 - type: `Array | Object | String`
 

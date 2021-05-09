@@ -26,7 +26,7 @@ sidebar: auto
 
 ### restore
 
-**Whether to restore the tabs after the browser refreshes**
+Whether to **restore the tabs** after the browser refreshes.
 
 If enabled, the previous tabs will be restored after the browser is refreshed.
 
@@ -48,7 +48,7 @@ If enabled, RouterTab will watch the `restore` option, and automatically restore
 
 ### default-page
 
-Default page, the default path to redirect to after the last tab is closed or reset.
+**Default page**, the default path to redirect to after the last tab is closed or reset.
 
 The program will automatically obtain the parent routing address of the tab as the default page.
 
@@ -58,7 +58,7 @@ The program will automatically obtain the parent routing address of the tab as t
 
 ### tab-transition
 
-The transition effect of tab, transition when adding and closing tabs
+The transition effect of tab, transition when adding and closing tabs.
 
 - type: `String | Object`
 
@@ -177,6 +177,8 @@ Whether to reuse routing components, can be reset through the routing configurat
 ### i18n
 
 Tab internationalization function.
+
+`function(key: string, params: []): string`
 
 - type: `Function`
 
@@ -307,7 +309,7 @@ Iframe component mounted
 
 ### iframe-loaded
 
-iframe content loaded
+Iframe content loaded
 
 - parameters:
   - `{String} [url]` The url of the iframe

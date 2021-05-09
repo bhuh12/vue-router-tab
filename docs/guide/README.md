@@ -1,6 +1,6 @@
 # Introduction
 
-A tab router component based on Vue Router.
+Vue.js tab components, based on Vue Router.
 
 ### Features
 
@@ -17,6 +17,8 @@ A tab router component based on Vue Router.
 ✅ Customized：[transition](custom/transition.md), [slot](custom/slot.md), [contextmenu](custom/contextmenu.md)
 
 ✅ [I18n](custom/i18n.md)
+
+✅ [Keep scroll position](custom/scroll.md) after tab switching
 
 ✅ [Cache control](advanced/cache.md): tab rules, cacheable, maximum keep alive, reusable
 

@@ -66,6 +66,8 @@ Vue Router Tab 是基于 Vue Router 的路由页签组件，用来实现多页�
 
 ✅ [多语言支持](https://bhuh12.gitee.io/vue-router-tab/zh/guide/custom/i18n.html)
 
+✅ 页签切换后[保留滚动位置](https://bhuh12.gitee.io/vue-router-tab/zh/guide/custom/scroll.html)
+
 ✅ [缓存控制](https://bhuh12.gitee.io/vue-router-tab/zh/guide/advanced/cache.html)：页签规则、页签是否缓存、最大缓存数、是否复用组件等
 
 ✅ [动态页签信息](https://bhuh12.gitee.io/vue-router-tab/zh/guide/advanced/dynamic-tab-info.html)：标题、图标、提示
