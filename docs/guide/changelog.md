@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.7](https://github.com/bhuh12/vue-router-tab/compare/v1.2.6...v1.2.7) (2021-06-03)
+
+### Bug Fixes
+
+- **RouterAlive:** Solve the problem of failing to remove the cache due to the Vue v2.6.13 version of KeepAlive streamlining the data of the cache component ([93f8418](https://github.com/bhuh12/vue-router-tab/commit/93f8418fb19df5593b08237f322bf5c2937c13a1)), closes [#121](https://github.com/bhuh12/vue-router-tab/issues/121)
+
 ## [1.2.6](https://github.com/bhuh12/vue-router-tab/compare/v1.2.5...v1.2.6) (2021-05-09)
 
 ### Bug Fixes

@@ -1,5 +1,11 @@
 # 更新日志
 
+## [1.2.7](https://github.com/bhuh12/vue-router-tab/compare/v1.2.6...v1.2.7) (2021-06-03)
+
+### Bug Fixes
+
+- **RouterAlive:** 解决由于 Vue v2.6.13 版本 KeepAlive 精简了缓存组件的数据，导致移除缓存失败 ([93f8418](https://github.com/bhuh12/vue-router-tab/commit/93f8418fb19df5593b08237f322bf5c2937c13a1)), closes [#121](https://github.com/bhuh12/vue-router-tab/issues/121)
+
 ## [1.2.6](https://github.com/bhuh12/vue-router-tab/compare/v1.2.5...v1.2.6) (2021-05-09)
 
 ### Bug Fixes
