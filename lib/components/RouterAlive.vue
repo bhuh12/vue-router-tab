@@ -234,9 +234,10 @@ export default {
 
       // 清理 keepAlive 缓存记录
       Object.entries(cache).find(([id, item]) => {
-        if (item && item.data.key === key) {
+        const vm = item?.componentInstance
+        if (vm?.$vnode?.data?.key === key) {
           // 销毁组件实例
-          item.componentInstance && item.componentInstance.$destroy()
+          vm.$destroy()
 
           cache[id] = null
           remove(keys, id)
