@@ -56,8 +56,8 @@ $just-trans: all 0.2s ease-in-out;
   }
 
   .app-bd {
-    flex: 1;
     position: relative;
+    flex: 1;
   }
 }
 

@@ -102,18 +102,17 @@ Vue.js tab components, based on Vue Router.
 
 ## 🏷 NPM Task
 
-| Task                           | Command                    | Description                        |
-| ------------------------------ | -------------------------- | ---------------------------------- |
-| Lib build                      | `npm run lib:build`        |
-| Lib build and generate report  | `npm run lib:build:report` |
-| Lib publish                    | `npm run lib:publish`      | change `version` in `package.json` |
-| Demo develop                   | `npm run demo:dev`         |
-| Demo build                     | `npm run demo:build`       |
-| Document develop               | `npm run docs:dev`         |
-| Document build                 | `npm run docs:build`       |
-| Code format check              | `npm run lint`             |
-| Code format check and auto fix | `npm run lint:fix`         |
-| Commit code                    | `npm run commit`           |
+| Task                          | Command                 | Description                        |
+| ----------------------------- | ----------------------- | ---------------------------------- |
+| Lib build                     | `yarn lib:build`        |
+| Lib build and generate report | `yarn lib:build:report` |
+| Lib publish                   | `yarn lib:publish`      | change `version` in `package.json` |
+| Demo develop                  | `yarn demo:dev`         |
+| Demo build                    | `yarn demo:build`       |
+| Document develop              | `yarn docs:dev`         |
+| Document build                | `yarn docs:build`       |
+| Code format check and fix     | `yarn lint`             |
+| Commit code                   | `yarn commit`           |
 
 ## License
 

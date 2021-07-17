@@ -102,18 +102,17 @@ Vue Router Tab 是基于 Vue Router 的路由页签组件，用来实现多页�
 
 ## 🏷 NPM 任务
 
-| 任务               | 命令                       | 备注                                                  |
-| ------------------ | -------------------------- | ----------------------------------------------------- |
-| 插件构建           | `npm run lib:build`        |
-| 插件构建并生成报告 | `npm run lib:build:report` |
-| 插件发布           | `npm run lib:publish`      | 操作前更改 `package.json` 中的 `version` 为新的版本号 |
-| Demo 开发          | `npm run demo:dev`         |
-| Demo 构建          | `npm run demo:build`       |
-| 文档开发           | `npm run docs:dev`         |
-| 文档构建           | `npm run docs:build`       |
-| 代码风格检查       | `npm run lint`             |
-| 代码风格检查并修复 | `npm run lint:fix`         |
-| 代码提交           | `npm run commit`           |
+| 任务               | 命令                    | 备注                                                  |
+| ------------------ | ----------------------- | ----------------------------------------------------- |
+| 插件构建           | `yarn lib:build`        |
+| 插件构建并生成报告 | `yarn lib:build:report` |
+| 插件发布           | `yarn lib:publish`      | 操作前更改 `package.json` 中的 `version` 为新的版本号 |
+| Demo 开发          | `yarn demo:dev`         |
+| Demo 构建          | `yarn demo:build`       |
+| 文档开发           | `yarn docs:dev`         |
+| 文档构建           | `yarn docs:build`       |
+| 代码风格检查并修复 | `yarn lint`             |
+| 代码提交           | `yarn commit`           |
 
 ## License
 

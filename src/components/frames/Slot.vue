@@ -48,14 +48,14 @@ export default {
 .tab-badge {
   $s: 1.2em;
   display: inline-block;
-  margin-left: 3px;
   width: $s;
   height: $s;
+  margin-left: 3px;
+  color: #fff;
   font-size: 12px;
   line-height: $s;
-  vertical-align: super;
   text-align: center;
-  color: #fff;
+  vertical-align: super;
   background-color: #f80;
   border-radius: 100%;
 }

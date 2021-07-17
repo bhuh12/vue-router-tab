@@ -26,8 +26,8 @@
 
     &-enter,
     &-leave-to {
-      opacity: 0;
       transform: scale(1.5);
+      opacity: 0;
     }
   }
 }

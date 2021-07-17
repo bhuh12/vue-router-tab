@@ -19,7 +19,7 @@ module.exports = {
         // scss公共变量
         prependData: isBuildLib
           ? undefined
-          : `@import "src/assets/scss/variables.scss";`
+          : `@use "src/assets/scss/variables.scss" as *;`
       }
     }
   }

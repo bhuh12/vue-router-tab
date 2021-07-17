@@ -27,7 +27,9 @@
     "lib:build": "vue-cli-service build --target lib lib/index.js",
     "lib:build:report": "vue-cli-service build --report --target lib lib/index.js",
     "lib:publish": "npm run lib:build && npm publish",
-    "lint:fix": "vue-cli-service lint --fix",
+    "lint": "yarn lint:js && yarn lint:css",
+    "lint:js": "vue-cli-service lint --fix",
+    "lint:css": "stylelint \"**/*.{css,scss,sass,vue}\" --fix  --cache --cache-location node_modules/.cache/stylelint/",
     "commit": "git-cz",
     "changelog": "conventional-changelog -p angular -i docs/zh/guide/changelog.md -s"
   },
@@ -53,6 +55,12 @@
     "prettier": "^1.19.1",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
+    "stylelint": "^13.13.1",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-recommended": "^5.0.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-scss": "^3.19.0",
     "vue-template-compiler": "^2.6.11",
     "vuepress": "^1.5.2"
   },

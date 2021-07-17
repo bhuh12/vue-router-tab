@@ -27,8 +27,8 @@ $border: 1px solid #ddd;
 .router-tab-page {
   display: flex;
   flex-direction: column;
-  padding: 0 !important;
   height: 100%;
+  padding: 0 !important;
 }
 
 .header {
@@ -67,8 +67,8 @@ $border: 1px solid #ddd;
   }
 
   .page {
-    padding-left: 20px;
     height: 100%;
+    padding-left: 20px;
     overflow: auto;
   }
 }

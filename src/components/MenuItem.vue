@@ -31,8 +31,8 @@ $fs: 0.875rem;
 .menu-item {
   display: block;
   padding: 0.35rem 1rem 0.35rem 1.25rem;
-  font-size: $fs;
   color: #2c3e50;
+  font-size: $fs;
   text-decoration: none;
   cursor: pointer;
 
@@ -47,10 +47,10 @@ $fs: 0.875rem;
 }
 
 .menu-title {
-  padding: 0 1.25rem;
   margin: 0.5rem 0;
-  font-size: 1em;
+  padding: 0 1.25rem;
   font-weight: 600;
+  font-size: 1em;
 }
 
 .menu-list {

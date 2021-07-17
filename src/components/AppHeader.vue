@@ -21,13 +21,13 @@ export default {
 
 <style lang="scss" scoped>
 .app-hd {
-  display: flex;
   position: relative;
   z-index: 99;
-  height: 50px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 50px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 
   .app-home {
     display: flex;
@@ -48,9 +48,9 @@ export default {
 
   .site-logo {
     $s: 1.3rem;
-    margin: 0 0.5rem 0 1.5rem;
     width: $s;
     height: $s;
+    margin: 0 0.5rem 0 1.5rem;
 
     @include screen-mob {
       margin-left: 0.5rem;
@@ -64,9 +64,9 @@ export default {
     line-height: 1;
 
     a {
+      color: $text;
       font-weight: 600;
       text-decoration: none;
-      color: $text;
 
       &:hover {
         color: $color;

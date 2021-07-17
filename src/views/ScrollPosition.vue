@@ -35,16 +35,16 @@ export default {
 .scroll-page {
   display: flex;
   flex-direction: column;
-  height: 100%;
   box-sizing: border-box;
+  height: 100%;
 }
 
 .custom-scroller,
 .custom-scroller-1 {
-  flex: 1;
   position: relative;
-  overflow: auto;
+  flex: 1;
   padding-left: 20px;
+  overflow: auto;
   border: 1px solid #eaecef;
 
   &:hover {
@@ -57,8 +57,8 @@ export default {
 }
 
 .page-loading {
-  text-align: center;
   font-size: 15px;
   line-height: 100px;
+  text-align: center;
 }
 </style>

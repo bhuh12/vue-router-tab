@@ -1,4 +1,4 @@
-@import 'transition.scss';
+@use 'sass:math';
 
 // 变量
 $color-primary: #42b983;
@@ -26,12 +26,12 @@ $close-icon-size: 13px;
 
   // 页签头部
   &__header {
-    display: flex;
-    flex: none;
-    height: $hd-height;
     position: relative;
     z-index: 9;
+    display: flex;
+    flex: none;
     box-sizing: border-box;
+    height: $hd-height;
     border-bottom: 1px solid $border-color;
     transition: all 0.2s ease-in-out;
   }
@@ -50,8 +50,8 @@ $close-icon-size: 13px;
 
       // 移动设备原生滚动
       &.is-mobile {
-        overflow-y: hidden;
         overflow-x: auto;
+        overflow-y: hidden;
       }
     }
   }
@@ -61,13 +61,13 @@ $close-icon-size: 13px;
     $h: 3px;
 
     position: absolute;
-    left: 0;
     right: 0;
     bottom: 0;
+    left: 0;
     height: $h;
+    background-color: rgba(0, 0, 0, 0.1);
     border-radius: $h;
     opacity: 0;
-    background-color: rgba(0, 0, 0, 0.1);
     transition: opacity 0.3s ease-in-out;
 
     .router-tab__scroll:hover &,
@@ -96,27 +96,27 @@ $close-icon-size: 13px;
     position: relative;
     display: inline-flex;
     flex-wrap: nowrap;
-    list-style: none;
+    height: 100%;
     margin: 0;
     padding: 0;
-    height: 100%;
+    list-style: none;
   }
 
   // 页签项
   &__item {
-    display: flex;
-    align-items: center;
-    flex: none;
     position: relative;
+    display: flex;
+    flex: none;
+    align-items: center;
     padding: 0 $tab-padding;
     color: $text-color;
     font-size: $font-size;
     border: $border;
     border-left: none;
-    cursor: pointer;
-    user-select: none;
-    transition: $tab-trans;
     transform-origin: left bottom;
+    cursor: pointer;
+    transition: $tab-trans;
+    user-select: none;
 
     &:first-child {
       border-left: $border;
@@ -132,12 +132,13 @@ $close-icon-size: 13px;
       color: $color-primary;
 
       &.is-closable {
-        padding: 0 ($tab-padding - ($close-icon-size + $close-icon-margin) / 2);
+        padding: 0
+          ($tab-padding - math.div($close-icon-size + $close-icon-margin, 2));
       }
 
       .router-tab__item-close {
-        margin-left: $close-icon-margin;
         width: $close-icon-size;
+        margin-left: $close-icon-margin;
 
         &::before,
         &::after {
@@ -159,11 +160,11 @@ $close-icon-size: 13px;
 
     // 页签标题
     &-title {
-      max-width: 100px;
       min-width: 30px;
+      max-width: 100px;
+      overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
-      overflow: hidden;
     }
 
     // 页签图标
@@ -178,12 +179,12 @@ $close-icon-size: 13px;
 
       position: relative;
       display: block;
-      margin-left: 0;
       width: 0;
       height: $close-icon-size;
+      margin-left: 0;
+      overflow: hidden;
       border-radius: 50%;
       cursor: pointer;
-      overflow: hidden;
       transition: $tab-trans;
 
       &::before,
@@ -191,13 +192,13 @@ $close-icon-size: 13px;
         position: absolute;
         top: 6px;
         left: 50%;
-        margin-left: -$inner/2;
         display: block;
-        content: '';
         width: $inner;
         height: 1px;
+        margin-left: math.div(-$inner, 2);
         background-color: $text-color;
         transition: background-color 0.2s ease-in-out;
+        content: '';
       }
 
       &::before {
@@ -246,24 +247,24 @@ $close-icon-size: 13px;
   &__contextmenu {
     position: fixed;
     z-index: 999;
-    padding: 8px 0;
     min-width: 120px;
+    padding: 8px 0;
     font-size: $font-size;
-    border: $border;
     background: #fff;
+    border: $border;
     box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1);
-    transition: all 0.25s ease-in;
     transform-origin: left top;
+    transition: all 0.25s ease-in;
 
     &-item {
       position: relative;
       display: block;
       padding: 0 20px;
-      line-height: 30px;
       color: $text-color;
+      line-height: 30px;
       cursor: pointer;
-      user-select: none;
       transition: all 0.2s ease-in-out;
+      user-select: none;
 
       &:hover,
       &:active {
@@ -273,8 +274,8 @@ $close-icon-size: 13px;
       &[disabled] {
         color: #aaa;
         background: none;
-        pointer-events: none;
         cursor: default;
+        pointer-events: none;
       }
 
       // 拥有图标
@@ -284,10 +285,10 @@ $close-icon-size: 13px;
     }
 
     &-icon {
-      display: none;
       position: absolute;
       top: 0;
       left: 8px;
+      display: none;
       line-height: 30px;
 
       // 拥有图标

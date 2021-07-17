@@ -51,8 +51,8 @@ export default {
   text-align: center;
 
   a {
-    font-size: 1.5rem;
     color: #888;
+    font-size: 1.5rem;
     text-decoration: none;
     transition: all 0.1s ease;
 

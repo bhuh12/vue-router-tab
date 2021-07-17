@@ -114,9 +114,9 @@ export default {
 
 <style lang="scss" scoped>
 .rule-fn {
+  color: $color;
   font-size: 1rem;
   font-style: italic;
-  color: $color;
 }
 
 .btn-list {
