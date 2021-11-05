@@ -100,7 +100,11 @@ export default {
   methods: {
     // 更新滚动数据
     update() {
-      const { clientWidth, scrollWidth, scrollLeft } = this.$refs.container
+      const { container } = this.$refs
+
+      if (!container) return
+
+      const { clientWidth, scrollWidth, scrollLeft } = container
 
       // 判断是否移动端
       // userAgent 中包含 mobile 字段，或者浏览器滚动条宽度为 0
