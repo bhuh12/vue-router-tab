@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.8](https://github.com/bhuh12/vue-router-tab/compare/v1.2.7...v1.2.8) (2021-11-05)
+
+### Bug Fixes
+
+- **TabScroll:** Fix `TypeError: Cannot read properties of undefined (reading 'clientWidth')` ([9cf924c](https://github.com/bhuh12/vue-router-tab/commit/9cf924c30bbb373a308b1132a2f2e4bf7db6a683)), closes [#131](https://github.com/bhuh12/vue-router-tab/issues/131)
+
 ## [1.2.7](https://github.com/bhuh12/vue-router-tab/compare/v1.2.6...v1.2.7) (2021-06-03)
 
 ### Bug Fixes

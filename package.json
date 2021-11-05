@@ -1,12 +1,11 @@
 {
   "name": "vue-router-tab",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "Vue.js tab components, based on Vue Router",
   "keywords": [
     "vue-router-tab",
-    "routertab",
-    "tabs",
-    "admin"
+    "router-tab",
+    "tabs"
   ],
   "author": "碧海幽虹 <bhuh12@126.com>",
   "private": false,
@@ -14,6 +13,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bhuh12/vue-router-tab.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   },
   "bugs": {
     "url": "https://github.com/bhuh12/vue-router-tab/issues"
@@ -46,6 +48,7 @@
     "@vuepress/plugin-back-to-top": "^1.5.2",
     "@vuepress/plugin-pwa": "^1.5.2",
     "babel-eslint": "^10.1.0",
+    "conventional-changelog-cli": "^2.1.1",
     "core-js": "^3.6.5",
     "cz-conventional-changelog": "^3.0.2",
     "eslint": "^6.7.2",
