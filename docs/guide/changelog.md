@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.9](https://github.com/bhuh12/vue-router-tab/compare/v1.2.8...v1.2.9) (2021-12-09)
+
+### Bug Fixes
+
+- **routerpage:** assign metadata change to correct tab (closes [#135](https://github.com/bhuh12/vue-router-tab/issues/135)) ([ff017a4](https://github.com/bhuh12/vue-router-tab/commit/ff017a4003c31cac3f61f020f64b07df7dc856ea))
+- **TabItem:** Fixed Vue Router `tag prop is deprecated` warning ([d969248](https://github.com/bhuh12/vue-router-tab/commit/d969248b892e01a61fd3fe85ca75a52824a32cd2)), closes [#134](https://github.com/bhuh12/vue-router-tab/issues/134)
+
 ## [1.2.8](https://github.com/bhuh12/vue-router-tab/compare/v1.2.7...v1.2.8) (2021-11-05)
 
 ### Bug Fixes
