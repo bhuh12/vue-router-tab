@@ -1,5 +1,11 @@
 # 更新日志
 
+## [1.2.10](https://github.com/bhuh12/vue-router-tab/compare/v1.2.9...v1.2.10) (2021-12-17)
+
+### Bug Fixes
+
+- **pageLeave:** 页面实例不存在报错 ([2a6265d](https://github.com/bhuh12/vue-router-tab/commit/2a6265d8412c4c45e4f7ffb76ba8e8922de3e272))
+
 ## [1.2.9](https://github.com/bhuh12/vue-router-tab/compare/v1.2.8...v1.2.9) (2021-12-09)
 
 ### Bug Fixes

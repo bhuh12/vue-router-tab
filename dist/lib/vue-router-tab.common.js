@@ -2047,7 +2047,11 @@ var pageLeave_leaveGuard = function leaveGuard(router) {
                 // 未开启缓存时，获取当前页面组件实例
 
                 if (!vm && _this.activeTabId === id) {
-                  vm = _this.$route.matched[_this.$alive.routeMatch.routeIndex].instances.default;
+                  try {
+                    vm = _this.$route.matched[_this.$alive.routeMatch.routeIndex].instances.default;
+                  } catch (_) {
+                    vm = null;
+                  }
                 }
 
                 if (!(!vm || !tab)) {
