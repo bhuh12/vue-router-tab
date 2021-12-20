@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["p-Page2-vue"],{"223d":function(e,t,n){"use strict";n.r(t);var r=function(){var e=this,t=e.$createElement;e._self._c;return e._m(0)},u=[function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",[n("h2",[e._v("页面2")]),n("input",{attrs:{type:"text"}})])}],a=n("2877"),c={},l=Object(a["a"])(c,r,u,!1,null,null,null);t["default"]=l.exports}}]);
+//# sourceMappingURL=p-Page2-vue.8643d055.js.map
