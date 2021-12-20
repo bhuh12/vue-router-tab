@@ -1,5 +1,11 @@
 # 更新日志
 
+## [1.2.11](https://github.com/bhuh12/vue-router-tab/compare/v1.2.10...v1.2.11) (2021-12-20)
+
+### Bug Fixes
+
+- **routerPage:** 修复 `this.$vnode.data.key` 不存在时,动态页签无法更新 ([4aa2e96](https://github.com/bhuh12/vue-router-tab/commit/4aa2e968130bae897b66ff4eb91aa4ed86bc71bf)), closes [#138](https://github.com/bhuh12/vue-router-tab/issues/138)
+
 ## [1.2.10](https://github.com/bhuh12/vue-router-tab/compare/v1.2.9...v1.2.10) (2021-12-17)
 
 ### Bug Fixes

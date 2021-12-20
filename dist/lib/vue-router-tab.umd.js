@@ -4375,7 +4375,26 @@ var beforeunload = function beforeunload($tabs, tabId, beforePageLeave) {
       return msg;
     }
   };
-}; // 路由页面混入
+};
+/** 更新页签 */
+
+
+function updateTab(info) {
+  var tab = typeof info === 'string' ? {
+    title: info
+  } : info;
+
+  var _ref = this.$tabs || emptyObj,
+      activeTab = _ref.activeTab;
+
+  if (tab && activeTab) {
+    for (var key in tab) {
+      if (!['id', 'to'].includes(key)) {
+        this.$set(activeTab, key, tab[key]);
+      }
+    }
+  }
+} // 路由页面混入
 
 
 /* harmony default export */ var routerPage = ({
@@ -4383,22 +4402,8 @@ var beforeunload = function beforeunload($tabs, tabId, beforePageLeave) {
     // 监听 routerTab 字段，更新页签信息
     routeTab: {
       handler: function handler(val) {
-        if (!val) return;
-        var tab = typeof val === 'string' ? {
-          title: val
-        } : val;
-        var changedTabKey = this.$vnode.data.key;
-        var changedTab = this.$tabs.items.find(function (item) {
-          return item.id == changedTabKey;
-        }) || emptyObj;
-
-        if (tab && changedTab) {
-          for (var key in tab) {
-            if (!['id', 'to'].includes(key)) {
-              this.$set(changedTab, key, tab[key]);
-            }
-          }
-        }
+        if (!val || this._inactive) return;
+        updateTab.call(this, val);
       },
       deep: true,
       immediate: true
@@ -4408,13 +4413,17 @@ var beforeunload = function beforeunload($tabs, tabId, beforePageLeave) {
   mounted: function mounted() {
     var $tabs = this.$tabs;
 
-    var _ref = this.$vnode && this.$vnode.componentOptions.Ctor.options || emptyObj,
-        beforePageLeave = _ref.beforePageLeave; // 页面离开确认
+    var _ref2 = this.$vnode && this.$vnode.componentOptions.Ctor.options || emptyObj,
+        beforePageLeave = _ref2.beforePageLeave; // 页面离开确认
 
 
     if ($tabs && beforePageLeave) {
       window.addEventListener('beforeunload', this._beforeunload = beforeunload($tabs, $tabs.activeTabId, beforePageLeave.bind(this)));
     }
+  },
+  // 页签激活时更新页签
+  activated: function activated() {
+    this.routeTab && updateTab.call(this, this.routeTab);
   },
   destroyed: function destroyed() {
     if (this._beforeunload) {
