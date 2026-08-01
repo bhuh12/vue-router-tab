@@ -1,0 +1,28 @@
+name: Deploy
+
+on:
+  push:
+    branches: [v2-vue3-refactor]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: voidzero-dev/setup-vp@v1
+        with:
+          node-version: '24'
+          cache: true
+      - run: vp install
+      - run: vp run --filter vue-router-tab-docs build
+      - run: vp run --filter vue-router-tab-demo build
+      - name: Assemble /vue-router-tab/
+        run: |
+          mkdir -p site/vue-router-tab/demo
+          cp -r docs/.vitepress/dist/* site/vue-router-tab/
+          cp -r demo/dist/* site/vue-router-tab/demo/
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          keep_files: true

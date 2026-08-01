@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [v2-vue3-refactor]
+  pull_request:
+    branches: [v2-vue3-refactor]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: voidzero-dev/setup-vp@v1
+        with:
+          node-version: '24'
+          cache: true
+      - run: vp install
+      - run: vp check
+      - run: vp run stylelint
+      - run: vp test
+      - run: vp run build
+      - run: vp run demo:build
+      - run: vp run typecheck
