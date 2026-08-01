@@ -1,0 +1,9 @@
+onlyBuiltDependencies:
+  - esbuild
+  - '@parcel/watcher'
+
+overrides:
+  vitest: '4.1.10'
+
+allowBuilds:
+  '@parcel/watcher': true
