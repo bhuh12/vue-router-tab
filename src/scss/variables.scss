@@ -1,0 +1,8 @@
+// 核心主题变量：使用方可在 .router-tab 外层覆盖 --rtab-* 扩展主题
+.router-tab {
+  --rtab-color-primary: #7857f6;
+  --rtab-border-color: #eaecef;
+  --rtab-text-color: #4d4d4d;
+  --rtab-font-size: 14px;
+  --rtab-header-height: 40px;
+}

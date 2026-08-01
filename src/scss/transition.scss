@@ -1,0 +1,33 @@
+// 过渡动画（照搬 v1，类名对齐 Vue3）
+.router-tab-zoom {
+  &-enter-active,
+  &-leave-active {
+    transition: all 0.4s;
+  }
+
+  &-enter-from,
+  &-leave-to {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.router-tab-swap {
+  &-enter-active,
+  &-leave-active {
+    transition: all 0.5s;
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+  }
+
+  &-enter-from {
+    transform: translateX(-30px);
+  }
+
+  &-leave-to {
+    transform: translateX(30px);
+  }
+}
