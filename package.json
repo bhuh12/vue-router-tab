@@ -39,9 +39,11 @@
     "fmt": "vp fmt",
     "stylelint": "stylelint \"src/**/*.{scss,vue}\"",
     "test": "vp test",
-    "typecheck": "vue-tsc --noEmit -p tsconfig.json",
-    "verify": "pnpm check && pnpm stylelint && pnpm test && pnpm build && pnpm typecheck",
-    "prepublishOnly": "pnpm verify"
+    "typecheck": "vue-tsc --noEmit -p tsconfig.json && pnpm --filter vue-router-tab-demo typecheck",
+    "verify": "pnpm check && pnpm stylelint && pnpm test && pnpm build && pnpm demo:build && pnpm typecheck",
+    "prepublishOnly": "pnpm verify",
+    "demo:dev": "pnpm --filter vue-router-tab-demo dev",
+    "demo:build": "pnpm --filter vue-router-tab-demo build"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.8",

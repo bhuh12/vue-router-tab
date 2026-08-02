@@ -1,0 +1,3 @@
+<template>
+  <RouterTab reuse />
+</template>

@@ -1,0 +1,20 @@
+$color: #7857f6;
+$color-primary: #409eff;
+$text: #2c3e50;
+
+// 移动端断点
+$small-screen: 767.98px;
+
+/** 移动端样式 */
+@mixin screen-mob {
+  @media screen and (max-width: $small-screen) {
+    @content;
+  }
+}
+
+/** PC 端样式 */
+@mixin screen-pc {
+  @media screen and (min-width: $small-screen) {
+    @content;
+  }
+}

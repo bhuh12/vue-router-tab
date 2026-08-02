@@ -1,0 +1,193 @@
+@use 'sass:color';
+
+// #app 必须显式给高：Vue 3 的 mount() 是挂进容器内部（Vue 2 的 $mount 是替换容器），
+// 多出的这层若高度为 auto，下方 .app-ct 的 height:100% 会塌成内容高度
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  color: $text;
+  font-size: 16px;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* PC 滚动条 */
+@include screen-pc {
+  ::-webkit-scrollbar {
+    $w: 6px;
+    $mw: 3px;
+    width: $w;
+    height: $w;
+
+    &-thumb {
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+
+      &:hover {
+        background: rgba($color, 0.5);
+      }
+
+      &:active {
+        background: rgba($color, 0.8);
+      }
+    }
+
+    &-corner {
+      display: none;
+    }
+  }
+}
+
+// 图标
+[class^='rt-icon-'],
+[class*=' rt-icon-'] {
+  font-size: 16px;
+  font-family: 'rt-icon' !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a:link {
+  transition: color 0.3s ease-in-out;
+}
+
+code {
+  margin: 0;
+  padding: 0.25rem 0.5rem;
+  color: #f40;
+  font-size: 0.85em;
+  font-family:
+    source-code-pro,
+    Menlo,
+    Monaco,
+    Consolas,
+    Courier New,
+    monospace;
+  background-color: rgba(27, 31, 35, 0.05);
+  border-radius: 3px;
+}
+
+// 强提示
+.text-strong {
+  color: #f50;
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
+// 按钮
+.demo-btn {
+  $activeColor: color.mix(#000, $color, 20%);
+
+  display: inline-block;
+  margin: 0 1em 0.5em 0;
+  padding: 3px 8px;
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: $color;
+    border-color: $color;
+  }
+
+  &:active {
+    color: $activeColor;
+    border-color: $activeColor;
+  }
+
+  &.link {
+    &:hover {
+      color: $color-primary;
+      border-color: $color-primary;
+    }
+
+    // is-active 由 Rule.vue 的 custom 插槽按 fullPath 全匹配后自行添加
+    // （内置 exact-active 忽略 query，会让 1、1?q=abc、1?q=def 同时高亮）
+    &.router-link-exact-active,
+    &.is-active {
+      color: #fff;
+      background-color: $color-primary;
+      border-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  &.primary {
+    color: #fff;
+    background: $color;
+    border-color: $color;
+
+    &:hover {
+      border-color: $activeColor;
+    }
+
+    &:active {
+      background: $activeColor;
+    }
+  }
+}
+
+// 表格
+.demo-table {
+  $bg: #e5fff3;
+  min-width: 300px;
+  border-collapse: collapse;
+
+  // 单元格（表头单元格并列复用，避免公共样式写两遍）
+  &__cell,
+  &__head-cell {
+    padding: 5px 8px;
+    border: 1px solid #ddd;
+  }
+
+  // 表头单元格
+  &__head-cell {
+    font-weight: 400;
+    text-align: left;
+    background-color: #f7f7f7;
+  }
+
+  // 行
+  &__row:hover {
+    background-color: rgba($bg, 0.6);
+  }
+
+  // 行 - 当前规则（is-active 为 demo 全局激活状态类约定，与库 TabItem 一致）
+  &__row.is-active {
+    background-color: $bg;
+  }
+}
+
+// 页签组件 - 全屏
+.router-tab.is-fullscreen {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  background: #fff;
+}

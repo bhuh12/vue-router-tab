@@ -2,6 +2,9 @@ onlyBuiltDependencies:
   - esbuild
   - '@parcel/watcher'
 
+packages:
+  - demo
+
 overrides:
   vitest: '4.1.10'
 
