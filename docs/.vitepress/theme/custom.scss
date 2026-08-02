@@ -1,0 +1,50 @@
+@use 'sass:color';
+
+// 主题色，与 demo / 库的 --rtab-color-primary 保持一致
+$color: #7857f6;
+
+// 覆盖 VitePress 默认主题的品牌色变量（默认为 indigo），派生明暗两套色阶
+:root {
+  --vp-c-brand-1: #{color.adjust($color, $lightness: -6%)};
+  --vp-c-brand-2: #{$color};
+  --vp-c-brand-3: #{color.adjust($color, $lightness: -12%)};
+  --vp-c-brand-soft: #{rgba($color, 0.14)};
+}
+
+.dark {
+  --vp-c-brand-1: #{color.adjust($color, $lightness: 10%)};
+  --vp-c-brand-2: #{$color};
+  --vp-c-brand-3: #{color.adjust($color, $lightness: -8%)};
+  --vp-c-brand-soft: #{rgba($color, 0.16)};
+}
+
+// 自定义滚动条（v1 styles/index.styl 平移）
+
+// v1 的另外三段样式不平移：
+// - .navbar .home-link::before 注入 logo → VitePress 的 themeConfig.logo 已原生覆盖
+// - .home .hero img 宽度 → 首页 frontmatter 的 hero.image 已原生覆盖
+// - .nav-links .nav-link.external 负边距 → VuePress 类名，VitePress 无对应 DOM
+// 硬搬这三段是死代码（选择器永不命中）
+::-webkit-scrollbar {
+  $w: 6px;
+
+  width: $w;
+  height: $w;
+
+  &-thumb {
+    background: rgb(0 0 0 / 10%);
+    border-radius: 20px;
+
+    &:hover {
+      background: rgba($color, 0.5);
+    }
+
+    &:active {
+      background: rgba($color, 0.8);
+    }
+  }
+
+  &-corner {
+    display: none;
+  }
+}

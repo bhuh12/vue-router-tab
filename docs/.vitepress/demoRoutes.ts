@@ -1,0 +1,24 @@
+/**
+ * 文档页引用的 demo 首屏路径（`#` 后部分）
+ * key 为 demo/src/frames 下的文件名（不含扩展名），由 scripts/check-demo-routes.mjs 断言存在性
+ */
+export const DEMO_ROUTES = {
+  Default: '/default/page/1',
+  Append: '/append/page/1',
+  CloseLastTab: '/close-last-tab/page/1',
+  Dragsort: '/dragsort/page/1',
+  Contextmenu: '/contextmenu/page/1',
+  Transition: '/transition/page/1',
+  Slot: '/slot/page/1',
+  I18n: '/i18n/lang',
+  LangEn: '/lang-en/page/1',
+  LangCustom: '/lang-custom/page/1',
+  PageScroller: '/page-scroller/page/1',
+  MaxAlive: '/max-alive/page/1',
+  Reuse: '/reuse/rule/default/',
+  InitialTabs: '/initial-tabs/page/1',
+  Restore: '/restore/page/1',
+  Iframe: '/iframe/operate'
+} as const
+
+export type DemoFrame = keyof typeof DEMO_ROUTES

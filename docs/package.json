@@ -1,0 +1,15 @@
+{
+  "name": "vue-router-tab-docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev .",
+    "build": "node scripts/check-demo-routes.mjs && vitepress build .",
+    "preview": "vitepress preview ."
+  },
+  "devDependencies": {
+    "sass-embedded": "^1.100.0",
+    "vitepress": "2.0.0-alpha.19",
+    "vue": "^3.5.0"
+  }
+}

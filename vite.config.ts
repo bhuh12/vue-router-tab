@@ -24,10 +24,16 @@ export default defineConfig({
     exclude: ['spike/**', 'node_modules/**']
   },
   lint: {
-    ignorePatterns: ['dist/**', 'demo/dist/**', 'node_modules/**']
+    ignorePatterns: ['dist/**', 'docs/.vitepress/dist/**', 'demo/dist/**', 'node_modules/**']
   },
   fmt: {
-    ignorePatterns: ['dist/**', 'demo/dist/**', 'pnpm-lock.yaml', 'node_modules/**'],
+    ignorePatterns: [
+      'dist/**',
+      'docs/.vitepress/dist/**',
+      'demo/dist/**',
+      'pnpm-lock.yaml',
+      'node_modules/**'
+    ],
     singleQuote: true,
     semi: false,
     trailingComma: 'none'

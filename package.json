@@ -41,13 +41,18 @@
     "test": "vp test",
     "typecheck": "vue-tsc --noEmit -p tsconfig.json && pnpm --filter vue-router-tab-demo typecheck",
     "verify": "pnpm check && pnpm stylelint && pnpm test && pnpm build && pnpm demo:build && pnpm typecheck",
+    "changelog": "conventional-changelog -p angular -i docs/guide/changelog.md -s",
     "prepublishOnly": "pnpm verify",
     "demo:dev": "pnpm --filter vue-router-tab-demo dev",
-    "demo:build": "pnpm --filter vue-router-tab-demo build"
+    "demo:build": "pnpm --filter vue-router-tab-demo build",
+    "docs:dev": "pnpm --filter vue-router-tab-docs dev",
+    "docs:build": "pnpm --filter vue-router-tab-docs build",
+    "docs:preview": "pnpm --filter vue-router-tab-docs preview"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.8",
     "@vue/test-utils": "^2.4.11",
+    "conventional-changelog-cli": "^5.0.0",
     "happy-dom": "^20.11.1",
     "sass-embedded": "^1.100.0",
     "stylelint": "^17.14.1",
