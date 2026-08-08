@@ -8,13 +8,13 @@
     <meta name="generator" content="VitePress v2.0.0-alpha.19">
     <link rel="preload stylesheet" href="/vue-router-tab/assets/style.Bly8pnEN.css" as="style">
     <link rel="preload stylesheet" href="/vue-router-tab/vp-icons.css" as="style">
-    <script type="module" src="/vue-router-tab/assets/chunks/metadata.8e5bd523.js"></script>
+    <script type="module" src="/vue-router-tab/assets/chunks/metadata.704ae9b2.js"></script>
     <script type="module" src="/vue-router-tab/assets/app.PTnHm8Od.js"></script>
     <link rel="preload" href="/vue-router-tab/assets/inter-roman-latin.BOE8-mWI.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="modulepreload" href="/vue-router-tab/assets/chunks/theme.VjOhA87d.js">
     <link rel="modulepreload" href="/vue-router-tab/assets/chunks/framework.BWKSSupd.js">
     <link rel="modulepreload" href="/vue-router-tab/assets/chunks/demoRoutes.DUB2mePt.js">
-    <link rel="modulepreload" href="/vue-router-tab/assets/guide_custom_scroll.md.CLbnJKYL.lean.js">
+    <link rel="modulepreload" href="/vue-router-tab/assets/guide_custom_scroll.md.C1sVo9GY.lean.js">
     <link rel="icon" href="/vue-router-tab/img/logo.png">
     <script id="check-dark-mode">(()=>{let e=localStorage.getItem(`vitepress-theme-appearance`)||`auto`,t=window.matchMedia(`(prefers-color-scheme: dark)`).matches;(!e||e===`auto`?t:e===`dark`)&&document.documentElement.classList.add(`dark`)})();</script>
     <script id="check-mac-os">document.documentElement.classList.toggle(`mac`,/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
@@ -92,7 +92,7 @@
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#c62739;--shiki-dark:#F97583;">  await</span><span style="--shiki-light:#c62739;--shiki-dark:#F97583;"> new</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> Promise</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">((</span><span style="--shiki-light:#c13617;--shiki-dark:#FFAB70;">resolve</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#c62739;--shiki-dark:#F97583;">=&gt;</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> setTimeout</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(resolve, Math.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">random</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">() </span><span style="--shiki-light:#c62739;--shiki-dark:#F97583;">*</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1000</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">))</span></span>
 <span class="line"></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">  list.value </span><span style="--shiki-light:#c62739;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#c62739;--shiki-dark:#F97583;"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> Array</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">100</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">  list.value </span><span style="--shiki-light:#c62739;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Array.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">from</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">({ length: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">100</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> })</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">  loading.value </span><span style="--shiki-light:#c62739;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> false</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#62687b;--shiki-dark:#818e99;">  // 数据渲染后还原：restoreScroll 内部已 nextTick</span></span>
@@ -147,7 +147,7 @@
 <span class="line"><span style="--shiki-light:#c62739;--shiki-dark:#F97583;">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> { useRouterPage } </span><span style="--shiki-light:#c62739;--shiki-dark:#F97583;">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &#39;vue-router-tab&#39;</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#62687b;--shiki-dark:#818e99;">/** 长列表数据 */</span></span>
-<span class="line"><span style="--shiki-light:#c62739;--shiki-dark:#F97583;">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> list</span><span style="--shiki-light:#c62739;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> ref</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#c62739;--shiki-dark:#F97583;">new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> Array</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">100</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">))</span></span>
+<span class="line"><span style="--shiki-light:#c62739;--shiki-dark:#F97583;">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> list</span><span style="--shiki-light:#c62739;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> ref</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(Array.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">from</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">({ length: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">100</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> }))</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#62687b;--shiki-dark:#818e99;">// 多个页面级滚动容器（数组式，各自独立记忆）</span></span>
 <span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">useRouterPage</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">({ pageScroller: [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;.custom-scroller&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;.custom-scroller-1&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">] })</span></span>
