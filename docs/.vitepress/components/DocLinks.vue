@@ -1,8 +1,16 @@
+<template>
+  <div class="doc-links">
+    <a v-if="api" :href="apiHref">API</a>
+    <DemoLink v-if="demo" :href="demo">Demo</DemoLink>
+  </div>
+</template>
+
 <script setup lang="ts">
 import { computed } from 'vue'
-import { withBase } from 'vitepress'
+import { withBase, useData } from 'vitepress'
 
 import DemoLink from './DemoLink.vue'
+import type { ThemeConfig } from '../config'
 
 const props = defineProps<{
   /** API 页路径，可带锚点，如 `router-tab#props` */
@@ -11,16 +19,15 @@ const props = defineProps<{
   demo?: string
 }>()
 
-// 组件里的站内绝对路径不经 VitePress 处理，必须显式 withBase()，否则 base 下断链
-const apiHref = computed(() => withBase(`/api/${props.api ?? ''}`))
-</script>
+const { localeIndex } = useData<ThemeConfig>()
 
-<template>
-  <div class="doc-links">
-    <a v-if="api" :href="apiHref">API</a>
-    <DemoLink v-if="demo" :href="demo">Demo</DemoLink>
-  </div>
-</template>
+// 组件里的站内绝对路径不经 VitePress 处理，必须显式 withBase()，否则 base 下断链；
+// withBase 不感知 locale 前缀，须自行按当前 locale 补 `/en` 等前缀
+const apiHref = computed(() => {
+  const prefix = localeIndex.value === 'root' ? '' : `/${localeIndex.value}`
+  return withBase(`${prefix}/api/${props.api ?? ''}`)
+})
+</script>
 
 <style lang="scss" scoped>
 .doc-links {
