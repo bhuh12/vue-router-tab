@@ -1,0 +1,784 @@
+{
+  "version": "2.17",
+  "children": [
+    {
+      "type": "frame",
+      "id": "G1LDEu",
+      "x": 0,
+      "y": 0,
+      "name": "VueRouterTab 图标设计",
+      "clip": true,
+      "width": 1180,
+      "fill": "#FFFFFF",
+      "layout": "vertical",
+      "gap": 36,
+      "padding": 60,
+      "children": [
+        {
+          "type": "frame",
+          "id": "NJ6UA",
+          "name": "Head",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 6,
+          "children": [
+            {
+              "type": "text",
+              "id": "UytIj",
+              "name": "Title",
+              "fill": "$ink",
+              "content": "VueRouterTab 图标设计",
+              "fontFamily": "$font-brand",
+              "fontSize": 24,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "t0WhS",
+          "name": "Row 紫色",
+          "width": "fill_container",
+          "gap": 36,
+          "children": [
+            {
+              "type": "frame",
+              "id": "QJU2z",
+              "name": "紫色原版",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 20,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Z2JhJ",
+                  "name": "Stage",
+                  "width": "fill_container",
+                  "height": 260,
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 135,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#FFFFFF",
+                        "position": 0
+                      },
+                      {
+                        "color": "#D9D0FF",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 20,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "UTM8b",
+                      "name": "Stage",
+                      "width": "fill_container",
+                      "height": 260,
+                      "fill": {
+                        "type": "gradient",
+                        "gradientType": "linear",
+                        "enabled": true,
+                        "rotation": 135,
+                        "size": {
+                          "height": 1
+                        },
+                        "colors": [
+                          {
+                            "color": "#FFFFFF",
+                            "position": 0
+                          },
+                          {
+                            "color": "#D9D0FF",
+                            "position": 1
+                          }
+                        ]
+                      },
+                      "cornerRadius": 20,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "GgeZp",
+                          "name": "Mark",
+                          "reusable": true,
+                          "width": 200,
+                          "height": 200,
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "path",
+                              "id": "Mryy9",
+                              "x": 86,
+                              "y": 24.7,
+                              "name": "Tab Idle 1",
+                              "geometry": "M46 14.5l12.5 0c2 0 3 1 3 3l0 9.5-18.5 0 0-9.5c0-2 1-3 3-3z",
+                              "viewBox": [
+                                43,
+                                14.5,
+                                18.5,
+                                12.5
+                              ],
+                              "fill": "#A98CFA",
+                              "width": 42,
+                              "height": 28
+                            },
+                            {
+                              "type": "path",
+                              "id": "oQRx5",
+                              "x": 136,
+                              "y": 24.7,
+                              "name": "Tab Idle 2",
+                              "geometry": "M66.5 14.5l12.5 0c2 0 3 1 3 3l0 9.5-18.5 0 0-9.5c0-2 1-3 3-3z",
+                              "viewBox": [
+                                63.5,
+                                14.5,
+                                18.5,
+                                12.5
+                              ],
+                              "fill": "#A98CFA",
+                              "width": 42,
+                              "height": 28
+                            },
+                            {
+                              "type": "path",
+                              "id": "sulu0",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Panel+Active",
+                              "geometry": "M16.6 9.5l16 0c2.667 0 4 1.333 4 4l0 6c0 0.265 0.051 0.52 0.152 0.765 0.102 0.245 0.246 0.462 0.434 0.649 0.187 0.188 0.404 0.332 0.649 0.434 0.245 0.101 0.5 0.152 0.765 0.152l45.4 0c6.667 0 10 3.333 10 10l0 45c0 6.667-3.333 10-10 10l-72 0c-6.667 0-10-3.333-10-10l0-45c0-6.667 0.933-10 7.6-10l1 0c0.265 0 0.52-0.051 0.765-0.152 0.245-0.102 0.462-0.246 0.649-0.434 0.188-0.187 0.332-0.404 0.434-0.649 0.101-0.245 0.152-0.5 0.152-0.765l0-6c0-2.667 1.333-4 4-4z",
+                              "viewBox": [
+                                0,
+                                0,
+                                96,
+                                96
+                              ],
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 125,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "$panel-a",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "$panel-b",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "width": 200,
+                              "height": 200
+                            },
+                            {
+                              "type": "path",
+                              "id": "K0jx5u",
+                              "x": 0,
+                              "y": 0,
+                              "name": "V Plate",
+                              "geometry": "M26 36l22 36 22-36-12 0-10 18-10-18z",
+                              "viewBox": [
+                                0,
+                                0,
+                                96,
+                                96
+                              ],
+                              "fill": "#FFFFFFA6",
+                              "width": 200,
+                              "height": 200
+                            },
+                            {
+                              "type": "path",
+                              "id": "oTblh",
+                              "x": 36,
+                              "y": 28,
+                              "name": "Active Dot",
+                              "geometry": "M22.575 19.5c0 0.305-0.058 0.598-0.175 0.88-0.117 0.282-0.283 0.531-0.499 0.746-0.215 0.216-0.464 0.382-0.746 0.499-0.282 0.117-0.575 0.175-0.88 0.175-0.305 0-0.598-0.058-0.88-0.175-0.282-0.117-0.531-0.283-0.746-0.499-0.216-0.215-0.382-0.464-0.499-0.746-0.117-0.282-0.175-0.575-0.175-0.88 0-0.305 0.058-0.598 0.175-0.88 0.117-0.282 0.283-0.531 0.499-0.746 0.215-0.216 0.464-0.382 0.746-0.499 0.282-0.117 0.575-0.175 0.88-0.175 0.305 0 0.598 0.058 0.88 0.175 0.282 0.117 0.531 0.283 0.746 0.499 0.216 0.215 0.382 0.464 0.499 0.746 0.117 0.282 0.175 0.575 0.175 0.88z",
+                              "viewBox": [
+                                18.549999237060547,
+                                17.200000762939453,
+                                4.600000381469727,
+                                4.599998474121094
+                              ],
+                              "fill": "#E4D7FF",
+                              "width": 10,
+                              "height": 10
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "dcIPd",
+                  "name": "Caption",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "b1Z6X",
+                      "name": "Name",
+                      "fill": "$panel-solid",
+                      "content": "紫色",
+                      "fontFamily": "$font-brand",
+                      "fontSize": 18,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "OE7hn",
+                      "name": "Hex",
+                      "fill": "$ink-soft",
+                      "content": "#5B5BF5 → #9B5CF6",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal",
+                      "letterSpacing": 1
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "z2TBA",
+              "name": "紫色镂空",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 20,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Rkn2h",
+                  "name": "Stage",
+                  "width": "fill_container",
+                  "height": 260,
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 135,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#FFFFFF",
+                        "position": 0
+                      },
+                      {
+                        "color": "#D9D0FF",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 20,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "IFVP4",
+                      "name": "Stage",
+                      "width": "fill_container",
+                      "height": 260,
+                      "fill": {
+                        "type": "gradient",
+                        "gradientType": "linear",
+                        "enabled": true,
+                        "rotation": 135,
+                        "size": {
+                          "height": 1
+                        },
+                        "colors": [
+                          {
+                            "color": "#FFFFFF",
+                            "position": 0
+                          },
+                          {
+                            "color": "#D9D0FF",
+                            "position": 1
+                          }
+                        ]
+                      },
+                      "cornerRadius": 20,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "id": "Tni1u",
+                          "type": "ref",
+                          "reusable": true,
+                          "ref": "GgeZp",
+                          "name": "Mark 镂空",
+                          "descendants": {
+                            "Mryy9": {
+                              "y": 19.5
+                            },
+                            "oQRx5": {
+                              "y": 19.5
+                            },
+                            "sulu0": {
+                              "geometry": "M16.6 7l16 0c2.667 0 4 1.333 4 4l0 6c0 0.265 0.051 0.52 0.152 0.765 0.102 0.245 0.246 0.462 0.434 0.649 0.187 0.188 0.404 0.332 0.649 0.434 0.245 0.101 0.5 0.152 0.765 0.152l45.4 0c6.667 0 10 3.333 10 10l0 50c0 6.667-3.333 10-10 10l-72 0c-6.667 0-10-3.333-10-10l0-50c0-6.667 0.933-10 7.6-10l1 0c0.265 0 0.52-0.051 0.765-0.152 0.245-0.102 0.462-0.246 0.649-0.434 0.188-0.187 0.332-0.404 0.434-0.649 0.101-0.245 0.152-0.5 0.152-0.765l0-6c0-2.667 1.333-4 4-4z"
+                            },
+                            "K0jx5u": {
+                              "type": "path",
+                              "id": "KlX4w",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Panel Plate (V 镂空)",
+                              "geometry": "M12 27h72a2 2 0 0 1 2 2v50a2 2 0 0 1-2 2h-72a2 2 0 0 1-2-2v-50a2 2 0 0 1 2-2z m14 9l22 36 22-36-12 0-10 18-10-18z",
+                              "fillRule": "evenodd",
+                              "viewBox": [
+                                0,
+                                0,
+                                96,
+                                96
+                              ],
+                              "fill": "#FFFFFFA6",
+                              "width": 200,
+                              "height": 200
+                            },
+                            "oTblh": {
+                              "y": 22,
+                              "width": 10,
+                              "height": 10,
+                              "rotation": 0,
+                              "x": 36
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "czQEA",
+                  "name": "Caption",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "p6yWtU",
+                      "name": "Name",
+                      "fill": "$panel-solid",
+                      "content": "紫色镂空",
+                      "fontFamily": "$font-brand",
+                      "fontSize": 18,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ii61F",
+                      "name": "Hex",
+                      "fill": "$ink-soft",
+                      "content": "#5B5BF5 → #9B5CF6",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal",
+                      "letterSpacing": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "tasIa",
+          "name": "Row 绿蓝",
+          "width": "fill_container",
+          "gap": 36,
+          "children": [
+            {
+              "type": "frame",
+              "id": "I6YVnV",
+              "name": "绿蓝原版",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 20,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "dx8Sn",
+                  "name": "Stage",
+                  "width": "fill_container",
+                  "height": 260,
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 135,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#FFFFFF",
+                        "position": 0
+                      },
+                      {
+                        "color": "#D3EDE4",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 20,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "dySin",
+                      "name": "Stage",
+                      "width": "fill_container",
+                      "height": 260,
+                      "fill": {
+                        "type": "gradient",
+                        "gradientType": "linear",
+                        "enabled": true,
+                        "rotation": 135,
+                        "size": {
+                          "height": 1
+                        },
+                        "colors": [
+                          {
+                            "color": "#FFFFFF",
+                            "position": 0
+                          },
+                          {
+                            "color": "#D3EDE4",
+                            "position": 1
+                          }
+                        ]
+                      },
+                      "cornerRadius": 20,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "id": "ChPFt",
+                          "type": "ref",
+                          "ref": "GgeZp",
+                          "name": "Mark",
+                          "descendants": {
+                            "Mryy9": {
+                              "fill": "#97CBDE"
+                            },
+                            "oQRx5": {
+                              "fill": "#97CBDE"
+                            },
+                            "sulu0": {
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 125,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "$v-panel-b",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "$v-panel-a",
+                                    "position": 1
+                                  }
+                                ]
+                              }
+                            },
+                            "oTblh": {
+                              "fill": "$g-active-dot",
+                              "x": 36,
+                              "y": 27
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "admkz",
+                  "name": "Caption",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "rw070",
+                      "name": "Name",
+                      "fill": "$v-panel-a",
+                      "content": "绿蓝",
+                      "fontFamily": "$font-brand",
+                      "fontSize": 18,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "whF4Z",
+                      "name": "Hex",
+                      "fill": "$ink-soft",
+                      "content": "#647eff → #42d392",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal",
+                      "letterSpacing": 1
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "OiXwC",
+              "name": "绿蓝镂空",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 20,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "GVim4",
+                  "name": "Stage",
+                  "width": "fill_container",
+                  "height": 260,
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 135,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#FFFFFF",
+                        "position": 0
+                      },
+                      {
+                        "color": "#D9D0FF",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 20,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "MlYiQ",
+                      "name": "Stage",
+                      "width": "fill_container",
+                      "height": 260,
+                      "fill": {
+                        "type": "gradient",
+                        "gradientType": "linear",
+                        "enabled": true,
+                        "rotation": 135,
+                        "size": {
+                          "height": 1
+                        },
+                        "colors": [
+                          {
+                            "color": "#FFFFFF",
+                            "position": 0
+                          },
+                          {
+                            "color": "#D3EDE4",
+                            "position": 1
+                          }
+                        ]
+                      },
+                      "cornerRadius": 20,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "id": "YzKxZ",
+                          "type": "ref",
+                          "ref": "Tni1u",
+                          "name": "Mark",
+                          "descendants": {
+                            "Mryy9": {
+                              "fill": "#97CBDE"
+                            },
+                            "oQRx5": {
+                              "fill": "#97CBDE"
+                            },
+                            "sulu0": {
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 125,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "$v-panel-b",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "$v-panel-a",
+                                    "position": 1
+                                  }
+                                ]
+                              }
+                            },
+                            "oTblh": {
+                              "fill": "$g-active-dot"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "u5tidp",
+                  "name": "Caption",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "yJJfe",
+                      "name": "Name",
+                      "fill": "$v-panel-a",
+                      "content": "绿蓝镂空",
+                      "fontFamily": "$font-brand",
+                      "fontSize": 18,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "OsAHi",
+                      "name": "Hex",
+                      "fill": "$ink-soft",
+                      "content": "半透明镂空 V",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal",
+                      "letterSpacing": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "font-brand": {
+      "type": "string",
+      "value": "Outfit"
+    },
+    "font-body": {
+      "type": "string",
+      "value": "Inter"
+    },
+    "panel-a": {
+      "type": "color",
+      "value": "#5B5BF5"
+    },
+    "panel-b": {
+      "type": "color",
+      "value": "#9B5CF6"
+    },
+    "tab-idle": {
+      "type": "color",
+      "value": "#C4B0FF"
+    },
+    "ink": {
+      "type": "color",
+      "value": "#1B1B2F"
+    },
+    "ink-soft": {
+      "type": "color",
+      "value": "#6B6B85"
+    },
+    "panel-solid": {
+      "type": "color",
+      "value": "#7857F6"
+    },
+    "dot": {
+      "type": "color",
+      "value": "#FFC64B"
+    },
+    "g-panel-a": {
+      "type": "color",
+      "value": "#42b983"
+    },
+    "g-panel-b": {
+      "type": "color",
+      "value": "#6FD8A6"
+    },
+    "g-tab-idle": {
+      "type": "color",
+      "value": "#82D3AF"
+    },
+    "g-panel-solid": {
+      "type": "color",
+      "value": "#42b983"
+    },
+    "g-kicker": {
+      "type": "color",
+      "value": "#2F9268"
+    },
+    "g-active-dot": {
+      "type": "color",
+      "value": "#DFF6E9"
+    },
+    "v-panel-a": {
+      "type": "color",
+      "value": "#42d392"
+    },
+    "v-panel-b": {
+      "type": "color",
+      "value": "#647eff"
+    }
+  },
+  "fileToken": "5ada0117-1214-439a-9561-20edd715dfbb"
+}
