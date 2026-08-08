@@ -1,0 +1,1 @@
+var e=Symbol(`demo-lang`);export{e as t};

@@ -1,0 +1,1 @@
+import{O as e,s as t,u as n}from"./runtime-core.esm-bundler-CzNdG7__.js";import{t as r}from"./_plugin-vue_export-helper-BDNMzG2s.js";var i={};function a(r,i){return e(),n(`div`,null,[...i[0]||=[t(`h2`,null,`页面1`,-1),t(`input`,{class:`page1__input`,type:`text`},null,-1)]])}var o=r(i,[[`render`,a]]);export{o as default};
